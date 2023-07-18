@@ -1,6 +1,5 @@
 <?php
-include_once __DIR__."/../../config.php";
-include_once (ROOT.'/cadastros/conexao.php');
+include_once ('../conexao.php');
 
 
 function buscaProdutos($idProduto=null,$idMarca=null)
