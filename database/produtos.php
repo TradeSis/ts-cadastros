@@ -1,5 +1,5 @@
 <?php
-include_once ('../conexao.php');
+include_once __DIR__ . "/../conexao.php";
 
 
 function buscaProdutos($idProduto=null,$idMarca=null)
