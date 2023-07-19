@@ -1,5 +1,6 @@
 
 <?php
+echo "cadastros/head.php<hr>";
 /*
 // Lucas 19042023 -  adicionado link para bootstrap.css e padraoCss.css
 // Lucas 29032023 - modificado tempo da seção

@@ -3,7 +3,7 @@
 //Lucas 05042023 - adicionado foreach para menuLateral.
 //gabriel 220323 11:19 - adicionado IF para usuario cliente
 //Lucas 13032023 - criado versão 2 do menu.
-echo "<HR>antes<HR>";
+echo "cadastros/index.php<hr>";
 include_once __DIR__ . "/../config.php";
 include_once ROOT . "/painel/index.php";
 echo "<HR>depois<HR>";
@@ -20,6 +20,8 @@ if (!empty($montamenu['menuAtalho'])) {
 if (!empty($montamenu['menuHeader'])) {
     $menuHeader = $montamenu['menuHeader'][0];
 }
+echo "cadastros/index.php->ABAS<hr>";
+
 ?>
 <style>
     .line {
@@ -42,6 +44,7 @@ if (!empty($montamenu['menuHeader'])) {
         color: #1B4D60;
     }
 
+
     #tabs .tabContent {
         position: relative;
         top: -1px;
@@ -54,12 +57,7 @@ if (!empty($montamenu['menuHeader'])) {
     #tabs .hide {
         display: none;
     }
-
-    #tabs .show {
-        display: block;
-    }
-</style>
-
+    </style>
 <body>
 
 
@@ -91,6 +89,7 @@ if (!empty($montamenu['menuHeader'])) {
                      foreach ($menusAtalho as $menuAtalho) { ?>
                         <div class="tabContent">
                             <?php
+                            echo "<hr>".$menuAtalho['progrLink']."<hr>";
                             include $menuAtalho['progrLink']; ?>
                         </div>
                     <?php } ?>
@@ -165,9 +164,9 @@ if (!empty($montamenu['menuHeader'])) {
                     </div>
                 </div>
 
-                <!--   <div class="diviFrame" style="overflow:hidden;">
+<div class="diviFrame" style="overflow:hidden;">
         <iframe class="iFrame container-fluid " id="myIframe" src=""></iframe>
-    </div> -->
+    </div> 
                 <script type="text/javascript" src="menu.js"></script>
 
                 <script>
