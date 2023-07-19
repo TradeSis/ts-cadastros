@@ -1,6 +1,6 @@
 <?php
-include_once('../head.php');
-include_once('../database/marcas.php');
+include_once(__DIR__ . '/../head.php');
+include_once(__DIR__ .  '/../database/marcas.php');
 
 
 $idMarca = $_GET['idMarca'];

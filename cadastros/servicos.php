@@ -50,7 +50,7 @@ $produtos = buscaProdutos();
         
             <div class="row mt-4">
                 <div class="col-sm-8">
-                        <h4 class="tituloTabela">Catalogo</h4>
+                        <h4 class="tituloTabela">*SERVICOS*</h4>
                         
                     </div>
 

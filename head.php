@@ -1,4 +1,6 @@
+
 <?php
+/*
 // Lucas 19042023 -  adicionado link para bootstrap.css e padraoCss.css
 // Lucas 29032023 - modificado tempo da seção
 // Lucas 09032023 -  linha 5, foi adicionado parametro de tempo 
@@ -28,5 +30,7 @@ $logado = $_SESSION['usuario'];
 <html>
 
 <?php
-        include_once ROOT. "/vendor/vendor.php";
+
+include_once ROOT. "/vendor/vendor.php";
+*/
 ?>
