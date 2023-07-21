@@ -1,14 +1,6 @@
 <?php
-//Lucas 14042023 - modificado estrutura da navbar
-//Lucas 05042023 - adicionado foreach para menuLateral.
-//gabriel 220323 11:19 - adicionado IF para usuario cliente
-//Lucas 13032023 - criado versão 2 do menu.
-echo "cadastros/index.php<hr>";
 include_once __DIR__ . "/../config.php";
 include_once ROOT . "/painel/index.php";
-echo "<HR>depois<HR>";
-//include_once 'head.php';
-//include_once 'database/montaMenu.php';
 include_once ROOT . "/sistema/database/montaMenu.php";
 $montamenu = buscaMontaMenu('Cadastros', $_SESSION['idUsuario']);
 //echo json_encode($montamenu);
@@ -20,242 +12,56 @@ if (!empty($montamenu['menuAtalho'])) {
 if (!empty($montamenu['menuHeader'])) {
     $menuHeader = $montamenu['menuHeader'][0];
 }
-echo "cadastros/index.php->ABAS<hr>";
-
+//echo json_encode($menusAtalho);
+$configuracao = 0; // configurações poderia ficaria no lugar menuHeader
 ?>
+
 <style>
-    .line {
-        width: 100%;
-        border-bottom: 1px solid #707070;
-    }
-
-    #tabs .tab {
-        display: inline-block;
-        padding: 5px 10px;
-        cursor: pointer;
-        position: relative;
-        z-index: 5;
-        color: #1B4D60;
-    }
-
-    #tabs .whiteborder {
-        border-bottom: 3px solid lightblue;
+    .nav-link.active.show {
+        border-bottom: 3px solid #2E59D9;
         border-radius: 3px 3px 0 0;
         color: #1B4D60;
+        background-color: transparent;
     }
+</style>
 
-
-    #tabs .tabContent {
-        position: relative;
-        top: -1px;
-        z-index: 1;
-        padding: 10px;
-        border-radius: 0 0 3px 3px;
-        color: #1B4D60;
-    }
-
-    #tabs .hide {
-        display: none;
-    }
-    </style>
-<body>
-
-
-    <div id="tabs" class="mt-1 text-center">
-
-        <?php if (!empty($montamenu['menuAtalho'])) {
-            if (isset($menuAtalho['progrNome'])) { ?>
-                <li>
-                    <a src="<?php echo $menuAtalho[0]['progrLink'] ?>" href="#" class="nav-link" role="button">
-                        <span class="fs-5 text">
-                            <?php echo $menuAtalho[0]['progrNome'] ?>
-                        </span>
-                    </a>
-                </li>
-            <?php } else { ?>
-
-                <div id="tabs" class="mt-1 text-center">
-                    <?php foreach ($menusAtalho as $menuAtalho) { ?>
-                        <div class="tab"><?php echo $menuAtalho['progrNome'] ?></div>
-
-                    <?php }
-                     if (isset($menuHeader['nomeMenu'])) { ?>
-                        <div id="tabs" class="mt-1 text-center">
-                            <div class="tab"> <?php echo $menuHeader['nomeMenu'] ?></div>
-                        </div>
-                        </li>
-                    <?php }
-
-                     foreach ($menusAtalho as $menuAtalho) { ?>
-                        <div class="tabContent">
-                            <?php
-                            echo "<hr>".$menuAtalho['progrLink']."<hr>";
-                            include $menuAtalho['progrLink']; ?>
-                        </div>
-                    <?php } ?>
-
-            <?php  } }  ?>
-                </div>
-
-
-
-                <nav id="menuLateral" class="menuLateral">
-                    <div class="titulo"><span></span></div>
-                    <ul id="novoMenu2">
-                        <?php
-                        $contador = 1;
-                        foreach ($menus as $menu) {
-                        ?>
-                            <li><a href="#" class="secao<?php echo $contador ?>"><?php echo $menu['nomeMenu'] ?><span class="material-symbols-outlined seta<?php echo $contador ?>">arrow_right</span></a>
-
-
-                                <ul class="itensSecao<?php echo $contador ?>">
-                                    <?php
-                                    foreach ($menu['menuPrograma'] as $menuPrograma) {
-                                    ?>
-                                        <li><a href="#" src="<?php echo $menuPrograma['progrLink'] ?>"><?php echo $menuPrograma['progrNome'] ?></a></li>
-                                    <?php } ?>
-
-
-                                </ul>
-                            </li>
-                        <?php
-                            $contador = $contador + 1;
-                            // echo $contador;
-                        } ?>
-                    </ul>
-                </nav>
-
-
-
-                <nav id="menusecundario" class="menusecundario">
-                    <div class="titulo"><span>
-                            <?php if (isset($menuHeader['nomeMenu'])) {
-                                echo $menuHeader['nomeMenu'] ?>
-                        </span></div>
-                    <li>
-                        <ul class="itenscadastro" id="novoMenu2">
-                            <?php
-                                foreach ($menuHeader['headerPrograma'] as $headerPrograma) {
-                            ?>
-                                <li><a href="#" src="<?php echo $headerPrograma['progrLink'] ?>"><?php echo $headerPrograma['progrNome'] ?></a></li>
-                        <?php }
-                            } ?>
-                        </ul>
+<div class="container-fluid mt-1">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-center">
+            <ul class="nav nav-pills" id="myTab" role="tablist">
+                <?php foreach ($menusAtalho as $menuAtalho) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" id="<?php echo $menuAtalho['progrNome'] ?>-tab" data-toggle="tab" href="#<?php echo $menuAtalho['progrNome'] ?>" role="tab" aria-controls="<?php echo $menuAtalho['progrNome'] ?>" aria-selected="true" style="color:black"><?php echo $menuAtalho['progrNome'] ?></a>
                     </li>
-                </nav>
+                <?php } ?>
 
-                <!-- Modal sair -->
-                <div class="modal fade" id="logoutModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Deseja sair?</h5>
-                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">Selecione "Logout" abaixo se você deseja encerrar sua sessão.</div>
-                            <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <a class="btn btn-primary logout" href="<?php echo URLROOT ?>/painel/logout.php">Logout</a>
-                            </div>
-                        </div>
+                <?php if ($configuracao == 1) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" id="ConfiguracaoPaginas-tab" data-toggle="tab" href="#ConfiguracaoPaginas" role="tab" aria-controls="ConfiguracaoPaginas" aria-selected="true" style="color:black" data-toggle="tooltip" data-placement="top" title="Configurações"><i class="bi bi-gear" style="font-size: 18px;"></i></a>
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+
+        <div class="col-md-12 mt-3">
+            <div class="tab-content" id="myTabContent">
+                <?php foreach ($menusAtalho as $menuAtalho) { ?>
+
+                    <div class="tab-pane fade" id="<?php echo $menuAtalho['progrNome'] ?>" role="tabpanel" aria-labelledby="<?php echo $menuAtalho['progrNome'] ?>-tab">
+                        <?php include $menuAtalho['progrLink'] ?>
                     </div>
-                </div>
+                <?php } ?>
 
-<div class="diviFrame" style="overflow:hidden;">
-        <iframe class="iFrame container-fluid " id="myIframe" src=""></iframe>
-    </div> 
-                <script type="text/javascript" src="menu.js"></script>
+                <?php if ($configuracao == 1) { ?>
+                    <div class="tab-pane fade" id="ConfiguracaoPaginas" role="tabpanel" aria-labelledby="ConfiguracaoPaginas-tab">
+                        <?php include 'ConfiguracaoPaginas.php' ?>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
 
-                <script>
-                    var tab;
-                    var tabContent;
-
-                    window.onload = function() {
-                        tabContent = document.getElementsByClassName('tabContent');
-                        tab = document.getElementsByClassName('tab');
-                        hideTabsContent(1);
-                    }
-
-                    document.getElementById('tabs').onclick = function(event) {
-                        var target = event.target;
-                        if (target.className == 'tab') {
-                            for (var i = 0; i < tab.length; i++) {
-                                if (target == tab[i]) {
-                                    showTabsContent(i);
-                                    break;
-                                }
-                            }
-                        }
-                    }
-
-                    function hideTabsContent(a) {
-                        for (var i = a; i < tabContent.length; i++) {
-                            tabContent[i].classList.remove('show');
-                            tabContent[i].classList.add("hide");
-                            tab[i].classList.remove('whiteborder');
-                        }
-                    }
-
-                    function showTabsContent(b) {
-                        if (tabContent[b].classList.contains('hide')) {
-                            hideTabsContent(0);
-                            tab[b].classList.add('whiteborder');
-                            tabContent[b].classList.remove('hide');
-                            tabContent[b].classList.add('show');
-                        }
-                    }
-                </script>
-                <script type="text/javascript">
-                    $(document).ready(function() {
-
-                        // SELECT MENU
-                        $("#novoMenu a").click(function() {
-
-                            var value = $(this).text();
-                            value = $(this).attr('id');
-
-                            //IFRAME TAG
-
-                            $("#myIframe").attr('src', value);
-                        })
-                        // SELECT MENU
-                        $("#novoMenu2 a").click(function() {
-
-                            var value = $(this).text();
-                            value = $(this).attr('src');
-
-                            //IFRAME TAG
-                            if (value) {
-
-                                $("#myIframe").attr('src', value);
-                                $('.menuLateral').removeClass('mostra');
-                                $('.menusecundario').removeClass('mostra');
-                                $('.diviFrame').removeClass('mostra');
+    </div>
 
 
-                            }
 
-                        })
-
-                        // SELECT MENU
-                        $("#menuCadastros a").click(function() {
-
-                            var value = $(this).text();
-                            value = $(this).attr('id');
-
-                            //IFRAME TAG
-                            if (value != '') {
-                                $("#myIframe").attr('src', value);
-                            }
-
-                        })
-
-
-                    });
-                </script>
-</body>
-
-</html>
+</div>
