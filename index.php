@@ -28,6 +28,7 @@ $nivelUsuario   =   3;
         color: #1B4D60;
         background-color: transparent;
     }
+
 </style>
 
 <div class="container-fluid mt-1">
@@ -94,7 +95,7 @@ $nivelUsuario   =   3;
 if ($src!=="") {
     //echo URLROOT ."/cadastros/". $src;
 ?>
-    <div class="diviFrame" style="overflow:hidden;">
+    <div class="diviFrame" style="overflow:hidden; height: 85vh">
         <iframe class="iFrame container-fluid " id="iFrameTab" src="<?php echo URLROOT ?>/cadastros/<?php echo $src ?>"></iframe>
     </div>
 <?php
