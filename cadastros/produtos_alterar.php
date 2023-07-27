@@ -97,7 +97,7 @@ $produto = buscaProdutos($idProduto);
                     <div class="col-sm-3" style="margin-top: 10px">
                         <div class="form-group">
                             <label class='control-label' for='inputNormal' style="margin-top: -43px;">Descrição</label>
-                            <textarea name="descricaoProduto" id="" cols="135" rows="10"><?php echo $produto['descricaoProduto'] ?></textarea>
+                            <textarea name="descricaoProduto" id="" cols="135" rows="5"><?php echo $produto['descricaoProduto'] ?></textarea>
                         </div>
                     </div>
                 </div>

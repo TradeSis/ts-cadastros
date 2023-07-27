@@ -42,6 +42,10 @@ if ($metodo == "PUT") {
       include 'produtos_inserir.php';
       break;
 
+    case "servicos":
+      include 'servicos_inserir.php';
+      break;
+
 
     default:
       $jsonSaida = json_decode(json_encode(
@@ -66,6 +70,9 @@ if ($metodo == "POST") {
       include 'produtos_alterar.php';
       break;
 
+    case "servicos":
+      include 'servicos_alterar.php';
+      break;
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -86,6 +93,10 @@ if ($metodo == "DELETE") {
 
     case "produtos":
       include 'produtos_excluir.php';
+      break;
+
+    case "servicos":
+      include 'servicos_excluir.php';
       break;
 
     default:

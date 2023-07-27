@@ -81,7 +81,6 @@ $produtos = buscaProdutos();
                         <td><?php echo $produto['nomeProduto'] ?></td>
                         <td class="ativo_<?php echo $produto['propagandaProduto'] ?>"><p><?php echo $produto['propagandaProduto'] ?></p></td>
                         <td>
-                            <a class="btn btn-info btn-sm" href="#" role="button"><i class="bi bi-eye"></i></a>
                             <a class="btn btn-primary btn-sm" href="produtos_alterar.php?idProduto=<?php echo $produto['idProduto'] ?>" role="button"><i class="bi bi-pencil-square"></i></a>
                             <a class="btn btn-danger btn-sm" href="produtos_excluir.php?idProduto=<?php echo $produto['idProduto'] ?>" role="button"><i class="bi bi-trash3"></i></a>
                         </td>
