@@ -1,21 +1,11 @@
 <?php
 include_once __DIR__ . "/../config.php";
 include_once ROOT . "/sistema/painel.php";
-include_once ROOT . "/sistema/database/montaMenu.php";
-$montamenu = buscaMontaMenu('Cadastros', $_SESSION['idUsuario']);
-//echo json_encode($montamenu);
+include_once ROOT . "/sistema/database/usuarioAplicativo.php";
 
-$menus = $montamenu['menu'];
-if (!empty($montamenu['menuAtalho'])) {
-    $menusAtalho = $montamenu['menuAtalho'];
-}
-if (!empty($montamenu['menuHeader'])) {
-    $menuHeader = $montamenu['menuHeader'][0];
-}
-//echo json_encode($menusAtalho);
-$configuracao = 1; 
+$nivelMenuUsuario =  buscaUsuarioAplicativo($_SESSION['idUsuario'],'4'); //Cadastros
 
-$nivelUsuario   =   3;
+$nivelMenu   =   $nivelMenuUsuario['nivelMenu'];
 
 
 
@@ -45,28 +35,28 @@ $nivelUsuario   =   3;
                 ?>    
 
 
-            <?php if ($nivelUsuario>=3) { ?>
+            <?php if ($nivelMenu>=3) { ?>
                 <li class="nav-item ">
                     <a class="nav-link <?php if ($tab=="pessoas") {echo " active ";} ?>" 
                         href="?tab=pessoas" 
                         role="tab"                        
                         style="color:black">Pessoas</a>
                 </li>
-            <?php } if ($nivelUsuario>=3) { ?>
+            <?php } if ($nivelMenu>=3) { ?>
                 <li class="nav-item ">
                     <a class="nav-link <?php if ($tab=="produtos") {echo " active ";} ?>" 
                         href="?tab=produtos" 
                         role="tab"                        
                         style="color:black">Produtos</a>
                 </li>
-            <?php } if ($nivelUsuario>=3) { ?>
+            <?php } if ($nivelMenu>=3) { ?>
                 <li class="nav-item ">
                     <a class="nav-link <?php if ($tab=="marcas") {echo " active ";} ?>" 
                         href="?tab=marcas" 
                         role="tab"                        
                         style="color:black">Marcas</a>
                 </li>
-            <?php } if ($nivelUsuario>=3) { ?>
+            <?php } if ($nivelMenu>3) { ?>
                 <li class="nav-item ">
                     <a class="nav-link <?php if ($tab=="servicos") {echo " active ";} ?>" 
                         href="?tab=servicos" 
