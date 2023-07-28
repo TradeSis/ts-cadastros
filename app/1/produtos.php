@@ -1,8 +1,14 @@
 <?php
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 
+// JSONENTRADA deve sempre ter o idCliente
+$idCliente = null;
+if (isset($jsonEntrada["idCliente"])) {
+    $idCliente = $jsonEntrada["idCliente"];
+}
 
-$conexao = conectaMysql();
+$conexao = conectaMysql($idCliente);
+
 $produtos = array();
 
 $sql = "SELECT produtos.*, marcas.* FROM produtos 
