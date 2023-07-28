@@ -6,14 +6,14 @@ function buscaProdutos($idProduto=null,$idMarca=null)
 {
 	
 	$produtos = array();
-	
+
 	$idCliente = null;
 	if (isset($_SESSION['idCliente'])) {
     	$idCliente = $_SESSION['idCliente'];
 	}
 
 	$apiEntrada = array(
-		'idCliente' -> $idCliente,
+		'idCliente' => $idCliente,
 		'idProduto' => $idProduto,
 		'idMarca' => $idMarca,
 	);
