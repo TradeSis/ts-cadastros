@@ -18,8 +18,14 @@ function buscaServicos($idServico=null)
 {
     $servicos = array();
 
+	$idCliente = null;
+	if (isset($_SESSION['idCliente'])) {
+    	$idCliente = $_SESSION['idCliente'];
+	}
+
 	$apiEntrada = array(
 		'idServico' => $idServico,
+		'idCliente' => $idCliente
 	);
 
 	$servicos = chamaAPI(null, '/cadastros/servicos', json_encode($apiEntrada), 'GET');

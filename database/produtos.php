@@ -92,7 +92,8 @@ if (isset($_GET['operacao'])) {
 
 		$imgProduto = $_FILES['imgProduto'];
 
-		if($imgProduto !== null) {
+		
+		if($imgProduto['name'] !== "") {
 			preg_match("/\.(png|jpg|jpeg|svg){1}$/i", $imgProduto["name"],$ext);
 		
 			if($ext == true) {
@@ -125,6 +126,8 @@ if (isset($_GET['operacao'])) {
 			);
 		}
 
+		/* echo json_encode($apiEntrada);
+		return; */
 		$produtos = chamaAPI(null, '/cadastros/produtos', json_encode($apiEntrada), 'POST');
 		
 	}

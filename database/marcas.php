@@ -18,9 +18,15 @@ function buscaMarcas($idMarca=null)
 {
 	
 	$autor = array();
-	
+
+	$idCliente = null;
+	if (isset($_SESSION['idCliente'])) {
+    	$idCliente = $_SESSION['idCliente'];
+	}
+
 	$apiEntrada = array(
-		'idMarca' => $idMarca
+		'idMarca' => $idMarca,
+		'idCliente' => $idCliente,
 	);
 
 	$autor = chamaAPI(null, '/cadastros/marcas', json_encode($apiEntrada), 'GET');
