@@ -2,12 +2,12 @@
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 
 // JSONENTRADA deve sempre ter o idCliente
-$idCliente = null;
-if (isset($jsonEntrada["idCliente"])) {
-    $idCliente = $jsonEntrada["idCliente"];
+$idEmpresa = null;
+if (isset($jsonEntrada["idEmpresa"])) {
+    $idEmpresa = $jsonEntrada["idEmpresa"];
 }
 
-$conexao = conectaMysql($idCliente);
+$conexao = conectaMysql($idEmpresa);
 
 $produtos = array();
 

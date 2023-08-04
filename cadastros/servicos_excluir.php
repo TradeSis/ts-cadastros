@@ -30,6 +30,7 @@ $servico = buscaServicos($idServico);
                             <input type="text" name="nomeServico" class="form-control" value="<?php echo $servico['nomeServico'] ?>" disabled>
                             <input type="text" class="form-control" name="idServico" value="<?php echo $servico['idServico'] ?>" style="display: none">
                             <input type="text" class="form-control" name="imgServico" value="<?php echo $servico['imgServico'] ?>" style="display: none">
+                            <input type="text" class="form-control" name="idEmpresa" value="<?php echo $_SESSION['idEmpresa'] ?>" style="display: none">
                         </div>
                     </div>
                 </div>

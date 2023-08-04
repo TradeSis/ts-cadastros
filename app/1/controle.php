@@ -12,12 +12,44 @@ if ($metodo == "GET") {
       include 'marcas.php';
       break;
 
+    case "marcas_slug":
+      include 'marcas_slug.php';
+      break;
+
     case "servicos":
       include 'servicos.php';
       break;
 
+    case "servicos_slug":
+      include 'servicos_slug.php';
+      break;
+
+    case "servicos_card":
+      include 'servicos_card.php';
+      break;
+
     case "produtos":
       include 'produtos.php';
+      break;
+
+    case "produtos_card":
+      include 'produtos_card.php';
+      break;
+
+    case "produtos_listaSemCatalogo":
+      include 'produtos_listaSemCatalogo.php';
+      break;
+
+    case "usuario":
+      include 'usuario.php';
+      break;
+
+    case "clientes":
+      include 'clientes.php';
+      break;
+
+    case "atendente":
+      include 'atendente.php';
       break;
 
     default:
@@ -46,6 +78,13 @@ if ($metodo == "PUT") {
       include 'servicos_inserir.php';
       break;
 
+    case "usuario":
+      include 'usuario_inserir.php';
+      break;
+
+    case "clientes":
+      include 'clientes_inserir.php';
+      break;
 
     default:
       $jsonSaida = json_decode(json_encode(
@@ -73,6 +112,14 @@ if ($metodo == "POST") {
     case "servicos":
       include 'servicos_alterar.php';
       break;
+
+    case "usuario":
+      include 'usuario_alterar.php';
+      break;
+
+    case "clientes":
+      include 'clientes_alterar.php';
+      break;
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -97,6 +144,14 @@ if ($metodo == "DELETE") {
 
     case "servicos":
       include 'servicos_excluir.php';
+      break;
+
+    case "usuario":
+      include 'usuario_excluir.php';
+      break;
+
+    case "clientes":
+      include 'clientes_excluir.php';
       break;
 
     default:

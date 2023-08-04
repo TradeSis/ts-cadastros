@@ -3,7 +3,7 @@ include_once __DIR__ . "/../config.php";
 include_once ROOT . "/sistema/painel.php";
 include_once ROOT . "/sistema/database/loginAplicativo.php";
 
-$nivelMenuLogin =  buscaLoginAplicativo($_SESSION['idLogin'],'4'); //Cadastros
+$nivelMenuLogin =  buscaLoginAplicativo($_SESSION['idLogin'],'Cadastros');
 
 $nivelMenu   =   $nivelMenuLogin['nivelMenu'];
 
@@ -63,8 +63,15 @@ $nivelMenu   =   $nivelMenuLogin['nivelMenu'];
                         role="tab"                        
                         style="color:black">Serviços</a>
                 </li>
-            <?php } ?>
-                           
+            <?php } if ($nivelMenu>=4) { ?>
+                <li class="nav-item ">
+                    <a class="nav-link <?php if ($tab=="configuracao") {echo " active ";} ?>" 
+                        href="?tab=configuracao" 
+                        role="tab"     
+                        data-toggle="tooltip" data-placement="top" title="Configurações"                   
+                        style="color:black"><i class="bi bi-gear" style="font-size: 18px;"></i></a>
+                </li>
+            <?php } ?>     
             </ul>
 
         </div>
@@ -80,7 +87,12 @@ $nivelMenu   =   $nivelMenuLogin['nivelMenu'];
     if ($tab=="produtos") {$src="cadastros/produtos.php";}
     if ($tab=="marcas") {$src="cadastros/marcas.php";}
     if ($tab=="servicos") {$src="cadastros/servicos.php";}
-
+    if ($tab=="configuracao") {
+            $src="configuracao/";
+            if (isset($_GET['stab'])) {
+                $src = $src . "?stab=".$_GET['stab'];
+            }      
+    }
     
 if ($src!=="") {
     //echo URLROOT ."/cadastros/". $src;

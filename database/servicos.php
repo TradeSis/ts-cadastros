@@ -5,8 +5,13 @@ function buscaServicosCards()
 {
     $servicos = array();
 
+	$idEmpresa = null;
+	if (isset($_SESSION['idEmpresa'])) {
+    	$idEmpresa = $_SESSION['idEmpresa'];
+	}
+
 	$apiEntrada = array(
-		
+		'idEmpresa' => $idEmpresa
 	);
 
 	$servicos = chamaAPI(null, '/cadastros/servicos_card', json_encode($apiEntrada), 'GET');
@@ -18,14 +23,14 @@ function buscaServicos($idServico=null)
 {
     $servicos = array();
 
-	$idCliente = null;
-	if (isset($_SESSION['idCliente'])) {
-    	$idCliente = $_SESSION['idCliente'];
+	$idEmpresa = null;
+	if (isset($_SESSION['idEmpresa'])) {
+    	$idEmpresa = $_SESSION['idEmpresa'];
 	}
 
 	$apiEntrada = array(
 		'idServico' => $idServico,
-		'idCliente' => $idCliente
+		'idEmpresa' => $idEmpresa
 	);
 
 	$servicos = chamaAPI(null, '/cadastros/servicos', json_encode($apiEntrada), 'GET');
@@ -36,8 +41,15 @@ function buscaServicos($idServico=null)
 function buscaSlugServicos($slugServicos)
 {
     $servicos = array();
+
+	$idEmpresa = null;
+	if (isset($_SESSION['idEmpresa'])) {
+    	$idEmpresa = $_SESSION['idEmpresa'];
+	}
+	
 	$apiEntrada = array(
 		'slugServicos' => $slugServicos,
+		'idEmpresa' => $idEmpresa
 	);
 	$servicos = chamaAPI(null, '/cadastros/servicos_slug', json_encode($apiEntrada), 'GET');
 
@@ -68,6 +80,7 @@ if (isset($_GET['operacao'])) {
 		}
 
 		$apiEntrada = array(
+			'idEmpresa' =>  $_POST['idEmpresa'],
 			'nomeServico' => $_POST['nomeServico'],
             'imgServico' => $novoNomeImg,
 			'descricaoServico' => $_POST['descricaoServico'],
@@ -75,7 +88,6 @@ if (isset($_GET['operacao'])) {
 			'destaque' => $_POST['destaque'],
 			
 		);
-
 
 		$servicos = chamaAPI(null, '/cadastros/servicos', json_encode($apiEntrada), 'PUT');
 		
@@ -98,6 +110,7 @@ if (isset($_GET['operacao'])) {
 		
 			}
 			$apiEntrada = array(
+			'idEmpresa' =>  $_POST['idEmpresa'],
 			'idServico' => $_POST['idServico'],
 			'nomeServico' => $_POST['nomeServico'],
             'imgServico' => $novoNomeImg,
@@ -108,6 +121,7 @@ if (isset($_GET['operacao'])) {
 	
 		}else{
 			$apiEntrada = array(
+				'idEmpresa' =>  $_POST['idEmpresa'],
 				'idServico' => $_POST['idServico'],
 				'nomeServico' => $_POST['nomeServico'],
 				'descricaoServico' => $_POST['descricaoServico'],
@@ -126,6 +140,7 @@ if (isset($_GET['operacao'])) {
 	if ($operacao=="excluir") {
 
 		$apiEntrada = array(
+			'idEmpresa' =>  $_POST['idEmpresa'],
 			'idServico' => $_POST['idServico'],
 		);
 		if(!empty($_POST['imgServico'])){

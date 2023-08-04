@@ -30,6 +30,7 @@ $produto = buscaProdutos($idProduto);
                             <input type="text" name="nomeProduto" class="form-control" value="<?php echo $produto['nomeProduto'] ?>" disabled>
                             <input type="text" class="form-control" name="idProduto" value="<?php echo $produto['idProduto'] ?>" style="display: none">
                             <input type="text" class="form-control" name="imgProduto" value="<?php echo $produto['imgProduto'] ?>" style="display: none">
+                            <input type="text" class="form-control" name="idEmpresa" value="<?php echo $_SESSION['idEmpresa'] ?>" style="display: none">
                         </div>
                     </div>
                 </div>
