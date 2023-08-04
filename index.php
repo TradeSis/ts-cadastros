@@ -28,7 +28,7 @@ $nivelMenu   =   $nivelMenuUsuario['nivelMenu'];
 
 
                 <?php
-                    $tab = '';
+                    $tab = 'pessoas';
 
                     if (isset($_GET['tab'])) {$tab = $_GET['tab'];}
                
