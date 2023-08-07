@@ -50,6 +50,7 @@ if (isset($_GET['operacao'])) {
 
 	if ($operacao == "inserir") {
 		$apiEntrada = array(
+			'idEmpresa' => $_SESSION['idEmpresa'],
 			'nomeUsuario' => $_POST['nomeUsuario'],
 			'email' => $_POST['email'],
 			'cpfCnpj' => $_POST['cpfCnpj'],
@@ -66,6 +67,7 @@ if (isset($_GET['operacao'])) {
 	if ($operacao == "alterar") {
 		
 		$apiEntrada = array(
+			'idEmpresa' => $_SESSION['idEmpresa'],
 			'idUsuario' => $_POST['idUsuario'],
 			'nomeUsuario' => $_POST['nomeUsuario'],
 			'email' => $_POST['email'],
@@ -82,6 +84,7 @@ if (isset($_GET['operacao'])) {
 	if ($operacao == "usuarioalterar") {
 		
 		$apiEntrada = array(
+			'idEmpresa' => $_SESSION['idEmpresa'],
 			'idUsuario' => $_POST['idUsuario'],
 			'nomeUsuario' => $_POST['nomeUsuario'],
 			'email' => $_POST['email'],
@@ -98,6 +101,7 @@ if (isset($_GET['operacao'])) {
 	if ($operacao == "alterar") {
 		
 		$apiEntrada = array(
+			'idEmpresa' => $_SESSION['idEmpresa'],
 			'idUsuario' => $_POST['idUsuario'],
 			'nomeUsuario' => $_POST['nomeUsuario'],
 			'email' => $_POST['email'],
@@ -114,6 +118,7 @@ if (isset($_GET['operacao'])) {
 
 	if ($operacao == "excluir") {
 		$apiEntrada = array(
+			'idEmpresa' => $_SESSION['idEmpresa'],
 			'idUsuario' => $_POST['idUsuario']
 		);
 		$usuario = chamaAPI(null, '/cadastros/usuario', json_encode($apiEntrada), 'DELETE');
@@ -123,6 +128,7 @@ if (isset($_GET['operacao'])) {
 	
 	if ($operacao == "ativar") {
 		$apiEntrada = array(
+			'idEmpresa' => $_SESSION['idEmpresa'],
 			'idLogin' => $_POST['idLogin'],
 			'secret_key' => $_POST['secret_key'] // no ativar, guarda a secret
 		);

@@ -30,7 +30,6 @@ $marca = buscaMarcas($idMarca);
                             <label class='control-label' for='inputNormal' style="margin-top: -20px;">nome da marca*</label>
                             <input type="text" name="nomeMarca" class="form-control" value="<?php echo $marca['nomeMarca'] ?>">
                             <input type="text" class="form-control" name="idMarca" value="<?php echo $marca['idMarca'] ?>" style="display: none">
-                            <input type="text" class="form-control" name="idEmpresa" value="<?php echo $_SESSION['idEmpresa'] ?>" style="display: none">
                         </div>
                     </div>
                 </div>

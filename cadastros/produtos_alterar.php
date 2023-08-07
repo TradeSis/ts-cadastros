@@ -32,7 +32,6 @@ $produto = buscaProdutos($idProduto);
                             <label class='control-label' for='inputNormal' style="margin-top: -20px;">Nome do Produto*</label>
                             <input type="text" name="nomeProduto" class="form-control" value="<?php echo $produto['nomeProduto'] ?>">
                             <input type="text" class="form-control" name="idProduto" value="<?php echo $produto['idProduto'] ?>" style="display: none">
-                            <input type="text" class="form-control" name="idEmpresa" value="<?php echo $_SESSION['idEmpresa'] ?>" style="display: none">
                         </div>
                     </div>
                 </div>

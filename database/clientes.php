@@ -38,7 +38,7 @@ if (isset($_GET['operacao'])) {
 
 	if ($operacao=="inserir") {
 		$apiEntrada = array(
-			'idEmpresa' => $_POST['idEmpresa'],
+			'idEmpresa' => $_SESSION['idEmpresa'],
 			'nomeCliente' => $_POST['nomeCliente']
 		);
 		$clientes = chamaAPI(null, '/cadastros/clientes', json_encode($apiEntrada), 'PUT');
@@ -46,7 +46,7 @@ if (isset($_GET['operacao'])) {
 
 	if ($operacao=="alterar") {
 		$apiEntrada = array(
-			'idEmpresa' => $_POST['idEmpresa'],
+			'idEmpresa' => $_SESSION['idEmpresa'],
 			'idCliente' => $_POST['idCliente'],
 			'nomeCliente' => $_POST['nomeCliente']
 		);
@@ -55,7 +55,7 @@ if (isset($_GET['operacao'])) {
 	
 	if ($operacao=="excluir") {
 		$apiEntrada = array(
-			'idEmpresa' => $_POST['idEmpresa'],
+			'idEmpresa' => $_SESSION['idEmpresa'],
 			'idCliente' => $_POST['idCliente']
 		);
 		$clientes = chamaAPI(null, '/cadastros/clientes', json_encode($apiEntrada), 'DELETE');

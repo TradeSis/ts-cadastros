@@ -28,7 +28,6 @@ $clientes = buscaClientes($_GET['idCliente']);
                     <div class="for-group">
                         <input type="text" class="form-control" name="nomeCliente" value="<?php echo $clientes['nomeCliente'] ?>">
                         <input type="text" class="form-control" name="idCliente" value="<?php echo $clientes['idCliente'] ?>" style="display: none">
-                        <input type="text" class="form-control" name="idEmpresa" value="<?php echo $_SESSION['idEmpresa'] ?>" style="display: none">
                     </div>
                 </div>
                     <div style="text-align:right">

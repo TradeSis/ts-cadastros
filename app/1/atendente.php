@@ -6,10 +6,10 @@ $idEmpresa = null;
     	$idEmpresa = $jsonEntrada["idEmpresa"];
 	}
 
-$conexao = conectaMysql(1);
+$conexao = conectaMysql($idEmpresa);
 $usuario = array();
 
-$sql = "SELECT usuario.* FROM usuario where idCliente IS NOT NULL";
+$sql = "SELECT usuario.* FROM usuario where idCliente IS NULL";
 if (isset($jsonEntrada["idUsuario"])) {
     $sql = $sql . " and usuario.idUsuario = " . $jsonEntrada["idUsuario"]; 
   }

@@ -32,7 +32,6 @@ $marca = buscaMarcas($idMarca);
                             <input type="text" class="form-control" name="idMarca" value="<?php echo $marca['idMarca'] ?>" style="display: none">
                             <input type="text" class="form-control" name="imgMarca" value="<?php echo $marca['imgMarca'] ?>" style="display: none">
                             <input type="text" class="form-control" name="bannerMarca" value="<?php echo $marca['bannerMarca'] ?>" style="display: none">
-                            <input type="text" class="form-control" name="idEmpresa" value="<?php echo $_SESSION['idEmpresa'] ?>" style="display: none">
                         </div>
                     </div>
                 </div>

@@ -27,7 +27,6 @@ include_once('../head.php');
                     <label class='control-label' for='inputNormal' style="margin-top: -20px;">Nome Cliente</label>
                     <div class="for-group">
                         <input type="text" class="form-control" name="nomeCliente" autocomplete="off" required>
-                        <input type="text" class="form-control" name="idEmpresa" value="<?php echo $_SESSION['idEmpresa'] ?>" style="display: none">
                     </div>
                 </div>
                 <div style="text-align:right">
