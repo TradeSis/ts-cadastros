@@ -81,7 +81,7 @@ $marcas = buscaMarcas();
                         <td><?php echo $marca['nomeMarca'] ?></td>
                         <td class="ativo_<?php echo $marca['lojasEspecializadas'] ?>"><p></p></td>
                         <td>
-                            <a class="btn btn-info btn-sm" href="#" role="button"><i class="bi bi-eye"></i></a>
+                            <a class="btn btn-info btn-sm" href="<?php echo URLROOT ?>/marcas/<?php echo $marca['slug'] ?>" target="_blank" role="button"><i class="bi bi-eye"></i></a>
                             <a class="btn btn-primary btn-sm" href="marcas_alterar.php?idMarca=<?php echo $marca['idMarca'] ?>" role="button"><i class="bi bi-pencil-square"></i></a>
                             <a class="btn btn-danger btn-sm" href="marcas_excluir.php?idMarca=<?php echo $marca['idMarca'] ?>" role="button"><i class="bi bi-trash3"></i></a>
                         </td>

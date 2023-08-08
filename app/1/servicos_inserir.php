@@ -2,18 +2,18 @@
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 $idEmpresa = $jsonEntrada["idEmpresa"];
 $conexao = conectaMysql($idEmpresa);
-if (isset($jsonEntrada['nomeProduto'])) {
+if (isset($jsonEntrada['nomeServico'])) {
 
-    $nomeProduto = $jsonEntrada['nomeProduto'];
-    $imgProduto = $jsonEntrada['imgProduto'];
-    $idMarca = $jsonEntrada['idMarca'];
-    $precoProduto = $jsonEntrada['precoProduto'];
-    $ativoProduto = $jsonEntrada['ativoProduto'];
+    $nomeServico = $jsonEntrada['nomeServico'];
+    $descricaoServico = $jsonEntrada['descricaoServico'];
+    $linkServico = $jsonEntrada['linkServico'];
+    $imgServico = $jsonEntrada['imgServico'];
+    $destaque = $jsonEntrada['destaque'];
     $propagandaProduto = $jsonEntrada['propagandaProduto'];
     $descricaoProduto = $jsonEntrada['descricaoProduto'];
 
     
-    $sql = "INSERT INTO produtos (`nomeProduto`,`imgProduto`,`idMarca`,`precoProduto`,`ativoProduto`,`propagandaProduto`,`descricaoProduto`) VALUES ('$nomeProduto','$imgProduto','$idMarca','$precoProduto','$ativoProduto','$propagandaProduto','$descricaoProduto')";
+    $sql = "INSERT INTO servicos (`nomeServico`,`descricaoServico`,`linkServico`,`imgServico`,`destaque`) VALUES ('$nomeServico','$descricaoServico','$linkServico','$imgServico','$destaque')";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

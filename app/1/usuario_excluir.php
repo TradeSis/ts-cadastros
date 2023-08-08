@@ -1,13 +1,12 @@
 <?php
+//gabriel 06022023 16:52
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
-$idEmpresa = $jsonEntrada["idEmpresa"];
-$conexao = conectaMysql($idEmpresa);
-if (isset($jsonEntrada['idMarca'])) {
 
-    $idMarca = $jsonEntrada['idMarca'];
 
-    
-    $sql = "DELETE FROM marcas WHERE idMarca = $idMarca";
+$conexao = conectaMysql();
+if (isset($jsonEntrada['idUsuario'])) {
+    $idUsuario = $jsonEntrada['idUsuario'];
+    $sql = "DELETE FROM usuario WHERE idUsuario = $idUsuario";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
