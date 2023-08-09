@@ -1,6 +1,9 @@
 <?php
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
-$idEmpresa = $jsonEntrada["idEmpresa"];
+$idEmpresa = null;
+	if (isset($jsonEntrada["idEmpresa"])) {
+    	$idEmpresa = $jsonEntrada["idEmpresa"];
+	}
 $conexao = conectaMysql($idEmpresa);
 if (isset($jsonEntrada['nomeServico'])) {
 
