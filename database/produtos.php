@@ -7,13 +7,7 @@ function buscaProdutos($idProduto = null, $idMarca = null)
 
 	$produtos = array();
 
-	$idEmpresa = null;
-	if (isset($_SESSION['idEmpresa'])) {
-		$idEmpresa = $_SESSION['idEmpresa'];
-	}
-
 	$apiEntrada = array(
-		'idEmpresa' => $idEmpresa,
 		'idProduto' => $idProduto,
 		'idMarca' => $idMarca,
 	);
@@ -26,15 +20,9 @@ function buscaCardProdutos($idProduto = null)
 {
 
 	$produtos = array();
-
-	$idEmpresa = null;
-	if (isset($_SESSION['idEmpresa'])) {
-		$idEmpresa = $_SESSION['idEmpresa'];
-	}
 	
 	$apiEntrada = array(
 		'idProduto' => $idProduto,
-		'idEmpresa' => $idEmpresa,
 	);
 
 	$produtos = chamaAPI(null, '/cadastros/produtos_card', json_encode($apiEntrada), 'GET');
@@ -76,7 +64,6 @@ if (isset($_GET['operacao'])) {
 		}
 
 		$apiEntrada = array(
-			'idEmpresa' => $_SESSION['idEmpresa'],
 			'nomeProduto' => $_POST['nomeProduto'],
 			'imgProduto' => $novoNomeImg,
 			'idMarca' => $_POST['idMarca'],
@@ -113,7 +100,6 @@ if (isset($_GET['operacao'])) {
 	
 
 		$apiEntrada = array(
-			'idEmpresa' => $_SESSION['idEmpresa'],
 			'idProduto' => $_POST['idProduto'],
 			'nomeProduto' => $_POST['nomeProduto'],
 			//'imgProduto' => $novoNomeImg,
@@ -135,7 +121,6 @@ if (isset($_GET['operacao'])) {
 	if ($operacao == "excluir") {
 
 		$apiEntrada = array(
-			'idEmpresa' => $_SESSION['idEmpresa'],
 			'idProduto' => $_POST['idProduto'],
 		);
 		if (!empty($_POST['imgProduto'])) {
