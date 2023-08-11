@@ -2,8 +2,12 @@
 //gabriel 06022023 16:52
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 
+$idEmpresa = null;
+if (isset($jsonEntrada["idEmpresa"])) {
+    $idEmpresa = $jsonEntrada["idEmpresa"];
+}
 
-$conexao = conectaMysql();
+$conexao = conectaMysql($idEmpresa);
 if (isset($jsonEntrada['idUsuario'])) {
     $idUsuario = $jsonEntrada['idUsuario'];
     $sql = "DELETE FROM usuario WHERE idUsuario = $idUsuario";

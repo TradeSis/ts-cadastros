@@ -23,57 +23,27 @@ $clientes = buscaClientes();
             <div class="container" style="margin-top: 10px">
                 <form action="../database/usuario.php?operacao=inserir" method="post">
                     <div class="row">
-                        <div class="col-sm">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label class='control-label' for='inputNormal' style="margin-top: -20px;">Nome do Usuário</label>
                                 <input type="text" name="nomeUsuario" class="form-control" required autocomplete="off" >
                             </div>
                         </div>
-                        <div class="col-sm">
+                        <div class="col-sm-5">
                             <div class="form-group">
                                 <label class='control-label' for='inputNormal' style="margin-top: -20px;">E-mail</label>
                                 <input type="email" name="email" class="form-control" required autocomplete="off" >
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm" style="margin-top: 10px">
-                            <div class="form-group">
-                                <label class='control-label' for='inputNormal' style="margin-top: -20px;">Senha do Usuário</label>
-                                <input id="txtSenha" type="password" name="password" class="form-control" required autocomplete="off" >
-                            </div>
-                        </div>
-                        <div class="col-sm" style="margin-top: 10px">
-                            <div class="form-group">
-                                <label class='control-label' for='inputNormal' style="margin-top: -20px;">Repetir Senha</label>
-                                <input type="password" name="senhausuario2" class="form-control" required autocomplete="off"  oninput="validaSenha(this)">
-                                <small>Precisa ser igual a senha digitada acima.</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class='control-label' for='inputNormal' style="margin-top: -20px;">Cpf/Cnpj</label>
-                                <input type="text" name="cpfCnpj" class="form-control" required autocomplete="off" >
-                            </div>
-                        </div>
                         <div class="col-sm-3">
-                            <div class="form-group">
-                                <label class='control-label' for='inputNormal' style="margin-top: -20px;">Telefone</label>
-                                <input type="text" name="telefone" class="form-control" required autocomplete="off" >
-                            </div>
-                        </div>
-                        <div class="col-sm">
                             <div class="form-group-select">
-                                <label class="labelForm">Empresa / Cliente</label>
+                                <label class="labelForm">Cliente</label>
                                 <select class="select form-control" style="padding-right: 100px;" name="idCliente">
-                                    <option value=""></option>
+                                    <option value="">Interno</option>
                                     <?php
                                     foreach ($clientes as $cliente) {
-                                        $idCliente = $cliente['nomeCliente'] === "TradeSis" ? "null" : $cliente['idCliente'];
                                     ?>
-                                        <option value="<?php echo $idCliente ?>"><?php echo $cliente['nomeCliente'] ?></option>
+                                        <option value="<?php echo $cliente['idCliente'] ?>"><?php echo $cliente['nomeCliente'] ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
