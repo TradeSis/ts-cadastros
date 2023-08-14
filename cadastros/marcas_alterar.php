@@ -10,19 +10,18 @@ $marca = buscaMarcas($idMarca);
 
 <body class="bg-transparent">
 
-    <div class="container" style="margin-top:10px">
+    <div class="container p-4" style="margin-top:10px">
 
-        <div class="row mt-4">
+        <div class="row">
             <div class="col-sm-8">
-                <h3 class="col">Editar Marca</h3>
+                <h2 class="tituloTabela">Editar Marca</h2>
             </div>
             <div class="col-sm-4" style="text-align:right">
-                <a href="marcas.php" role="button" class="btn btn-primary btn-sm">Voltar</a>
+                <a href="marcas.php" role="button" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i></i>&#32;Voltar</a>
             </div>
         </div>
-        <div class="container" style="margin-top: 10px">
 
-            <form action="../database/marcas.php?operacao=alterar" method="post" enctype="multipart/form-data">
+            <form class="mb-4" action="../database/marcas.php?operacao=alterar" method="post" enctype="multipart/form-data">
 
                 <div class="row">
                     <div class="col-sm-12" style="margin-top: 10px">
@@ -60,7 +59,7 @@ $marca = buscaMarcas($idMarca);
                     <div class="col-sm-3" style="margin-top: 10px">
                         <div class="form-group">
                             <label class='control-label' for='inputNormal' style="margin-top: -43px;">descição</label>
-                            <textarea name="descricaoMarca" id="" cols="135" rows="5"><?php echo $marca['descricaoMarca'] ?></textarea>
+                            <textarea name="descricaoMarca" id="" cols="120" rows="5"><?php echo $marca['descricaoMarca'] ?></textarea>
                         </div>
                     </div>
                 </div>
@@ -151,11 +150,10 @@ $marca = buscaMarcas($idMarca);
                     </div>
                 </div>
 
-                <div style="text-align:right; margin-right:-20px; margin-top:20px">
-                    <button type="submit" class="btn btn-sm btn-success">Salvar</button>
+                <div style="text-align:right; margin-top:20px">
+                    <button type="submit" class="btn  btn-success"><i class="bi bi-sd-card-fill"></i>&#32;Salvar</button>
                 </div>
             </form>
-        </div>
 
     </div>
 

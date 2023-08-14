@@ -6,19 +6,18 @@ include_once('../head.php');
 
 <body class="bg-transparent">
 
-    <div class="container" style="margin-top:10px">
+    <div class="container p-4" style="margin-top:10px">
 
-        <div class="row mt-4">
+        <div class="row">
             <div class="col-sm-8">
-                <h3 class="col">Adicionar Serviço</h3>
+                <h2 class="tituloTabela">Adicionar Serviço</h2>
             </div>
             <div class="col-sm-4" style="text-align:right">
-                <a href="servicos.php" role="button" class="btn btn-primary btn-sm">Voltar</a>
+                <a href="servicos.php" role="button" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i></i>&#32;Voltar</a>
             </div>
         </div>
-        <div class="container" style="margin-top: 10px">
 
-            <form action="../database/servicos.php?operacao=inserir" method="post" enctype="multipart/form-data">
+            <form class="mb-4" action="../database/servicos.php?operacao=inserir" method="post" enctype="multipart/form-data">
 
                 <div class="row">
                     <div class="col-sm-12" style="margin-top: 10px">
@@ -45,7 +44,7 @@ include_once('../head.php');
                     <div class="col-sm-3" style="margin-top: 10px">
                         <div class="form-group">
                             <label class='control-label' for='inputNormal' style="margin-top: -43px;">Descrição</label>
-                            <textarea name="descricaoServico" id="" cols="135" rows="10"></textarea>
+                            <textarea name="descricaoServico" id="" cols="120" rows="10"></textarea>
                         </div>
                     </div>
                 </div>
@@ -69,12 +68,9 @@ include_once('../head.php');
                     </div>
                 </div>
 
-
-        </div>
-
-        <div style="text-align:right; margin-right:-20px; margin-top:20px">
-            <button type="submit" class="btn btn-sm btn-success">Cadastrar</button>
-        </div>
+            <div style="text-align:right; margin-top:20px">
+                <button type="submit" class="btn  btn-success"><i class="bi bi-sd-card-fill"></i>&#32;Cadastrar</button>
+            </div>
         </form>
     </div>
 

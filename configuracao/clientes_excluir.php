@@ -11,31 +11,30 @@ $clientes = buscaClientes($_GET['idCliente']);
 
 <body class="bg-transparent">
 
-    <div class="container" style="margin-top:10px">
-       
-        <div class="col-sm mt-4" style="text-align:right">
-            <a href="../configuracao/?tab=configuracao&stab=cliente" role="button" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i></i>&#32;Voltar</a>
-        </div>
-        <div class="col-sm">
-            <spam class="col titulo">Excluir Cliente</spam>
-        </div>
-
-            <div class="container" style="margin-top: 10px">
-                <form action="../database/clientes.php?operacao=excluir" method="post">
-                    <div class="col-md-12 form-group mb-4">
-
-                    <label class='control-label' for='inputNormal'></label>
-                    <div class="for-group">
-                        <input type="text" class="form-control" name="nomeCliente" value="<?php echo $clientes['nomeCliente'] ?>">
-                        <input type="text" class="form-control" name="idCliente" value="<?php echo $clientes['idCliente'] ?>" style="display: none">
-                    </div>
-                </div>
-                    <div style="text-align:right">
-                    <button type="submit" id="botao" class="btn btn-danger"><i class="bi bi-x-octagon"></i>&#32;Excluir</button>
-                    </div>
-                </form>
+    <div class="container p-4" style="margin-top:10px">
+        <div class="row">
+            <div class="col-sm-8" >
+                <h2 class="tituloTabela">Excluir Cliente</h2>
             </div>
-        
+            <div class="col-sm-4" style="text-align:right">
+                <a href="../configuracao/?tab=configuracao&stab=clientes" role="button" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i></i>&#32;Voltar</a>
+            </div>
+        </div>
+
+        <form class="mb-4" action="../database/clientes.php?operacao=excluir" method="post">
+            <div class="col-md-12 form-group mb-4">
+
+                <label class='control-label' for='inputNormal'></label>
+                <div class="for-group">
+                    <input type="text" class="form-control" name="nomeCliente" value="<?php echo $clientes['nomeCliente'] ?>">
+                    <input type="text" class="form-control" name="idCliente" value="<?php echo $clientes['idCliente'] ?>" style="display: none">
+                </div>
+            </div>
+            <div style="text-align:right">
+                <button type="submit" id="botao" class="btn btn-sm btn-danger"><i class="bi bi-x-octagon"></i>&#32;Excluir</button>
+            </div>
+        </form>
+
     </div>
 
 

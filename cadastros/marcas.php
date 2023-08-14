@@ -46,22 +46,22 @@ $marcas = buscaMarcas();
 
 </style>
 <body class="bg-transparent">
-    <div class="container text-center" style="margin-top:30px"> 
+    <div class="container" style="margin-top:30px"> 
         
             <div class="row mt-4">
                 <div class="col-sm-8">
-                        <h4 class="tituloTabela">Marcas</h4>
+                        <h2 class="tituloTabela">Marcas</h2>
                         
                     </div>
 
                 <div class="col-sm-4" style="text-align:right">
-                        <a href="marcas_inserir.php" role="button" class="btn btn-primary">Adicionar</a>
+                        <a href="marcas_inserir.php" role="button" class="btn btn-success"><i class="bi bi-plus-square"></i>&nbsp Novo</a>
                     </div>
           
             </div>
-        <div class="card shadow mt-2">
+        <div class="card mt-2 text-center">
             <table class="table">
-                <thead>
+                <thead class="cabecalhoTabela">
                     <tr>
                         <th style="width:10%">Ativa</th>
                         <th>Foto</th>
@@ -82,7 +82,7 @@ $marcas = buscaMarcas();
                         <td class="ativo_<?php echo $marca['lojasEspecializadas'] ?>"><p></p></td>
                         <td>
                             <a class="btn btn-info btn-sm" href="<?php echo URLROOT ?>/marcas/<?php echo $marca['slug'] ?>" target="_blank" role="button"><i class="bi bi-eye"></i></a>
-                            <a class="btn btn-primary btn-sm" href="marcas_alterar.php?idMarca=<?php echo $marca['idMarca'] ?>" role="button"><i class="bi bi-pencil-square"></i></a>
+                            <a class="btn btn-warning btn-sm" href="marcas_alterar.php?idMarca=<?php echo $marca['idMarca'] ?>" role="button"><i class="bi bi-pencil-square"></i></a>
                             <a class="btn btn-danger btn-sm" href="marcas_excluir.php?idMarca=<?php echo $marca['idMarca'] ?>" role="button"><i class="bi bi-trash3"></i></a>
                         </td>
                     </tr>

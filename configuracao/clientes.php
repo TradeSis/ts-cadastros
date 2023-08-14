@@ -14,20 +14,20 @@ $clientes = buscaClientes();
         
             <div class="row mt-4">
                 <div class="col-sm-8">
-                        <p class="tituloTabela">Clientes</p>
+                        <h2 class="tituloTabela">Clientes</h2>
                     </div>
 
                 <div class="col-sm-4" style="text-align:right">
-                        <a href="clientes_inserir.php" role="button" class="btn btn-primary">Adicionar Cliente</a>
+                        <a href="clientes_inserir.php" role="button" class="btn btn-success"><i class="bi bi-plus-square"></i>&nbsp Novo</a>
                     </div>
           
             </div>
-        <div class="card shadow mt-2">
+        <div class="card mt-2 text-center">
             <table class="table">
-                <thead>
+                <thead class="cabecalhoTabela">
                     <tr>
-                        <th class="text-center">Cliente</th>
-                        <th class="text-center">Ação</th>
+                        <th>Cliente</th>
+                        <th>Ação</th>
 
                     </tr>
                 </thead>
@@ -36,10 +36,10 @@ $clientes = buscaClientes();
                 foreach ($clientes as $cliente) {
                 ?>
                     <tr>
-                        <td class="text-center"><?php echo $cliente['nomeCliente'] ?></td>
-                        <td class="text-center">
-                            <a class="btn btn-primary btn-sm" href="clientes_alterar.php?idCliente=<?php echo $cliente['idCliente'] ?>" role="button">Editar</a>
-                            <a class="btn btn-danger btn-sm" href="clientes_excluir.php?idCliente=<?php echo $cliente['idCliente'] ?>" role="button">Excluir</a>
+                        <td><?php echo $cliente['nomeCliente'] ?></td>
+                        <td>
+                            <a class="btn btn-warning btn-sm" href="clientes_alterar.php?idCliente=<?php echo $cliente['idCliente'] ?>" role="button"><i class="bi bi-pencil-square"></i></a>
+                            <a class="btn btn-danger btn-sm" href="clientes_excluir.php?idCliente=<?php echo $cliente['idCliente'] ?>" role="button"><i class="bi bi-trash3"></i></a>
                         </td>
                     </tr>
                 <?php } ?>

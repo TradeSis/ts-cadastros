@@ -47,22 +47,22 @@ $produtos = buscaProdutos();
 
 </style>
 <body class="bg-transparent">
-    <div class="container text-center" style="margin-top:30px"> 
+    <div class="container" style="margin-top:30px"> 
         
             <div class="row mt-4">
                 <div class="col-sm-8">
-                        <h4 class="tituloTabela">Catalogo</h4>
+                        <h2 class="tituloTabela">Catalogo</h2>
                         
                     </div>
 
                 <div class="col-sm-4" style="text-align:right">
-                        <a href="produtos_inserir.php" role="button" class="btn btn-primary">Adicionar</a>
+                        <a href="produtos_inserir.php" role="button" class="btn btn-success"><i class="bi bi-plus-square"></i>&nbsp Novo</a>
                     </div>
           
             </div>
-        <div class="card shadow mt-2">
+        <div class="card mt-2 text-center">
             <table class="table">
-                <thead>
+                <thead class="cabecalhoTabela">
                     <tr>
                         <th>Ativo</th>
                         <th>Foto</th>
@@ -82,7 +82,7 @@ $produtos = buscaProdutos();
                         <td><?php echo $produto['nomeProduto'] ?></td>
                         <td class="ativo_<?php echo $produto['propagandaProduto'] ?>"><p><?php echo $produto['propagandaProduto'] ?></p></td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="produtos_alterar.php?idProduto=<?php echo $produto['idProduto'] ?>" role="button"><i class="bi bi-pencil-square"></i></a>
+                            <a class="btn btn-warning btn-sm" href="produtos_alterar.php?idProduto=<?php echo $produto['idProduto'] ?>" role="button"><i class="bi bi-pencil-square"></i></a>
                             <a class="btn btn-danger btn-sm" href="produtos_excluir.php?idProduto=<?php echo $produto['idProduto'] ?>" role="button"><i class="bi bi-trash3"></i></a>
                         </td>
                     </tr>
