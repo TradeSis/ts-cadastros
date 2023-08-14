@@ -57,11 +57,10 @@ if (isset($_GET['operacao'])) {
 			
 		);
 		$usuario = chamaAPI(null, '/cadastros/usuario', json_encode($apiEntrada), 'PUT');
-
-		header('Location: ../configuracao/?tab=configuracao&stab=cliente');
 	}
 
 	if ($operacao == "alterar") {
+
 		
 		$apiEntrada = array(
 			'idEmpresa' => $_SESSION['idEmpresa'],
@@ -73,8 +72,6 @@ if (isset($_GET['operacao'])) {
 		);
 		
 		$usuario = chamaAPI(null, '/cadastros/usuario', json_encode($apiEntrada), 'POST');
-
-		header('Location: ../configuracao/?tab=configuracao&stab=cliente');
 	}
 
 	if ($operacao == "excluir") {
@@ -83,10 +80,11 @@ if (isset($_GET['operacao'])) {
 			'idUsuario' => $_POST['idUsuario']
 		);
 		$usuario = chamaAPI(null, '/cadastros/usuario', json_encode($apiEntrada), 'DELETE');
-
-		header('Location: ../configuracao/?tab=configuracao&stab=cliente');
 	}
 	
-
+	
+	header('Location: ../configuracao/?tab=configuracao&stab=usuario');
 
 }
+
+?>

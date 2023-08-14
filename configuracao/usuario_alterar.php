@@ -55,7 +55,7 @@ $clientes = buscaClientes();
                         <div class="form-group">
                             <label class='control-label' for='inputNormal' style="margin-top: -15px;">Cliente</label>
                             <select class="form-control" style="padding-right: 50px;" name="idCliente">
-                                <option value="">Interno</option>
+                                <option value="null">Interno</option>
                                 <?php
                                 foreach ($clientes as $cliente) {
                                 ?>

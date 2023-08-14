@@ -39,7 +39,7 @@ $clientes = buscaClientes();
                             <div class="form-group-select">
                                 <label class="labelForm">Cliente</label>
                                 <select class="select form-control" style="padding-right: 100px;" name="idCliente">
-                                    <option value="">Interno</option>
+                                    <option value="null">Interno</option>
                                     <?php
                                     foreach ($clientes as $cliente) {
                                     ?>
