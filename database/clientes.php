@@ -61,7 +61,7 @@ if (isset($_GET['operacao'])) {
 		$clientes = chamaAPI(null, '/cadastros/clientes', json_encode($apiEntrada), 'DELETE');
 	}
 
-	header('Location: ../configuracao/?tab=configuracao&stab=clientes');
+	header('Location: ../cadastros/clientes.php');
 	
 }
 

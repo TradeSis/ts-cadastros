@@ -19,7 +19,7 @@ $nivelMenu   =   $nivelMenuLogin['nivelMenu'];
 
 
                 <?php
-                    $tab = 'pessoas';
+                    $tab = 'clientes';
 
                     if (isset($_GET['tab'])) {$tab = $_GET['tab'];}
                
@@ -28,10 +28,10 @@ $nivelMenu   =   $nivelMenuLogin['nivelMenu'];
 
             <?php if ($nivelMenu>=3) { ?>
                 <li class="nav-item mr-1">
-                    <a class="nav-link1 nav-link <?php if ($tab=="pessoas") {echo " active ";} ?>" 
-                        href="?tab=pessoas" 
+                    <a class="nav-link1 nav-link <?php if ($tab=="clientes") {echo " active ";} ?>" 
+                        href="?tab=clientes" 
                         role="tab"                        
-                        >Pessoas</a>
+                        >Clientes</a>
                 </li>
             <?php } if ($nivelMenu>=3) { ?>
                 <li class="nav-item mr-1">
@@ -74,7 +74,7 @@ $nivelMenu   =   $nivelMenuLogin['nivelMenu'];
 <?php
     $src="";
 
-    if ($tab=="pessoas") {$src="cadastros/pessoas.php";}
+    if ($tab=="clientes") {$src="cadastros/clientes.php";}
     if ($tab=="produtos") {$src="cadastros/produtos.php";}
     if ($tab=="marcas") {$src="cadastros/marcas.php";}
     if ($tab=="servicos") {$src="cadastros/servicos.php";}
