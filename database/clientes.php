@@ -16,8 +16,8 @@ function buscaClientes($idCliente=null)
 	$clientes = array();
 	
 	$idEmpresa = null;
-	if (isset($_COOKIE['idEmpresa'])) {
-    	$idEmpresa = $_COOKIE['idEmpresa'];
+	if (isset($_SESSION['idEmpresa'])) {
+    	$idEmpresa = $_SESSION['idEmpresa'];
 	}
 	
 
@@ -38,7 +38,7 @@ if (isset($_GET['operacao'])) {
 
 	if ($operacao=="inserir") {
 		$apiEntrada = array(
-			'idEmpresa' => $_COOKIE['idEmpresa'],
+			'idEmpresa' => $_SESSION['idEmpresa'],
 			'nomeCliente' => $_POST['nomeCliente']
 		);
 		$clientes = chamaAPI(null, '/cadastros/clientes', json_encode($apiEntrada), 'PUT');
@@ -46,7 +46,7 @@ if (isset($_GET['operacao'])) {
 
 	if ($operacao=="alterar") {
 		$apiEntrada = array(
-			'idEmpresa' => $_COOKIE['idEmpresa'],
+			'idEmpresa' => $_SESSION['idEmpresa'],
 			'idCliente' => $_POST['idCliente'],
 			'nomeCliente' => $_POST['nomeCliente']
 		);
@@ -55,7 +55,7 @@ if (isset($_GET['operacao'])) {
 	
 	if ($operacao=="excluir") {
 		$apiEntrada = array(
-			'idEmpresa' => $_COOKIE['idEmpresa'],
+			'idEmpresa' => $_SESSION['idEmpresa'],
 			'idCliente' => $_POST['idCliente']
 		);
 		$clientes = chamaAPI(null, '/cadastros/clientes', json_encode($apiEntrada), 'DELETE');

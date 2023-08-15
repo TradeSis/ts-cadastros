@@ -6,7 +6,7 @@ $marcas = buscaMarcas();
 $idProduto = $_GET['idProduto']; 
 $produto = buscaProdutos($idProduto);
 
-//echo json_encode($_COOKIE['idEmpresa'])
+//echo json_encode($_SESSION['idEmpresa'])
 ?>
 
 

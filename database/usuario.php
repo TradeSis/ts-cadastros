@@ -15,8 +15,8 @@ function buscaUsuarios($idUsuario=null)
 	$usuario = array();	
 
 	$idEmpresa = null;
-	if (isset($_COOKIE['idEmpresa'])) {
-    	$idEmpresa = $_COOKIE['idEmpresa'];
+	if (isset($_SESSION['idEmpresa'])) {
+    	$idEmpresa = $_SESSION['idEmpresa'];
 	}
 	
 	$apiEntrada = array(
@@ -32,8 +32,8 @@ function buscaAtendente($idUsuario=null)
 	$atendente = array();
 
 	$idEmpresa = null;
-	if (isset($_COOKIE['idEmpresa'])) {
-    	$idEmpresa = $_COOKIE['idEmpresa'];
+	if (isset($_SESSION['idEmpresa'])) {
+    	$idEmpresa = $_SESSION['idEmpresa'];
 	}
 	
 	$apiEntrada = array(
@@ -50,7 +50,7 @@ if (isset($_GET['operacao'])) {
 
 	if ($operacao == "inserir") {
 		$apiEntrada = array(
-			'idEmpresa' => $_COOKIE['idEmpresa'],
+			'idEmpresa' => $_SESSION['idEmpresa'],
 			'nomeUsuario' => $_POST['nomeUsuario'],
 			'email' => $_POST['email'],
 			'idCliente' => $_POST['idCliente']
@@ -63,7 +63,7 @@ if (isset($_GET['operacao'])) {
 
 		
 		$apiEntrada = array(
-			'idEmpresa' => $_COOKIE['idEmpresa'],
+			'idEmpresa' => $_SESSION['idEmpresa'],
 			'idUsuario' => $_POST['idUsuario'],
 			'nomeUsuario' => $_POST['nomeUsuario'],
 			'email' => $_POST['email'],
@@ -76,7 +76,7 @@ if (isset($_GET['operacao'])) {
 
 	if ($operacao == "excluir") {
 		$apiEntrada = array(
-			'idEmpresa' => $_COOKIE['idEmpresa'],
+			'idEmpresa' => $_SESSION['idEmpresa'],
 			'idUsuario' => $_POST['idUsuario']
 		);
 		$usuario = chamaAPI(null, '/cadastros/usuario', json_encode($apiEntrada), 'DELETE');

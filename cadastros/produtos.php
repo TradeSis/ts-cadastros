@@ -3,7 +3,7 @@ include_once(__DIR__ . '/../head.php');
 include_once(__DIR__ . '/../database/produtos.php');
 
 $produtos = buscaProdutos();
-//echo json_encode($_COOKIE['idEmpresa']);
+//echo json_encode($_SESSION['idEmpresa']);
 ?>
 <style>
     .ativo_0 p{
