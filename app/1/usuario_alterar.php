@@ -1,20 +1,23 @@
 <?php
 // Lucas 03032023 - criação 
- //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
+//echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 
+$idEmpresa = null;
+if (isset($jsonEntrada["idEmpresa"])) {
+    $idEmpresa = $jsonEntrada["idEmpresa"];
+}
 
-$conexao = conectaMysql();
+$conexao = conectaMysql($idEmpresa);
 if (isset($jsonEntrada['idUsuario'])) {
     $idUsuario = $jsonEntrada['idUsuario'];
     $nomeUsuario = $jsonEntrada['nomeUsuario'];
     $email = $jsonEntrada['email'];
-    $cpfCnpj = $jsonEntrada['cpfCnpj'];
-    $telefone = $jsonEntrada['telefone'];
-    $password = $jsonEntrada['password'];
+    $statusUsuario = $jsonEntrada['statusUsuario'];
+    $idCliente = $jsonEntrada['idCliente'];
 
-    $sql = "UPDATE `usuario` SET `nomeUsuario`='$nomeUsuario', `email`='$email', `cpfCnpj`='$cpfCnpj', `telefone`='$telefone', `password` = '$password' WHERE idUsuario = $idUsuario";
-   // echo "-ENTRADA->".$sql."\n"; 
-    
+    $sql = "UPDATE `usuario` SET `nomeUsuario`='$nomeUsuario', `email`='$email', `idCliente`=$idCliente, `statusUsuario` = $statusUsuario WHERE idUsuario = $idUsuario";
+    // echo "-ENTRADA->".$sql."\n"; 
+
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

@@ -23,7 +23,7 @@ function buscaClientes($idCliente=null)
 
 	$apiEntrada = array(
 		'idCliente' => $idCliente,
-		'idEmpresa' => $idEmpresa,
+		'idEmpresa' => $idEmpresa
 	);
 	
 	$clientes = chamaAPI(null, '/cadastros/clientes', json_encode($apiEntrada), 'GET');
@@ -61,10 +61,7 @@ if (isset($_GET['operacao'])) {
 		$clientes = chamaAPI(null, '/cadastros/clientes', json_encode($apiEntrada), 'DELETE');
 	}
 
-
-//	include "../configuracao/clientes_ok.php";
-
-	header('Location: ../configuracao/clientes.php');	
+	header('Location: ../configuracao/?tab=configuracao&stab=clientes');
 	
 }
 

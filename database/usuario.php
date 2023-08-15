@@ -21,7 +21,7 @@ function buscaUsuarios($idUsuario=null)
 	
 	$apiEntrada = array(
 		'idUsuario' => $idUsuario,
-		'idEmpresa' => $idEmpresa,
+		'idEmpresa' => $idEmpresa
 	);	
 	$usuario = chamaAPI(null, '/cadastros/usuario', json_encode($apiEntrada), 'GET');
 	return $usuario;
@@ -38,7 +38,7 @@ function buscaAtendente($idUsuario=null)
 	
 	$apiEntrada = array(
 		'idUsuario' => $idUsuario,
-		'idEmpresa' => $idEmpresa,
+		'idEmpresa' => $idEmpresa
 	);
 	$atendente = chamaAPI(null, '/cadastros/atendente', json_encode($apiEntrada), 'GET');
 	return $atendente;
@@ -53,68 +53,26 @@ if (isset($_GET['operacao'])) {
 			'idEmpresa' => $_SESSION['idEmpresa'],
 			'nomeUsuario' => $_POST['nomeUsuario'],
 			'email' => $_POST['email'],
-			'cpfCnpj' => $_POST['cpfCnpj'],
-			'telefone' => $_POST['telefone'],
-			'idCliente' => $_POST['idCliente'],
-			'password' => md5 ($_POST['password'])
+			'idCliente' => $_POST['idCliente']
 			
 		);
 		$usuario = chamaAPI(null, '/cadastros/usuario', json_encode($apiEntrada), 'PUT');
-
-		header('Location: ../configuracao/usuario.php');
 	}
 
 	if ($operacao == "alterar") {
+
 		
 		$apiEntrada = array(
 			'idEmpresa' => $_SESSION['idEmpresa'],
 			'idUsuario' => $_POST['idUsuario'],
 			'nomeUsuario' => $_POST['nomeUsuario'],
 			'email' => $_POST['email'],
-			'cpfCnpj' => $_POST['cpfCnpj'],
-			'telefone' => $_POST['telefone'],
-			'password' => md5 ($_POST['password'])
+			'idCliente' => $_POST['idCliente'],
+			'statusUsuario' => $_POST['statusUsuario']
 		);
 		
 		$usuario = chamaAPI(null, '/cadastros/usuario', json_encode($apiEntrada), 'POST');
-
-		header('Location: ../configuracao/usuario.php');
 	}
-
-	if ($operacao == "usuarioalterar") {
-		
-		$apiEntrada = array(
-			'idEmpresa' => $_SESSION['idEmpresa'],
-			'idUsuario' => $_POST['idUsuario'],
-			'nomeUsuario' => $_POST['nomeUsuario'],
-			'email' => $_POST['email'],
-			'cpfCnpj' => $_POST['cpfCnpj'],
-			'telefone' => $_POST['telefone'],
-			'password' => $_POST['password'],
-		);
-		
-		$usuario = chamaAPI(null, '/cadastros/usuario', json_encode($apiEntrada), 'POST');
-
-		header('Location:' . $_POST['ultimaulr']);
-	}
-
-	if ($operacao == "alterar") {
-		
-		$apiEntrada = array(
-			'idEmpresa' => $_SESSION['idEmpresa'],
-			'idUsuario' => $_POST['idUsuario'],
-			'nomeUsuario' => $_POST['nomeUsuario'],
-			'email' => $_POST['email'],
-			'cpfCnpj' => $_POST['cpfCnpj'],
-			'telefone' => $_POST['telefone'],
-			'password' => md5 ($_POST['password'])
-		);
-		
-		$usuario = chamaAPI(null, '/cadastros/usuario', json_encode($apiEntrada), 'POST');
-
-		header('Location: ../configuracao/usuario.php');
-	}
-
 
 	if ($operacao == "excluir") {
 		$apiEntrada = array(
@@ -122,23 +80,11 @@ if (isset($_GET['operacao'])) {
 			'idUsuario' => $_POST['idUsuario']
 		);
 		$usuario = chamaAPI(null, '/cadastros/usuario', json_encode($apiEntrada), 'DELETE');
-
-		header('Location: ../configuracao/usuario.php');
 	}
 	
-	if ($operacao == "ativar") {
-		$apiEntrada = array(
-			'idEmpresa' => $_SESSION['idEmpresa'],
-			'idLogin' => $_POST['idLogin'],
-			'secret_key' => $_POST['secret_key'] // no ativar, guarda a secret
-		);
-
-/* 	echo json_encode($apiEntrada);
-	return; */
-		$usuario = chamaAPI(null, '/cadastros/login/ativar', json_encode($apiEntrada), 'POST');
 	
-		header('Location: ../login.php');
-	}
-
+	header('Location: ../configuracao/?tab=configuracao&stab=usuario');
 
 }
+
+?>
