@@ -11,7 +11,7 @@ $clientes = buscaClientes($_GET['idCliente']);
 
 <body class="bg-transparent">
 
-    <div class="container p-4" style="margin-top:10px">
+    <div class="container formContainer">
 
         <div class="row">
             <div class="col-sm">
@@ -22,7 +22,7 @@ $clientes = buscaClientes($_GET['idCliente']);
             </div>
         </div>
 
-        <form class="mb-4" action="../database/clientes.php?operacao=alterar" method="post">
+        <form action="../database/clientes.php?operacao=alterar" method="post">
 
             <div class="col-md-12 form-group mb-4">
 

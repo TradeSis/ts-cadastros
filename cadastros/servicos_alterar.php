@@ -8,7 +8,7 @@ $servico = buscaServicos($idServico);
 
 <body class="bg-transparent">
 
-    <div class="container p-4" style="margin-top:10px">
+    <div class="container formContainer">
 
         <div class="row">
             <div class="col-sm-8">
@@ -19,7 +19,7 @@ $servico = buscaServicos($idServico);
             </div>
         </div>
 
-            <form class="mb-4" action="../database/servicos.php?operacao=alterar" method="post" enctype="multipart/form-data">
+            <form action="../database/servicos.php?operacao=alterar" method="post" enctype="multipart/form-data">
 
                 <div class="row">
                     <div class="col-sm-12" style="margin-top: 10px">
