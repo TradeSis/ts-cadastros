@@ -9,7 +9,7 @@
 //include_once('../conexao.php');
 include_once __DIR__ . "/../conexao.php";
 
-function buscaUsuarios($idUsuario=null)
+function buscaUsuarios($idUsuario=null,$idLogin=null)
 {
 
 	$usuario = array();	
@@ -21,6 +21,7 @@ function buscaUsuarios($idUsuario=null)
 	
 	$apiEntrada = array(
 		'idUsuario' => $idUsuario,
+		'idLogin' => $idLogin,
 		'idEmpresa' => $idEmpresa
 	);	
 	$usuario = chamaAPI(null, '/cadastros/usuario', json_encode($apiEntrada), 'GET');
