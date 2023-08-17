@@ -8,7 +8,7 @@ include_once('../head.php');
 
 <body class="bg-transparent">
 
-    <div class="container p-4" style="margin-top:10px">
+    <div class="container formContainer">
         <div class="row">
             <div class="col-sm-8">
                 <h2 class="tituloTabela">Inserir Cliente</h2>
@@ -18,7 +18,7 @@ include_once('../head.php');
             </div>
         </div>
 
-        <form class="mb-4" action="../database/clientes.php?operacao=inserir" method="post">
+        <form action="../database/clientes.php?operacao=inserir" method="post">
 
 
             <div class="col-md-12 form-group">

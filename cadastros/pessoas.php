@@ -12,7 +12,6 @@ $servicos = buscaServicos();
         color: transparent;
         margin: 10px 30px 0px 30px;
         height: 15px;
-        width: 50px;
     }
 
     .ativo_1 p {
@@ -22,7 +21,6 @@ $servicos = buscaServicos();
         color: transparent;
         margin: 10px 30px 0px 30px;
         height: 15px;
-        width: 50px;
     }
 </style>
 
@@ -31,7 +29,7 @@ $servicos = buscaServicos();
 
         <div class="row mt-4">
             <div class="col-sm-8">
-                <h2 class="tituloTabela">Serviços</h2>
+                <h2 class="tituloTabela">*PESSOAS*</h2>
 
             </div>
 
@@ -47,7 +45,7 @@ $servicos = buscaServicos();
                         <tr>
                             <th>Foto</th>
                             <th>Nome</th>
-                            <th style="width:50px">Destaque</th>
+                            <th style="width:5px">Destaque</th>
                             <th>Ação</th>
 
                         </tr>
@@ -63,6 +61,7 @@ $servicos = buscaServicos();
                                 <p><?php echo $servico['destaque'] ?></p>
                             </td>
                             <td>
+                                <a class="btn btn-info btn-sm" href="#" role="button"><i class="bi bi-eye"></i></a>
                                 <a class="btn btn-warning btn-sm" href="servicos_alterar.php?idServico=<?php echo $servico['idServico'] ?>" role="button"><i class="bi bi-pencil-square"></i></a>
                                 <a class="btn btn-danger btn-sm" href="servicos_excluir.php?idServico=<?php echo $servico['idServico'] ?>" role="button"><i class="bi bi-trash3"></i></a>
                             </td>
