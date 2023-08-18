@@ -17,7 +17,7 @@ include_once('../head.php');
             </div>
         </div>
 
-            <form action="../database/servicos.php?operacao=inserir" method="post" enctype="multipart/form-data">
+            <form class="mb-4" action="../database/servicos.php?operacao=inserir" method="post" enctype="multipart/form-data">
 
                 <div class="row">
                     <div class="col-sm-12" style="margin-top: 10px">
@@ -54,7 +54,7 @@ include_once('../head.php');
                     <div class="col-sm-8">
                         <div class="select-form-group">
                             <label class='control-label' for='inputNormal' style="margin-top: -20px;">Link Serviço</label>
-                            <input type="text" name="linkServico" class="form-control" required autocomplete="off">
+                            <input type="text" name="linkServico" class="form-control" autocomplete="off">
                         </div>
                     </div>
 
