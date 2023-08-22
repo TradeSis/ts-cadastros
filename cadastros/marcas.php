@@ -45,13 +45,6 @@ $marcas = buscaMarcas();
         display: none;
 
     }
-
-
-
-    table {
-        height: 400px;
-        overflow-y: auto;
-    }
 </style>
 
 <body class="bg-transparent">

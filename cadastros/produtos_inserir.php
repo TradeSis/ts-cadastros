@@ -47,7 +47,7 @@ $marcas = buscaMarcas();
                         <div class="col-sm-6" style="margin-top: 10px">
                             <div class="select-form-group">
 
-                                <label class="labelForm">Marcas*</label>
+                                <label class="labelForm">Marcas</label>
                                 <select class="select form-control" name="idMarca">
                                     <?php
                                     foreach ($marcas as $marca) {
@@ -61,7 +61,7 @@ $marcas = buscaMarcas();
                 
                     <div class="col-sm-6" style="margin-top: 10px">
                         <div class="form-group">
-                            <label class='control-label' for='inputNormal' style="margin-top: -20px;">Preço*</label>
+                            <label class='control-label' for='inputNormal' style="margin-top: -20px;">Preço</label>
                             <input type="number" name="precoProduto" class="form-control" autocomplete="off">
                         </div>
                     </div>

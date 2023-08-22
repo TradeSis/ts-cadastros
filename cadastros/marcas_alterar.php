@@ -21,7 +21,7 @@ $marca = buscaMarcas($idMarca);
             </div>
         </div>
 
-            <form action="../database/marcas.php?operacao=alterar" method="post" enctype="multipart/form-data">
+            <form class="mb-4" action="../database/marcas.php?operacao=alterar" method="post" enctype="multipart/form-data">
 
                 <div class="row">
                     <div class="col-sm-12" style="margin-top: 10px">
