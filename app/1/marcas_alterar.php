@@ -5,47 +5,12 @@ $idEmpresa = null;
     	$idEmpresa = $jsonEntrada["idEmpresa"];
 	}
 $conexao = conectaMysql($idEmpresa);
-if (isset($jsonEntrada['idMarca']) && isset($jsonEntrada['imgMarca'])) {
-
-    $idMarca = $jsonEntrada['idMarca'];
-    $nomeMarca = $jsonEntrada['nomeMarca'];
-    $imgMarca = $jsonEntrada['imgMarca'];
-    /* $bannerMarca = $jsonEntrada['bannerMarca']; */
-    $descricaoMarca = $jsonEntrada['descricaoMarca'];
-    $cidadeMarca = $jsonEntrada['cidadeMarca'];
-    $estado = $jsonEntrada['estado'];
-    $urlMarca = $jsonEntrada['urlMarca'];
-    $ativoMarca = $jsonEntrada['ativoMarca'];
-    $catalogo = $jsonEntrada['catalogo'];
-    $lojasEspecializadas = $jsonEntrada['lojasEspecializadas'];
-    
-
-    $sql = "UPDATE marcas SET nomeMarca ='$nomeMarca', imgMarca ='$imgMarca', descricaoMarca ='$descricaoMarca', cidadeMarca ='$cidadeMarca', estado ='$estado', urlMarca ='$urlMarca', ativoMarca ='$ativoMarca', catalogo ='$catalogo', lojasEspecializadas ='$lojasEspecializadas' WHERE idMarca = $idMarca ";
-
-    if ($atualizar = mysqli_query($conexao, $sql)) {
-        $jsonSaida = array(
-            "status" => 200,
-            "retorno" => "ok"
-        );
-    } else {
-        $jsonSaida = array(
-            "status" => 500,
-            "retorno" => "erro no mysql"
-        );
-    }
-} else {
-    $jsonSaida = array(
-        "status" => 400,
-        "retorno" => "Faltaram parametros"
-    );
-
-}
-
-
 if (isset($jsonEntrada['idMarca'])) {
 
     $idMarca = $jsonEntrada['idMarca'];
     $nomeMarca = $jsonEntrada['nomeMarca'];
+    $imgMarca = $jsonEntrada['imgMarca'];
+    $bannerMarca = $jsonEntrada['bannerMarca'];
     $descricaoMarca = $jsonEntrada['descricaoMarca'];
     $cidadeMarca = $jsonEntrada['cidadeMarca'];
     $estado = $jsonEntrada['estado'];
@@ -53,9 +18,19 @@ if (isset($jsonEntrada['idMarca'])) {
     $ativoMarca = $jsonEntrada['ativoMarca'];
     $catalogo = $jsonEntrada['catalogo'];
     $lojasEspecializadas = $jsonEntrada['lojasEspecializadas'];
-    
 
-    $sql = "UPDATE marcas SET nomeMarca ='$nomeMarca', descricaoMarca ='$descricaoMarca', cidadeMarca ='$cidadeMarca', estado ='$estado', urlMarca ='$urlMarca', ativoMarca ='$ativoMarca', catalogo ='$catalogo', lojasEspecializadas ='$lojasEspecializadas' WHERE idMarca = $idMarca ";
+    if(($imgMarca == '') && ($bannerMarca == '')){
+        $sql = "UPDATE marcas SET nomeMarca ='$nomeMarca', descricaoMarca ='$descricaoMarca', cidadeMarca ='$cidadeMarca', estado ='$estado', urlMarca ='$urlMarca', ativoMarca ='$ativoMarca', catalogo ='$catalogo', lojasEspecializadas ='$lojasEspecializadas' WHERE idMarca = $idMarca ";
+    }
+    elseif($imgMarca == ''){
+        $sql = "UPDATE marcas SET nomeMarca ='$nomeMarca', bannerMarca ='$bannerMarca', descricaoMarca ='$descricaoMarca', cidadeMarca ='$cidadeMarca', estado ='$estado', urlMarca ='$urlMarca', ativoMarca ='$ativoMarca', catalogo ='$catalogo', lojasEspecializadas ='$lojasEspecializadas' WHERE idMarca = $idMarca ";
+    }
+    elseif($bannerMarca == ''){
+        $sql = "UPDATE marcas SET nomeMarca ='$nomeMarca', imgMarca ='$imgMarca', descricaoMarca ='$descricaoMarca', cidadeMarca ='$cidadeMarca', estado ='$estado', urlMarca ='$urlMarca', ativoMarca ='$ativoMarca', catalogo ='$catalogo', lojasEspecializadas ='$lojasEspecializadas' WHERE idMarca = $idMarca ";
+    }else{
+        $sql = "UPDATE marcas SET nomeMarca ='$nomeMarca', imgMarca ='$imgMarca', bannerMarca ='$bannerMarca', descricaoMarca ='$descricaoMarca', cidadeMarca ='$cidadeMarca', estado ='$estado', urlMarca ='$urlMarca', ativoMarca ='$ativoMarca', catalogo ='$catalogo', lojasEspecializadas ='$lojasEspecializadas' WHERE idMarca = $idMarca ";
+    }
+
 
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
