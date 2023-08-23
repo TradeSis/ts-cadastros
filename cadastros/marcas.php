@@ -82,7 +82,7 @@ $marcas = buscaMarcas();
                             <td class="ativoMarca_<?php echo $marca['ativoMarca'] ?>">
                                 <p><i class="emojiAtivo bi bi-emoji-smile-fill"></i><i class="emojiNaoAtivo bi bi-emoji-frown-fill"></i></i></p>
                             </td>
-                            <td><img src="<?php echo URLROOT ?>/img/<?php echo $marca['imgMarca'] ?>" width="60px" height="60px" alt=""></td>
+                            <td><img src="<?php echo $marca['imgMarca'] ?>" width="60px" height="60px" alt=""></td>
                             <td><?php echo $marca['nomeMarca'] ?></td>
                             <td class="ativo_<?php echo $marca['lojasEspecializadas'] ?>">
                                 <p></p>

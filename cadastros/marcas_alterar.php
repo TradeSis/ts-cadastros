@@ -38,21 +38,21 @@ $marca = buscaMarcas($idMarca);
                         <div class="col-sm-6" style="margin-top: -20px">
                             <label class='control-label' for='inputNormal' style="margin-top: -50px;">imagem 150x150px</label>
                             <label class="picture" for="foto" tabIndex="0">
-                                <img src="<?php echo URLROOT ?>/img/<?php echo $marca["imgMarca"] ?>" width="100%" height="100%" alt="">
+                                <img src="<?php echo $marca["imgMarca"] ?>" width="100%" height="100%" alt="">
                             </label>
                             <input type="file" name="imgMarca" id="foto">
                         </div>
                     </div>
 
-                  <!--   <div class="col-sm-6" style="margin-top: 50px">
+                  <div class="col-sm-6" style="margin-top: 50px">
                         <div class="col-sm-6" style="margin-top: -20px">
                             <label class='control-label' for='inputNormal' style="margin-top: -50px;">banner</label>
                             <label class="picture" for="banner" tabIndex="0">
-                                <img src="<?php echo URLROOT ?>/img/<?php echo $marca["bannerMarca"] ?>" width="100%" height="100%" alt="">
+                                <img src="<?php echo $marca["bannerMarca"] ?>" width="100%" height="100%" alt="">
                             </label>
                             <input type="file" name="bannerMarca" id="banner">
                         </div>
-                    </div> -->
+                    </div> 
                 </div>
 
                 <div class="row">

@@ -83,7 +83,7 @@ $produtos = buscaProdutos();
                             <td class="ativoProduto_<?php echo $produto['ativoProduto'] ?>">
                                 <p><i class="emojiAtivo bi bi-emoji-smile-fill"></i><i class="emojiNaoAtivo bi bi-emoji-frown-fill"></i></i></p>
                             </td>
-                            <td><img src="<?php echo URLROOT ?>/img/<?php echo $produto['imgProduto'] ?>" width="60px" height="60px" alt=""></td>
+                            <td><img src="<?php echo $produto['imgProduto'] ?>" width="60px" height="60px" alt=""></td>
                             <td><?php echo $produto['nomeProduto'] ?></td>
                             <td class="ativo_<?php echo $produto['propagandaProduto'] ?>">
                                 <p><?php echo $produto['propagandaProduto'] ?></p>
