@@ -5,12 +5,12 @@ $idEmpresa = null;
     	$idEmpresa = $jsonEntrada["idEmpresa"];
 	}
 $conexao = conectaMysql($idEmpresa);
-if (isset($jsonEntrada['idMarca'])) {
+if (isset($jsonEntrada['idServico'])) {
 
-    $idMarca = $jsonEntrada['idMarca'];
+    $idServico = $jsonEntrada['idServico'];
 
-    
-    $sql = "DELETE FROM marcas WHERE idMarca = $idMarca";
+    $sql = "DELETE FROM  servicos  WHERE idServico = $idServico ";
+
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

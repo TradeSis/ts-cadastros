@@ -10,17 +10,16 @@ $marca = buscaMarcas($idMarca);
 
 <body class="bg-transparent">
 
-    <div class="container" style="margin-top:10px">
+    <div class="container formContainer">
 
-        <div class="row mt-4">
+        <div class="row">
             <div class="col-sm-8">
-                <h3 class="col">Adicionar Marca</h3>
+                <h2 class="tituloTabela">Excluir Marca</h2>
             </div>
             <div class="col-sm-4" style="text-align:right">
-                <a href="marcas.php" role="button" class="btn btn-primary btn-sm">Voltar</a>
+                <a href="marcas.php" role="button" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i></i>&#32;Voltar</a>
             </div>
         </div>
-        <div class="container" style="margin-top: 10px">
 
             <form action="../database/marcas.php?operacao=excluir" method="post" enctype="multipart/form-data">
 
@@ -36,14 +35,10 @@ $marca = buscaMarcas($idMarca);
                     </div>
                 </div>
 
-        </div>
-
-        <div style="text-align:right; margin-right:-20px; margin-top:20px">
-            <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
-        </div>
+            <div style="text-align:right; margin-top:20px">
+                <button type="submit" id="botao" class="btn btn-sm btn-danger"><i class="bi bi-x-octagon"></i>&#32;Excluir</button>
+            </div>
         </form>
-    </div>
-
     </div>
 
 </body>
