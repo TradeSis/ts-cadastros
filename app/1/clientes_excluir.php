@@ -1,16 +1,12 @@
 <?php
+// helio 31012023 criacao
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
-$idEmpresa = null;
-	if (isset($jsonEntrada["idEmpresa"])) {
-    	$idEmpresa = $jsonEntrada["idEmpresa"];
-	}
+
+$idEmpresa = $jsonEntrada["idEmpresa"];
 $conexao = conectaMysql($idEmpresa);
-if (isset($jsonEntrada['idMarca'])) {
-
-    $idMarca = $jsonEntrada['idMarca'];
-
-    
-    $sql = "DELETE FROM marcas WHERE idMarca = $idMarca";
+if (isset($jsonEntrada['idCliente'])) {
+    $idCliente = $jsonEntrada['idCliente'];
+    $sql = "DELETE FROM cliente WHERE idCliente = $idCliente";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
