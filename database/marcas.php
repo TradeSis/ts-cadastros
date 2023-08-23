@@ -5,7 +5,7 @@ function buscaMarcasSlug($slug)
 {
 	
 	$autor = array();
-	
+
 	$apiEntrada = array(
 		'slug' => $slug,
 	);
@@ -18,9 +18,9 @@ function buscaMarcas($idMarca=null)
 {
 	
 	$autor = array();
-	
+
 	$apiEntrada = array(
-		'idMarca' => $idMarca
+		'idMarca' => $idMarca,
 	);
 
 	$autor = chamaAPI(null, '/cadastros/marcas', json_encode($apiEntrada), 'GET');
@@ -31,6 +31,7 @@ function buscaMarcasAtiva($estado=null, $lojasEspecializadas=null)
 {
 	
 	$autor = array();
+
 	$apiEntrada = array(
 		'estado' => $estado,
 		'lojasEspecializadas' => $lojasEspecializadas,
@@ -118,6 +119,7 @@ if (isset($_GET['operacao'])) {
 		
 			}
 			$apiEntrada = array(
+
 				'idMarca' => $_POST['idMarca'],
 				'nomeMarca' => $_POST['nomeMarca'],
 				'imgMarca' => $novoNomeImg,
@@ -133,6 +135,7 @@ if (isset($_GET['operacao'])) {
 	
 		}else{
 			$apiEntrada = array(
+
 				'idMarca' => $_POST['idMarca'],
 				'nomeMarca' => $_POST['nomeMarca'],
 				'descricaoMarca' => $_POST['descricaoMarca'],

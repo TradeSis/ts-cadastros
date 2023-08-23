@@ -5,12 +5,18 @@ $idEmpresa = null;
     	$idEmpresa = $jsonEntrada["idEmpresa"];
 	}
 $conexao = conectaMysql($idEmpresa);
-if (isset($jsonEntrada['idMarca'])) {
+if (isset($jsonEntrada['nomeServico'])) {
 
-    $idMarca = $jsonEntrada['idMarca'];
+    $nomeServico = $jsonEntrada['nomeServico'];
+    $descricaoServico = $jsonEntrada['descricaoServico'];
+    $linkServico = $jsonEntrada['linkServico'];
+    $imgServico = $jsonEntrada['imgServico'];
+    $destaque = $jsonEntrada['destaque'];
+    $propagandaProduto = $jsonEntrada['propagandaProduto'];
+    $descricaoProduto = $jsonEntrada['descricaoProduto'];
 
     
-    $sql = "DELETE FROM marcas WHERE idMarca = $idMarca";
+    $sql = "INSERT INTO servicos (`nomeServico`,`descricaoServico`,`linkServico`,`imgServico`,`destaque`) VALUES ('$nomeServico','$descricaoServico','$linkServico','$imgServico','$destaque')";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

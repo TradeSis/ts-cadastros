@@ -1,8 +1,11 @@
 <?php
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
+$idEmpresa = null;
+if (isset($jsonEntrada["idEmpresa"])) {
+    $idEmpresa = $jsonEntrada["idEmpresa"];
+}
 
-
-$conexao = conectaMysql();
+$conexao = conectaMysql($idEmpresa);
 $servicos = array();
 
 $sql = "SELECT * FROM servicos ";
