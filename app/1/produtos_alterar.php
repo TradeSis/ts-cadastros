@@ -33,16 +33,16 @@ if (isset($jsonEntrada['idProduto'])) {
     $idProduto = $jsonEntrada['idProduto'];
     $nomeProduto = $jsonEntrada['nomeProduto'];
     $imgProduto = $jsonEntrada['imgProduto'];
-    $idMarca = $jsonEntrada['idMarca'];
-    $precoProduto = $jsonEntrada['precoProduto'];
+    $idMarca = isset($jsonEntrada['idMarca']) && $jsonEntrada['idMarca'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['idMarca']) . "'" : "NULL";
+    $precoProduto = isset($jsonEntrada['precoProduto']) && $jsonEntrada['precoProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['precoProduto']) . "'" : "NULL";
     $ativoProduto = $jsonEntrada['ativoProduto'];
     $propagandaProduto = $jsonEntrada['propagandaProduto'];
     $descricaoProduto = $jsonEntrada['descricaoProduto'];
 
     if ($imgProduto == "null") {
-        $sql = "UPDATE  produtos  SET nomeProduto ='$nomeProduto', idMarca ='$idMarca', precoProduto ='$precoProduto', ativoProduto ='$ativoProduto',    propagandaProduto ='$propagandaProduto', descricaoProduto ='$descricaoProduto' WHERE idProduto = $idProduto ";
+        $sql = "UPDATE  produtos  SET nomeProduto ='$nomeProduto', idMarca =$idMarca, precoProduto =$precoProduto, ativoProduto ='$ativoProduto',    propagandaProduto ='$propagandaProduto', descricaoProduto ='$descricaoProduto' WHERE idProduto = $idProduto ";
     } else {
-        $sql = "UPDATE  produtos  SET nomeProduto ='$nomeProduto', imgProduto ='$imgProduto', idMarca ='$idMarca', precoProduto ='$precoProduto', ativoProduto ='$ativoProduto',    propagandaProduto ='$propagandaProduto', descricaoProduto ='$descricaoProduto' WHERE idProduto = $idProduto ";
+        $sql = "UPDATE  produtos  SET nomeProduto ='$nomeProduto', imgProduto ='$imgProduto', idMarca =$idMarca, precoProduto =$precoProduto, ativoProduto ='$ativoProduto',    propagandaProduto ='$propagandaProduto', descricaoProduto ='$descricaoProduto' WHERE idProduto = $idProduto ";
     }
     //echo $sql;
 

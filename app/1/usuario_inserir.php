@@ -34,12 +34,12 @@ if (isset($jsonEntrada['nomeUsuario'])) {
     $nomeUsuario = $jsonEntrada['nomeUsuario'];
     $idCliente = $jsonEntrada['idCliente'];
     $email = $jsonEntrada['email'];
+    $statusUsuario = 1;
 
-
-    $sql = "INSERT INTO `usuario`( `nomeUsuario`, `idCliente`, `email`) VALUES ('$nomeUsuario', $idCliente, '$email')";
+    $sql = "INSERT INTO `usuario`( `nomeUsuario`, `idCliente`, `email`, statusUsuario`) VALUES ('$nomeUsuario', $idCliente, '$email', '$statusUsuario')";
 
     if ($idCliente == "") { // sem id , tira do insert para deixar NULL
-        $sql = "INSERT INTO `usuario`( `nomeUsuario`, `email`) VALUES ('$nomeUsuario', '$email')";
+        $sql = "INSERT INTO `usuario`( `nomeUsuario`, `email`, `statusUsuario`) VALUES ('$nomeUsuario', '$email', '$statusUsuario')";
     };
 
 
