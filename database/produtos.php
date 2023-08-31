@@ -94,7 +94,7 @@ if (isset($_GET['operacao'])) {
 				$path= 'http://' . $_SERVER["HTTP_HOST"] .'/img/' . $novoNomeImg;
 				move_uploaded_file($imgProduto['tmp_name'], $pasta . $novoNomeImg);
 			} else {
-				$novoNomeImg = "Sem_imagem";
+				$path = "null";
 			}
 		}
 	
