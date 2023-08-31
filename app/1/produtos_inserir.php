@@ -31,14 +31,16 @@ if (isset($jsonEntrada['nomeProduto'])) {
 
     $nomeProduto = $jsonEntrada['nomeProduto'];
     $imgProduto = $jsonEntrada['imgProduto'];
-    $idMarca = $jsonEntrada['idMarca'];
+
+    $idMarca = isset($jsonEntrada['idMarca']) && $jsonEntrada['idMarca'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['idMarca']) . "'" : "NULL";
+
     $precoProduto = $jsonEntrada['precoProduto'];
     $ativoProduto = $jsonEntrada['ativoProduto'];
     $propagandaProduto = $jsonEntrada['propagandaProduto'];
     $descricaoProduto = $jsonEntrada['descricaoProduto'];
 
 
-    $sql = "INSERT INTO produtos (`nomeProduto`,`imgProduto`,`idMarca`,`precoProduto`,`ativoProduto`,`propagandaProduto`,`descricaoProduto`) VALUES ('$nomeProduto','$imgProduto','$idMarca','$precoProduto','$ativoProduto','$propagandaProduto','$descricaoProduto')";
+    $sql = "INSERT INTO produtos (`nomeProduto`,`imgProduto`,`idMarca`,`precoProduto`,`ativoProduto`,`propagandaProduto`,`descricaoProduto`) VALUES ('$nomeProduto','$imgProduto',$idMarca,'$precoProduto','$ativoProduto','$propagandaProduto','$descricaoProduto')";
 
     //LOG
     if (isset($LOG_NIVEL)) {
