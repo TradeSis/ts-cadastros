@@ -57,7 +57,7 @@ $servicos = buscaServicos();
                     foreach ($servicos as $servico) {
                     ?>
                         <tr>
-                            <td><img src="<?php echo URLROOT ?>/img/<?php echo $servico['imgServico'] ?>" width="60px" height="60px" alt=""></td>
+                            <td><img src="<?php echo $servico['imgServico'] ?>" width="60px" height="60px" alt=""></td>
                             <td><?php echo $servico['nomeServico'] ?></td>
                             <td class="ativo_<?php echo $servico['destaque'] ?>">
                                 <p><?php echo $servico['destaque'] ?></p>

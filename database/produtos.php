@@ -56,7 +56,7 @@ if (isset($_GET['operacao'])) {
 			if ($ext == true) {
 				$pasta = ROOT . "/img/";
 				$novoNomeImg = $_POST['nomeProduto'] . "_" . $imgProduto["name"];
-
+				$path= 'http://' . $_SERVER["HTTP_HOST"] .'/img/' . $novoNomeImg;
 				move_uploaded_file($imgProduto['tmp_name'], $pasta . $novoNomeImg);
 			} else {
 				$novoNomeImg = "Sem_imagem";
@@ -65,7 +65,7 @@ if (isset($_GET['operacao'])) {
 
 		$apiEntrada = array(
 			'nomeProduto' => $_POST['nomeProduto'],
-			'imgProduto' => $novoNomeImg,
+			'imgProduto' => $path,
 			'idMarca' => $_POST['idMarca'],
 			'precoProduto' => $_POST['precoProduto'],
 			'ativoProduto' => $_POST['ativoProduto'],
@@ -91,10 +91,10 @@ if (isset($_GET['operacao'])) {
 			if ($ext == true) {
 				$pasta = ROOT . "/img/";
 				$novoNomeImg = $_POST['nomeProduto'] . "_" . $imgProduto["name"];
-
+				$path= 'http://' . $_SERVER["HTTP_HOST"] .'/img/' . $novoNomeImg;
 				move_uploaded_file($imgProduto['tmp_name'], $pasta . $novoNomeImg);
 			} else {
-				$novoNomeImg = "Sem_imagem";
+				$path = "null";
 			}
 		}
 	
@@ -102,7 +102,7 @@ if (isset($_GET['operacao'])) {
 		$apiEntrada = array(
 			'idProduto' => $_POST['idProduto'],
 			'nomeProduto' => $_POST['nomeProduto'],
-			//'imgProduto' => $novoNomeImg,
+			'imgProduto' => $path,
 			'idMarca' => $_POST['idMarca'],
 			'precoProduto' => $_POST['precoProduto'],
 			'ativoProduto' => $_POST['ativoProduto'],

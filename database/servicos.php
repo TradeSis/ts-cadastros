@@ -70,7 +70,7 @@ if (isset($_GET['operacao'])) {
 			if($ext == true) {
 				$pasta = ROOT . "/img/";
 				$novoNomeImg = $_POST['nomeServico']. "_" .$imgServico["name"];
-				
+				$path= 'http://' . $_SERVER["HTTP_HOST"] .'/img/' . $novoNomeImg;
 				move_uploaded_file($imgServico['tmp_name'], $pasta.$novoNomeImg);
 		
 			}else{
@@ -82,7 +82,7 @@ if (isset($_GET['operacao'])) {
 		$apiEntrada = array(
 			'idEmpresa' => $_SESSION['idEmpresa'],
 			'nomeServico' => $_POST['nomeServico'],
-            'imgServico' => $novoNomeImg,
+            'imgServico' => $path,
 			'descricaoServico' => $_POST['descricaoServico'],
 			'linkServico' => $_POST['linkServico'],
 			'destaque' => $_POST['destaque'],
@@ -105,31 +105,23 @@ if (isset($_GET['operacao'])) {
 			if($ext == true) {
 				$pasta = ROOT . "/img/";
 				$novoNomeImg = $_POST['nomeServico']. "_" .$imgServico["name"];
-				
+				$path= 'http://' . $_SERVER["HTTP_HOST"] .'/img/' . $novoNomeImg;
 				move_uploaded_file($imgServico['tmp_name'], $pasta.$novoNomeImg);
-		
+			}else {
+				$path = "null";
 			}
+		}
 			$apiEntrada = array(
 			'idEmpresa' => $_SESSION['idEmpresa'],
 			'idServico' => $_POST['idServico'],
 			'nomeServico' => $_POST['nomeServico'],
-            'imgServico' => $novoNomeImg,
+            'imgServico' => $path,
 			'descricaoServico' => $_POST['descricaoServico'],
 			'linkServico' => $_POST['linkServico'],
 			'destaque' => $_POST['destaque'],
 		);
-	
-		}else{
-			$apiEntrada = array(
-				'idEmpresa' => $_SESSION['idEmpresa'],
-				'idServico' => $_POST['idServico'],
-				'nomeServico' => $_POST['nomeServico'],
-				'descricaoServico' => $_POST['descricaoServico'],
-				'linkServico' => $_POST['linkServico'],
-				'destaque' => $_POST['destaque'],
-			);
-		}
 
+		
 		$servicos = chamaAPI(null, '/cadastros/servicos', json_encode($apiEntrada), 'POST');
 		
 	}
