@@ -37,7 +37,7 @@ $marcas = buscaMarcas();
                             <label class="picture" for="foto" tabIndex="0">
                                 <span class="picture__image"></span>
                             </label>
-                            <input type="file" name="imgProduto" id="foto" required>
+                            <input type="file" name="imgProduto" id="foto">
                         </div>
                     </div>
                 </div>
