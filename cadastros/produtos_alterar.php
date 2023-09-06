@@ -3,7 +3,7 @@ include_once('../head.php');
 include_once('../database/marcas.php');
 include_once('../database/produtos.php');
 $marcas = buscaMarcas();
-$idProduto = $_GET['idProduto']; 
+$idProduto = $_GET['idProduto'];
 $produto = buscaProdutos($idProduto);
 
 //echo json_encode($_SESSION['idEmpresa'])
@@ -23,84 +23,83 @@ $produto = buscaProdutos($idProduto);
             </div>
         </div>
 
-            <form action="../database/produtos.php?operacao=alterar" method="post" enctype="multipart/form-data">
+        <form action="../database/produtos.php?operacao=alterar" method="post" enctype="multipart/form-data">
 
-                <div class="row">
-                    <div class="col-sm-12" style="margin-top: 10px">
-                        <div class="form-group">
-                            <label class='control-label' for='inputNormal' style="margin-top: -20px;">Nome do Produto*</label>
-                            <input type="text" name="nomeProduto" class="form-control" value="<?php echo $produto['nomeProduto'] ?>">
-                            <input type="text" class="form-control" name="idProduto" value="<?php echo $produto['idProduto'] ?>" style="display: none">
-                        </div>
+            <div class="row">
+                <div class="col-sm-12" style="margin-top: 10px">
+                    <div class="form-group">
+                        <label class='control-label' for='inputNormal' style="margin-top: -20px;">Nome do Produto*</label>
+                        <input type="text" name="nomeProduto" class="form-control" value="<?php echo $produto['nomeProduto'] ?>">
+                        <input type="text" class="form-control" name="idProduto" value="<?php echo $produto['idProduto'] ?>" style="display: none">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6" style="margin-top: 50px">
+                    <div class="col-sm-6" style="margin-top: -20px">
+                        <label class='control-label' for='inputNormal' style="margin-top: -50px;">Imagem do Produto*</label>
+                        <label class="picture" for="foto" tabIndex="0">
+                            <img src="<?php echo $produto["imgProduto"] ?>" width="100%" height="100%" alt="">
+                        </label>
+                        <input type="file" name="imgProduto" id="foto">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-6" style="margin-top: 10px">
+                    <div class="select-form-group">
+
+                        <label class="labelForm">Marcas*</label>
+                        <select class="select form-control" name="idMarca">
+                            <option value="<?php echo $produto['idMarca'] ?>"><?php echo $produto['nomeMarca']  ?></option>
+                            <?php
+                            foreach ($marcas as $marca) {
+                            ?>
+                                <option value="<?php echo $marca['idMarca'] ?>"><?php echo $marca['nomeMarca']  ?></option>
+                            <?php  } ?>
+                        </select>
+
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-6" style="margin-top: 50px">
-                        <div class="col-sm-6" style="margin-top: -20px">
-                            <label class='control-label' for='inputNormal' style="margin-top: -50px;">Imagem do Produto*</label>
-                            <label class="picture" for="foto" tabIndex="0">
-                                <img src="<?php echo $produto["imgProduto"] ?>" width="100%" height="100%" alt="">
-                            </label>
-                            <input type="file" name="imgProduto" id="foto">
-                        </div>
+                <div class="col-sm-6" style="margin-top: 10px">
+                    <div class="form-group">
+                        <label class='control-label' for='inputNormal' style="margin-top: -20px;">Preço*</label>
+                        <input type="number" name="precoProduto" class="form-control" value="<?php echo $produto['precoProduto'] ?>">
                     </div>
                 </div>
+            </div>
 
-                <div class="row">
-
-                        <div class="col-sm-6" style="margin-top: 10px">
-                            <div class="select-form-group">
-
-                                <label class="labelForm">Marcas*</label>
-                                <select class="select form-control" name="idMarca">
-                                <option value="<?php echo $produto['idMarca'] ?>"><?php echo $produto['nomeMarca']  ?></option>
-                                    <?php
-                                    foreach ($marcas as $marca) {
-                                    ?>
-                                        <option value="<?php echo $marca['idMarca'] ?>"><?php echo $marca['nomeMarca']  ?></option>
-                                    <?php  } ?>
-                                </select>
-
-                            </div>
-                        </div>
-                
-                    <div class="col-sm-6" style="margin-top: 10px">
-                        <div class="form-group">
-                            <label class='control-label' for='inputNormal' style="margin-top: -20px;">Preço*</label>
-                            <input type="number" name="precoProduto" class="form-control" value="<?php echo $produto['precoProduto'] ?>">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-5 ml-4" style="margin-top: 30px">
-                        <div class="select-form-group">
+            <div class="row">
+                <div class="col-sm-5 ml-4" style="margin-top: 30px">
+                    <div class="select-form-group">
                         <label class='control-label' for='inputNormal' style="margin-top: -45px;">Ativo</label>
-                            <label for="ativoProduto">Inativo</label>
-                            <input type="range" id="ativoProduto" name="ativoProduto" min="0" max="1" value="<?php echo $produto['ativoProduto'] ?>" style="width: 15%;">
-                            <label for="ativoProduto">Ativo</label>
-                        </div>
+                        <label for="ativoProduto">Inativo</label>
+                        <input type="range" id="ativoProduto" name="ativoProduto" min="0" max="1" value="<?php echo $produto['ativoProduto'] ?>" style="width: 15%;">
+                        <label for="ativoProduto">Ativo</label>
                     </div>
+                </div>
 
-                    <div class="col-sm-5" style="margin-top: 30px">
-                        <div class="select-form-group">
+                <div class="col-sm-5" style="margin-top: 30px">
+                    <div class="select-form-group">
                         <label class='control-label' for='inputNormal' style="margin-top: -45px;">Propaganda</label>
-                            <label for="propagandaProduto">Não</label>
-                            <input type="range" id="propagandaProduto" name="propagandaProduto" min="0" max="1" value="<?php echo $produto['propagandaProduto'] ?>" style="width: 15%;">
-                            <label for="propagandaProduto">Sim</label>
-                        </div>
+                        <label for="propagandaProduto">Não</label>
+                        <input type="range" id="propagandaProduto" name="propagandaProduto" min="0" max="1" value="<?php echo $produto['propagandaProduto'] ?>" style="width: 15%;">
+                        <label for="propagandaProduto">Sim</label>
                     </div>
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-sm-3" style="margin-top: 10px">
-                        <div class="form-group">
-                            <label class='control-label' for='inputNormal' style="margin-top: -43px;">Descrição</label>
-                            <textarea name="descricaoProduto" id="" cols="120" rows="5"><?php echo $produto['descricaoProduto'] ?></textarea>
-                        </div>
-                    </div>
+            <div class="container-fluid p-0">
+                <div class="col">
+                    <span class="tituloEditor">Descrição</span>
                 </div>
+                <div class="quill-textarea"><?php echo $produto['descricaoProduto'] ?></div>
+                <textarea style="display: none" id="detail" name="descricaoProduto"><?php echo $produto['descricaoProduto'] ?></textarea>
+            </div>
 
             <div style="text-align:right; margin-right:-20px; margin-top:20px">
                 <button type="submit" class="btn  btn-success"><i class="bi bi-sd-card-fill"></i>&#32;Salvar</button>
@@ -110,6 +109,7 @@ $produto = buscaProdutos($idProduto);
 
     </div>
 
+    <script src="<?php echo URLROOT ?>/sistema/js/quilljs.js"></script>
     <script>
         //Carregar a FOTO na tela
         const inputFile = document.querySelector("#foto");
