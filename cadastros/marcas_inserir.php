@@ -56,13 +56,12 @@ include_once('../head.php');
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-sm-3" style="margin-top: 10px">
-                    <div class="form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -43px;">descição</label>
-                        <textarea name="descricaoMarca" id="" cols="120" rows="5"></textarea>
-                    </div>
+            <div class="container-fluid p-0">
+                <div class="col">
+                    <span class="tituloEditor">Descrição</span>
                 </div>
+                <div class="quill-textarea"></div>
+                <textarea style="display: none" id="detail" name="descricaoMarca"></textarea>
             </div>
 
             <div class="row">
@@ -149,15 +148,17 @@ include_once('../head.php');
                     </div>
                 </div>
             </div>
-            
+
             <div style="text-align:right;margin-top:20px">
                 <button type="submit" class="btn  btn-success"><i class="bi bi-sd-card-fill"></i>&#32;Cadastrar</button>
             </div>
         </form>
-    
+
 
     </div><!--container-->
 
+
+    <script src="<?php echo URLROOT ?>/sistema/js/quilljs.js"></script>
     <script>
         //Carregar a FOTO na tela
         const inputFile = document.querySelector("#foto");
