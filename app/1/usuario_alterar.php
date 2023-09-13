@@ -1,11 +1,12 @@
 <?php
+// Lucas 03032023 - criação 
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 
 //LOG
 $LOG_CAMINHO = defineCaminhoLog();
 if (isset($LOG_CAMINHO)) {
     $LOG_NIVEL = defineNivelLog();
-    $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "produtos_alterar";
+    $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "usuario_alterar";
     if (isset($LOG_NIVEL)) {
         if ($LOG_NIVEL >= 1) {
             $arquivo = fopen(defineCaminhoLog() . "cadastros_" . date("dmY") . ".log", "a");
@@ -26,25 +27,17 @@ $idEmpresa = null;
 if (isset($jsonEntrada["idEmpresa"])) {
     $idEmpresa = $jsonEntrada["idEmpresa"];
 }
+
 $conexao = conectaMysql($idEmpresa);
+if (isset($jsonEntrada['idUsuario'])) {
+    $idUsuario = $jsonEntrada['idUsuario'];
+    $nomeUsuario = $jsonEntrada['nomeUsuario'];
+    $email = $jsonEntrada['email'];
+    $statusUsuario = $jsonEntrada['statusUsuario'];
+    $idCliente = $jsonEntrada['idCliente'];
 
-if (isset($jsonEntrada['idProduto'])) {
-
-    $idProduto = $jsonEntrada['idProduto'];
-    $nomeProduto = $jsonEntrada['nomeProduto'];
-    $imgProduto = $jsonEntrada['imgProduto'];
-    $idMarca = isset($jsonEntrada['idMarca']) && $jsonEntrada['idMarca'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['idMarca']) . "'" : "NULL";
-    $precoProduto = isset($jsonEntrada['precoProduto']) && $jsonEntrada['precoProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['precoProduto']) . "'" : "NULL";
-    $ativoProduto = $jsonEntrada['ativoProduto'];
-    $propagandaProduto = $jsonEntrada['propagandaProduto'];
-    $descricaoProduto = $jsonEntrada['descricaoProduto'];
-
-    if ($imgProduto == "null") {
-        $sql = "UPDATE  produtos  SET nomeProduto ='$nomeProduto', idMarca =$idMarca, precoProduto =$precoProduto, ativoProduto ='$ativoProduto',    propagandaProduto ='$propagandaProduto', descricaoProduto ='$descricaoProduto' WHERE idProduto = $idProduto ";
-    } else {
-        $sql = "UPDATE  produtos  SET nomeProduto ='$nomeProduto', imgProduto ='$imgProduto', idMarca =$idMarca, precoProduto =$precoProduto, ativoProduto ='$ativoProduto',    propagandaProduto ='$propagandaProduto', descricaoProduto ='$descricaoProduto' WHERE idProduto = $idProduto ";
-    }
-    //echo $sql;
+    $sql = "UPDATE `usuario` SET `nomeUsuario`='$nomeUsuario', `email`='$email', `idCliente`=$idCliente, `statusUsuario` = $statusUsuario WHERE idUsuario = $idUsuario";
+    // echo "-ENTRADA->".$sql."\n"; 
 
     //LOG
     if (isset($LOG_NIVEL)) {

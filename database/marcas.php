@@ -5,7 +5,7 @@ function buscaMarcasSlug($slug)
 {
 	
 	$autor = array();
-	
+
 	$apiEntrada = array(
 		'slug' => $slug,
 	);
@@ -18,9 +18,9 @@ function buscaMarcas($idMarca=null)
 {
 	
 	$autor = array();
-	
+
 	$apiEntrada = array(
-		'idMarca' => $idMarca
+		'idMarca' => $idMarca,
 	);
 
 	$autor = chamaAPI(null, '/cadastros/marcas', json_encode($apiEntrada), 'GET');
@@ -31,6 +31,7 @@ function buscaMarcasAtiva($estado=null, $lojasEspecializadas=null)
 {
 	
 	$autor = array();
+
 	$apiEntrada = array(
 		'estado' => $estado,
 		'lojasEspecializadas' => $lojasEspecializadas,
@@ -55,7 +56,7 @@ if (isset($_GET['operacao'])) {
 			if($ext == true) {
 				$pasta = ROOT . "/img/";
 				$novoNomeImg = $_POST['nomeMarca']. "_" .$imgMarca["name"];
-				
+				$pathImg = 'http://' . $_SERVER["HTTP_HOST"] .'/img/' . $novoNomeImg;
 				move_uploaded_file($imgMarca['tmp_name'], $pasta.$novoNomeImg);
 		
 			}else{
@@ -72,7 +73,7 @@ if (isset($_GET['operacao'])) {
 			if($ext == true) {
 				$pasta = ROOT . "/img/";
 				$novoNomeBanner = $_POST['nomeMarca']. "_" .$bannerMarca["name"];
-				
+				$pathBanner = 'http://' . $_SERVER["HTTP_HOST"] .'/img/' . $novoNomeBanner;
 				move_uploaded_file($bannerMarca['tmp_name'], $pasta.$novoNomeBanner);
 		
 			}else{
@@ -84,8 +85,8 @@ if (isset($_GET['operacao'])) {
 		$apiEntrada = array(
 			'slug' => $_POST['slug'],
 			'nomeMarca' => $_POST['nomeMarca'],
-            'imgMarca' => $novoNomeImg,
-            'bannerMarca' => $novoNomeBanner,
+            'imgMarca' => $pathImg,
+            'bannerMarca' => $pathBanner,
 			'descricaoMarca' => $_POST['descricaoMarca'],
 			'cidadeMarca' => $_POST['cidadeMarca'],
 			'estado' => $_POST['estado'],
@@ -113,16 +114,39 @@ if (isset($_GET['operacao'])) {
 			if($ext == true) {
 				$pasta = ROOT . "/img/";
 				$novoNomeImg = $_POST['nomeMarca']. "_" .$imgMarca["name"];
-				
+				$pathImg = 'http://' . $_SERVER["HTTP_HOST"] .'/img/' . $novoNomeImg;
 				move_uploaded_file($imgMarca['tmp_name'], $pasta.$novoNomeImg);
 		
+			}else{
+				$pathImg = "null";
 			}
+		}
+
+		$bannerMarca = $_FILES['bannerMarca'];
+
+		if($bannerMarca !== null) {
+			preg_match("/\.(png|jpg|jpeg|svg){1}$/i", $bannerMarca["name"],$ext);
+		
+			if($ext == true) {
+				$pasta = ROOT . "/img/";
+				$novoNomeBanner = $_POST['nomeMarca']. "_" .$bannerMarca["name"];
+				$pathBanner= 'http://' . $_SERVER["HTTP_HOST"] .'/img/' . $novoNomeBanner;
+				move_uploaded_file($bannerMarca['tmp_name'], $pasta.$novoNomeBanner);
+		
+			}else{
+				$pathBanner = "null";
+			}
+	
+		}
+	
 			$apiEntrada = array(
+
 				'idMarca' => $_POST['idMarca'],
 				'nomeMarca' => $_POST['nomeMarca'],
-				'imgMarca' => $novoNomeImg,
 				'descricaoMarca' => $_POST['descricaoMarca'],
 				'cidadeMarca' => $_POST['cidadeMarca'],
+				'imgMarca'=> $pathImg,
+				'bannerMarca'=> $pathBanner,
 				'estado' => $_POST['estado'],
 				'urlMarca' => $_POST['urlMarca'],
 				'ativoMarca' => $_POST['ativoMarca'],
@@ -131,21 +155,6 @@ if (isset($_GET['operacao'])) {
 				
 			);
 	
-		}else{
-			$apiEntrada = array(
-				'idMarca' => $_POST['idMarca'],
-				'nomeMarca' => $_POST['nomeMarca'],
-				'descricaoMarca' => $_POST['descricaoMarca'],
-				'cidadeMarca' => $_POST['cidadeMarca'],
-				'estado' => $_POST['estado'],
-				'urlMarca' => $_POST['urlMarca'],
-				'ativoMarca' => $_POST['ativoMarca'],
-				'catalogo' => $_POST['catalogo'],
-				'lojasEspecializadas' => $_POST['lojasEspecializadas'],
-				
-			);
-		}
-
 		$marca = chamaAPI(null, '/cadastros/marcas', json_encode($apiEntrada), 'POST');
 		
 	}
