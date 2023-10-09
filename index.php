@@ -22,7 +22,7 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
 
     <div class="d-flex">
 
-        <?php include_once  ROOT . "/sistema/novopainel.php"; ?>
+        <?php include_once  ROOT . "/sistema/painel.php"; ?>
 
         <div class="container-fluid">
 
