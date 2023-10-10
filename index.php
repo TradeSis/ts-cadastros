@@ -84,19 +84,19 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
                         $getTab = '';
                     } ?>
                     <select class="form-select mt-2" id="subtabCadastros" style="color:#000; width:160px;text-align:center;">
-                        <option value="<?php echo URLROOT ?>/cadastros/index.php?tab=clientes" 
+                        <option value="<?php echo URLROOT ?>/cadastros/?tab=clientes" 
                         <?php if ($getTab == "clientes") {echo " selected ";} ?>>Clientes</option>
 
-                        <option value="<?php echo URLROOT ?>/cadastros/index.php?tab=produtos" 
+                        <option value="<?php echo URLROOT ?>/cadastros/?tab=produtos" 
                         <?php if ($getTab == "produtos") {echo " selected ";} ?>>Produtos</option>
 
-                        <option value="<?php echo URLROOT ?>/cadastros/index.php?tab=marcas" 
+                        <option value="<?php echo URLROOT ?>/cadastros/?tab=marcas" 
                         <?php if ($getTab == "marcas") {echo " selected ";} ?>>Marcas</option>
 
-                        <option value="<?php echo URLROOT ?>/cadastros/index.php?tab=servicos" 
+                        <option value="<?php echo URLROOT ?>/cadastros/?tab=servicos" 
                         <?php if ($getTab == "servicos") {echo " selected ";} ?>>Serviços</option>
 
-                        <option value="<?php echo URLROOT ?>/cadastros/index.php?tab=configuracao" 
+                        <option value="<?php echo URLROOT ?>/cadastros/?tab=configuracao" 
                         <?php if ($getTab == "configuracao") {echo " selected ";} ?>>Configurações</option>
                     </select>
                 </div>
