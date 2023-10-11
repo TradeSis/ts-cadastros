@@ -31,7 +31,7 @@ $clientes = buscaClientes();
             <BR> <!-- BOTOES AUXILIARES -->
         </div>
         <div class="row"> <!-- LINHA SUPERIOR A TABLE -->
-            <div class="col-3" style="text-align:left">
+            <div class="col-3">
                 <!-- TITULO -->
                 <h2 class="tituloTabela">Alterar Usuário</h2>
             </div>
@@ -39,7 +39,7 @@ $clientes = buscaClientes();
                 <!-- FILTROS -->
             </div>
 
-            <div class="col-2" style="text-align: end;">
+            <div class="col-2 text-end">
                 <a href="#" onclick="history.back()" role="button" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i></i>&#32;Voltar</a>
             </div>
         </div>
@@ -50,7 +50,7 @@ $clientes = buscaClientes();
                     <div class="form-group">
                         <label class="labelForm">Nome</label>
                         <input type="text" class="form-control" name="nomeUsuario" value="<?php echo $usuario['nomeUsuario'] ?>">
-                        <input type="text" class="form-control" name="idUsuario" value="<?php echo $usuario['idUsuario'] ?>" style="display: none">
+                        <input type="hidden" class="form-control" name="idUsuario" value="<?php echo $usuario['idUsuario'] ?>">
                     </div>
                 </div>
                 <div class="col-sm">
@@ -63,8 +63,8 @@ $clientes = buscaClientes();
             <div class="row">
                 <div class="col-sm">
                     <div class="form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -15px;">Nivel</label>
-                        <select class="form-control" style="padding-right: 50px;" name="statusUsuario">
+                        <label class='control-label' for='inputNormal'>Nivel</label>
+                        <select class="form-control" name="statusUsuario">
                             <option <?php if ($usuario['statusUsuario'] == "0") {
                                         echo "selected";
                                     } ?> value="0">Inativo</option>
@@ -76,8 +76,8 @@ $clientes = buscaClientes();
                 </div>
                 <div class="col-sm">
                     <div class="form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -15px;">Cliente</label>
-                        <select class="form-control" style="padding-right: 50px;" name="idCliente">
+                        <label class='control-label' for='inputNormal'>Cliente</label>
+                        <select class="form-control" name="idCliente">
                             <option value="null">Interno</option>
                             <?php
                             foreach ($clientes as $cliente) {
@@ -91,7 +91,7 @@ $clientes = buscaClientes();
                 </div>
             </div>
 
-            <div style="text-align:right">
+            <div class="text-end mt-4">
                 <button type="submit" class="btn  btn-success"><i class="bi bi-sd-card-fill"></i>&#32;Salvar</button>
             </div>
         </form>

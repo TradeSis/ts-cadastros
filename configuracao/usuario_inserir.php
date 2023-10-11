@@ -27,7 +27,7 @@ $clientes = buscaClientes();
             <BR> <!-- BOTOES AUXILIARES -->
         </div>
         <div class="row"> <!-- LINHA SUPERIOR A TABLE -->
-            <div class="col-3" style="text-align:left">
+            <div class="col-3">
                 <!-- TITULO -->
                 <h2 class="tituloTabela">Cadastrar Usuário</h2>
             </div>
@@ -35,7 +35,7 @@ $clientes = buscaClientes();
                 <!-- FILTROS -->
             </div>
 
-            <div class="col-2" style="text-align: end;">
+            <div class="col-2 text-end">
                 <a href="../configuracao/?tab=configuracao&stab=usuarios" role="button" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i></i>&#32;Voltar</a>
             </div>
         </div>
@@ -44,20 +44,20 @@ $clientes = buscaClientes();
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -20px;">Nome do Usuário</label>
+                        <label class='control-label' for='inputNormal'>Nome do Usuário</label>
                         <input type="text" name="nomeUsuario" class="form-control" required autocomplete="off">
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -20px;">E-mail</label>
+                        <label class='control-label' for='inputNormal'>E-mail</label>
                         <input type="email" name="email" class="form-control" required autocomplete="off">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group-select">
                         <label class="labelForm">Cliente</label>
-                        <select class="select form-control" style="padding-right: 100px;" name="idCliente">
+                        <select class="select form-control" style="width: 200px;" name="idCliente">
                             <option value="null">Interno</option>
                             <?php
                             foreach ($clientes as $cliente) {
@@ -68,7 +68,7 @@ $clientes = buscaClientes();
                     </div>
                 </div>
             </div>
-            <div style="text-align:right; margin-top: 30px">
+            <div class="text-end mt-4">
                 <button type="submit" class="btn  btn-success"><i class="bi bi-sd-card-fill"></i>&#32;Cadastrar</button>
             </div>
         </form>

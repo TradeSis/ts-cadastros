@@ -27,7 +27,7 @@ $clientes = buscaClientes($_GET['idCliente']);
             <BR> <!-- BOTOES AUXILIARES -->
         </div>
         <div class="row"> <!-- LINHA SUPERIOR A TABLE -->
-            <div class="col-3" style="text-align:left">
+            <div class="col-3">
                 <!-- TITULO -->
                 <h2 class="tituloTabela">Excluir Cliente</h2>
             </div>
@@ -35,7 +35,7 @@ $clientes = buscaClientes($_GET['idCliente']);
                 <!-- FILTROS -->
             </div>
 
-            <div class="col-2" style="text-align: end;">
+            <div class="col-2 text-end">
                 <a href="clientes.php" role="button" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i></i>&#32;Voltar</a>
             </div>
         </div>
@@ -46,10 +46,10 @@ $clientes = buscaClientes($_GET['idCliente']);
                 <label class='control-label' for='inputNormal'></label>
                 <div class="for-group">
                     <input type="text" class="form-control" name="nomeCliente" value="<?php echo $clientes['nomeCliente'] ?>">
-                    <input type="text" class="form-control" name="idCliente" value="<?php echo $clientes['idCliente'] ?>" style="display: none">
+                    <input type="hidden" class="form-control" name="idCliente" value="<?php echo $clientes['idCliente'] ?>">
                 </div>
             </div>
-            <div style="text-align:right">
+            <div class="text-end mt-4">
                 <button type="submit" id="botao" class="btn btn-sm btn-danger"><i class="bi bi-x-octagon"></i>&#32;Excluir</button>
             </div>
         </form>

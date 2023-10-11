@@ -27,7 +27,7 @@ $usuario = buscaUsuarios($idUsuario);
             <BR> <!-- BOTOES AUXILIARES -->
         </div>
         <div class="row"> <!-- LINHA SUPERIOR A TABLE -->
-            <div class="col-3" style="text-align:left">
+            <div class="col-3">
                 <!-- TITULO -->
                 <h2 class="tituloTabela">Excluir Usuário</h2>
             </div>
@@ -35,7 +35,7 @@ $usuario = buscaUsuarios($idUsuario);
                 <!-- FILTROS -->
             </div>
 
-            <div class="col-2" style="text-align: end;">
+            <div class="col-2 text-end">
                 <a href="../configuracao/?tab=configuracao&stab=usuarios" role="button" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i></i>&#32;Voltar</a>
             </div>
         </div>
@@ -43,11 +43,10 @@ $usuario = buscaUsuarios($idUsuario);
         <form action="../database/usuario.php?operacao=excluir" method="post">
 
             <div class="col-md-12 form-group">
-                <label class='control-label' for='inputNormal'></label>
                 <input type="text" class="form-control" name="nomeUsuario" value="<?php echo $usuario['nomeUsuario'] ?>">
-                <input type="text" class="form-control" name="idUsuario" value="<?php echo $usuario['idUsuario'] ?>" style="display: none">
+                <input type="hidden" class="form-control" name="idUsuario" value="<?php echo $usuario['idUsuario'] ?>">
             </div>
-            <div style="text-align:right">
+            <div class="text-end mt-4">
                 <button type="submit" id="botao" class="btn btn-danger"><i class="bi bi-x-octagon"></i>&#32;Excluir</button>
             </div>
         </form>

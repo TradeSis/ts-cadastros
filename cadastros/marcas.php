@@ -11,50 +11,9 @@ $marcas = buscaMarcas();
 <head>
 
     <?php include_once ROOT . "/vendor/head_css.php"; ?>
-
+    <link rel="stylesheet" href="../css/emoji.css">
 </head>
-<style>
-    .ativo_0 p {
-        background-color: #D9534F;
-        border-radius: 5px;
-        border-bottom: 2px solid;
-        color: transparent;
-        margin: 10px 30px 0px 30px;
-        height: 15px;
-    }
 
-    .ativo_1 p {
-        background-color: #4ddd87;
-        border-radius: 5px;
-        border-bottom: 2px solid;
-        color: transparent;
-        margin: 10px 30px 0px 30px;
-        height: 15px;
-    }
-
-
-    .ativoMarca_0 p .emojiNaoAtivo {
-        font-size: 30px;
-        color: #D9534F;
-
-    }
-
-    .ativoMarca_0 p .emojiAtivo {
-        display: none;
-
-    }
-
-    .ativoMarca_1 p .emojiAtivo {
-        font-size: 30px;
-        color: #4ddd87;
-
-    }
-
-    .ativoMarca_1 p .emojiNaoAtivo {
-        display: none;
-
-    }
-</style>
 
 <body>
     <div class="container-fluid">
@@ -86,10 +45,10 @@ $marcas = buscaMarcas();
             </div>
         </div>
 
-        <div class="table mt-2" style="width: 100%; height: 76vh; overflow-y:scroll; overflow-x:auto;">
+        <div class="table mt-2 ts-divTabela">
             <table class="table table-hover table-sm align-middle">
-                <thead class="cabecalhoTabela">
-                    <tr id="titulodetabelafixo">
+                <thead class="ts-headertabelafixo">
+                    <tr>
                         <th style="width:10%">Ativa</th>
                         <th>Foto</th>
                         <th>Nome</th>
@@ -103,7 +62,7 @@ $marcas = buscaMarcas();
                 foreach ($marcas as $marca) {
                 ?>
                     <tr>
-                        <td class="ativoMarca_<?php echo $marca['ativoMarca'] ?>">
+                        <td class="ativoEmoji_<?php echo $marca['ativoMarca'] ?>">
                             <p><i class="emojiAtivo bi bi-emoji-smile-fill"></i><i class="emojiNaoAtivo bi bi-emoji-frown-fill"></i></i></p>
                         </td>
                         <td><img src="<?php echo $marca['imgMarca'] ?>" width="60px" height="60px" alt=""></td>

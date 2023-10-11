@@ -26,7 +26,7 @@ $marca = buscaMarcas($idMarca);
             <BR> <!-- BOTOES AUXILIARES -->
         </div>
         <div class="row"> <!-- LINHA SUPERIOR A TABLE -->
-            <div class="col-3" style="text-align:left">
+            <div class="col-3">
                 <!-- TITULO -->
                 <h2 class="tituloTabela">Alterar Marca</h2>
             </div>
@@ -34,7 +34,7 @@ $marca = buscaMarcas($idMarca);
                 <!-- FILTROS -->
             </div>
 
-            <div class="col-2" style="text-align: end;">
+            <div class="col-2 text-end">
                 <a href="marcas.php" role="button" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i></i>&#32;Voltar</a>
             </div>
         </div>
@@ -42,11 +42,11 @@ $marca = buscaMarcas($idMarca);
         <form class="mb-4" action="../database/marcas.php?operacao=alterar" method="post" enctype="multipart/form-data">
 
             <div class="row">
-                <div class="col-sm-12" style="margin-top: 10px">
+                <div class="col-sm-12">
                     <div class="form-group">
                         <label class='control-label' for='inputNormal' style="margin-top: -20px;">nome da marca*</label>
                         <input type="text" name="nomeMarca" class="form-control" value="<?php echo $marca['nomeMarca'] ?>">
-                        <input type="text" class="form-control" name="idMarca" value="<?php echo $marca['idMarca'] ?>" style="display: none">
+                        <input type="hidden" class="form-control" name="idMarca" value="<?php echo $marca['idMarca'] ?>">
                     </div>
                 </div>
             </div>
@@ -82,14 +82,14 @@ $marca = buscaMarcas($idMarca);
             </div>
 
             <div class="row">
-                <div class="col-sm-8" style="margin-top: 10px">
+                <div class="col-sm-8">
                     <div class="form-group">
                         <label class='control-label' for='inputNormal' style="margin-top: -20px;">cidade</label>
                         <input type="text" name="cidadeMarca" class="form-control" autocomplete="off" value="<?php echo $marca['cidadeMarca'] ?>">
                     </div>
                 </div>
 
-                <div class="col-sm-4" style="margin-top: 10px">
+                <div class="col-sm-4">
                     <div class="select-form-group">
 
                         <label class="labelForm">estado</label>
@@ -127,10 +127,8 @@ $marca = buscaMarcas($idMarca);
 
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-12" style="margin-top: 10px">
+                <div class="col-sm-12">
                     <div class="form-group">
                         <label class='control-label' for='inputNormal' style="margin-top: -20px;">url marca</label>
                         <input type="text" name="urlMarca" class="form-control" autocomplete="off" value="<?php echo $marca['urlMarca'] ?>">
@@ -139,7 +137,7 @@ $marca = buscaMarcas($idMarca);
             </div>
 
             <div class="row">
-                <div class="col-sm-4" style="margin-top: 30px">
+                <div class="col-sm-4 mt-4" >
                     <div class="select-form-group">
                         <label class='control-label' for='inputNormal' style="margin-top: -45px;">Ativo*</label>
                         <label for="ativoMarca">inativo</label>
@@ -148,7 +146,7 @@ $marca = buscaMarcas($idMarca);
                     </div>
                 </div>
 
-                <div class="col-sm-4" style="margin-top: 30px">
+                <div class="col-sm-4 mt-4" >
                     <div class="select-form-group">
                         <label class='control-label' for='inputNormal' style="margin-top: -45px;">Catalogo</label>
                         <label for="catalogo">Não</label>
@@ -157,7 +155,7 @@ $marca = buscaMarcas($idMarca);
                     </div>
                 </div>
 
-                <div class="col-sm-4" style="margin-top: 30px">
+                <div class="col-sm-4 mt-4" >
                     <div class="select-form-group">
                         <label class='control-label' for='inputNormal' style="margin-top: -45px;">Loja Especializada</label>
                         <label for="lojasEspecializadas">Não</label>
@@ -167,7 +165,7 @@ $marca = buscaMarcas($idMarca);
                 </div>
             </div>
 
-            <div style="text-align:right; margin-top:20px">
+            <div class="text-end mt-4">
                 <button type="submit" class="btn  btn-success"><i class="bi bi-sd-card-fill"></i>&#32;Salvar</button>
             </div>
         </form>

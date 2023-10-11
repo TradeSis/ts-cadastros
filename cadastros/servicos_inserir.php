@@ -22,7 +22,7 @@ include_once('../header.php');
             <BR> <!-- BOTOES AUXILIARES -->
         </div>
         <div class="row"> <!-- LINHA SUPERIOR A TABLE -->
-            <div class="col-3" style="text-align:left">
+            <div class="col-3">
                 <!-- TITULO -->
                 <h2 class="tituloTabela">Adicionar Serviço</h2>
             </div>
@@ -30,7 +30,7 @@ include_once('../header.php');
                 <!-- FILTROS -->
             </div>
 
-            <div class="col-2" style="text-align: end;">
+            <div class="col-2 text-end">
                 <a href="servicos.php" role="button" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i></i>&#32;Voltar</a>
             </div>
         </div>
@@ -38,9 +38,9 @@ include_once('../header.php');
         <form class="mb-4" action="../database/servicos.php?operacao=inserir" method="post" enctype="multipart/form-data">
 
             <div class="row">
-                <div class="col-sm-12" style="margin-top: 10px">
+                <div class="col-sm-12">
                     <div class="form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -20px;">Nome do Serviço</label>
+                        <label class='control-label' for='inputNormal'>Nome do Serviço</label>
                         <input type="text" name="nomeServico" class="form-control" required autocomplete="off">
                     </div>
                 </div>
@@ -68,13 +68,13 @@ include_once('../header.php');
 
             <div class="row">
                 <div class="col-sm-8">
-                    <div class="select-form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -20px;">Link Serviço</label>
+                    <div class="form-group">
+                        <label class='control-label' for='inputNormal'>Link Serviço</label>
                         <input type="text" name="linkServico" class="form-control" autocomplete="off">
                     </div>
                 </div>
 
-                <div class="col-sm-4" style="margin-top: 30px">
+                <div class="col-sm-4" style="margin-top: 30px;">
                     <div class="select-form-group">
                         <label class='control-label' for='inputNormal' style="margin-top: -45px;">Destaque</label>
                         <label for="destaque">Não</label>
@@ -84,7 +84,7 @@ include_once('../header.php');
                 </div>
             </div>
 
-            <div style="text-align:right; margin-top:20px">
+            <div class="text-end mt-4">
                 <button type="submit" class="btn  btn-success"><i class="bi bi-sd-card-fill"></i>&#32;Cadastrar</button>
             </div>
         </form>
