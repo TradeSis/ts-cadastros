@@ -29,7 +29,7 @@ $clientes = buscaClientes($_GET['idCliente']);
         <div class="row"> <!-- LINHA SUPERIOR A TABLE -->
             <div class="col-3">
                 <!-- TITULO -->
-                <h2 class="tituloTabela">Excluir Cliente</h2>
+                <h2 class="ts-tituloPrincipal">Excluir Cliente</h2>
             </div>
             <div class="col-7">
                 <!-- FILTROS -->
