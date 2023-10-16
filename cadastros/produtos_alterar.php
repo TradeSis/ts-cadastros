@@ -27,15 +27,15 @@ $produto = buscaProdutos($idProduto);
             <BR> <!-- BOTOES AUXILIARES -->
         </div>
         <div class="row"> <!-- LINHA SUPERIOR A TABLE -->
-            <div class="col-3" style="text-align:left">
+            <div class="col-3">
                 <!-- TITULO -->
-                <h2 class="tituloTabela">Editar Produto</h2>
+                <h2 class="ts-tituloPrincipal">Editar Produto</h2>
             </div>
             <div class="col-7">
                 <!-- FILTROS -->
             </div>
 
-            <div class="col-2" style="text-align: end;">
+            <div class="col-2 text-end">
                 <a href="produtos.php" role="button" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i></i>&#32;Voltar</a>
             </div>
         </div>
@@ -43,11 +43,11 @@ $produto = buscaProdutos($idProduto);
         <form action="../database/produtos.php?operacao=alterar" method="post" enctype="multipart/form-data">
 
             <div class="row">
-                <div class="col-sm-12" style="margin-top: 10px">
+                <div class="col-sm-12">
                     <div class="form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -20px;">Nome do Produto*</label>
+                        <label class='control-label' for='inputNormal'>Nome do Produto*</label>
                         <input type="text" name="nomeProduto" class="form-control" value="<?php echo $produto['nomeProduto'] ?>">
-                        <input type="text" class="form-control" name="idProduto" value="<?php echo $produto['idProduto'] ?>" style="display: none">
+                        <input type="hidden" class="form-control" name="idProduto" value="<?php echo $produto['idProduto'] ?>">
                     </div>
                 </div>
             </div>
@@ -64,9 +64,9 @@ $produto = buscaProdutos($idProduto);
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row mt-3">
 
-                <div class="col-sm-6" style="margin-top: 10px">
+                <div class="col-sm-6 mt-1">
                     <div class="select-form-group">
 
                         <label class="labelForm">Marcas*</label>
@@ -82,16 +82,16 @@ $produto = buscaProdutos($idProduto);
                     </div>
                 </div>
 
-                <div class="col-sm-6" style="margin-top: 10px">
+                <div class="col-sm-6">
                     <div class="form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -20px;">Preço*</label>
+                        <label class='control-label' for='inputNormal'>Preço*</label>
                         <input type="number" name="precoProduto" class="form-control" value="<?php echo $produto['precoProduto'] ?>">
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-sm-5 ml-4" style="margin-top: 30px">
+                <div class="col-sm-5 ml-4 mt-2">
                     <div class="select-form-group">
                         <label class='control-label' for='inputNormal' style="margin-top: -45px;">Ativo</label>
                         <label for="ativoProduto">Inativo</label>
@@ -100,7 +100,7 @@ $produto = buscaProdutos($idProduto);
                     </div>
                 </div>
 
-                <div class="col-sm-5" style="margin-top: 30px">
+                <div class="col-sm-5 mt-2">
                     <div class="select-form-group">
                         <label class='control-label' for='inputNormal' style="margin-top: -45px;">Propaganda</label>
                         <label for="propagandaProduto">Não</label>
@@ -118,7 +118,7 @@ $produto = buscaProdutos($idProduto);
                 <textarea style="display: none" id="detail" name="descricaoProduto"><?php echo $produto['descricaoProduto'] ?></textarea>
             </div>
 
-            <div style="text-align:right; margin-right:-20px; margin-top:20px">
+            <div class="text-end mt-4">
                 <button type="submit" class="btn  btn-success"><i class="bi bi-sd-card-fill"></i>&#32;Salvar</button>
             </div>
         </form>
