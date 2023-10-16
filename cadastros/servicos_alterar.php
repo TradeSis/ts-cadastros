@@ -24,15 +24,15 @@ $servico = buscaServicos($idServico);
             <BR> <!-- BOTOES AUXILIARES -->
         </div>
         <div class="row"> <!-- LINHA SUPERIOR A TABLE -->
-            <div class="col-3" style="text-align:left">
+            <div class="col-3">
                 <!-- TITULO -->
-                <h2 class="tituloTabela">Editar Serviço</h2>
+                <h2 class="ts-tituloPrincipal">Editar Serviço</h2>
             </div>
             <div class="col-7">
                 <!-- FILTROS -->
             </div>
 
-            <div class="col-2" style="text-align: end;">
+            <div class="col-2 text-end">
                 <a href="servicos.php" role="button" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i></i>&#32;Voltar</a>
             </div>
         </div>
@@ -40,11 +40,11 @@ $servico = buscaServicos($idServico);
         <form class="mb-4" action="../database/servicos.php?operacao=alterar" method="post" enctype="multipart/form-data">
 
             <div class="row">
-                <div class="col-sm-12" style="margin-top: 10px">
+                <div class="col-sm-12">
                     <div class="form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -20px;">Nome do Serviço</label>
+                        <label class='control-label' for='inputNormal'>Nome do Serviço</label>
                         <input type="text" name="nomeServico" class="form-control" value="<?php echo $servico['nomeServico'] ?>">
-                        <input type="text" class="form-control" name="idServico" value="<?php echo $servico['idServico'] ?>" style="display: none">
+                        <input type="hidden" class="form-control" name="idServico" value="<?php echo $servico['idServico'] ?>">
                     </div>
                 </div>
             </div>
@@ -71,8 +71,8 @@ $servico = buscaServicos($idServico);
 
             <div class="row">
                 <div class="col-sm-8">
-                    <div class="select-form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -20px;">Link Serviço</label>
+                    <div class="form-group">
+                        <label class='control-label' for='inputNormal'>Link Serviço</label>
                         <input type="text" name="linkServico" class="form-control" value="<?php echo $servico['linkServico'] ?>">
                     </div>
                 </div>
@@ -87,7 +87,7 @@ $servico = buscaServicos($idServico);
                 </div>
             </div>
 
-            <div style="text-align:right; margin-top:20px">
+            <div class="text-end mt-4">
                 <button type="submit" class="btn  btn-success"><i class="bi bi-sd-card-fill"></i>&#32;Salvar</button>
             </div>
         </form>
