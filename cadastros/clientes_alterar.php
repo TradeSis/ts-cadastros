@@ -41,16 +41,14 @@ $clientes = buscaClientes($_GET['idCliente']);
         </div>
 
         <form action="../database/clientes.php?operacao=alterar" method="post">
-
-            <div class="col-md-12 form-group mb-4">
-
-                <label class='control-label' for='inputNormal'></label>
-                <div class="for-group">
-                    <input type="text" class="form-control" name="nomeCliente" value="<?php echo $clientes['nomeCliente'] ?>">
-                    <input type="hidden" class="form-control" name="idCliente" value="<?php echo $clientes['idCliente'] ?>">
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <label class='form-label ts-label'></label>
+                    <input type="text" class="form-control ts-input" name="nomeCliente" value="<?php echo $clientes['nomeCliente'] ?>">
+                    <input type="hidden" class="form-control ts-input" name="idCliente" value="<?php echo $clientes['idCliente'] ?>">
                 </div>
-
             </div>
+
 
             <div class="text-end mt-4">
                 <button type="submit" id="botao" class="btn btn-success"><i class="bi bi-sd-card-fill"></i>&#32;Salvar</button>

@@ -41,13 +41,11 @@ $produto = buscaProdutos($idProduto);
 
         <form action="../database/produtos.php?operacao=excluir" method="post" enctype="multipart/form-data">
 
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col-sm-12">
-                    <div class="form-group">
-                        <input type="text" name="nomeProduto" class="form-control" value="<?php echo $produto['nomeProduto'] ?>" disabled>
-                        <input type="hidden" class="form-control" name="idProduto" value="<?php echo $produto['idProduto'] ?>">
-                        <input type="hidden" class="form-control" name="imgProduto" value="<?php echo $produto['imgProduto'] ?>">
-                    </div>
+                    <input type="text" name="nomeProduto" class="form-control ts-input" value="<?php echo $produto['nomeProduto'] ?>" disabled>
+                    <input type="hidden" class="form-control ts-input" name="idProduto" value="<?php echo $produto['idProduto'] ?>">
+                    <input type="hidden" class="form-control ts-input" name="imgProduto" value="<?php echo $produto['imgProduto'] ?>">
                 </div>
             </div>
 

@@ -40,14 +40,12 @@ $marca = buscaMarcas($idMarca);
 
         <form action="../database/marcas.php?operacao=excluir" method="post" enctype="multipart/form-data">
 
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col-sm-12">
-                    <div class="form-group">
-                        <input type="text" name="nomeMarca" class="form-control" value="<?php echo $marca['nomeMarca'] ?>" disabled>
-                        <input type="hidden" class="form-control" name="idMarca" value="<?php echo $marca['idMarca'] ?>">
-                        <input type="hidden" class="form-control" name="imgMarca" value="<?php echo $marca['imgMarca'] ?>">
-                        <input type="hidden" class="form-control" name="bannerMarca" value="<?php echo $marca['bannerMarca'] ?>">
-                    </div>
+                    <input type="text" name="nomeMarca" class="form-control ts-input" value="<?php echo $marca['nomeMarca'] ?>" disabled>
+                    <input type="hidden" class="form-control ts-input" name="idMarca" value="<?php echo $marca['idMarca'] ?>">
+                    <input type="hidden" class="form-control ts-input" name="imgMarca" value="<?php echo $marca['imgMarca'] ?>">
+                    <input type="hidden" class="form-control ts-input" name="bannerMarca" value="<?php echo $marca['bannerMarca'] ?>">
                 </div>
             </div>
 
