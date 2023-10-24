@@ -41,13 +41,11 @@ $servico = buscaServicos($idServico);
 
         <form action="../database/servicos.php?operacao=excluir" method="post" enctype="multipart/form-data">
 
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col-sm-12">
-                    <div class="form-group">
-                        <input type="text" name="nomeServico" class="form-control" value="<?php echo $servico['nomeServico'] ?>" disabled>
-                        <input type="hidden" class="form-control" name="idServico" value="<?php echo $servico['idServico'] ?>">
-                        <input type="hidden" class="form-control" name="imgServico" value="<?php echo $servico['imgServico'] ?>">
-                    </div>
+                    <input type="text" name="nomeServico" class="form-control ts-input" value="<?php echo $servico['nomeServico'] ?>" disabled>
+                    <input type="hidden" class="form-control ts-input" name="idServico" value="<?php echo $servico['idServico'] ?>">
+                    <input type="hidden" class="form-control ts-input" name="imgServico" value="<?php echo $servico['imgServico'] ?>">
                 </div>
             </div>
 

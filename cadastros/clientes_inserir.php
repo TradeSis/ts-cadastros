@@ -39,14 +39,13 @@ include_once('../header.php');
         </div>
 
         <form action="../database/clientes.php?operacao=inserir" method="post">
-
-            <div class="col-md-12 form-group">
-
-                <label class='control-label' for='inputNormal'>Nome Cliente</label>
-                <div class="for-group">
-                    <input type="text" class="form-control" name="nomeCliente" autocomplete="off" required>
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <label class='form-label ts-label'>Nome Cliente</label>
+                    <input type="text" class="form-control ts-input" name="nomeCliente" autocomplete="off" required>
                 </div>
             </div>
+
 
             <div class="text-end mt-4">
                 <button type="submit" class="btn  btn-success"><i class="bi bi-sd-card-fill"></i>&#32;Cadastrar</button>

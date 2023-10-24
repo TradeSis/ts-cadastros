@@ -41,63 +41,53 @@ $marcas = buscaMarcas();
 
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="form-group">
-                        <label class='control-label' for='inputNormal'>Nome do Produto*</label>
-                        <input type="text" name="nomeProduto" class="form-control" required autocomplete="off">
-                    </div>
+                    <label class='form-label ts-label'>Nome do Produto*</label>
+                    <input type="text" name="nomeProduto" class="form-control ts-input" required autocomplete="off">
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-sm-6" style="margin-top: 50px">
-                    <div class="col-sm-6" style="margin-top: -20px">
-                        <label class='control-label' for='inputNormal' style="margin-top: -50px;">Imagem do Produto*</label>
-                        <label class="picture" for="foto" tabIndex="0">
-                            <span class="picture__image"></span>
-                        </label>
-                        <input type="file" name="imgProduto" id="foto">
-                    </div>
+                <div class="col-sm-6">
+                    <label class='form-label ts-label'>Imagem do Produto*</label>
+                    <label class="picture" for="foto" tabIndex="0">
+                        <span class="picture__image"></span>
+                    </label>
+                    <input type="file" name="imgProduto" id="foto">
                 </div>
             </div>
 
             <div class="row mt-3">
 
                 <div class="col-sm-6 mt-1">
-                    <div class="select-form-group">
-
-                        <label class="labelForm">Marcas</label>
-                        <select class="select form-control" name="idMarca">
-                            <?php
-                            foreach ($marcas as $marca) {
-                            ?>
-                                <option value="<?php echo $marca['idMarca'] ?>"><?php echo $marca['nomeMarca']  ?></option>
-                            <?php  } ?>
-                        </select>
-
-                    </div>
+                    <label class="form-label ts-label">Marcas</label>
+                    <select class="form-select ts-input" name="idMarca">
+                        <?php
+                        foreach ($marcas as $marca) {
+                        ?>
+                            <option value="<?php echo $marca['idMarca'] ?>"><?php echo $marca['nomeMarca']  ?></option>
+                        <?php  } ?>
+                    </select>
                 </div>
 
                 <div class="col-sm-6">
-                    <div class="form-group">
-                        <label class='control-label' for='inputNormal'>Preço</label>
-                        <input type="number" name="precoProduto" class="form-control" autocomplete="off">
-                    </div>
+                    <label class='form-label ts-label'>Preço</label>
+                    <input type="number" name="precoProduto" class="form-control ts-input" autocomplete="off">
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-sm-5 ml-4 mt-2" >
+            <div class="row mt-3">
+                <div class="col-sm-5 ml-4 mt-2">
                     <div class="select-form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -45px;">Ativo</label>
+                        <label class='form-label ts-label'>Ativo</label>
                         <label for="ativoProduto">Inativo</label>
                         <input type="range" id="ativoProduto" name="ativoProduto" min="0" max="1" style="width: 15%;">
                         <label for="ativoProduto">Ativo</label>
                     </div>
                 </div>
 
-                <div class="col-sm-5 mt-2" >
+                <div class="col-sm-5 mt-2">
                     <div class="select-form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -45px;">Propaganda</label>
+                        <label class='form-label ts-label'>Propaganda</label>
                         <label for="propagandaProduto">Não</label>
                         <input type="range" id="propagandaProduto" name="propagandaProduto" min="0" max="1" style="width: 15%;">
                         <label for="propagandaProduto">Sim</label>

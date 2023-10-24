@@ -42,13 +42,16 @@ $usuario = buscaUsuarios($idUsuario);
 
         <form action="../database/usuario.php?operacao=excluir" method="post">
 
-            <div class="col-md-12 form-group">
-                <input type="text" class="form-control" name="nomeUsuario" value="<?php echo $usuario['nomeUsuario'] ?>">
-                <input type="hidden" class="form-control" name="idUsuario" value="<?php echo $usuario['idUsuario'] ?>">
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <input type="text" class="form-control ts-input" name="nomeUsuario" value="<?php echo $usuario['nomeUsuario'] ?>">
+                    <input type="hidden" class="form-control ts-input" name="idUsuario" value="<?php echo $usuario['idUsuario'] ?>">
+                </div>
+                <div class="text-end mt-4">
+                    <button type="submit" id="botao" class="btn btn-danger"><i class="bi bi-x-octagon"></i>&#32;Excluir</button>
+                </div>
             </div>
-            <div class="text-end mt-4">
-                <button type="submit" id="botao" class="btn btn-danger"><i class="bi bi-x-octagon"></i>&#32;Excluir</button>
-            </div>
+
         </form>
 
     </div>
