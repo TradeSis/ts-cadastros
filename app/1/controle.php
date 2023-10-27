@@ -52,6 +52,14 @@ if ($metodo == "GET") {
       include 'atendente.php';
       break;
 
+    case "pessoa":
+      include 'pessoa.php';
+      break;
+
+    case "fisproduto":
+      include 'fisproduto.php';
+      break;
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -84,6 +92,14 @@ if ($metodo == "PUT") {
 
     case "clientes":
       include 'clientes_inserir.php';
+      break;
+
+    case "pessoa":
+      include 'pessoa_inserir.php';
+      break;
+
+    case "fisproduto":
+      include 'fisproduto_inserir.php';
       break;
 
     default:
@@ -120,6 +136,15 @@ if ($metodo == "POST") {
     case "clientes":
       include 'clientes_alterar.php';
       break;
+
+    case "pessoa":
+      include 'pessoa_alterar.php';
+      break;
+
+    case "fisproduto":
+      include 'fisproduto_alterar.php';
+      break;
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -152,6 +177,14 @@ if ($metodo == "DELETE") {
 
     case "clientes":
       include 'clientes_excluir.php';
+      break;
+
+    case "pessoa":
+      include 'pessoa_excluir.php';
+      break;
+
+    case "fisproduto":
+      include 'fisproduto_excluir.php';
       break;
 
     default:
