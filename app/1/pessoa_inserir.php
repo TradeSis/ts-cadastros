@@ -37,7 +37,7 @@ if (isset($jsonEntrada['cpfCnpj'])) {
     $pais = isset($jsonEntrada['pais']) && $jsonEntrada['pais'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['pais']) . "'" : "NULL";
     $endereco = isset($jsonEntrada['endereco']) && $jsonEntrada['endereco'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['endereco']) . "'" : "NULL";
 
-    $sql = "INSERT INTO pessoa(cpfCnpj, nome, IE, municipio, UF, pais, endereco) VALUES ($cpfCnpj, $nome, $IE, $municipio, $UF, $pais, $endereco)";
+    $sql = "INSERT INTO pessoas(cpfCnpj, nome, IE, municipio, UF, pais, endereco) VALUES ($cpfCnpj, $nome, $IE, $municipio, $UF, $pais, $endereco)";
 
     //LOG
     if (isset($LOG_NIVEL)) {

@@ -31,7 +31,7 @@ if (isset($jsonEntrada['idPessoa'])) {
 
     $idPessoa = $jsonEntrada['idPessoa'];
 
-    $sql = "DELETE FROM  pessoa  WHERE idPessoa = $idPessoa ";
+    $sql = "DELETE FROM  pessoas  WHERE idPessoa = $idPessoa ";
 
     //LOG
     if (isset($LOG_NIVEL)) {

@@ -32,8 +32,8 @@ $conexao = conectaMysql($idEmpresa);
 
 $produtos = array();
 
-$sql = "SELECT produtos.*, marcas.*, pessoa.nome as nomePessoa FROM produtos 
-        LEFT JOIN pessoa on produtos.idPessoaEmitente = pessoa.idPessoa 
+$sql = "SELECT produtos.*, marcas.*, pessoas.nome as nomePessoa FROM produtos 
+        LEFT JOIN pessoas on produtos.idPessoaEmitente = pessoas.idPessoa 
         LEFT JOIN marcas on marcas.idMarca = produtos.idMarca ";
 
 if (isset($jsonEntrada["idProduto"])) {

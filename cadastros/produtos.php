@@ -3,7 +3,7 @@
 //Lucas 04042023 criado
 include_once(__DIR__ . '/../header.php');
 include_once(__DIR__ . '/../database/produtos.php');
-include_once(__DIR__ . '/../database/pessoa.php');
+include_once(__DIR__ . '/../database/pessoas.php');
 include_once(__DIR__ . '/../database/marcas.php');
 
 $produtos = buscarProdutos();

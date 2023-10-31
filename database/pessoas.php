@@ -6,7 +6,7 @@ include_once __DIR__ . "/../conexao.php";
 function buscarPessoa($idPessoa=null)
 {
 
-	$pessoa = array();
+	$pessoas = array();
 
 	$idEmpresa = null;
 	if (isset($_SESSION['idEmpresa'])) {
@@ -17,8 +17,8 @@ function buscarPessoa($idPessoa=null)
 		'idPessoa' => $idPessoa,
 		'idEmpresa' => $idEmpresa
 	);
-	$pessoa = chamaAPI(null, '/cadastros/pessoa', json_encode($apiEntrada), 'GET');
-	return $pessoa;
+	$pessoas = chamaAPI(null, '/cadastros/pessoas', json_encode($apiEntrada), 'GET');
+	return $pessoas;
 }
 
 if (isset($_GET['operacao'])) {
@@ -37,8 +37,8 @@ if (isset($_GET['operacao'])) {
 			'idEmpresa' => $_SESSION['idEmpresa']
 
 		);
-		$pessoa = chamaAPI(null, '/cadastros/pessoa', json_encode($apiEntrada), 'PUT');
-		return $pessoa;
+		$pessoas = chamaAPI(null, '/cadastros/pessoas', json_encode($apiEntrada), 'PUT');
+		return $pessoas;
 
 	}
 
@@ -55,8 +55,8 @@ if (isset($_GET['operacao'])) {
 			'idEmpresa' => $_SESSION['idEmpresa']
 
 		);
-		$pessoa = chamaAPI(null, '/cadastros/pessoa', json_encode($apiEntrada), 'POST');
-		return $pessoa;
+		$pessoas = chamaAPI(null, '/cadastros/pessoas', json_encode($apiEntrada), 'POST');
+		return $pessoas;
 
 	}
 	
@@ -66,8 +66,8 @@ if (isset($_GET['operacao'])) {
 			'idEmpresa' => $_SESSION['idEmpresa']
 
 		);
-		$pessoa = chamaAPI(null, '/cadastros/pessoa', json_encode($apiEntrada), 'DELETE');
-		return $pessoa;
+		$pessoas = chamaAPI(null, '/cadastros/pessoas', json_encode($apiEntrada), 'DELETE');
+		return $pessoas;
 
 	}
 
@@ -76,10 +76,10 @@ if (isset($_GET['operacao'])) {
 			'idEmpresa' => $_SESSION['idEmpresa'],
 			'idPessoa' => $_POST['idPessoa']
 		);
-		$pessoa = chamaAPI(null, '/cadastros/pessoa', json_encode($apiEntrada), 'GET');
+		$pessoas = chamaAPI(null, '/cadastros/pessoas', json_encode($apiEntrada), 'GET');
 
-		echo json_encode($pessoa);
-		return $pessoa;
+		echo json_encode($pessoas);
+		return $pessoas;
 	}
 
 	

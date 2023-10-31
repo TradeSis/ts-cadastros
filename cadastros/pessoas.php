@@ -2,7 +2,7 @@
 //Helio 05102023 padrao novo
 //Lucas 04042023 criado
 include_once(__DIR__ . '/../header.php');
-include_once(__DIR__ . '/../database/pessoa.php');
+include_once(__DIR__ . '/../database/pessoas.php');
 
 $pessoas = buscarPessoa();
 //echo json_encode($pessoas);
@@ -266,7 +266,7 @@ $pessoas = buscarPessoa();
                 $.ajax({
                     type: 'POST',
                     dataType: 'json',
-                    url: '../database/pessoa.php?operacao=buscar',
+                    url: '../database/pessoas.php?operacao=buscar',
                     data: {
                         idPessoa: idPessoa
                     },
@@ -290,7 +290,7 @@ $pessoas = buscarPessoa();
                 $.ajax({
                     type: 'POST',
                     dataType: 'json',
-                    url: '../database/pessoa.php?operacao=buscar',
+                    url: '../database/pessoas.php?operacao=buscar',
                     data: {
                         idPessoa: idPessoa
                     },
@@ -312,7 +312,7 @@ $pessoas = buscarPessoa();
                 event.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
-                    url: "../database/pessoa.php?operacao=inserir",
+                    url: "../database/pessoas.php?operacao=inserir",
                     type: 'POST',
                     data: formData,
                     processData: false,
@@ -325,7 +325,7 @@ $pessoas = buscarPessoa();
                 event.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
-                    url: "../database/pessoa.php?operacao=alterar",
+                    url: "../database/pessoas.php?operacao=alterar",
                     type: 'POST',
                     data: formData,
                     processData: false,
@@ -338,7 +338,7 @@ $pessoas = buscarPessoa();
                 event.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
-                    url: "../database/pessoa.php?operacao=excluir",
+                    url: "../database/pessoas.php?operacao=excluir",
                     type: 'POST',
                     data: formData,
                     processData: false,

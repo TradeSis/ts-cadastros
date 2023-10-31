@@ -35,7 +35,7 @@ if (isset($jsonEntrada['idPessoa'])) {
     $pais = isset($jsonEntrada['pais']) && $jsonEntrada['pais'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['pais']) . "'" : "NULL";
     $endereco = isset($jsonEntrada['endereco']) && $jsonEntrada['endereco'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['endereco']) . "'" : "NULL";
 
-    $sql = "UPDATE pessoa SET cpfCnpj=$cpfCnpj, nome=$nome, IE=$IE, municipio=$municipio, UF=$UF, pais=$pais, endereco=$endereco WHERE idPessoa = $idPessoa";
+    $sql = "UPDATE pessoas SET cpfCnpj=$cpfCnpj, nome=$nome, IE=$IE, municipio=$municipio, UF=$UF, pais=$pais, endereco=$endereco WHERE idPessoa = $idPessoa";
 
     //LOG
     if (isset($LOG_NIVEL)) {

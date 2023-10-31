@@ -52,8 +52,8 @@ if ($metodo == "GET") {
       include 'atendente.php';
       break;
 
-    case "pessoa":
-      include 'pessoa.php';
+    case "pessoas":
+      include 'pessoas.php';
       break;
 
 
@@ -91,7 +91,7 @@ if ($metodo == "PUT") {
       include 'clientes_inserir.php';
       break;
 
-    case "pessoa":
+    case "pessoas":
       include 'pessoa_inserir.php';
       break;
 
@@ -130,7 +130,7 @@ if ($metodo == "POST") {
       include 'clientes_alterar.php';
       break;
 
-    case "pessoa":
+    case "pessoas":
       include 'pessoa_alterar.php';
       break;
 
@@ -168,7 +168,7 @@ if ($metodo == "DELETE") {
       include 'clientes_excluir.php';
       break;
 
-    case "pessoa":
+    case "pessoas":
       include 'pessoa_excluir.php';
       break;
 
