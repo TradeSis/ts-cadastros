@@ -56,9 +56,6 @@ if ($metodo == "GET") {
       include 'pessoa.php';
       break;
 
-    case "fisproduto":
-      include 'fisproduto.php';
-      break;
 
     default:
       $jsonSaida = json_decode(json_encode(
@@ -96,10 +93,6 @@ if ($metodo == "PUT") {
 
     case "pessoa":
       include 'pessoa_inserir.php';
-      break;
-
-    case "fisproduto":
-      include 'fisproduto_inserir.php';
       break;
 
     default:
@@ -141,10 +134,6 @@ if ($metodo == "POST") {
       include 'pessoa_alterar.php';
       break;
 
-    case "fisproduto":
-      include 'fisproduto_alterar.php';
-      break;
-
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -181,10 +170,6 @@ if ($metodo == "DELETE") {
 
     case "pessoa":
       include 'pessoa_excluir.php';
-      break;
-
-    case "fisproduto":
-      include 'fisproduto_excluir.php';
       break;
 
     default:

@@ -68,14 +68,8 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
                         <?php }
                         if ($nivelMenu >= 2) { ?>
                             <li class="nav-item mr-1">
-                                <a class="nav-link <?php if ($tab == "fisproduto") {echo " active ";} ?>" 
-                                href="?tab=fisproduto" role="tab">FisProduto</a>
-                            </li>
-                        <?php }
-                        if ($nivelMenu >= 2) { ?>
-                            <li class="nav-item mr-1">
-                                <a class="nav-link <?php if ($tab == "pessoa") {echo " active ";} ?>" 
-                                href="?tab=pessoa" role="tab">Pessoa</a>
+                                <a class="nav-link <?php if ($tab == "pessoas") {echo " active ";} ?>" 
+                                href="?tab=pessoas" role="tab">Pessoas</a>
                             </li>
                         <?php }
                         if ($nivelMenu >= 4) { ?>
@@ -108,11 +102,8 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
                         <option value="<?php echo URLROOT ?>/cadastros/?tab=servicos" 
                         <?php if ($getTab == "servicos") {echo " selected ";} ?>>Serviços</option>
 
-                        <option value="<?php echo URLROOT ?>/cadastros/?tab=fisproduto" 
-                        <?php if ($getTab == "fisproduto") {echo " selected ";} ?>>FisProduto</option>
-
-                        <option value="<?php echo URLROOT ?>/cadastros/?tab=pessoa" 
-                        <?php if ($getTab == "pessoa") {echo " selected ";} ?>>Pessoa</option>
+                        <option value="<?php echo URLROOT ?>/cadastros/?tab=pessoas" 
+                        <?php if ($getTab == "pessoas") {echo " selected ";} ?>>Pessoas</option>
 
                         <option value="<?php echo URLROOT ?>/cadastros/?tab=configuracao" 
                         <?php if ($getTab == "configuracao") {echo " selected ";} ?>>Configurações</option>
@@ -140,11 +131,8 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
             if ($tab == "servicos") {
                 $src = "cadastros/servicos.php";
             }
-            if ($tab == "fisproduto") {
-                $src = "cadastros/fisproduto.php";
-            }
-            if ($tab == "pessoa") {
-                $src = "cadastros/pessoa.php";
+            if ($tab == "pessoas") {
+                $src = "cadastros/pessoas.php";
             }
             if ($tab == "configuracao") {
                 $src = "configuracao/";
