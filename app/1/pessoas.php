@@ -5,7 +5,7 @@
 $LOG_CAMINHO = defineCaminhoLog();
 if (isset($LOG_CAMINHO)) {
   $LOG_NIVEL = defineNivelLog();
-  $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "produtos";
+  $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "pessoas";
   if (isset($LOG_NIVEL)) {
     if ($LOG_NIVEL >= 1) {
       $arquivo = fopen(defineCaminhoLog() . "cadastros_" . date("dmY") . ".log", "a");
@@ -22,31 +22,18 @@ if (isset($LOG_NIVEL)) {
 }
 //LOG
 
-// JSONENTRADA deve sempre ter o idCliente
 $idEmpresa = null;
 if (isset($jsonEntrada["idEmpresa"])) {
   $idEmpresa = $jsonEntrada["idEmpresa"];
 }
 
 $conexao = conectaMysql($idEmpresa);
+$pessoas = array();
 
-$produtos = array();
-
-$sql = "SELECT produtos.*, marcas.*, pessoas.nome as nomePessoa FROM produtos 
-        LEFT JOIN pessoas on produtos.idPessoaEmitente = pessoas.idPessoa 
-        LEFT JOIN marcas on marcas.idMarca = produtos.idMarca ";
-
-if (isset($jsonEntrada["idProduto"])) {
-  $sql = $sql . " where produtos.idProduto = " . $jsonEntrada["idProduto"];
-  $where = " and ";
-} else {
-  $where = " where ";
-  if (isset($jsonEntrada["idMarca"])) {
-    $sql = $sql . $where . " produtos.idMarca = " . $jsonEntrada["idMarca"];
-    $where = " and ";
-  }
+$sql = "SELECT * FROM pessoas ";
+if (isset($jsonEntrada["idPessoa"])) {
+  $sql = $sql . " where pessoas.idPessoa = " . $jsonEntrada["idPessoa"];
 }
-//$sql = $sql . $where . " produtos.ativoProduto = 1 ";
 
 //LOG
 if (isset($LOG_NIVEL)) {
@@ -59,16 +46,14 @@ if (isset($LOG_NIVEL)) {
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
-  array_push($produtos, $row);
+  array_push($pessoas, $row);
   $rows = $rows + 1;
 }
 
-if (isset($jsonEntrada["idProduto"]) && $rows == 1) {
-  $produtos = $produtos[0];
+if (isset($jsonEntrada["idPessoa"]) && $rows == 1) {
+  $pessoas = $pessoas[0];
 }
-$jsonSaida = $produtos;
-
-//echo "-SAIDA->".json_encode(jsonSaida)."\n";
+$jsonSaida = $pessoas;
 
 
 //LOG
