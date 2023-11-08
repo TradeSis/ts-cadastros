@@ -41,7 +41,7 @@ if (isset($_GET['operacao'])) {
 
 
 			} else {
-				$novoNomeAnexo = " ";
+				$path = null;
 			}
 
 		} 
@@ -67,6 +67,7 @@ if (isset($_GET['operacao'])) {
 
 		);
 		$pessoas = chamaAPI(null, '/cadastros/pessoas', json_encode($apiEntrada), 'PUT');
+		echo json_encode($apiEntrada);
 		return $pessoas;
 
 	}
@@ -87,7 +88,7 @@ if (isset($_GET['operacao'])) {
 
 
 			} else {
-				$novoNomeAnexo = " ";
+				$path = null;
 			}
 
 		} 

@@ -92,7 +92,7 @@ if ($metodo == "PUT") {
       break;
 
     case "pessoas":
-      include 'pessoa_inserir.php';
+      include 'pessoas_inserir.php';
       break;
 
     default:
@@ -131,7 +131,7 @@ if ($metodo == "POST") {
       break;
 
     case "pessoas":
-      include 'pessoa_alterar.php';
+      include 'pessoas_alterar.php';
       break;
 
     default:
@@ -169,7 +169,7 @@ if ($metodo == "DELETE") {
       break;
 
     case "pessoas":
-      include 'pessoa_excluir.php';
+      include 'pessoas_excluir.php';
       break;
 
     default:

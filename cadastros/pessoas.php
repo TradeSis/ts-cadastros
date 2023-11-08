@@ -43,6 +43,7 @@ $pessoas = buscarPessoa();
             <table class="table table-hover table-sm align-middle">
                 <thead class="ts-headertabelafixo">
                     <tr>
+                        <th>Foto</th>
                         <th>Cpf/Cnpj</th>
                         <th>Nome</th>
                         <th>IE</th>
@@ -58,6 +59,7 @@ $pessoas = buscarPessoa();
                 foreach ($pessoas as $pessoa) {
                     ?>
                     <tr>
+                        <td><img src="<?php echo $pessoa['imgPerfil'] ?>" width="60px" height="60px" alt=""></td>
                         <td> <?php echo $pessoa['cpfCnpj'] ?> </td>
                         <td> <?php echo $pessoa['nomePessoa'] ?> </td>
                         <td> <?php echo $pessoa['IE'] ?> </td>
@@ -161,6 +163,15 @@ $pessoas = buscarPessoa();
                                             <input type="text" class="form-control ts-input" name="twitter">
                                         </div>
                                     </div><!--fim row 5-->
+                                    <div class="row mt-3">
+                                        <div class="col-md">
+                                            <label class='form-label ts-label'>Imagem do Perfil</label>
+                                            <label class="picture" for="fotoInserir" tabIndex="0">
+                                                <span class="picture__image" id="inserir"></span>
+                                            </label>
+                                            <input type="file" name="imgPerfilInserir" class="fotoInput" id="fotoInserir" hidden>
+                                        </div>
+                                    </div><!--fim row 6-->
                                 </div>
                             </div>
                     </div><!--body-->
@@ -255,6 +266,15 @@ $pessoas = buscarPessoa();
                                             <input type="text" class="form-control ts-input" id="twitter" name="twitter">
                                         </div>
                                     </div><!--fim row 5-->
+                                    <div class="row mt-3">
+                                        <div class="col-md">
+                                            <label class='form-label ts-label'>Imagem do Perfil</label>
+                                            <label class="picture" for="fotoAlterar" tabIndex="0">
+                                                <span class="picture__image" id="alterar"></span>
+                                            </label>
+                                            <input type="file" name="imgPerfilAlterar" class="fotoInput" id="fotoAlterar" hidden>
+                                        </div>
+                                    </div><!--fim row 6-->
                                 </div>
                             </div>
                     </div><!--body-->
@@ -476,6 +496,39 @@ $pessoas = buscarPessoa();
                 window.location.reload();
             }
         });
+
+          //Carregar a FOTO na tela
+          const fotoInputs = document.querySelectorAll(".fotoInput");
+
+            fotoInputs.forEach((input, index) => {
+                const pictureImage = document.querySelectorAll(".picture__image")[index];
+                const pictureImageTxt = "Carregar imagem";
+                pictureImage.innerHTML = pictureImageTxt;
+
+                input.addEventListener("change", function (e) {
+                    const inputTarget = e.target;
+                    const file = inputTarget.files[0];
+
+                    if (file) {
+                        const reader = new FileReader();
+
+                        reader.addEventListener("load", function (e) {
+                            const readerTarget = e.target;
+
+                            const img = document.createElement("img");
+                            img.src = readerTarget.result;
+                            img.classList.add("picture__img");
+
+                            pictureImage.innerHTML = "";
+                            pictureImage.appendChild(img);
+                        });
+
+                        reader.readAsDataURL(file);
+                    } else {
+                        pictureImage.innerHTML = pictureImageTxt;
+                    }
+                });
+            });
     </script>
 
     <!-- LOCAL PARA COLOCAR OS JS -FIM -->

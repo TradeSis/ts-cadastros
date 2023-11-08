@@ -46,8 +46,13 @@ if (isset($jsonEntrada['cpfCnpj'])) {
     $twitter = isset($jsonEntrada['twitter']) && $jsonEntrada['twitter'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['twitter']) . "'" : "NULL";
     $imgPerfil = isset($jsonEntrada['imgPerfil']) && $jsonEntrada['imgPerfil'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['imgPerfil']) . "'" : "NULL";
 
-    $sql = "INSERT INTO pessoas($cpfCnpj, $nomePessoa, $IE, $municipio, $UF, $pais, $bairro, $endereco, $endNumero, $cep, $email, $imgPerfil, $telefone, $facebook, $instagram, $twitter)
+    if ($imgProduto === "NULL") {
+        $sql = "INSERT INTO pessoas(cpfCnpj, nomePessoa, IE, municipio, UF, pais, bairro, endereco, endNumero, cep, email, telefone, facebook, instagram, twitter)
+         VALUES ($cpfCnpj, $nomePessoa, $IE, $municipio, $UF, $pais, $bairro, $endereco, $endNumero, $cep, $email, $telefone, $facebook, $instagram, $twitter)";
+    } else {
+        $sql = "INSERT INTO pessoas(cpfCnpj, nomePessoa, IE, municipio, UF, pais, bairro, endereco, endNumero, cep, email, imgPerfil, telefone, facebook, instagram, twitter)
          VALUES ($cpfCnpj, $nomePessoa, $IE, $municipio, $UF, $pais, $bairro, $endereco, $endNumero, $cep, $email, $imgPerfil, $telefone, $facebook, $instagram, $twitter)";
+    }
 
     //LOG
     if (isset($LOG_NIVEL)) {

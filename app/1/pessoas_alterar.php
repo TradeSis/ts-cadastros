@@ -44,8 +44,13 @@ if (isset($jsonEntrada['idPessoa'])) {
     $twitter = isset($jsonEntrada['twitter']) && $jsonEntrada['twitter'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['twitter']) . "'" : "NULL";
     $imgPerfil = isset($jsonEntrada['imgPerfil']) && $jsonEntrada['imgPerfil'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['imgPerfil']) . "'" : "NULL";
 
-    $sql = "UPDATE pessoas SET cpfCnpj=$cpfCnpj, nomePessoa=$nomePessoa, IE=$IE, municipio=$municipio, UF=$UF, pais=$pais, bairro=$bairro, endereco=$endereco,
-           endNumero=$endNumero, cep=$cep, email=$email, telefone=$telefone, facebook=$facebook, instagram=$instagram, twitter=$twitter, imgPerfil=$imgPerfil WHERE idPessoa = $idPessoa";
+    if ($imgProduto === "NULL") {
+        $sql = "UPDATE pessoas SET cpfCnpj=$cpfCnpj, nomePessoa=$nomePessoa, IE=$IE, municipio=$municipio, UF=$UF, pais=$pais, bairro=$bairro, endereco=$endereco,
+        endNumero=$endNumero, cep=$cep, email=$email, telefone=$telefone, facebook=$facebook, instagram=$instagram, twitter=$twitter WHERE idPessoa = $idPessoa";
+    } else {
+        $sql = "UPDATE pessoas SET cpfCnpj=$cpfCnpj, nomePessoa=$nomePessoa, IE=$IE, municipio=$municipio, UF=$UF, pais=$pais, bairro=$bairro, endereco=$endereco,
+        endNumero=$endNumero, cep=$cep, email=$email, telefone=$telefone, facebook=$facebook, instagram=$instagram, twitter=$twitter, imgPerfil=$imgPerfil WHERE idPessoa = $idPessoa";
+    }
 
     //LOG
     if (isset($LOG_NIVEL)) {
