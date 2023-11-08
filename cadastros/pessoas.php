@@ -59,7 +59,7 @@ $pessoas = buscarPessoa();
                     ?>
                     <tr>
                         <td> <?php echo $pessoa['cpfCnpj'] ?> </td>
-                        <td> <?php echo $pessoa['nome'] ?> </td>
+                        <td> <?php echo $pessoa['nomePessoa'] ?> </td>
                         <td> <?php echo $pessoa['IE'] ?> </td>
                         <td> <?php echo $pessoa['municipio'] ?> </td>
                         <td> <?php echo $pessoa['UF'] ?> </td>
@@ -98,14 +98,25 @@ $pessoas = buscarPessoa();
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">Nome</label>
-                                            <input type="text" class="form-control ts-input" name="nome">
-                                            <input type="hidden" class="form-control ts-input" name="idPessoa">
+                                            <input type="text" class="form-control ts-input" name="nomePessoa">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">CEP</label>
+                                            <input type="text" class="form-control ts-input" name="cep">
                                         </div>
                                     </div><!--fim row 1-->
                                     <div class="row mt-3">
                                         <div class="col-md">
+                                            <label class="form-label ts-label">Bairro</label>
+                                            <input type="text" class="form-control ts-input" name="bairro">
+                                        </div>
+                                        <div class="col-md">
                                             <label class="form-label ts-label">Endereço</label>
                                             <input type="text" class="form-control ts-input" name="endereco">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label ts-label">Numero</label>
+                                            <input type="text" class="form-control ts-input" name="endNumero">
                                         </div>
                                     </div><!--fim row 2-->
                                     <div class="row mt-3">
@@ -126,6 +137,30 @@ $pessoas = buscarPessoa();
                                             <input type="text" class="form-control ts-input" name="pais">
                                         </div>
                                     </div><!--fim row 3-->
+                                    <div class="row mt-3">
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">Email</label>
+                                            <input type="text" class="form-control ts-input" name="email">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">Telefone</label>
+                                            <input type="text" class="form-control ts-input" name="telefone">
+                                        </div>
+                                    </div><!--fim row 4-->
+                                    <div class="row mt-3">
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">Facebook</label>
+                                            <input type="text" class="form-control ts-input" name="facebook">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">Instagram</label>
+                                            <input type="text" class="form-control ts-input" name="instagram">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">Twitter</label>
+                                            <input type="text" class="form-control ts-input" name="twitter">
+                                        </div>
+                                    </div><!--fim row 5-->
                                 </div>
                             </div>
                     </div><!--body-->
@@ -156,14 +191,26 @@ $pessoas = buscarPessoa();
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">Nome</label>
-                                            <input type="text" class="form-control ts-input" name="nome" id="nome">
+                                            <input type="text" class="form-control ts-input" name="nomePessoa" id="nomePessoa">
                                             <input type="hidden" class="form-control ts-input" name="idPessoa" id="idPessoa">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">CEP</label>
+                                            <input type="text" class="form-control ts-input" id="cep" name="cep">
                                         </div>
                                     </div><!--fim row 1-->
                                     <div class="row mt-3">
                                         <div class="col-md">
+                                            <label class="form-label ts-label">Bairro</label>
+                                            <input type="text" class="form-control ts-input" id="bairro" name="bairro">
+                                        </div>
+                                        <div class="col-md">
                                             <label class="form-label ts-label">Endereço</label>
                                             <input type="text" class="form-control ts-input" id="endereco" name="endereco">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label ts-label">Numero</label>
+                                            <input type="text" class="form-control ts-input" id="endNumero" name="endNumero">
                                         </div>
                                     </div><!--fim row 2-->
                                     <div class="row mt-3">
@@ -184,6 +231,30 @@ $pessoas = buscarPessoa();
                                             <input type="text" class="form-control ts-input" id="pais" name="pais">
                                         </div>
                                     </div><!--fim row 3-->
+                                    <div class="row mt-3">
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">Email</label>
+                                            <input type="text" class="form-control ts-input" id="email" name="email">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">Telefone</label>
+                                            <input type="text" class="form-control ts-input" id="telefone" name="telefone">
+                                        </div>
+                                    </div><!--fim row 4-->
+                                    <div class="row mt-3">
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">Facebook</label>
+                                            <input type="text" class="form-control ts-input" id="facebook" name="facebook">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">Instagram</label>
+                                            <input type="text" class="form-control ts-input" id="instagram" name="instagram">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">Twitter</label>
+                                            <input type="text" class="form-control ts-input" id="twitter" name="twitter">
+                                        </div>
+                                    </div><!--fim row 5-->
                                 </div>
                             </div>
                     </div><!--body-->
@@ -214,14 +285,26 @@ $pessoas = buscarPessoa();
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">Nome</label>
-                                            <input type="text" class="form-control ts-input" name="nome" id="EXCnome" readonly>
+                                            <input type="text" class="form-control ts-input" name="nomePessoa" id="EXCnomePessoa" readonly>
                                             <input type="hidden" class="form-control ts-input" name="idPessoa" id="EXCidPessoa">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">CEP</label>
+                                            <input type="text" class="form-control ts-input" id="EXCcep" name="cep" readonly>
                                         </div>
                                     </div><!--fim row 1-->
                                     <div class="row mt-3">
                                         <div class="col-md">
+                                            <label class="form-label ts-label">Bairro</label>
+                                            <input type="text" class="form-control ts-input" id="EXCbairro" name="bairro" readonly>
+                                        </div>
+                                        <div class="col-md">
                                             <label class="form-label ts-label">Endereço</label>
                                             <input type="text" class="form-control ts-input" id="EXCendereco" name="endereco" readonly>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label ts-label">Numero</label>
+                                            <input type="text" class="form-control ts-input" id="EXCendNumero" name="endNumero" readonly>
                                         </div>
                                     </div><!--fim row 2-->
                                     <div class="row mt-3">
@@ -242,6 +325,30 @@ $pessoas = buscarPessoa();
                                             <input type="text" class="form-control ts-input" id="EXCpais" name="pais" readonly>
                                         </div>
                                     </div><!--fim row 3-->
+                                    <div class="row mt-3">
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">Email</label>
+                                            <input type="text" class="form-control ts-input" id="EXCemail" name="email" readonly>
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">Telefone</label>
+                                            <input type="text" class="form-control ts-input" id="EXCtelefone" name="telefone" readonly>
+                                        </div>
+                                    </div><!--fim row 4-->
+                                    <div class="row mt-3">
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">Facebook</label>
+                                            <input type="text" class="form-control ts-input" id="EXCfacebook" name="facebook" readonly>
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">Instagram</label>
+                                            <input type="text" class="form-control ts-input" id="EXCinstagram" name="instagram" readonly>
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">Twitter</label>
+                                            <input type="text" class="form-control ts-input" id="EXCtwitter" name="twitter" readonly>
+                                        </div>
+                                    </div><!--fim row 5-->
                                 </div>
                             </div>
                     </div><!--body-->
@@ -273,12 +380,21 @@ $pessoas = buscarPessoa();
                     success: function(data) {
                         $('#idPessoa').val(data.idPessoa);
                         $('#cpfCnpj').val(data.cpfCnpj);
-                        $('#nome').val(data.nome);
+                        $('#nomePessoa').val(data.nomePessoa);
                         $('#IE').val(data.IE);
                         $('#municipio').val(data.municipio);
                         $('#UF').val(data.UF);
                         $('#pais').val(data.pais);
+                        $('#bairro').val(data.bairro);
                         $('#endereco').val(data.endereco);
+                        $('#endNumero').val(data.endNumero);
+                        $('#cep').val(data.cep);
+                        $('#email').val(data.email);
+                        $('#telefone').val(data.telefone);
+                        $('#facebook').val(data.facebook);
+                        $('#instagram').val(data.instagram);
+                        $('#twitter').val(data.twitter);
+                        $('#imgPerfil').val(data.imgPerfil);
                         $('#alterarmodal').modal('show');
                     }
                 });
@@ -297,12 +413,21 @@ $pessoas = buscarPessoa();
                     success: function(data) {
                         $('#EXCidPessoa').val(data.idPessoa);
                         $('#EXCcpfCnpj').val(data.cpfCnpj);
-                        $('#EXCnome').val(data.nome);
+                        $('#EXCnomePessoa').val(data.nomePessoa);
                         $('#EXCIE').val(data.IE);
                         $('#EXCmunicipio').val(data.municipio);
                         $('#EXCUF').val(data.UF);
                         $('#EXCpais').val(data.pais);
+                        $('#EXCbairro').val(data.bairro);
                         $('#EXCendereco').val(data.endereco);
+                        $('#EXCendNumero').val(data.endNumero);
+                        $('#EXCcep').val(data.cep);
+                        $('#EXCemail').val(data.email);
+                        $('#EXCtelefone').val(data.telefone);
+                        $('#EXCfacebook').val(data.facebook);
+                        $('#EXCinstagram').val(data.instagram);
+                        $('#EXCtwitter').val(data.twitter);
+                        $('#EXCimgPerfil').val(data.imgPerfil);
                         $('#excluirmodal').modal('show');
                     }
                 });

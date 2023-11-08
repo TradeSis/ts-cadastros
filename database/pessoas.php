@@ -26,14 +26,43 @@ if (isset($_GET['operacao'])) {
 	$operacao = $_GET['operacao'];
 
 	if ($operacao=="inserir") {
+
+		$imgPerfil = $_FILES['imgPerfilInserir'];
+
+		if ($imgPerfil !== null) {
+			preg_match("/\.(png|jpg|jpeg|txt|xlsx|pdf|csv|doc|docx|zip){1}$/i", $imgPerfil["name"], $ext);
+
+			if ($ext == true) {
+				$pasta = ROOT . "/img/";
+
+				$novoNomeAnexo = $_POST['refProduto'] . "_" . $imgPerfil["name"];
+				$path = 'http://' . $_SERVER["HTTP_HOST"] . '/img/' . $novoNomeAnexo;
+				move_uploaded_file($imgPerfil['tmp_name'], $pasta . $novoNomeAnexo);
+
+
+			} else {
+				$novoNomeAnexo = " ";
+			}
+
+		} 
+
 		$apiEntrada = array(
 			'cpfCnpj' => $_POST['cpfCnpj'],
-			'nome' => $_POST['nome'],
+			'nomePessoa' => $_POST['nomePessoa'],
 			'IE' => $_POST['IE'],
 			'municipio' => $_POST['municipio'],
 			'UF' => $_POST['UF'],
 			'pais' => $_POST['pais'],
+			'bairro' => $_POST['bairro'],
 			'endereco' => $_POST['endereco'],
+			'endNumero' => $_POST['endNumero'],
+			'cep' => $_POST['cep'],
+			'email' => $_POST['email'],
+			'telefone' => $_POST['telefone'],
+			'facebook' => $_POST['facebook'],
+			'instagram' => $_POST['instagram'],
+			'twitter' => $_POST['twitter'],
+			'imgPerfil' => $path,
 			'idEmpresa' => $_SESSION['idEmpresa']
 
 		);
@@ -43,15 +72,44 @@ if (isset($_GET['operacao'])) {
 	}
 
 	if ($operacao=="alterar") {
+
+		$imgPerfil = $_FILES['imgPerfilAlterar'];
+
+		if ($imgPerfil !== null) {
+			preg_match("/\.(png|jpg|jpeg|txt|xlsx|pdf|csv|doc|docx|zip){1}$/i", $imgPerfil["name"], $ext);
+
+			if ($ext == true) {
+				$pasta = ROOT . "/img/";
+
+				$novoNomeAnexo = $_POST['refProduto'] . "_" . $imgPerfil["name"];
+				$path = 'http://' . $_SERVER["HTTP_HOST"] . '/img/' . $novoNomeAnexo;
+				move_uploaded_file($imgPerfil['tmp_name'], $pasta . $novoNomeAnexo);
+
+
+			} else {
+				$novoNomeAnexo = " ";
+			}
+
+		} 
+
 		$apiEntrada = array(
 			'idPessoa' => $_POST['idPessoa'],
 			'cpfCnpj' => $_POST['cpfCnpj'],
-			'nome' => $_POST['nome'],
+			'nomePessoa' => $_POST['nomePessoa'],
 			'IE' => $_POST['IE'],
 			'municipio' => $_POST['municipio'],
 			'UF' => $_POST['UF'],
 			'pais' => $_POST['pais'],
+			'bairro' => $_POST['bairro'],
 			'endereco' => $_POST['endereco'],
+			'endNumero' => $_POST['endNumero'],
+			'cep' => $_POST['cep'],
+			'email' => $_POST['email'],
+			'telefone' => $_POST['telefone'],
+			'facebook' => $_POST['facebook'],
+			'instagram' => $_POST['instagram'],
+			'twitter' => $_POST['twitter'],
+			'imgPerfil' => $path,
 			'idEmpresa' => $_SESSION['idEmpresa']
 
 		);
