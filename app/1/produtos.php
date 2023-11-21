@@ -32,7 +32,7 @@ $conexao = conectaMysql($idEmpresa);
 
 $produtos = array();
 
-$sql = "SELECT produtos.*, marcas.*, pessoas.nome as nomePessoa FROM produtos 
+$sql = "SELECT produtos.*, marcas.*, pessoas.nomePessoa FROM produtos 
         LEFT JOIN pessoas on produtos.idPessoaEmitente = pessoas.idPessoa 
         LEFT JOIN marcas on marcas.idMarca = produtos.idMarca ";
 
