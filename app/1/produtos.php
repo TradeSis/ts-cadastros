@@ -23,7 +23,7 @@ if (isset($LOG_NIVEL)) {
 //LOG
 
 // JSONENTRADA deve sempre ter o idCliente
-$idEmpresa = null;
+$idEmpresa = IDEMPRESA_PADRAO;
 if (isset($jsonEntrada["idEmpresa"])) {
   $idEmpresa = $jsonEntrada["idEmpresa"];
 }
@@ -32,7 +32,7 @@ $conexao = conectaMysql($idEmpresa);
 
 $produtos = array();
 
-$sql = "SELECT produtos.*, marcas.*, pessoas.nome as nomePessoa FROM produtos 
+$sql = "SELECT produtos.*, marcas.*, pessoas.nomePessoa FROM produtos 
         LEFT JOIN pessoas on produtos.idPessoaEmitente = pessoas.idPessoa 
         LEFT JOIN marcas on marcas.idMarca = produtos.idMarca ";
 

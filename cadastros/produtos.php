@@ -118,7 +118,7 @@ $marcas = buscaMarcas();
                                                 <?php
                                                 foreach ($pessoas as $pessoa) {
                                                 ?>
-                                                    <option value="<?php echo $pessoa['idPessoa'] ?>"><?php echo $pessoa['nome']  ?></option>
+                                                    <option value="<?php echo $pessoa['idPessoa'] ?>"><?php echo $pessoa['nomePessoa']  ?></option>
                                                 <?php  } ?>
                                             </select>
                                         </div>
@@ -224,7 +224,7 @@ $marcas = buscaMarcas();
                                                 <?php
                                                 foreach ($pessoas as $pessoa) {
                                                 ?>
-                                                    <option value="<?php echo $pessoa['idPessoa'] ?>"><?php echo $pessoa['nome']  ?></option>
+                                                    <option value="<?php echo $pessoa['idPessoa'] ?>"><?php echo $pessoa['nomePessoa']  ?></option>
                                                 <?php  } ?>
                                             </select>
                                         </div>
@@ -332,7 +332,7 @@ $marcas = buscaMarcas();
                                                 <?php
                                                 foreach ($pessoas as $pessoa) {
                                                 ?>
-                                                    <option value="<?php echo $pessoa['idPessoa'] ?>"><?php echo $pessoa['nome']  ?></option>
+                                                    <option value="<?php echo $pessoa['idPessoa'] ?>"><?php echo $pessoa['nomePessoa']  ?></option>
                                                 <?php  } ?>
                                             </select>
                                         </div>
