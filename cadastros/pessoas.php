@@ -95,8 +95,8 @@ $pessoas = buscarPessoa();
                                 <div class="col-md">
                                     <div class="row mt-3">
                                         <div class="col-md">
-                                            <label class="form-label ts-label">Cpf/Cnpj</label>
-                                            <input type="text" class="form-control ts-input" name="cpfCnpj">
+                                            <label class="form-label ts-label">Cnpj</label>
+                                            <input type="text" class="form-control ts-input" name="cnpj">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">Nome</label>
@@ -495,6 +495,67 @@ $pessoas = buscarPessoa();
             function refreshPage() {
                 window.location.reload();
             }
+
+            function preencherCamposCEP(cep) {
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    url: '../database/pessoas.php?operacao=buscaCEP',
+                    data: {
+                        cep: cep
+                    },
+                    success: function (data) {
+                        $("input[name='UF']").val(data.uf);
+                        $("input[name='municipio']").val(data.municipio);
+                        $("input[name='endereco']").val(data.logradouro);
+                        $("input[name='bairro']").val(data.bairro);
+                    }
+                });
+            }
+            function preencherCamposCNPJ(cnpj) {
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    url: '../database/pessoas.php?operacao=buscaCNPJ',
+                    data: {
+                        cnpj: cnpj
+                    },
+                    success: function (data) {
+                        $("input[name='cep']").val(data.endereco.cep);
+                        $("input[name='nomePessoa']").val(data.nome_fantasia);
+                        $("input[name='UF']").val(data.endereco.uf);
+                        $("input[name='municipio']").val(data.endereco.municipio.descricao);
+                        $("input[name='endereco']").val(`${data.endereco.tipo_logradouro} ${data.endereco.logradouro}`);
+                        $("input[name='endNumero']").val(data.endereco.numero);
+                        $("input[name='bairro']").val(data.endereco.bairro);
+                        $("input[name='email']").val(data.email);
+                    }
+                });
+            }
+
+            $("input[name='cep']").on("input", function () {
+                var cep = $(this).val();
+                if (cep.length === 8) {
+                    preencherCamposCEP(cep);
+                }
+            });
+            $("input[name='cnpj']").on("input", function () {
+                var cnpj = $(this).val();
+                if (cnpj.length === 14) {
+                    preencherCamposCNPJ(cnpj);
+                }
+            }); 
+        });
+
+        $('input[name="cnpj"], input[name="cep"]').on('input', function() {
+            var c = this.selectionStart,
+                r = /[^0-9]/g,
+                v = $(this).val();
+            if (r.test(v)) {
+                $(this).val(v.replace(r, ''));
+                c--;
+            }
+            this.setSelectionRange(c, c);
         });
 
           //Carregar a FOTO na tela
