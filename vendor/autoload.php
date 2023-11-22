@@ -23,3 +23,31 @@ if (PHP_VERSION_ID < 50600) {
 require_once __DIR__ . '/composer/autoload_real.php';
 
 return ComposerAutoloaderInitb073741be3c5ab6eeb37a7e2e11e2736::getLoader();
+
+
+//function oauth2
+function get_oauth2_token($auth_url, $client_id, $client_secret, $scope) {
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $auth_url);
+    curl_setopt($curl, CURLOPT_POST, TRUE);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query(array(        
+        'grant_type' => 'client_credentials', 
+        'scope' => $scope,  
+    )));
+
+    $headers[] = "Authorization: Basic " . base64_encode($client_id . ":" . $client_secret);
+    $headers[] = "Content-Type: application/x-www-form-urlencoded";
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    } else {
+        return json_decode($response);
+    }
+}
