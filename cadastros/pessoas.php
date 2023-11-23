@@ -94,20 +94,27 @@ $pessoas = buscarPessoa();
                             <div class="row">
                                 <div class="col-md">
                                     <div class="row mt-3">
-                                        <div class="col-md">
-                                            <label class="form-label ts-label">Cnpj</label>
-                                            <input type="text" class="form-control ts-input" name="cnpj">
+                                        <div class="col-md-2">
+                                            <label class="form-label ts-label">Tipo de Pessoa</label>
+                                            <select class="form-select ts-input" name="tipoPessoa">
+                                                <option value="J">Jurídica</option>
+                                                <option value="F">Física</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label ts-label">Cpf/Cnpj</label>
+                                            <input type="text" class="form-control ts-input" name="cpfCnpj">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">Nome</label>
                                             <input type="text" class="form-control ts-input" name="nomePessoa">
                                         </div>
+                                    </div><!--fim row 1-->
+                                    <div class="row mt-3">
                                         <div class="col-md">
                                             <label class="form-label ts-label">CEP</label>
                                             <input type="text" class="form-control ts-input" name="cep">
                                         </div>
-                                    </div><!--fim row 1-->
-                                    <div class="row mt-3">
                                         <div class="col-md">
                                             <label class="form-label ts-label">Bairro</label>
                                             <input type="text" class="form-control ts-input" name="bairro">
@@ -196,7 +203,14 @@ $pessoas = buscarPessoa();
                             <div class="row">
                                 <div class="col-md">
                                     <div class="row mt-3">
-                                        <div class="col-md">
+                                        <div class="col-md-2">
+                                            <label class="form-label ts-label">Tipo de Pessoa</label>
+                                            <select class="form-select ts-input" name="tipoPessoa" id="tipoPessoa">
+                                                <option value="J">Jurídica</option>
+                                                <option value="F">Física</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
                                             <label class="form-label ts-label">Cpf/Cnpj</label>
                                             <input type="text" class="form-control ts-input" id="cpfCnpj" name="cpfCnpj">
                                         </div>
@@ -205,12 +219,12 @@ $pessoas = buscarPessoa();
                                             <input type="text" class="form-control ts-input" name="nomePessoa" id="nomePessoa">
                                             <input type="hidden" class="form-control ts-input" name="idPessoa" id="idPessoa">
                                         </div>
+                                    </div><!--fim row 1-->
+                                    <div class="row mt-3">
                                         <div class="col-md">
                                             <label class="form-label ts-label">CEP</label>
                                             <input type="text" class="form-control ts-input" id="cep" name="cep">
                                         </div>
-                                    </div><!--fim row 1-->
-                                    <div class="row mt-3">
                                         <div class="col-md">
                                             <label class="form-label ts-label">Bairro</label>
                                             <input type="text" class="form-control ts-input" id="bairro" name="bairro">
@@ -299,7 +313,14 @@ $pessoas = buscarPessoa();
                             <div class="row">
                                 <div class="col-md">
                                     <div class="row mt-3">
-                                        <div class="col-md">
+                                        <div class="col-md-2">
+                                            <label class="form-label ts-label">Tipo de Pessoa</label>
+                                            <select class="form-select ts-input" name="tipoPessoa" id="EXCtipoPessoa">
+                                                <option value="J">Jurídica</option>
+                                                <option value="F">Física</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
                                             <label class="form-label ts-label">Cpf/Cnpj</label>
                                             <input type="text" class="form-control ts-input" id="EXCcpfCnpj" name="cpfCnpj" readonly>
                                         </div>
@@ -308,12 +329,12 @@ $pessoas = buscarPessoa();
                                             <input type="text" class="form-control ts-input" name="nomePessoa" id="EXCnomePessoa" readonly>
                                             <input type="hidden" class="form-control ts-input" name="idPessoa" id="EXCidPessoa">
                                         </div>
+                                    </div><!--fim row 1-->
+                                    <div class="row mt-3">
                                         <div class="col-md">
                                             <label class="form-label ts-label">CEP</label>
                                             <input type="text" class="form-control ts-input" id="EXCcep" name="cep" readonly>
                                         </div>
-                                    </div><!--fim row 1-->
-                                    <div class="row mt-3">
                                         <div class="col-md">
                                             <label class="form-label ts-label">Bairro</label>
                                             <input type="text" class="form-control ts-input" id="EXCbairro" name="bairro" readonly>
@@ -399,6 +420,7 @@ $pessoas = buscarPessoa();
                     },
                     success: function(data) {
                         $('#idPessoa').val(data.idPessoa);
+                        $('#tipoPessoa').val(data.tipoPessoa);
                         $('#cpfCnpj').val(data.cpfCnpj);
                         $('#nomePessoa').val(data.nomePessoa);
                         $('#IE').val(data.IE);
@@ -432,6 +454,7 @@ $pessoas = buscarPessoa();
                     },
                     success: function(data) {
                         $('#EXCidPessoa').val(data.idPessoa);
+                        $('#EXCtipoPessoa').val(data.tipoPessoa);
                         $('#EXCcpfCnpj').val(data.cpfCnpj);
                         $('#EXCnomePessoa').val(data.nomePessoa);
                         $('#EXCIE').val(data.IE);
@@ -539,7 +562,7 @@ $pessoas = buscarPessoa();
                     preencherCamposCEP(cep);
                 }
             });
-            $("input[name='cnpj']").on("input", function () {
+            $("input[name='cpfCnpj']").on("input", function () {
                 var cnpj = $(this).val();
                 if (cnpj.length === 14) {
                     preencherCamposCNPJ(cnpj);
@@ -547,7 +570,7 @@ $pessoas = buscarPessoa();
             }); 
         });
 
-        $('input[name="cnpj"], input[name="cep"]').on('input', function() {
+        $('input[name="cpfCnpj"], input[name="cep"]').on('input', function() {
             var c = this.selectionStart,
                 r = /[^0-9]/g,
                 v = $(this).val();

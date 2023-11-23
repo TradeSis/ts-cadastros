@@ -27,6 +27,7 @@ $idEmpresa = $jsonEntrada["idEmpresa"];
 $conexao = conectaMysql($idEmpresa);
 if (isset($jsonEntrada['idPessoa'])) {
     $idPessoa = $jsonEntrada['idPessoa'];
+    $tipoPessoa = isset($jsonEntrada['tipoPessoa']) && $jsonEntrada['tipoPessoa'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['tipoPessoa']) . "'" : "NULL";
     $cpfCnpj = isset($jsonEntrada['cpfCnpj']) && $jsonEntrada['cpfCnpj'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['cpfCnpj']) . "'" : "NULL";
     $nomePessoa = isset($jsonEntrada['nomePessoa']) && $jsonEntrada['nomePessoa'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['nomePessoa']) . "'" : "NULL";
     $IE = isset($jsonEntrada['IE']) && $jsonEntrada['IE'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['IE']) . "'" : "NULL";
@@ -45,10 +46,10 @@ if (isset($jsonEntrada['idPessoa'])) {
     $imgPerfil = isset($jsonEntrada['imgPerfil']) && $jsonEntrada['imgPerfil'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['imgPerfil']) . "'" : "NULL";
 
     if ($imgProduto === "NULL") {
-        $sql = "UPDATE pessoas SET cpfCnpj=$cpfCnpj, nomePessoa=$nomePessoa, IE=$IE, municipio=$municipio, UF=$UF, pais=$pais, bairro=$bairro, endereco=$endereco,
+        $sql = "UPDATE pessoas SET tipoPessoa=$tipoPessoa, cpfCnpj=$cpfCnpj, nomePessoa=$nomePessoa, IE=$IE, municipio=$municipio, UF=$UF, pais=$pais, bairro=$bairro, endereco=$endereco,
         endNumero=$endNumero, cep=$cep, email=$email, telefone=$telefone, facebook=$facebook, instagram=$instagram, twitter=$twitter WHERE idPessoa = $idPessoa";
     } else {
-        $sql = "UPDATE pessoas SET cpfCnpj=$cpfCnpj, nomePessoa=$nomePessoa, IE=$IE, municipio=$municipio, UF=$UF, pais=$pais, bairro=$bairro, endereco=$endereco,
+        $sql = "UPDATE pessoas SET tipoPessoa=$tipoPessoa, cpfCnpj=$cpfCnpj, nomePessoa=$nomePessoa, IE=$IE, municipio=$municipio, UF=$UF, pais=$pais, bairro=$bairro, endereco=$endereco,
         endNumero=$endNumero, cep=$cep, email=$email, telefone=$telefone, facebook=$facebook, instagram=$instagram, twitter=$twitter, imgPerfil=$imgPerfil WHERE idPessoa = $idPessoa";
     }
 

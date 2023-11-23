@@ -48,6 +48,7 @@ if (isset($_GET['operacao'])) {
 		} 
 
 		$apiEntrada = array(
+			'tipoPessoa' => $_POST['tipoPessoa'],
 			'cpfCnpj' => $_POST['cpfCnpj'],
 			'nomePessoa' => $_POST['nomePessoa'],
 			'IE' => $_POST['IE'],
@@ -96,6 +97,7 @@ if (isset($_GET['operacao'])) {
 
 		$apiEntrada = array(
 			'idPessoa' => $_POST['idPessoa'],
+			'tipoPessoa' => $_POST['tipoPessoa'],
 			'cpfCnpj' => $_POST['cpfCnpj'],
 			'nomePessoa' => $_POST['nomePessoa'],
 			'IE' => $_POST['IE'],
