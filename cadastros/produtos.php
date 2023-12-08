@@ -69,7 +69,7 @@ $marcas = buscaMarcas();
                         </td>
                         <td><img src="<?php echo $produto['imgProduto'] ?>" width="60px" height="60px" alt=""></td>
                         <td> <?php echo $produto['nomeProduto'] ?> </td>
-                        <td> <?php echo $produto['nomePessoa'] ?> </td>
+                        <td> <?php echo $produto['nome'] ?> </td>
                         <td> <?php echo number_format($produto['valorCompra'], 2, ',', '.'); ?> </td>
                         <td> <?php echo $produto['codigoNcm'] ?> </td>
                         <td> <?php echo $produto['codigoCest'] ?> </td>
@@ -224,7 +224,7 @@ $marcas = buscaMarcas();
                                                 <?php
                                                 foreach ($pessoas as $pessoa) {
                                                 ?>
-                                                    <option value="<?php echo $pessoa['idPessoa'] ?>"><?php echo $pessoa['nomePessoa']  ?></option>
+                                                    <option value="<?php echo $pessoa['idPessoa'] ?>"><?php echo $pessoa['nome']  ?></option>
                                                 <?php  } ?>
                                             </select>
                                         </div>
@@ -332,7 +332,7 @@ $marcas = buscaMarcas();
                                                 <?php
                                                 foreach ($pessoas as $pessoa) {
                                                 ?>
-                                                    <option value="<?php echo $pessoa['idPessoa'] ?>"><?php echo $pessoa['nomePessoa']  ?></option>
+                                                    <option value="<?php echo $pessoa['idPessoa'] ?>"><?php echo $pessoa['nome']  ?></option>
                                                 <?php  } ?>
                                             </select>
                                         </div>
@@ -438,7 +438,7 @@ $marcas = buscaMarcas();
                         $('#nomeProduto').val(data.nomeProduto);
                         $('#refProduto').val(data.refProduto);
                         $('#idPessoaEmitente').val(data.idPessoaEmitente);
-                        $('#nomePessoa').val(data.nomePessoa);
+                        $('#nome').val(data.nome);
                         $('#valorCompra').val(data.valorCompra);
                         $('#codigoNcm').val(data.codigoNcm);
                         $('#codigoCest').val(data.codigoCest);
