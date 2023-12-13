@@ -21,6 +21,25 @@ function buscarPessoa($idPessoa=null)
 	$pessoas = chamaAPI(null, '/cadastros/pessoas', json_encode($apiEntrada), 'GET');
 	return $pessoas;
 }
+function buscarCidades($idCidade=null)
+{
+	$cidades = array();
+	
+	$idEmpresa = null;
+	if (isset($_SESSION['idEmpresa'])) {
+    	$idEmpresa = $_SESSION['idEmpresa'];
+	}
+	
+
+	$apiEntrada = array(
+		'idCidade' => $idCidade,
+		'idEmpresa' => $idEmpresa
+	);
+	
+	$cidades = chamaAPI(null, '/cadastros/cidades', json_encode($apiEntrada), 'GET');
+
+	return $cidades;
+}
 
 if (isset($_GET['operacao'])) {
 

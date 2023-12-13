@@ -56,6 +56,10 @@ if ($metodo == "GET") {
       include 'pessoas.php';
       break;
 
+    case "cidades":
+      include 'cidades.php';
+      break;
+
 
     default:
       $jsonSaida = json_decode(json_encode(
@@ -94,7 +98,7 @@ if ($metodo == "PUT") {
     case "pessoas":
       include 'pessoas_inserir.php';
       break;
-
+      
     default:
       $jsonSaida = json_decode(json_encode(
         array(
