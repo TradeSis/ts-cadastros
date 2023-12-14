@@ -59,6 +59,15 @@ if ($metodo == "GET") {
     case "cidades":
       include 'cidades.php';
       break;
+    
+    case "cnpj":
+      include 'cnpj.php';
+      break;
+
+    case "cep":
+      include 'cep.php';
+      break;
+
 
 
     default:
