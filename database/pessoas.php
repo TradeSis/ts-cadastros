@@ -20,6 +20,25 @@ function buscarPessoa($idPessoa=null)
 	$pessoas = chamaAPI(null, '/cadastros/pessoas', json_encode($apiEntrada), 'GET');
 	return $pessoas;
 }
+function buscarCidades($idCidade=null)
+{
+	$cidades = array();
+	
+	$idEmpresa = null;
+	if (isset($_SESSION['idEmpresa'])) {
+    	$idEmpresa = $_SESSION['idEmpresa'];
+	}
+	
+
+	$apiEntrada = array(
+		'idCidade' => $idCidade,
+		'idEmpresa' => $idEmpresa
+	);
+	
+	$cidades = chamaAPI(null, '/cadastros/cidades', json_encode($apiEntrada), 'GET');
+
+	return $cidades;
+}
 
 if (isset($_GET['operacao'])) {
 
@@ -47,6 +66,7 @@ if (isset($_GET['operacao'])) {
 		} 
 
 		$apiEntrada = array(
+			'tipoPessoa' => $_POST['tipoPessoa'],
 			'cpfCnpj' => $_POST['cpfCnpj'],
 			'nomePessoa' => $_POST['nomePessoa'],
 			'IE' => $_POST['IE'],
@@ -95,6 +115,7 @@ if (isset($_GET['operacao'])) {
 
 		$apiEntrada = array(
 			'idPessoa' => $_POST['idPessoa'],
+			'tipoPessoa' => $_POST['tipoPessoa'],
 			'cpfCnpj' => $_POST['cpfCnpj'],
 			'nomePessoa' => $_POST['nomePessoa'],
 			'IE' => $_POST['IE'],
@@ -141,7 +162,27 @@ if (isset($_GET['operacao'])) {
 		return $pessoas;
 	}
 
-	
+
+	if ($operacao == "buscaCNPJ") {
+		$apiEntrada = array(
+			'idEmpresa' => $_SESSION['idEmpresa'],
+			'cnpj' => $_POST['cnpj']
+		);
+		$cnpj = chamaAPI(null, '/cadastros/cnpj', json_encode($apiEntrada), 'GET');
+
+		echo json_encode($cnpj);
+		return $cnpj;
+	}
+	if ($operacao == "buscaCEP") {
+		$apiEntrada = array(
+			'idEmpresa' => $_SESSION['idEmpresa'],
+			'cep' => $_POST['cep']
+		);
+		$cep = chamaAPI(null, '/cadastros/cep', json_encode($apiEntrada), 'GET');
+
+		echo json_encode($cep);
+		return $cep;
+	}
 }
 
 ?>
