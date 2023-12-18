@@ -22,9 +22,9 @@ if (isset($LOG_NIVEL)) {
 }
 //LOG
 
-$idEmpresa = IDEMPRESA_PADRAO;
+$idEmpresa = null;
 if (isset($jsonEntrada["idEmpresa"])) {
-  $idEmpresa = $jsonEntrada["idEmpresa"];
+    $idEmpresa = $jsonEntrada["idEmpresa"];
 }
 
 $conexao = conectaMysql($idEmpresa);
