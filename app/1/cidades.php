@@ -22,12 +22,8 @@ if (isset($LOG_NIVEL)) {
 }
 //LOG
 
-$idEmpresa = null;
-if (isset($jsonEntrada["idEmpresa"])) {
-  $idEmpresa = $jsonEntrada["idEmpresa"];
-}
 
-$conexao = conectaMysql($idEmpresa);
+$conexao = conectaMysql(null);
 $cidades = array();
 
 $sql = "SELECT * FROM cidades ";
