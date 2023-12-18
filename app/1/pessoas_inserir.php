@@ -29,6 +29,7 @@ if (isset($jsonEntrada["idEmpresa"])) {
 $conexao = conectaMysql($idEmpresa);
 if (isset($jsonEntrada['cpfCnpj'])) {
 
+    $tipoPessoa = isset($jsonEntrada['tipoPessoa']) && $jsonEntrada['tipoPessoa'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['tipoPessoa']) . "'" : "NULL";
     $cpfCnpj = isset($jsonEntrada['cpfCnpj']) && $jsonEntrada['cpfCnpj'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['cpfCnpj']) . "'" : "NULL";
     $nomePessoa = isset($jsonEntrada['nomePessoa']) && $jsonEntrada['nomePessoa'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['nomePessoa']) . "'" : "NULL";
     $IE = isset($jsonEntrada['IE']) && $jsonEntrada['IE'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['IE']) . "'" : "NULL";
@@ -47,11 +48,11 @@ if (isset($jsonEntrada['cpfCnpj'])) {
     $imgPerfil = isset($jsonEntrada['imgPerfil']) && $jsonEntrada['imgPerfil'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['imgPerfil']) . "'" : "NULL";
 
     if ($imgProduto === "NULL") {
-        $sql = "INSERT INTO pessoas(cpfCnpj, nomePessoa, IE, municipio, UF, pais, bairro, endereco, endNumero, cep, email, telefone, facebook, instagram, twitter)
-         VALUES ($cpfCnpj, $nomePessoa, $IE, $municipio, $UF, $pais, $bairro, $endereco, $endNumero, $cep, $email, $telefone, $facebook, $instagram, $twitter)";
+        $sql = "INSERT INTO pessoas(tipoPessoa, cpfCnpj, nomePessoa, IE, municipio, UF, pais, bairro, endereco, endNumero, cep, email, telefone, facebook, instagram, twitter)
+         VALUES ($tipoPessoa, $cpfCnpj, $nomePessoa, $IE, $municipio, $UF, $pais, $bairro, $endereco, $endNumero, $cep, $email, $telefone, $facebook, $instagram, $twitter)";
     } else {
-        $sql = "INSERT INTO pessoas(cpfCnpj, nomePessoa, IE, municipio, UF, pais, bairro, endereco, endNumero, cep, email, imgPerfil, telefone, facebook, instagram, twitter)
-         VALUES ($cpfCnpj, $nomePessoa, $IE, $municipio, $UF, $pais, $bairro, $endereco, $endNumero, $cep, $email, $imgPerfil, $telefone, $facebook, $instagram, $twitter)";
+        $sql = "INSERT INTO pessoas(tipoPessoa, cpfCnpj, nomePessoa, IE, municipio, UF, pais, bairro, endereco, endNumero, cep, email, imgPerfil, telefone, facebook, instagram, twitter)
+         VALUES ($tipoPessoa, $cpfCnpj, $nomePessoa, $IE, $municipio, $UF, $pais, $bairro, $endereco, $endNumero, $cep, $email, $imgPerfil, $telefone, $facebook, $instagram, $twitter)";
     }
 
     //LOG

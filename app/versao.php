@@ -4,6 +4,7 @@
 
 // NOVA VERSAO 
 include  __DIR__ . "/../conexao.php";
+require_once(ROOT . '/notas/nuvemfiscal/vendor/autoload.php');
 //include "app/conexao.php";
 
 if ($versao==""){$versao="1";}
