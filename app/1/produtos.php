@@ -23,7 +23,7 @@ if (isset($LOG_NIVEL)) {
 //LOG
 
 // JSONENTRADA deve sempre ter o idCliente
-$idEmpresa = IDEMPRESA_PADRAO;
+$idEmpresa = null;
 if (isset($jsonEntrada["idEmpresa"])) {
   $idEmpresa = $jsonEntrada["idEmpresa"];
 }
