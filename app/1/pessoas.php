@@ -34,6 +34,12 @@ $sql = "SELECT * FROM pessoas ";
 if (isset($jsonEntrada["idPessoa"])) {
   $sql = $sql . " where pessoas.idPessoa = " . $jsonEntrada["idPessoa"];
 }
+$where = " where ";
+if (isset($jsonEntrada["buscaPessoa"])) {
+  $sql = $sql . $where . " pessoas.cpfCnpj like " . "'%" . $jsonEntrada["buscaPessoa"] . "%'
+    OR pessoas.nomePessoa like " . "'%" . $jsonEntrada["buscaPessoa"] . "%' " ;
+  $where = " and ";
+}
 
 //LOG
 if (isset($LOG_NIVEL)) {
