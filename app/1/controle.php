@@ -68,9 +68,6 @@ if ($metodo == "GET") {
       include 'cep.php';
       break;
 
-      case "cnpj_verifica":
-        include 'cnpj_verifica.php';
-        break;
 
 
     default:
