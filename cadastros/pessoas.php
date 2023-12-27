@@ -1,10 +1,8 @@
 <?php
-// lucas 11102023 novo padrao
+//Helio 05102023 padrao novo
+//Lucas 04042023 criado
 include_once(__DIR__ . '/../header.php');
-//include_once(__DIR__ . '/../database/aplicativo.php');
-include_once(ROOT . '/cadastros/database/clientes.php');
 
-$clientes = buscaClientes();
 ?>
 <!doctype html>
 <html lang="pt-BR">

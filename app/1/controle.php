@@ -68,9 +68,17 @@ if ($metodo == "GET") {
       include 'cep.php';
       break;
 
-      case "cnpj_verifica":
-        include 'cnpj_verifica.php';
-        break;
+    case "cnpj_verifica":
+      include 'cnpj_verifica.php';
+      break;
+
+    case "grupoproduto":
+      include 'grupoproduto.php';
+      break;
+
+    case "eanProduto_verifica":
+      include 'eanProduto_verifica.php';
+      break;  
 
 
     default:
@@ -109,6 +117,10 @@ if ($metodo == "PUT") {
 
     case "pessoas":
       include 'pessoas_inserir.php';
+      break;
+
+    case "grupoproduto":
+      include 'grupoproduto_inserir.php';
       break;
       
     default:

@@ -199,10 +199,10 @@ if (isset($_GET['operacao'])) {
 			'idEmpresa' => $_SESSION['idEmpresa'],
 			'cpfCnpj' => $_POST['cpfCnpj']
 		);
-		$cep = chamaAPI(null, '/cadastros/cnpj_verifica', json_encode($apiEntrada), 'GET');
+		$pessoas = chamaAPI(null, '/cadastros/cnpj_verifica', json_encode($apiEntrada), 'GET');
 
-		echo json_encode($cep);
-		return $cep;
+		echo json_encode($pessoas);
+		return $pessoas;
 	}
 
 	if ($operacao == "filtrar") {

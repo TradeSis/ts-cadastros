@@ -29,7 +29,7 @@ if (isset($jsonEntrada["idEmpresa"])) {
 $conexao = conectaMysql($idEmpresa);
 if (isset($jsonEntrada['cpfCnpj'])) {
 
-    $cpfCnpj = $cpfCnpj = isset($jsonEntrada['cpfCnpj']) && $jsonEntrada['cpfCnpj'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['cpfCnpj']) . "'" : "NULL";
+    $cpfCnpj = isset($jsonEntrada['cpfCnpj']) && $jsonEntrada['cpfCnpj'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['cpfCnpj']) . "'" : "NULL";
     $tipoPessoa = isset($jsonEntrada['tipoPessoa']) && $jsonEntrada['tipoPessoa'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['tipoPessoa']) . "'" : "NULL";
     $nomePessoa = isset($jsonEntrada['nomePessoa']) && $jsonEntrada['nomePessoa'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['nomePessoa']) . "'" : "NULL";
 	$IE = isset($jsonEntrada['IE']) && $jsonEntrada['IE'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['IE']) . "'" : "NULL";

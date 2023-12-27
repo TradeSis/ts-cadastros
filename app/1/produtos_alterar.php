@@ -31,26 +31,35 @@ $conexao = conectaMysql($idEmpresa);
 if (isset($jsonEntrada['idProduto'])) {
 
     $idProduto = isset($jsonEntrada['idProduto']) && $jsonEntrada['idProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['idProduto']) . "'" : "NULL";
-    $idMarca = isset($jsonEntrada['idMarca']) && $jsonEntrada['idMarca'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['idMarca']) . "'" : "NULL";
-    $precoProduto = isset($jsonEntrada['precoProduto']) && $jsonEntrada['precoProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['precoProduto']) . "'" : "NULL";
-    $ativoProduto = isset($jsonEntrada['ativoProduto']) && $jsonEntrada['ativoProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['ativoProduto']) . "'" : "NULL";
-    $propagandaProduto = isset($jsonEntrada['propagandaProduto']) && $jsonEntrada['propagandaProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['propagandaProduto']) . "'" : "NULL";
+    $eanProduto = isset($jsonEntrada['eanProduto']) && $jsonEntrada['eanProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['eanProduto']) . "'" : "NULL";
     $nomeProduto = isset($jsonEntrada['nomeProduto']) && $jsonEntrada['nomeProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['nomeProduto']) . "'" : "NULL";
-    $refProduto = isset($jsonEntrada['refProduto']) && $jsonEntrada['refProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['refProduto']) . "'" : "NULL";
-    $idPessoaEmitente = isset($jsonEntrada['idPessoaEmitente']) && $jsonEntrada['idPessoaEmitente'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['idPessoaEmitente']) . "'" : "NULL";
     $valorCompra = isset($jsonEntrada['valorCompra']) && $jsonEntrada['valorCompra'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['valorCompra']) . "'" : "NULL";
+    $precoProduto = isset($jsonEntrada['precoProduto']) && $jsonEntrada['precoProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['precoProduto']) . "'" : "NULL";
     $codigoNcm = isset($jsonEntrada['codigoNcm']) && $jsonEntrada['codigoNcm'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['codigoNcm']) . "'" : "NULL";
     $codigoCest = isset($jsonEntrada['codigoCest']) && $jsonEntrada['codigoCest'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['codigoCest']) . "'" : "NULL";
-    $descricaoProduto = isset($jsonEntrada['descricaoProduto']) && $jsonEntrada['descricaoProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['descricaoProduto']) . "'" : "NULL";
     $imgProduto = isset($jsonEntrada['imgProduto']) && $jsonEntrada['imgProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['imgProduto']) . "'" : "NULL";
+    $idMarca = isset($jsonEntrada['idMarca']) && $jsonEntrada['idMarca'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['idMarca']) . "'" : "NULL";
+    $ativoProduto = isset($jsonEntrada['ativoProduto']) && $jsonEntrada['ativoProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['ativoProduto']) . "'" : "NULL";
+    $propagandaProduto = isset($jsonEntrada['propagandaProduto']) && $jsonEntrada['propagandaProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['propagandaProduto']) . "'" : "NULL";
+    $descricaoProduto = isset($jsonEntrada['descricaoProduto']) && $jsonEntrada['descricaoProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['descricaoProduto']) . "'" : "NULL";
+    $idPessoaFornecedor = isset($jsonEntrada['idPessoaFornecedor']) && $jsonEntrada['idPessoaFornecedor'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['idPessoaFornecedor']) . "'" : "NULL";
+    $refProduto = isset($jsonEntrada['refProduto']) && $jsonEntrada['refProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['refProduto']) . "'" : "NULL";
+    $dataAtualizacaoTributaria = isset($jsonEntrada['dataAtualizacaoTributaria']) && $jsonEntrada['dataAtualizacaoTributaria'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['dataAtualizacaoTributaria']) . "'" : "NULL";
+    $codImendes = isset($jsonEntrada['codImendes']) && $jsonEntrada['codImendes'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['codImendes']) . "'" : "NULL";
+    $codigoGrupo = isset($jsonEntrada['codigoGrupo']) && $jsonEntrada['codigoGrupo'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['codigoGrupo']) . "'" : "NULL";
+    $substICMSempresa = isset($jsonEntrada['substICMSempresa']) && $jsonEntrada['substICMSempresa'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['substICMSempresa']) . "'" : "NULL";
+    $substICMSFornecedor = isset($jsonEntrada['substICMSFornecedor']) && $jsonEntrada['substICMSFornecedor'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['substICMSFornecedor']) . "'" : "NULL";
+    $prodZFM = isset($jsonEntrada['prodZFM']) && $jsonEntrada['prodZFM'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['prodZFM']) . "'" : "NULL";
+   
 
-    if ($imgProduto === "NULL") {
-        $sql = "UPDATE  produtos  SET idPessoaEmitente=$idPessoaEmitente, refProduto=$refProduto, nomeProduto=$nomeProduto, valorCompra=$valorCompra, precoProduto=$precoProduto, codigoNcm=$codigoNcm, codigoCest=$codigoCest, 
-        idMarca=$idMarca, ativoProduto=$ativoProduto, propagandaProduto=$propagandaProduto, descricaoProduto=$descricaoProduto WHERE idProduto = $idProduto ";
-    } else {
-        $sql = "UPDATE  produtos  SET idPessoaEmitente=$idPessoaEmitente, refProduto=$refProduto, nomeProduto=$nomeProduto, valorCompra=$valorCompra, precoProduto=$precoProduto, codigoNcm=$codigoNcm, codigoCest=$codigoCest, 
-        imgProduto=$imgProduto, idMarca=$idMarca, ativoProduto=$ativoProduto, propagandaProduto=$propagandaProduto, descricaoProduto=$descricaoProduto WHERE idProduto = $idProduto ";
-    }
+    $sql = "UPDATE produtos SET eanProduto=$eanProduto, nomeProduto=$nomeProduto, valorCompra=$valorCompra,
+    precoProduto=$precoProduto, codigoNcm=$codigoNcm, codigoCest=$codigoCest, imgProduto=$imgProduto,
+    idMarca=$idMarca, ativoProduto=$ativoProduto, propagandaProduto=$propagandaProduto,descricaoProduto=$descricaoProduto,
+    idPessoaFornecedor=$idPessoaFornecedor, refProduto=$refProduto, dataAtualizacaoTributaria=$dataAtualizacaoTributaria,
+    codImendes=$codImendes,codigoGrupo=$codigoGrupo, substICMSempresa=$substICMSempresa, substICMSFornecedor=$substICMSFornecedor,
+    prodZFM=$prodZFM WHERE idProduto = $idProduto";
+
+   
     //echo $sql;
 
     //LOG
