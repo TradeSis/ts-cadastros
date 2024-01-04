@@ -29,25 +29,24 @@ if (isset($jsonEntrada["idEmpresa"])) {
 $conexao = conectaMysql($idEmpresa);
 if (isset($jsonEntrada['codigoGrupo'])) {
 
-    $codigoGrupo = isset($jsonEntrada['codigoGrupo']) && $jsonEntrada['codigoGrupo'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['codigoGrupo']) . "'" : "NULL";
-    $nomeGrupo = isset($jsonEntrada['nomeGrupo']) && $jsonEntrada['nomeGrupo'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['nomeGrupo']) . "'" : "NULL";
-    $codigoNcm = isset($jsonEntrada['codigoNcm']) && $jsonEntrada['codigoNcm'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['codigoNcm']) . "'" : "NULL";
-	$codigoCest = isset($jsonEntrada['codigoCest']) && $jsonEntrada['codigoCest'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['codigoCest']) . "'" : "NULL";
-	$impostoImportacao = isset($jsonEntrada['impostoImportacao']) && $jsonEntrada['impostoImportacao'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['impostoImportacao']) . "'" : "NULL";
-    $piscofinscstEnt = isset($jsonEntrada['piscofinscstEnt']) && $jsonEntrada['piscofinscstEnt'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['piscofinscstEnt']) . "'" : "NULL";
-    $piscofinscstSai = isset($jsonEntrada['piscofinscstSai']) && $jsonEntrada['piscofinscstSai'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['piscofinscstSai']) . "'" : "NULL";
-	$aliqPis = isset($jsonEntrada['aliqPis']) && $jsonEntrada['aliqPis'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['aliqPis']) . "'" : "NULL";
-    $aliqCofins = isset($jsonEntrada['aliqCofins']) && $jsonEntrada['aliqCofins'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['aliqCofins']) . "'" : "NULL";
-    $nri = isset($jsonEntrada['nri']) && $jsonEntrada['nri'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['nri']) . "'" : "NULL";
-	$ampLegal = isset($jsonEntrada['ampLegal']) && $jsonEntrada['ampLegal'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['ampLegal']) . "'" : "NULL";
-    $redPIS = isset($jsonEntrada['redPIS']) && $jsonEntrada['redPIS'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['redPIS']) . "'" : "NULL";
-    $redCofins = isset($jsonEntrada['redCofins']) && $jsonEntrada['redCofins'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['redCofins']) . "'" : "NULL";
-	$ipicstEnt = isset($jsonEntrada['ipicstEnt']) && $jsonEntrada['ipicstEnt'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['ipicstEnt']) . "'" : "NULL";
-	$ipicstSai = isset($jsonEntrada['ipicstSai']) && $jsonEntrada['ipicstSai'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['ipicstSai']) . "'" : "NULL";
-    $aliqipi = isset($jsonEntrada['aliqipi']) && $jsonEntrada['aliqipi'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['aliqipi']) . "'" : "NULL";
-    $codenq = isset($jsonEntrada['codenq']) && $jsonEntrada['codenq'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['codenq']) . "'" : "NULL";
-    $ipiex = isset($jsonEntrada['ipiex']) && $jsonEntrada['ipiex'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['ipiex']) . "'" : "NULL";
-   
+    $codigoGrupo = isset($jsonEntrada['codigoGrupo']) && $jsonEntrada['codigoGrupo'] !== "" ? "'" . $jsonEntrada['codigoGrupo'] . "'" : "NULL";
+    $nomeGrupo = isset($jsonEntrada['nomeGrupo']) && $jsonEntrada['nomeGrupo'] !== "" ? "'" . $jsonEntrada['nomeGrupo'] . "'" : "NULL";
+    $codigoNcm = isset($jsonEntrada['codigoNcm']) && $jsonEntrada['codigoNcm'] !== "" ? "'" . $jsonEntrada['codigoNcm'] . "'" : "NULL";
+	$codigoCest = isset($jsonEntrada['codigoCest']) && $jsonEntrada['codigoCest'] !== "" ? "'" . $jsonEntrada['codigoCest'] . "'" : "NULL";
+	$impostoImportacao = isset($jsonEntrada['impostoImportacao']) && $jsonEntrada['impostoImportacao'] !== "" ? "'" . $jsonEntrada['impostoImportacao'] . "'" : "NULL";
+    $piscofinscstEnt = isset($jsonEntrada['piscofinscstEnt']) && $jsonEntrada['piscofinscstEnt'] !== "" ? "'" . $jsonEntrada['piscofinscstEnt'] . "'" : "NULL";
+    $piscofinscstSai = isset($jsonEntrada['piscofinscstSai']) && $jsonEntrada['piscofinscstSai'] !== "" ? "'" . $jsonEntrada['piscofinscstSai'] . "'" : "NULL";
+	$aliqPis = isset($jsonEntrada['aliqPis']) && $jsonEntrada['aliqPis'] !== "" ? "'" . $jsonEntrada['aliqPis'] . "'" : "NULL";
+    $aliqCofins = isset($jsonEntrada['aliqCofins']) && $jsonEntrada['aliqCofins'] !== "" ? "'" . $jsonEntrada['aliqCofins'] . "'" : "NULL";
+    $nri = isset($jsonEntrada['nri']) && $jsonEntrada['nri'] !== "" ? "'" . $jsonEntrada['nri'] . "'" : "NULL";
+	$ampLegal = isset($jsonEntrada['ampLegal']) && $jsonEntrada['ampLegal'] !== "" ? "'" . $jsonEntrada['ampLegal'] . "'" : "NULL";
+    $redPIS = isset($jsonEntrada['redPIS']) && $jsonEntrada['redPIS'] !== "" ? "'" . $jsonEntrada['redPIS'] . "'" : "NULL";
+    $redCofins = isset($jsonEntrada['redCofins']) && $jsonEntrada['redCofins'] !== "" ? "'" . $jsonEntrada['redCofins'] . "'" : "NULL";
+	$ipicstEnt = isset($jsonEntrada['ipicstEnt']) && $jsonEntrada['ipicstEnt'] !== "" ? "'" . $jsonEntrada['ipicstEnt'] . "'" : "NULL";
+	$ipicstSai = isset($jsonEntrada['ipicstSai']) && $jsonEntrada['ipicstSai'] !== "" ? "'" . $jsonEntrada['ipicstSai'] . "'" : "NULL";
+    $aliqipi = isset($jsonEntrada['aliqipi']) && $jsonEntrada['aliqipi'] !== "" ? "'" . $jsonEntrada['aliqipi'] . "'" : "NULL";
+    $codenq = isset($jsonEntrada['codenq']) && $jsonEntrada['codenq'] !== "" ? "'" . $jsonEntrada['codenq'] . "'" : "NULL";
+    $ipiex = isset($jsonEntrada['ipiex']) && $jsonEntrada['ipiex'] !== ""    ? "'" . $jsonEntrada['ipiex'] . "'" : "NULL";
 
     $sql = "INSERT INTO `grupoproduto`(codigoGrupo, nomeGrupo, codigoNcm, codigoCest, impostoImportacao, piscofinscstEnt,
         piscofinscstSai, aliqPis, aliqCofins, nri, ampLegal, redPIS, redCofins, ipicstEnt, ipicstSai, aliqipi, codenq, ipiex) 

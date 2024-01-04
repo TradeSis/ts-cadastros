@@ -45,9 +45,9 @@ if (isset($jsonEntrada['eanProduto'])) {
     $dataAtualizacaoTributaria = isset($jsonEntrada['dataAtualizacaoTributaria']) && $jsonEntrada['dataAtualizacaoTributaria'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['dataAtualizacaoTributaria']) . "'" : "NULL";
     $codImendes = isset($jsonEntrada['codImendes']) && $jsonEntrada['codImendes'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['codImendes']) . "'" : "NULL";
     $codigoGrupo = isset($jsonEntrada['codigoGrupo']) && $jsonEntrada['codigoGrupo'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['codigoGrupo']) . "'" : "NULL";
-    $substICMSempresa = isset($jsonEntrada['substICMSempresa']) && $jsonEntrada['substICMSempresa'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['substICMSempresa']) . "'" : "NULL";
-    $substICMSFornecedor = isset($jsonEntrada['substICMSFornecedor']) && $jsonEntrada['substICMSFornecedor'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['substICMSFornecedor']) . "'" : "NULL";
-    $prodZFM = isset($jsonEntrada['prodZFM']) && $jsonEntrada['prodZFM'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['prodZFM']) . "'" : "NULL";
+    $substICMSempresa = isset($jsonEntrada['substICMSempresa']) && $jsonEntrada['substICMSempresa'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['substICMSempresa']) . "'" : "'N'";
+    $substICMSFornecedor = isset($jsonEntrada['substICMSFornecedor']) && $jsonEntrada['substICMSFornecedor'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['substICMSFornecedor']) . "'" : "'N'";
+    $prodZFM = isset($jsonEntrada['prodZFM']) && $jsonEntrada['prodZFM'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['prodZFM']) . "'" : "'N'";
    
     $sql = "INSERT INTO produtos (eanProduto, nomeProduto, valorCompra, precoProduto, codigoNcm, 
     codigoCest, imgProduto, idMarca, ativoProduto, propagandaProduto, descricaoProduto, idPessoaFornecedor, 
