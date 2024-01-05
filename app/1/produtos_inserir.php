@@ -29,7 +29,7 @@ if (isset($jsonEntrada["idEmpresa"])) {
 $conexao = conectaMysql($idEmpresa);
 if (isset($jsonEntrada['eanProduto'])) {
 
-    $eanProduto = isset($jsonEntrada['eanProduto']) && $jsonEntrada['eanProduto'] !== "" ? "'" . $jsonEntrada['eanProduto'] . "'" : "NULL";
+    $eanProduto = isset($jsonEntrada['eanProduto']) && $jsonEntrada['eanProduto'] !== "" && $jsonEntrada['eanProduto'] !== "NULL" ? "'" . $jsonEntrada['eanProduto'] . "'" : "NULL";
     $nomeProduto = isset($jsonEntrada['nomeProduto']) && $jsonEntrada['nomeProduto'] !== "" ? "'" . $jsonEntrada['nomeProduto'] . "'" : "NULL";
     $valorCompra = isset($jsonEntrada['valorCompra']) && $jsonEntrada['valorCompra'] !== "" ? "'" . $jsonEntrada['valorCompra'] . "'" : "NULL";
     $precoProduto = isset($jsonEntrada['precoProduto']) && $jsonEntrada['precoProduto'] !== "" ? "'" . $jsonEntrada['precoProduto'] . "'" : "NULL";
@@ -41,7 +41,7 @@ if (isset($jsonEntrada['eanProduto'])) {
     $propagandaProduto = isset($jsonEntrada['propagandaProduto']) && $jsonEntrada['propagandaProduto'] !== "" ? "'" . $jsonEntrada['propagandaProduto'] . "'" : "NULL";
     $descricaoProduto = isset($jsonEntrada['descricaoProduto']) && $jsonEntrada['descricaoProduto'] !== "" ? "'" . $jsonEntrada['descricaoProduto'] . "'" : "NULL";
     $idPessoaFornecedor = isset($jsonEntrada['idPessoaFornecedor']) && $jsonEntrada['idPessoaFornecedor'] !== "" ? "'" . $jsonEntrada['idPessoaFornecedor'] . "'" : "NULL";
-    $refProduto = isset($jsonEntrada['refProduto']) && $jsonEntrada['refProduto'] !== "" ? "'" . $jsonEntrada['refProduto'] . "'" : "NULL";
+    $refProduto = isset($jsonEntrada['refProduto']) && $jsonEntrada['refProduto'] !== "" && $jsonEntrada['refProduto'] !== "NULL" ? "'" . $jsonEntrada['refProduto'] . "'" : "NULL";
     $dataAtualizacaoTributaria = isset($jsonEntrada['dataAtualizacaoTributaria']) && $jsonEntrada['dataAtualizacaoTributaria'] !== "" ? "'" . $jsonEntrada['dataAtualizacaoTributaria'] . "'" : "NULL";
     $codImendes = isset($jsonEntrada['codImendes']) && $jsonEntrada['codImendes'] !== "" ? "'" . $jsonEntrada['codImendes'] . "'" : "NULL";
     $codigoGrupo = isset($jsonEntrada['codigoGrupo']) && $jsonEntrada['codigoGrupo'] !== "" ? "'" . $jsonEntrada['codigoGrupo'] . "'" : "NULL";
@@ -56,7 +56,6 @@ if (isset($jsonEntrada['eanProduto'])) {
     $codigoCest, $imgProduto, $idMarca, $ativoProduto, $propagandaProduto, $descricaoProduto, $idPessoaFornecedor,
     $refProduto, $dataAtualizacaoTributaria, $codImendes, $codigoGrupo, $substICMSempresa, $substICMSFornecedor, $prodZFM)";
 
-    //echo "-ENTRADA->".json_encode($sql)."\n";
 
     //LOG
     if (isset($LOG_NIVEL)) {
@@ -73,9 +72,11 @@ if (isset($jsonEntrada['eanProduto'])) {
         if (!$atualizar)
             throw new Exception(mysqli_error($conexao));
 
+        $idProdutoInserido = mysqli_insert_id($conexao);
         $jsonSaida = array(
             "status" => 200,
-            "retorno" => "ok"
+            "retorno" => "ok",
+            "idProduto" => $idProdutoInserido
         );
     } catch (Exception $e) {
         $jsonSaida = array(
