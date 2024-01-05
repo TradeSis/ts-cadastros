@@ -35,7 +35,7 @@ $conexao = conectaMysql($idEmpresa);
     $sql_consulta = "SELECT * FROM produtos WHERE eanProduto = $eanProduto";
     $buscar_consulta = mysqli_query($conexao, $sql_consulta);
     $row_consulta = mysqli_fetch_array($buscar_consulta, MYSQLI_ASSOC);
-    $eanProduto = isset($row_consulta["eanProduto"]) && $row_consulta["eanProduto"] !== "" ? "'" . mysqli_real_escape_string($conexao, $row_consulta["eanProduto"]) . "'" : "null";
+    $eanProduto = isset($row_consulta["eanProduto"]) && $row_consulta["eanProduto"] !== "" ? "'" . $row_consulta["eanProduto"] . "'" : "null";
 
     if($eanProduto == 'null'){
       $jsonSaida = 'LIBERADO';

@@ -35,7 +35,7 @@ $conexao = conectaMysql($idEmpresa);
     $sql_consulta = "SELECT * FROM pessoas WHERE cpfCnpj = $cpfCnpj";
     $buscar_consulta = mysqli_query($conexao, $sql_consulta);
     $row_consulta = mysqli_fetch_array($buscar_consulta, MYSQLI_ASSOC);
-    $cpfCnpj = isset($row_consulta["cpfCnpj"]) && $row_consulta["cpfCnpj"] !== "" ? "'" . mysqli_real_escape_string($conexao, $row_consulta["cpfCnpj"]) . "'" : "null";
+    $cpfCnpj = isset($row_consulta["cpfCnpj"]) && $row_consulta["cpfCnpj"] !== "" ? "'" . $row_consulta["cpfCnpj"] . "'" : "null";
 
     if($cpfCnpj == 'null'){
       $jsonSaida = 'LIBERADO';
