@@ -51,11 +51,12 @@ if (isset($jsonEntrada['cpfCnpj'])) {
     $regimeTrib = isset($jsonEntrada['regimeTrib']) && $jsonEntrada['regimeTrib'] !== "" ? "'" . $jsonEntrada['regimeTrib'] . "'" : "NULL";
     $cnae = isset($jsonEntrada['cnae']) && $jsonEntrada['cnae'] !== "" ? "'" . $jsonEntrada['cnae'] . "'" : "NULL";
     $regimeEspecial = isset($jsonEntrada['regimeEspecial']) && $jsonEntrada['regimeEspecial'] !== "" ? "'" . $jsonEntrada['regimeEspecial'] . "'" : "NULL";
+    $caracTrib = isset($jsonEntrada['caracTrib']) && $jsonEntrada['caracTrib'] !== "" ? "'" . $jsonEntrada['caracTrib'] . "'" : "NULL";
 
     $sql = "INSERT INTO pessoas(cpfCnpj, tipoPessoa, nomePessoa, IE, municipio, codigoCidade, codigoEstado, pais, bairro, endereco, endNumero,
-        cep, email, imgPerfil, telefone, facebook, instagram, twitter, crt, regimeTrib, cnae, regimeEspecial) 
+        cep, email, imgPerfil, telefone, facebook, instagram, twitter, crt, regimeTrib, cnae, regimeEspecial, caracTrib) 
     VALUES ($cpfCnpj, $tipoPessoa, $nomePessoa, $IE, $municipio, $codigoCidade, $codigoEstado, $pais, $bairro, $endereco, $endNumero, 
-        $cep, $email, $imgPerfil, $telefone, $facebook, $instagram, $twitter, $crt, $regimeTrib, $cnae, $regimeEspecial)";
+        $cep, $email, $imgPerfil, $telefone, $facebook, $instagram, $twitter, $crt, $regimeTrib, $cnae, $regimeEspecial, $caracTrib)";
     
 
     //echo $sql;
