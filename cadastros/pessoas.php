@@ -176,6 +176,10 @@ include_once(__DIR__ . '/../header.php');
                                             <label class="form-label ts-label">caracTrib</label>
                                             <input type="text" class="form-control ts-input" name="caracTrib">
                                         </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">origem</label>
+                                            <input type="text" class="form-control ts-input" name="origem">
+                                        </div>
                                     </div><!--fim row 5-->
                                     <div class="row mt-3">
                                         <div class="col-md">
@@ -314,6 +318,10 @@ include_once(__DIR__ . '/../header.php');
                                             <label class="form-label ts-label">caracTrib</label>
                                             <input type="text" class="form-control ts-input" name="caracTrib" id="caracTrib">
                                         </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">origem</label>
+                                            <input type="text" class="form-control ts-input" name="origem" id="origem">
+                                        </div>
                                     </div><!--fim row 5-->
                                     <div class="row mt-3">
                                         <div class="col-md">
@@ -442,6 +450,14 @@ include_once(__DIR__ . '/../header.php');
                                             <label class="form-label ts-label">regimeEspecial</label>
                                             <input type="text" class="form-control ts-input" id="EXCregimeEspecial" name="regimeEspecial" readonly>
                                         </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">caracTrib</label>
+                                            <input type="text" class="form-control ts-input" name="caracTrib" id="EXCcaracTrib">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">origem</label>
+                                            <input type="text" class="form-control ts-input" name="origem" id="EXCorigem">
+                                        </div>
                                     </div><!--fim row 5-->
                                 </div>
                             </div>
@@ -550,6 +566,7 @@ include_once(__DIR__ . '/../header.php');
                         $('#codigoCidade').val(data.codigoCidade);
                         $('#codigoEstado').val(data.codigoEstado);
                         $('#caracTrib').val(data.caracTrib);
+                        $('#origem').val(data.origem);
                         $('#alterarPessoaModal').modal('show');
                     }
                 });
@@ -589,6 +606,7 @@ include_once(__DIR__ . '/../header.php');
                         $('#EXCregimeEspecial').val(data.regimeEspecial);
                         $('#EXCcodigoCidade').val(data.codigoCidade);
                         $('#EXCcodigoEstado').val(data.codigoEstado);
+                        $('#EXCorigem').val(data.origem);
                         $('#excluirPessoaModal').modal('show');
                     }
                 });
