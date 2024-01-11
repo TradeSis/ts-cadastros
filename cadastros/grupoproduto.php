@@ -160,7 +160,7 @@ include_once(__DIR__ . '/../header.php');
             </div>
         </div>
 
-        <!--------- VISUALIZAR --------->
+        <!--------- GRUPO PRODUTO VISUALIZAR --------->
         <?php include_once 'grupoproduto_visualizar.php' ?>
         <?php //include_once 'grupoproduto_visualizar_V1.php' ?>
         <?php //include_once 'grupoproduto_visualizar_V2.php' ?>
