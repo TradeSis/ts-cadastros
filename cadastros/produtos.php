@@ -182,6 +182,7 @@ $marcas = buscaMarcas();
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Alterar Produto</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                
                     </div>
                     <div class="modal-body">
                         <form method="post" id="form-alterarProdutos">
@@ -280,6 +281,9 @@ $marcas = buscaMarcas();
                             </div>
                     </div><!--body-->
                     <div class="modal-footer">
+                        <div class="col align-self-start pl-0">
+                            <button type='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#atualizaProdutoModal' data-id="idProdutoAtualiza">Atualizar fiscal</button>
+                        </div>
                         <button type="submit" class="btn btn-success">Salvar</button>
                     </div>
                     </form>
@@ -379,6 +383,20 @@ $marcas = buscaMarcas();
             }
         });
 
+        $(document).on('click', 'button[data-bs-target="#atualizaProdutoModal"]', function() {
+            
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '../database/produtos.php?operacao=atualizar',
+                data: {
+                    idProduto: idProdutoAtualiza  
+                }
+            });
+            window.location.reload();
+
+        });
+
         $(document).on('click', 'button[data-bs-target="#alterarProdutoModal"]', function() {
             var idProduto = $(this).attr("data-idProduto");
             //alert(idProduto)
@@ -391,6 +409,7 @@ $marcas = buscaMarcas();
                 },
                 success: function(data) {
                     $('#idProduto').val(data.idProduto);
+                    idProdutoAtualiza = data.idProduto;
                     $('#eanProduto').val(data.eanProduto);
                     $('#nomeProduto').val(data.nomeProduto);
                     $('#valorCompra').val(data.valorCompra);
@@ -410,9 +429,10 @@ $marcas = buscaMarcas();
                     $('#substICMSempresa').val(data.substICMSempresa);
                     $('#substICMSFornecedor').val(data.substICMSFornecedor);
                     $('#prodZFM').val(data.prodZFM);
-
+                    
                     $('#alterarProdutoModal').modal('show');
                 }
+               
             });
         });
 
