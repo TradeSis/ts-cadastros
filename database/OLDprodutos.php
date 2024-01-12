@@ -67,7 +67,7 @@ if (isset($_GET['operacao'])) {
 
 	if ($operacao == "inserir") {
 
-		/* $imgProduto = $_FILES['imgProdutoInserir'];
+		$imgProduto = $_FILES['imgProdutoInserir'];
 
 		if ($imgProduto !== null) {
 			preg_match("/\.(png|jpg|jpeg|txt|xlsx|pdf|csv|doc|docx|zip){1}$/i", $imgProduto["name"], $ext);
@@ -85,29 +85,23 @@ if (isset($_GET['operacao'])) {
 			}
 
 		} 
-		$varmsg = strip_tags($_POST['descricaoProduto']); */
+		$varmsg = strip_tags($_POST['descricaoProduto']);
 
 		$apiEntrada = array(
-			'idEmpresa' => $_SESSION['idEmpresa'],
-			'eanProduto' => $_POST['eanProduto'], 
-			'nomeProduto' => $_POST['nomeProduto'], 
-			'valorCompra' => $_POST['valorCompra'],
-            'precoProduto' => $_POST['precoProduto'],
-			'codigoNcm' => $_POST['codigoNcm'],
+			'idPessoaEmitente' => $_POST['idPessoaEmitente'], 
+			'refProduto' => $_POST['refProduto'], 
+			'nomeProduto' => $_POST['nomeProduto'],
+            'valorCompra' => $_POST['valorCompra'],
+			'precoProduto' => $_POST['precoProduto'],
+            'codigoNcm' => $_POST['codigoNcm'],
             'codigoCest' => $_POST['codigoCest'],
-            'imgProduto' => $_POST['imgProduto'],
+			'imgProduto' => $path,
 			'idMarca' => $_POST['idMarca'],
 			'ativoProduto' => $_POST['ativoProduto'],
 			'propagandaProduto' => $_POST['propagandaProduto'],
-			'descricaoProduto' => $_POST['descricaoProduto'],
-			'idPessoaFornecedor' => $_POST['idPessoaFornecedor'],
-			'refProduto' => $_POST['refProduto'],
-			'dataAtualizacaoTributaria' => $_POST['dataAtualizacaoTributaria'],
-			'codImendes' => $_POST['codImendes'],
-			'codigoGrupo' => $_POST['codigoGrupo'],
-			'substICMSempresa' => $_POST['substICMSempresa'],
-			'substICMSFornecedor' => $_POST['substICMSFornecedor'],
-			'prodZFM' => $_POST['prodZFM'],
+			'descricaoProduto' => $varmsg,
+			'idEmpresa' => $_SESSION['idEmpresa']
+
 		);
 
 		
@@ -120,7 +114,7 @@ if (isset($_GET['operacao'])) {
 
 	if ($operacao == "alterar") {
 
-		/* $imgProduto = $_FILES['imgProdutoAlterar'];
+		$imgProduto = $_FILES['imgProdutoAlterar'];
 
 		if ($imgProduto !== null) {
 			preg_match("/\.(png|jpg|jpeg|txt|xlsx|pdf|csv|doc|docx|zip){1}$/i", $imgProduto["name"], $ext);
@@ -138,31 +132,25 @@ if (isset($_GET['operacao'])) {
 			}
 
 		} 
-		$varmsg = strip_tags($_POST['descricaoProduto']); */
+		$varmsg = strip_tags($_POST['descricaoProduto']);
 	
 
 		$apiEntrada = array(
-			'idEmpresa' => $_SESSION['idEmpresa'],
 			'idProduto' => $_POST['idProduto'],
-			'eanProduto' => $_POST['eanProduto'], 
-			'nomeProduto' => $_POST['nomeProduto'], 
-			'valorCompra' => $_POST['valorCompra'],
-            'precoProduto' => $_POST['precoProduto'],
-			'codigoNcm' => $_POST['codigoNcm'],
+			'idPessoaEmitente' => $_POST['idPessoaEmitente'], 
+			'refProduto' => $_POST['refProduto'], 
+			'nomeProduto' => $_POST['nomeProduto'],
+            'valorCompra' => $_POST['valorCompra'],
+			'precoProduto' => $_POST['precoProduto'],
+            'codigoNcm' => $_POST['codigoNcm'],
             'codigoCest' => $_POST['codigoCest'],
-            'imgProduto' => $_POST['imgProduto'],
+			'imgProduto' => $path,
 			'idMarca' => $_POST['idMarca'],
 			'ativoProduto' => $_POST['ativoProduto'],
 			'propagandaProduto' => $_POST['propagandaProduto'],
-			'descricaoProduto' => $_POST['descricaoProduto'],
-			'idPessoaFornecedor' => $_POST['idPessoaFornecedor'],
-			'refProduto' => $_POST['refProduto'],
-			'dataAtualizacaoTributaria' => $_POST['dataAtualizacaoTributaria'],
-			'codImendes' => $_POST['codImendes'],
-			'codigoGrupo' => $_POST['codigoGrupo'],
-			'substICMSempresa' => $_POST['substICMSempresa'],
-			'substICMSFornecedor' => $_POST['substICMSFornecedor'],
-			'prodZFM' => $_POST['prodZFM'],
+			'descricaoProduto' => $varmsg,
+			'idEmpresa' => $_SESSION['idEmpresa']
+
 		);
 
 		
@@ -179,38 +167,16 @@ if (isset($_GET['operacao'])) {
 			'idProduto' => $_POST['idProduto'],
 			'idEmpresa' => $_SESSION['idEmpresa']
 		);
-		/* if (!empty($_POST['imgProduto'])) {
+		if (!empty($_POST['imgProduto'])) {
 			$pasta = ROOT . "/img/";
 			$imagem = $pasta . $_POST['imgProduto'];
 
 			if (file_exists($imagem)) {
 				unlink($imagem);
 			}
-		} */
+		}
 
 		$produtos = chamaAPI(null, '/cadastros/produtos', json_encode($apiEntrada), 'DELETE');
-	}
-
-	if ($operacao == "atualizar") {
-		$apiEntrada = array(
-			'idEmpresa' => $_SESSION['idEmpresa'],
-			'idProduto' => $_POST['idProduto']
-		);
-		$produtos = chamaAPI(null, '/impostos/imendes/saneamento', json_encode($apiEntrada), 'POST');
-
-		echo json_encode($produtos);
-		return $produtos;
-	}
-
-	if ($operacao == "verificaEanProduto") {
-		$apiEntrada = array(
-			'idEmpresa' => $_SESSION['idEmpresa'],
-			'eanProduto' => $_POST['eanProduto']
-		);
-		$produtos = chamaAPI(null, '/cadastros/eanProduto_verifica', json_encode($apiEntrada), 'GET');
-
-		echo json_encode($produtos);
-		return $produtos;
 	}
 
 	if ($operacao == "buscar") {
@@ -222,27 +188,6 @@ if (isset($_GET['operacao'])) {
 
 		echo json_encode($produto);
 		return $produto;
-	}
-
-	
-	if ($operacao == "filtrar") {
-
-		$buscaProduto = $_POST["buscaProduto"];
-
-		if ($buscaProduto == "") {
-			$buscaProduto = null;
-		}
-
-		$apiEntrada = array(
-			'idEmpresa' => $_SESSION['idEmpresa'],
-			'idProduto' => null,
-			'buscaProduto' => $buscaProduto
-		);
-
-		$produtos = chamaAPI(null, '/cadastros/produtos', json_encode($apiEntrada), 'GET');
-
-		echo json_encode($produtos);
-		return $produtos;
 	}
 
 	header('Location: ../cadastros/produtos.php');

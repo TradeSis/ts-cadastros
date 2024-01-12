@@ -52,6 +52,35 @@ if ($metodo == "GET") {
       include 'atendente.php';
       break;
 
+    case "pessoas":
+      include 'pessoas.php';
+      break;
+
+    case "cidades":
+      include 'cidades.php';
+      break;
+    
+    case "cnpj":
+      include 'cnpj.php';
+      break;
+
+    case "cep":
+      include 'cep.php';
+      break;
+
+    case "cnpj_verifica":
+      include 'cnpj_verifica.php';
+      break;
+
+    case "grupoproduto":
+      include 'grupoproduto.php';
+      break;
+
+    case "eanProduto_verifica":
+      include 'eanProduto_verifica.php';
+      break;  
+
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -86,6 +115,14 @@ if ($metodo == "PUT") {
       include 'clientes_inserir.php';
       break;
 
+    case "pessoas":
+      include 'pessoas_inserir.php';
+      break;
+
+    case "grupoproduto":
+      include 'grupoproduto_inserir.php';
+      break;
+      
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -120,6 +157,11 @@ if ($metodo == "POST") {
     case "clientes":
       include 'clientes_alterar.php';
       break;
+
+    case "pessoas":
+      include 'pessoas_alterar.php';
+      break;
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -152,6 +194,10 @@ if ($metodo == "DELETE") {
 
     case "clientes":
       include 'clientes_excluir.php';
+      break;
+
+    case "pessoas":
+      include 'pessoas_excluir.php';
       break;
 
     default:

@@ -41,23 +41,19 @@ $servico = buscaServicos($idServico);
 
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="form-group">
-                        <label class='control-label' for='inputNormal'>Nome do Serviço</label>
-                        <input type="text" name="nomeServico" class="form-control" value="<?php echo $servico['nomeServico'] ?>">
-                        <input type="hidden" class="form-control" name="idServico" value="<?php echo $servico['idServico'] ?>">
-                    </div>
+                    <label class='form-label ts-label'>Nome do Serviço</label>
+                    <input type="text" name="nomeServico" class="form-control ts-input" value="<?php echo $servico['nomeServico'] ?>">
+                    <input type="hidden" class="form-control ts-input" name="idServico" value="<?php echo $servico['idServico'] ?>">
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-sm-6" style="margin-top: 50px">
-                    <div class="col-sm-6" style="margin-top: -20px">
-                        <label class='control-label' for='inputNormal' style="margin-top: -50px;">Imagem do Serviço</label>
-                        <label class="picture" for="foto" tabIndex="0">
-                            <img src="<?php echo $servico["imgServico"] ?>" width="100%" height="100%" alt="">
-                        </label>
-                        <input type="file" name="imgServico" id="foto">
-                    </div>
+            <div class="row mt-3">
+                <div class="col-sm-6">
+                    <label class='form-label ts-label'>Imagem do Serviço</label>
+                    <label class="picture" for="foto" tabIndex="0">
+                        <img src="<?php echo $servico["imgServico"] ?>" width="100%" height="100%" alt="">
+                    </label>
+                    <input type="file" name="imgServico" id="foto">
                 </div>
             </div>
 
@@ -71,15 +67,13 @@ $servico = buscaServicos($idServico);
 
             <div class="row">
                 <div class="col-sm-8">
-                    <div class="form-group">
-                        <label class='control-label' for='inputNormal'>Link Serviço</label>
-                        <input type="text" name="linkServico" class="form-control" value="<?php echo $servico['linkServico'] ?>">
-                    </div>
+                    <label class='form-label ts-label'>Link Serviço</label>
+                    <input type="text" name="linkServico" class="form-control ts-input" value="<?php echo $servico['linkServico'] ?>">
                 </div>
 
-                <div class="col-sm-4" style="margin-top: 30px">
+                <div class="col-sm-4 mt-4">
                     <div class="select-form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -45px;">Destaque</label>
+                        <label class='form-label ts-label'>Destaque</label>
                         <label for="destaque">Não</label>
                         <input type="range" id="destaque" name="destaque" min="0" max="1" value="<?php echo $servico['destaque'] ?>" style="width: 15%;">
                         <label for="destaque">Sim</label>

@@ -5,7 +5,7 @@
 $LOG_CAMINHO = defineCaminhoLog();
 if (isset($LOG_CAMINHO)) {
   $LOG_NIVEL = defineNivelLog();
-  $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "servicos";
+  $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "grupoproduto";
   if (isset($LOG_NIVEL)) {
     if ($LOG_NIVEL >= 1) {
       $arquivo = fopen(defineCaminhoLog() . "cadastros_" . date("dmY") . ".log", "a");
@@ -24,16 +24,21 @@ if (isset($LOG_NIVEL)) {
 
 $idEmpresa = null;
 if (isset($jsonEntrada["idEmpresa"])) {
-    $idEmpresa = $jsonEntrada["idEmpresa"];
+  $idEmpresa = $jsonEntrada["idEmpresa"];
 }
 
 $conexao = conectaMysql($idEmpresa);
+$grupoproduto = array();
 
-$servicos = array();
-
-$sql = "SELECT * FROM servicos ";
-if (isset($jsonEntrada["idServico"])) {
-  $sql = $sql . " where servicos.idServico = " . $jsonEntrada["idServico"];
+$sql = "SELECT * FROM grupoproduto ";
+if (isset($jsonEntrada["codigoGrupo"])) {
+  $sql = $sql . " where grupoproduto.codigoGrupo = " . $jsonEntrada["codigoGrupo"];
+}
+$where = " where ";
+if (isset($jsonEntrada["buscaGrupoProduto"])) {
+  $sql = $sql . $where . " grupoproduto.codigoGrupo like " . "'%" . $jsonEntrada["buscaGrupoProduto"] . "%'
+    OR grupoproduto.nomeGrupo like " . "'%" . $jsonEntrada["buscaGrupoProduto"] . "%' " ;
+  $where = " and ";
 }
 
 //LOG
@@ -47,16 +52,14 @@ if (isset($LOG_NIVEL)) {
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
-  array_push($servicos, $row);
+  array_push($grupoproduto, $row);
   $rows = $rows + 1;
 }
 
-if (isset($jsonEntrada["idServico"]) && $rows == 1) {
-  $servicos = $servicos[0];
+if (isset($jsonEntrada["codigoGrupo"]) && $rows == 1) {
+  $grupoproduto = $grupoproduto[0];
 }
-$jsonSaida = $servicos;
-
-//echo "-SAIDA->".json_encode(jsonSaida)."\n";
+$jsonSaida = $grupoproduto;
 
 
 //LOG
