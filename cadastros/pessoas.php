@@ -2,10 +2,7 @@
 //Helio 05102023 padrao novo
 //Lucas 04042023 criado
 include_once(__DIR__ . '/../header.php');
-include_once(__DIR__ . '/../database/pessoas.php');
 
-$pessoas = buscarPessoa();
-//echo json_encode($pessoas);
 ?>
 <!doctype html>
 <html lang="pt-BR">
@@ -18,79 +15,61 @@ $pessoas = buscarPessoa();
 
 <body>
     <div class="container-fluid">
-        <div class="row">
-            <BR> <!-- MENSAGENS/ALERTAS -->
+
+        <div class="row ">
+            <BR>
+            <!-- MENSAGENS/ALERTAS -->
         </div>
         <div class="row">
             <BR> <!-- BOTOES AUXILIARES -->
         </div>
-        
-        <div class="row align-items-center"> <!-- LINHA SUPERIOR A TABLE -->
-            <div class="col-3 text-start">
-                <!-- TITULO -->
+        <div class="row d-flex align-items-center justify-content-center mt-1 pt-1 ">
+
+            <div class="col-6 col-lg-6">
                 <h2 class="ts-tituloPrincipal">Pessoas</h2>
             </div>
-            <div class="col-7">
-                <!-- FILTROS -->
+     
+            <div class="col-6 col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control ts-input" id="buscaPessoa" placeholder="Buscar por cpf/cnpj ou nome">
+                    <button class="btn btn-primary rounded" type="button" id="buscar"><i class="bi bi-search"></i></button>
+                    <button type="button" class="ms-4 btn btn-success" data-bs-toggle="modal" data-bs-target="#inserirPessoaModal"><i class="bi bi-plus-square"></i>&nbsp Novo</button>
+                </div>
             </div>
 
-            <div class="col-2 text-end">
-                <button type="button" class="btn btn-success mr-4" data-bs-toggle="modal" data-bs-target="#inserirModal"><i class="bi bi-plus-square"></i>&nbsp Novo</button>
-            </div>
         </div>
 
-        <div class="table mt-2 ts-divTabela">
-            <table class="table table-hover table-sm align-middle">
+        <div class="table mt-2 ts-divTabela ts-tableFiltros text-center">
+            <table class="table table-sm table-hover">
                 <thead class="ts-headertabelafixo">
-                    <tr>
-                        <th>Foto</th>
+                    <tr class="ts-headerTabelaLinhaCima">
+                        <th>ID</th>
                         <th>Cpf/Cnpj</th>
                         <th>Nome</th>
                         <th>IE</th>
-                        <th>Mun</th>
-                        <th>UF</th>
                         <th>País</th>
                         <th>Endereço</th>
-                        <th>Ações</th>
+                        <th colspan="2">Ação</th>
                     </tr>
                 </thead>
 
-                <?php
-                foreach ($pessoas as $pessoa) {
-                    ?>
-                    <tr>
-                        <td><img src="<?php echo $pessoa['imgPerfil'] ?>" width="60px" height="60px" alt=""></td>
-                        <td> <?php echo $pessoa['cpfCnpj'] ?> </td>
-                        <td> <?php echo $pessoa['nomePessoa'] ?> </td>
-                        <td> <?php echo $pessoa['IE'] ?> </td>
-                        <td> <?php echo $pessoa['municipio'] ?> </td>
-                        <td> <?php echo $pessoa['UF'] ?> </td>
-                        <td> <?php echo $pessoa['pais'] ?> </td>
-                        <td> <?php echo $pessoa['endereco'] ?> </td>
+                <tbody id='dados' class="fonteCorpo">
 
-                        <td>
-                            <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#alterarmodal" data-idPessoa="<?php echo $pessoa['idPessoa'] ?>"><i class="bi bi-pencil-square"></i></button>
-                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#excluirmodal" data-idPessoa="<?php echo $pessoa['idPessoa'] ?>"><i class="bi bi-trash3"></i></button>
-                        </td>
-                    </tr>
-                <?php } ?>
-
+                </tbody>
             </table>
         </div>
 
 
-    </div>
-
         <!--------- INSERIR --------->
-        <div class="modal" id="inserirModal" tabindex="-1" aria-labelledby="inserirModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal fade bd-example-modal-lg" id="inserirPessoaModal" tabindex="-1" aria-labelledby="inserirPessoaModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Inserir Pessoa</h5>
+                        <h5 class="modal-title">Inserir Pessoa</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="post" id="inserirForm">
+                    <form method="post" id="form-inserirPessoas">
                             <div class="row">
                                 <div class="col-md">
                                     <div class="row mt-3">
@@ -110,6 +89,16 @@ $pessoas = buscarPessoa();
                                             <input type="text" class="form-control ts-input" name="nomePessoa">
                                         </div>
                                     </div><!--fim row 1-->
+                                    <div class="row mt-3">
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">codigoCidade</label>
+                                            <input type="text" class="form-control ts-input" name="codigoCidade">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">codigoEstado</label>
+                                            <input type="text" class="form-control ts-input" name="codigoEstado">
+                                        </div>
+                                    </div>
                                     <div class="row mt-3">
                                         <div class="col-md">
                                             <label class="form-label ts-label">CEP</label>
@@ -136,10 +125,6 @@ $pessoas = buscarPessoa();
                                         <div class="col-md">
                                             <label class="form-label ts-label">IE</label>
                                             <input type="text" class="form-control ts-input" name="IE">
-                                        </div>
-                                        <div class="col-md">
-                                            <label class="form-label ts-label">UF</label>
-                                            <input type="text" class="form-control ts-input" name="UF">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">País</label>
@@ -172,6 +157,32 @@ $pessoas = buscarPessoa();
                                     </div><!--fim row 5-->
                                     <div class="row mt-3">
                                         <div class="col-md">
+                                            <label class="form-label ts-label">crt</label>
+                                            <input type="text" class="form-control ts-input" name="crt">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">regimeTrib</label>
+                                            <input type="text" class="form-control ts-input" name="regimeTrib">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">cnae</label>
+                                            <input type="text" class="form-control ts-input" name="cnae">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">regimeEspecial</label>
+                                            <input type="text" class="form-control ts-input" name="regimeEspecial">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">caracTrib</label>
+                                            <input type="text" class="form-control ts-input" name="caracTrib">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">origem</label>
+                                            <input type="text" class="form-control ts-input" name="origem">
+                                        </div>
+                                    </div><!--fim row 5-->
+                                    <div class="row mt-3">
+                                        <div class="col-md">
                                             <label class='form-label ts-label'>Imagem do Perfil</label>
                                             <label class="picture" for="fotoInserir" tabIndex="0">
                                                 <span class="picture__image" id="inserir"></span>
@@ -183,7 +194,7 @@ $pessoas = buscarPessoa();
                             </div>
                     </div><!--body-->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Cadastrar</button>
+                        <button type="submit" class="btn btn-success" id="btn-formInserir">Cadastrar</button>
                     </div>
                     </form>
                 </div>
@@ -191,15 +202,15 @@ $pessoas = buscarPessoa();
         </div>
 
         <!--------- ALTERAR --------->
-        <div class="modal" id="alterarmodal" tabindex="-1" aria-labelledby="alterarmodalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal fade bd-example-modal-lg" id="alterarPessoaModal" tabindex="-1" aria-labelledby="alterarPessoaModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Alterar Pessoa</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="post" id="alterarForm">
+                    <form method="post" id="form-alterarPessoas">
                             <div class="row">
                                 <div class="col-md">
                                     <div class="row mt-3">
@@ -220,6 +231,16 @@ $pessoas = buscarPessoa();
                                             <input type="hidden" class="form-control ts-input" name="idPessoa" id="idPessoa">
                                         </div>
                                     </div><!--fim row 1-->
+                                    <div class="row mt-3">
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">codigoCidade</label>
+                                            <input type="text" class="form-control ts-input" id="codigoCidade" name="codigoCidade">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">codigoEstado</label>
+                                            <input type="text" class="form-control ts-input" id="codigoEstado" name="codigoEstado">
+                                        </div>
+                                    </div>
                                     <div class="row mt-3">
                                         <div class="col-md">
                                             <label class="form-label ts-label">CEP</label>
@@ -246,10 +267,6 @@ $pessoas = buscarPessoa();
                                         <div class="col-md">
                                             <label class="form-label ts-label">IE</label>
                                             <input type="text" class="form-control ts-input" id="IE" name="IE">
-                                        </div>
-                                        <div class="col-md">
-                                            <label class="form-label ts-label">UF</label>
-                                            <input type="text" class="form-control ts-input" id="UF" name="UF">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">País</label>
@@ -282,6 +299,32 @@ $pessoas = buscarPessoa();
                                     </div><!--fim row 5-->
                                     <div class="row mt-3">
                                         <div class="col-md">
+                                            <label class="form-label ts-label">crt</label>
+                                            <input type="text" class="form-control ts-input" id="crt" name="crt">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">regimeTrib</label>
+                                            <input type="text" class="form-control ts-input" id="regimeTrib" name="regimeTrib">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">cnae</label>
+                                            <input type="text" class="form-control ts-input" id="cnae" name="cnae">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">regimeEspecial</label>
+                                            <input type="text" class="form-control ts-input" id="regimeEspecial" name="regimeEspecial">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">caracTrib</label>
+                                            <input type="text" class="form-control ts-input" name="caracTrib" id="caracTrib">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">origem</label>
+                                            <input type="text" class="form-control ts-input" name="origem" id="origem">
+                                        </div>
+                                    </div><!--fim row 5-->
+                                    <div class="row mt-3">
+                                        <div class="col-md">
                                             <label class='form-label ts-label'>Imagem do Perfil</label>
                                             <label class="picture" for="fotoAlterar" tabIndex="0">
                                                 <span class="picture__image" id="alterar"></span>
@@ -301,21 +344,21 @@ $pessoas = buscarPessoa();
         </div>
 
         <!--------- EXCLUIR --------->
-        <div class="modal" id="excluirmodal" tabindex="-1" aria-labelledby="excluirmodalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal fade bd-example-modal-lg" id="excluirPessoaModal" tabindex="-1" aria-labelledby="excluirPessoaModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Excluir Pessoa</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="post" id="excluirForm">
+                    <form method="post" id="form-excluirPessoas">
                             <div class="row">
                                 <div class="col-md">
                                     <div class="row mt-3">
                                         <div class="col-md-2">
                                             <label class="form-label ts-label">Tipo de Pessoa</label>
-                                            <select class="form-select ts-input" name="tipoPessoa" id="EXCtipoPessoa">
+                                            <select class="form-select ts-input ts-displayDisable" name="tipoPessoa" id="EXCtipoPessoa">
                                                 <option value="J">Jurídica</option>
                                                 <option value="F">Física</option>
                                             </select>
@@ -390,6 +433,32 @@ $pessoas = buscarPessoa();
                                             <input type="text" class="form-control ts-input" id="EXCtwitter" name="twitter" readonly>
                                         </div>
                                     </div><!--fim row 5-->
+                                    <div class="row mt-3">
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">crt</label>
+                                            <input type="text" class="form-control ts-input" id="EXCcrt" name="crt" readonly>
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">regimeTrib</label>
+                                            <input type="text" class="form-control ts-input" id="EXCregimeTrib" name="regimeTrib" readonly>
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">cnae</label>
+                                            <input type="text" class="form-control ts-input" id="EXCcnae" name="cnae" readonly>
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">regimeEspecial</label>
+                                            <input type="text" class="form-control ts-input" id="EXCregimeEspecial" name="regimeEspecial" readonly>
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">caracTrib</label>
+                                            <input type="text" class="form-control ts-input" name="caracTrib" id="EXCcaracTrib">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">origem</label>
+                                            <input type="text" class="form-control ts-input" name="origem" id="EXCorigem">
+                                        </div>
+                                    </div><!--fim row 5-->
                                 </div>
                             </div>
                     </div><!--body-->
@@ -399,16 +468,70 @@ $pessoas = buscarPessoa();
                     </form>
                 </div>
             </div>
-        </div> 
+        </div>
+
+    </div><!--container-fluid-->
+
     <!-- LOCAL PARA COLOCAR OS JS -->
 
     <?php include_once ROOT . "/vendor/footer_js.php"; ?>
 
     <script>
-        
-        $(document).ready(function() {
+        buscar($("#buscaPessoa").val());
 
-            $(document).on('click', 'button[data-bs-target="#alterarmodal"]', function() {
+        function limpar() {
+            buscar(null, null, null, null);
+            window.location.reload();
+        }
+
+        function buscar(buscaPessoa) {
+            //alert (buscaPessoa);
+            $.ajax({
+                type: 'POST',
+                dataType: 'html',
+                url: '<?php echo URLROOT ?>/cadastros/database/pessoas.php?operacao=filtrar',
+                beforeSend: function() {
+                    $("#dados").html("Carregando...");
+                },
+                data: {
+                    buscaPessoa: buscaPessoa
+                },
+                success: function(msg) {
+                    //alert("segundo alert: " + msg);
+                    var json = JSON.parse(msg);
+
+                    var linha = "";
+                    for (var $i = 0; $i < json.length; $i++) {
+                        var object = json[$i];
+
+                        linha = linha + "<tr>";
+                        linha = linha + "<td>" + object.idPessoa + "</td>";
+                        linha = linha + "<td>" + object.cpfCnpj + "</td>";
+                        linha = linha + "<td>" + object.nomePessoa + "</td>";
+                        linha = linha + "<td>" + object.IE + "</td>";
+                        linha = linha + "<td>" + object.pais + "</td>";
+                        linha = linha + "<td>" + object.endereco + "</td>";
+
+                        linha = linha + "<td>" + "<button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#alterarPessoaModal' data-idPessoa='" + object.idPessoa + "'><i class='bi bi-pencil-square'></i></button> " +
+                        "<button type='button' class='btn btn-danger btn-sm' data-bs-toggle='modal' data-bs-target='#excluirPessoaModal' data-idPessoa='" + object.idPessoa + "'><i class='bi bi-trash3'></i></button>"
+                        linha = linha + "</tr>";
+                    }
+                    $("#dados").html(linha);
+                }
+            });
+        }
+
+        $("#buscar").click(function() {
+            buscar($("#buscaPessoa").val());
+        })
+
+        document.addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                buscar($("#buscaPessoa").val());
+            }
+        });
+
+        $(document).on('click', 'button[data-bs-target="#alterarPessoaModal"]', function() {
                 var idPessoa = $(this).attr("data-idPessoa");
                 //alert(idPessoa)
                 $.ajax({
@@ -425,7 +548,6 @@ $pessoas = buscarPessoa();
                         $('#nomePessoa').val(data.nomePessoa);
                         $('#IE').val(data.IE);
                         $('#municipio').val(data.municipio);
-                        $('#UF').val(data.UF);
                         $('#pais').val(data.pais);
                         $('#bairro').val(data.bairro);
                         $('#endereco').val(data.endereco);
@@ -437,12 +559,20 @@ $pessoas = buscarPessoa();
                         $('#instagram').val(data.instagram);
                         $('#twitter').val(data.twitter);
                         $('#imgPerfil').val(data.imgPerfil);
-                        $('#alterarmodal').modal('show');
+                        $('#crt').val(data.crt);
+                        $('#regimeTrib').val(data.regimeTrib);
+                        $('#cnae').val(data.cnae);
+                        $('#regimeEspecial').val(data.regimeEspecial);
+                        $('#codigoCidade').val(data.codigoCidade);
+                        $('#codigoEstado').val(data.codigoEstado);
+                        $('#caracTrib').val(data.caracTrib);
+                        $('#origem').val(data.origem);
+                        $('#alterarPessoaModal').modal('show');
                     }
                 });
             });
 
-            $(document).on('click', 'button[data-bs-target="#excluirmodal"]', function() {
+            $(document).on('click', 'button[data-bs-target="#excluirPessoaModal"]', function() {
                 var idPessoa = $(this).attr("data-idPessoa");
                 //alert(idPessoa)
                 $.ajax({
@@ -459,7 +589,6 @@ $pessoas = buscarPessoa();
                         $('#EXCnomePessoa').val(data.nomePessoa);
                         $('#EXCIE').val(data.IE);
                         $('#EXCmunicipio').val(data.municipio);
-                        $('#EXCUF').val(data.UF);
                         $('#EXCpais').val(data.pais);
                         $('#EXCbairro').val(data.bairro);
                         $('#EXCendereco').val(data.endereco);
@@ -471,12 +600,20 @@ $pessoas = buscarPessoa();
                         $('#EXCinstagram').val(data.instagram);
                         $('#EXCtwitter').val(data.twitter);
                         $('#EXCimgPerfil').val(data.imgPerfil);
-                        $('#excluirmodal').modal('show');
+                        $('#EXCcrt').val(data.crt);
+                        $('#EXCregimeTrib').val(data.regimeTrib);
+                        $('#EXCcnae').val(data.cnae);
+                        $('#EXCregimeEspecial').val(data.regimeEspecial);
+                        $('#EXCcodigoCidade').val(data.codigoCidade);
+                        $('#EXCcodigoEstado').val(data.codigoEstado);
+                        $('#EXCorigem').val(data.origem);
+                        $('#excluirPessoaModal').modal('show');
                     }
                 });
             });
 
-            $("#inserirForm").submit(function(event) {
+        $(document).ready(function() {
+            $("#form-inserirPessoas").submit(function(event) {
                 event.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
@@ -489,7 +626,7 @@ $pessoas = buscarPessoa();
                 });
             });
 
-            $("#alterarForm").submit(function(event) {
+            $("#form-alterarPessoas").submit(function(event) {
                 event.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
@@ -502,7 +639,7 @@ $pessoas = buscarPessoa();
                 });
             });
 
-            $("#excluirForm").submit(function(event) {
+            $("#form-excluirPessoas").submit(function(event) {
                 event.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
@@ -519,100 +656,65 @@ $pessoas = buscarPessoa();
                 window.location.reload();
             }
 
-            function preencherCamposCEP(cep) {
-                $.ajax({
-                    type: 'POST',
-                    dataType: 'json',
-                    url: '../database/pessoas.php?operacao=buscaCEP',
-                    data: {
-                        cep: cep
-                    },
-                    success: function (data) {
-                        $("input[name='UF']").val(data.uf);
-                        $("input[name='municipio']").val(data.municipio);
-                        $("input[name='endereco']").val(data.logradouro);
-                        $("input[name='bairro']").val(data.bairro);
-                    }
-                });
-            }
-            function preencherCamposCNPJ(cnpj) {
-                $.ajax({
-                    type: 'POST',
-                    dataType: 'json',
-                    url: '../database/pessoas.php?operacao=buscaCNPJ',
-                    data: {
-                        cnpj: cnpj
-                    },
-                    success: function (data) {
-                        $("input[name='cep']").val(data.endereco.cep);
-                        $("input[name='nomePessoa']").val(data.nome_fantasia);
-                        $("input[name='UF']").val(data.endereco.uf);
-                        $("input[name='municipio']").val(data.endereco.municipio.descricao);
-                        $("input[name='endereco']").val(`${data.endereco.tipo_logradouro} ${data.endereco.logradouro}`);
-                        $("input[name='endNumero']").val(data.endereco.numero);
-                        $("input[name='bairro']").val(data.endereco.bairro);
-                        $("input[name='email']").val(data.email);
-                    }
-                });
-            }
-
-            $("input[name='cep']").on("input", function () {
-                var cep = $(this).val();
-                if (cep.length === 8) {
-                    preencherCamposCEP(cep);
-                }
-            });
             $("input[name='cpfCnpj']").on("input", function () {
-                var cnpj = $(this).val();
-                if (cnpj.length === 14) {
-                    preencherCamposCNPJ(cnpj);
+                var cpfCnpj = $(this).val();
+                if (cpfCnpj.length >= 11) {
+                    verificaCampoCNPJ(cpfCnpj);
                 }
-            }); 
-        });
+            });
 
-        $('input[name="cpfCnpj"], input[name="cep"]').on('input', function() {
-            var c = this.selectionStart,
-                r = /[^0-9]/g,
-                v = $(this).val();
-            if (r.test(v)) {
-                $(this).val(v.replace(r, ''));
-                c--;
-            }
-            this.setSelectionRange(c, c);
-        });
 
-          //Carregar a FOTO na tela
-          const fotoInputs = document.querySelectorAll(".fotoInput");
-
-            fotoInputs.forEach((input, index) => {
-                const pictureImage = document.querySelectorAll(".picture__image")[index];
-                const pictureImageTxt = "Carregar imagem";
-                pictureImage.innerHTML = pictureImageTxt;
-
-                input.addEventListener("change", function (e) {
-                    const inputTarget = e.target;
-                    const file = inputTarget.files[0];
-
-                    if (file) {
-                        const reader = new FileReader();
-
-                        reader.addEventListener("load", function (e) {
-                            const readerTarget = e.target;
-
-                            const img = document.createElement("img");
-                            img.src = readerTarget.result;
-                            img.classList.add("picture__img");
-
-                            pictureImage.innerHTML = "";
-                            pictureImage.appendChild(img);
-                        });
-
-                        reader.readAsDataURL(file);
-                    } else {
-                        pictureImage.innerHTML = pictureImageTxt;
+            function verificaCampoCNPJ(cpfCnpj) {
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    url: '../database/pessoas.php?operacao=verificaCNPJ',
+                    data: {
+                        cpfCnpj: cpfCnpj
+                    },
+                    success: function (data) {
+                        //alert(data)
+                        if(data == 'LIBERADO'){
+                            //alert('DEU CERTO');
+                            //$('#btn-formInserir').show();
+                        }else{
+                            alert('CPF ou CNPJ já cadastrado!');
+                            //$('#btn-formInserir').hide();
+                        }
                     }
                 });
-            });
+            }
+        });
+
+        //Carregar a imagem na tela
+        const inputFile = document.querySelector("#imgAplicativo");
+        const pictureImage = document.querySelector(".picture__image");
+        const pictureImageTxt = "Carregar imagem";
+        pictureImage.innerHTML = pictureImageTxt;
+
+        inputFile.addEventListener("change", function(e) {
+            const inputTarget = e.target;
+            const file = inputTarget.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.addEventListener("load", function(e) {
+                    const readerTarget = e.target;
+
+                    const img = document.createElement("img");
+                    img.src = readerTarget.result;
+                    img.classList.add("picture__img");
+
+                    pictureImage.innerHTML = "";
+                    pictureImage.appendChild(img);
+                });
+
+                reader.readAsDataURL(file);
+            } else {
+                pictureImage.innerHTML = pictureImageTxt;
+            }
+        });
     </script>
 
     <!-- LOCAL PARA COLOCAR OS JS -FIM -->

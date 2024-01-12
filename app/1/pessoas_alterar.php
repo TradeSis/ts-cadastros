@@ -49,12 +49,13 @@ if (isset($jsonEntrada['idPessoa'])) {
     $regimeTrib = isset($jsonEntrada['regimeTrib']) && $jsonEntrada['regimeTrib'] !== "" ? "'" . $jsonEntrada['regimeTrib'] . "'" : "NULL";
     $cnae = isset($jsonEntrada['cnae']) && $jsonEntrada['cnae'] !== "" ? "'" . $jsonEntrada['cnae'] . "'" : "NULL";
     $regimeEspecial = isset($jsonEntrada['regimeEspecial']) && $jsonEntrada['regimeEspecial'] !== "" ? "'" . $jsonEntrada['regimeEspecial'] . "'" : "NULL";
-
+    $caracTrib = isset($jsonEntrada['caracTrib']) && $jsonEntrada['caracTrib'] !== "" ? "'" . $jsonEntrada['caracTrib'] . "'" : "NULL";
+    $origem = isset($jsonEntrada['origem']) && $jsonEntrada['origem'] !== "" ? "'" . $jsonEntrada['origem'] . "'" : "NULL";
 
     $sql = "UPDATE pessoas SET tipoPessoa=$tipoPessoa, cpfCnpj=$cpfCnpj, nomePessoa=$nomePessoa, IE=$IE, 
         municipio=$municipio, codigoCidade=$codigoCidade, codigoEstado=$codigoEstado, pais=$pais, bairro=$bairro, endereco=$endereco,
         endNumero=$endNumero, cep=$cep, email=$email, telefone=$telefone, facebook=$facebook, instagram=$instagram,
-        twitter=$twitter, imgPerfil=$imgPerfil,crt=$crt,regimeTrib=$regimeTrib, cnae=$cnae, regimeEspecial=$regimeEspecial WHERE idPessoa = $idPessoa";
+        twitter=$twitter, imgPerfil=$imgPerfil,crt=$crt,regimeTrib=$regimeTrib, cnae=$cnae, regimeEspecial=$regimeEspecial, caracTrib=$caracTrib, origem=$origem WHERE idPessoa = $idPessoa";
 
     //LOG
     if (isset($LOG_NIVEL)) {

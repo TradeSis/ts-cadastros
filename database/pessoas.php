@@ -92,6 +92,8 @@ if (isset($_GET['operacao'])) {
 			'regimeTrib' => $_POST['regimeTrib'],
 			'cnae' => $_POST['cnae'],
 			'regimeEspecial' => $_POST['regimeEspecial'],
+			'caracTrib' => $_POST['caracTrib'],
+			'origem' => $_POST['origem'],
 		);
 		$pessoas = chamaAPI(null, '/cadastros/pessoas', json_encode($apiEntrada), 'PUT');
 		//echo json_encode($apiEntrada);
@@ -145,6 +147,8 @@ if (isset($_GET['operacao'])) {
 			'regimeTrib' => $_POST['regimeTrib'],
 			'cnae' => $_POST['cnae'],
 			'regimeEspecial' => $_POST['regimeEspecial'],
+			'caracTrib' => $_POST['caracTrib'],
+			'origem' => $_POST['origem'],
 		);
 		$pessoas = chamaAPI(null, '/cadastros/pessoas', json_encode($apiEntrada), 'POST');
 		return $pessoas;
