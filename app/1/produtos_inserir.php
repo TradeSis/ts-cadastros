@@ -27,25 +27,35 @@ if (isset($jsonEntrada["idEmpresa"])) {
     $idEmpresa = $jsonEntrada["idEmpresa"];
 }
 $conexao = conectaMysql($idEmpresa);
-if (isset($jsonEntrada['nomeProduto'])) {
+if (isset($jsonEntrada['eanProduto'])) {
 
-    $idMarca = isset($jsonEntrada['idMarca']) && $jsonEntrada['idMarca'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['idMarca']) . "'" : "NULL";
-    $precoProduto = isset($jsonEntrada['precoProduto']) && $jsonEntrada['precoProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['precoProduto']) . "'" : "NULL";
-    $ativoProduto = isset($jsonEntrada['ativoProduto']) && $jsonEntrada['ativoProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['ativoProduto']) . "'" : "NULL";
-    $propagandaProduto = isset($jsonEntrada['propagandaProduto']) && $jsonEntrada['propagandaProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['propagandaProduto']) . "'" : "NULL";
-    $nomeProduto = isset($jsonEntrada['nomeProduto']) && $jsonEntrada['nomeProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['nomeProduto']) . "'" : "NULL";
-    $refProduto = isset($jsonEntrada['refProduto']) && $jsonEntrada['refProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['refProduto']) . "'" : "NULL";
-    $idPessoaEmitente = isset($jsonEntrada['idPessoaEmitente']) && $jsonEntrada['idPessoaEmitente'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['idPessoaEmitente']) . "'" : "NULL";
-    $valorCompra = isset($jsonEntrada['valorCompra']) && $jsonEntrada['valorCompra'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['valorCompra']) . "'" : "NULL";
-    $codigoNcm = isset($jsonEntrada['codigoNcm']) && $jsonEntrada['codigoNcm'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['codigoNcm']) . "'" : "NULL";
-    $codigoCest = isset($jsonEntrada['codigoCest']) && $jsonEntrada['codigoCest'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['codigoCest']) . "'" : "NULL";
-    $descricaoProduto = isset($jsonEntrada['descricaoProduto']) && $jsonEntrada['descricaoProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['descricaoProduto']) . "'" : "NULL";
-    $imgProduto = isset($jsonEntrada['imgProduto']) && $jsonEntrada['imgProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['imgProduto']) . "'" : "NULL";
+    $eanProduto = isset($jsonEntrada['eanProduto']) && $jsonEntrada['eanProduto'] !== "" && $jsonEntrada['eanProduto'] !== "NULL" ? "'" . $jsonEntrada['eanProduto'] . "'" : "NULL";
+    $nomeProduto = isset($jsonEntrada['nomeProduto']) && $jsonEntrada['nomeProduto'] !== "" ? "'" . $jsonEntrada['nomeProduto'] . "'" : "NULL";
+    $valorCompra = isset($jsonEntrada['valorCompra']) && $jsonEntrada['valorCompra'] !== "" ? "'" . $jsonEntrada['valorCompra'] . "'" : "NULL";
+    $precoProduto = isset($jsonEntrada['precoProduto']) && $jsonEntrada['precoProduto'] !== "" ? "'" . $jsonEntrada['precoProduto'] . "'" : "NULL";
+    $codigoNcm = isset($jsonEntrada['codigoNcm']) && $jsonEntrada['codigoNcm'] !== "" ? "'" . $jsonEntrada['codigoNcm'] . "'" : "NULL";
+    $codigoCest = isset($jsonEntrada['codigoCest']) && $jsonEntrada['codigoCest'] !== "" ? "'" . $jsonEntrada['codigoCest'] . "'" : "NULL";
+    $imgProduto = isset($jsonEntrada['imgProduto']) && $jsonEntrada['imgProduto'] !== "" ? "'" . $jsonEntrada['imgProduto'] . "'" : "NULL";
+    $idMarca = isset($jsonEntrada['idMarca']) && $jsonEntrada['idMarca'] !== "" ? "'" . $jsonEntrada['idMarca'] . "'" : "NULL";
+    $ativoProduto = isset($jsonEntrada['ativoProduto']) && $jsonEntrada['ativoProduto'] !== "" ? "'" . $jsonEntrada['ativoProduto'] . "'" : "NULL";
+    $propagandaProduto = isset($jsonEntrada['propagandaProduto']) && $jsonEntrada['propagandaProduto'] !== "" ? "'" . $jsonEntrada['propagandaProduto'] . "'" : "NULL";
+    $descricaoProduto = isset($jsonEntrada['descricaoProduto']) && $jsonEntrada['descricaoProduto'] !== "" ? "'" . $jsonEntrada['descricaoProduto'] . "'" : "NULL";
+    $idPessoaFornecedor = isset($jsonEntrada['idPessoaFornecedor']) && $jsonEntrada['idPessoaFornecedor'] !== "" ? "'" . $jsonEntrada['idPessoaFornecedor'] . "'" : "NULL";
+    $refProduto = isset($jsonEntrada['refProduto']) && $jsonEntrada['refProduto'] !== "" && $jsonEntrada['refProduto'] !== "NULL" ? "'" . $jsonEntrada['refProduto'] . "'" : "NULL";
+    $dataAtualizacaoTributaria = isset($jsonEntrada['dataAtualizacaoTributaria']) && $jsonEntrada['dataAtualizacaoTributaria'] !== "" ? "'" . $jsonEntrada['dataAtualizacaoTributaria'] . "'" : "NULL";
+    $codImendes = isset($jsonEntrada['codImendes']) && $jsonEntrada['codImendes'] !== "" ? "'" . $jsonEntrada['codImendes'] . "'" : "NULL";
+    $codigoGrupo = isset($jsonEntrada['codigoGrupo']) && $jsonEntrada['codigoGrupo'] !== "" ? "'" . $jsonEntrada['codigoGrupo'] . "'" : "NULL";
+    $substICMSempresa = isset($jsonEntrada['substICMSempresa']) && $jsonEntrada['substICMSempresa'] !== "" ? "'" . $jsonEntrada['substICMSempresa'] . "'" : "'N'";
+    $substICMSFornecedor = isset($jsonEntrada['substICMSFornecedor']) && $jsonEntrada['substICMSFornecedor'] !== "" ? "'" . $jsonEntrada['substICMSFornecedor'] . "'" : "'N'";
+    $prodZFM = isset($jsonEntrada['prodZFM']) && $jsonEntrada['prodZFM'] !== "" ? "'" . $jsonEntrada['prodZFM'] . "'" : "'N'";
+   
+    $sql = "INSERT INTO produtos (eanProduto, nomeProduto, valorCompra, precoProduto, codigoNcm, 
+    codigoCest, imgProduto, idMarca, ativoProduto, propagandaProduto, descricaoProduto, idPessoaFornecedor, 
+    refProduto, dataAtualizacaoTributaria, codImendes, codigoGrupo, substICMSempresa, substICMSFornecedor, prodZFM) 
+    VALUES ($eanProduto, $nomeProduto, $valorCompra, $precoProduto, $codigoNcm,
+    $codigoCest, $imgProduto, $idMarca, $ativoProduto, $propagandaProduto, $descricaoProduto, $idPessoaFornecedor,
+    $refProduto, $dataAtualizacaoTributaria, $codImendes, $codigoGrupo, $substICMSempresa, $substICMSFornecedor, $prodZFM)";
 
-
-    $sql = "INSERT INTO produtos (idPessoaEmitente, refProduto, nomeProduto, valorCompra, precoProduto, codigoNcm, codigoCest, imgProduto, idMarca, ativoProduto, propagandaProduto, descricaoProduto) 
-            VALUES ($idPessoaEmitente, $refProduto, $nomeProduto, $valorCompra, $precoProduto, $codigoNcm, $codigoCest, $imgProduto, $idMarca, $ativoProduto, $propagandaProduto, $descricaoProduto)";
-echo "-ENTRADA->".json_encode($sql)."\n";
 
     //LOG
     if (isset($LOG_NIVEL)) {
@@ -62,9 +72,11 @@ echo "-ENTRADA->".json_encode($sql)."\n";
         if (!$atualizar)
             throw new Exception(mysqli_error($conexao));
 
+        $idProdutoInserido = mysqli_insert_id($conexao);
         $jsonSaida = array(
             "status" => 200,
-            "retorno" => "ok"
+            "retorno" => "ok",
+            "idProduto" => $idProdutoInserido
         );
     } catch (Exception $e) {
         $jsonSaida = array(

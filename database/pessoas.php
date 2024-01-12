@@ -46,7 +46,10 @@ if (isset($_GET['operacao'])) {
 
 	if ($operacao=="inserir") {
 
-		$imgPerfil = $_FILES['imgPerfilInserir'];
+		$imgPerfil = null;
+		if(isset($_FILES['imgPerfilInserir'])){
+			$imgPerfil = $_FILES['imgPerfilInserir'];
+		}
 
 		if ($imgPerfil !== null) {
 			preg_match("/\.(png|jpg|jpeg|txt|xlsx|pdf|csv|doc|docx|zip){1}$/i", $imgPerfil["name"], $ext);
@@ -55,39 +58,43 @@ if (isset($_GET['operacao'])) {
 				$pasta = ROOT . "/img/";
 
 				$novoNomeAnexo = $_POST['refProduto'] . "_" . $imgPerfil["name"];
-				$path = 'http://' . $_SERVER["HTTP_HOST"] . '/img/' . $novoNomeAnexo;
+				$imgPerfil = 'http://' . $_SERVER["HTTP_HOST"] . '/img/' . $novoNomeAnexo;
 				move_uploaded_file($imgPerfil['tmp_name'], $pasta . $novoNomeAnexo);
 
 
 			} else {
-				$path = null;
+				$imgPerfil = null;
 			}
 
 		} 
 
 		$apiEntrada = array(
-			'tipoPessoa' => $_POST['tipoPessoa'],
+			'idEmpresa' => $_SESSION['idEmpresa'],
 			'cpfCnpj' => $_POST['cpfCnpj'],
+			'tipoPessoa' => $_POST['tipoPessoa'],
 			'nomePessoa' => $_POST['nomePessoa'],
 			'IE' => $_POST['IE'],
 			'municipio' => $_POST['municipio'],
-			'UF' => $_POST['UF'],
+			'codigoCidade' => $_POST['codigoCidade'],
+			'codigoEstado' => $_POST['codigoEstado'],
 			'pais' => $_POST['pais'],
 			'bairro' => $_POST['bairro'],
 			'endereco' => $_POST['endereco'],
 			'endNumero' => $_POST['endNumero'],
 			'cep' => $_POST['cep'],
 			'email' => $_POST['email'],
+			'imgPerfil' => $imgPerfil,
 			'telefone' => $_POST['telefone'],
 			'facebook' => $_POST['facebook'],
 			'instagram' => $_POST['instagram'],
 			'twitter' => $_POST['twitter'],
-			'imgPerfil' => $path,
-			'idEmpresa' => $_SESSION['idEmpresa']
-
+			'crt' => $_POST['crt'],
+			'regimeTrib' => $_POST['regimeTrib'],
+			'cnae' => $_POST['cnae'],
+			'regimeEspecial' => $_POST['regimeEspecial'],
 		);
 		$pessoas = chamaAPI(null, '/cadastros/pessoas', json_encode($apiEntrada), 'PUT');
-		echo json_encode($apiEntrada);
+		//echo json_encode($apiEntrada);
 		return $pessoas;
 
 	}
@@ -114,13 +121,15 @@ if (isset($_GET['operacao'])) {
 		} 
 
 		$apiEntrada = array(
+			'idEmpresa' => $_SESSION['idEmpresa'],
 			'idPessoa' => $_POST['idPessoa'],
 			'tipoPessoa' => $_POST['tipoPessoa'],
 			'cpfCnpj' => $_POST['cpfCnpj'],
 			'nomePessoa' => $_POST['nomePessoa'],
 			'IE' => $_POST['IE'],
 			'municipio' => $_POST['municipio'],
-			'UF' => $_POST['UF'],
+			'codigoCidade' => $_POST['codigoCidade'],
+			'codigoEstado' => $_POST['codigoEstado'],
 			'pais' => $_POST['pais'],
 			'bairro' => $_POST['bairro'],
 			'endereco' => $_POST['endereco'],
@@ -132,8 +141,10 @@ if (isset($_GET['operacao'])) {
 			'instagram' => $_POST['instagram'],
 			'twitter' => $_POST['twitter'],
 			'imgPerfil' => $path,
-			'idEmpresa' => $_SESSION['idEmpresa']
-
+			'crt' => $_POST['crt'],
+			'regimeTrib' => $_POST['regimeTrib'],
+			'cnae' => $_POST['cnae'],
+			'regimeEspecial' => $_POST['regimeEspecial'],
 		);
 		$pessoas = chamaAPI(null, '/cadastros/pessoas', json_encode($apiEntrada), 'POST');
 		return $pessoas;
@@ -182,6 +193,36 @@ if (isset($_GET['operacao'])) {
 
 		echo json_encode($cep);
 		return $cep;
+	}
+	if ($operacao == "verificaCNPJ") {
+		$apiEntrada = array(
+			'idEmpresa' => $_SESSION['idEmpresa'],
+			'cpfCnpj' => $_POST['cpfCnpj']
+		);
+		$pessoas = chamaAPI(null, '/cadastros/cnpj_verifica', json_encode($apiEntrada), 'GET');
+
+		echo json_encode($pessoas);
+		return $pessoas;
+	}
+
+	if ($operacao == "filtrar") {
+
+		$buscaPessoa = $_POST["buscaPessoa"];
+
+		if ($buscaPessoa == "") {
+			$buscaPessoa = null;
+		}
+
+		$apiEntrada = array(
+			'idEmpresa' => $_SESSION['idEmpresa'],
+			'idPessoa' => null,
+			'buscaPessoa' => $buscaPessoa
+		);
+
+		$pessoas = chamaAPI(null, '/cadastros/pessoas', json_encode($apiEntrada), 'GET');
+
+		echo json_encode($pessoas);
+		return $pessoas;
 	}
 }
 
