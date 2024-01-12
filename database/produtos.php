@@ -191,6 +191,17 @@ if (isset($_GET['operacao'])) {
 		$produtos = chamaAPI(null, '/cadastros/produtos', json_encode($apiEntrada), 'DELETE');
 	}
 
+	if ($operacao == "atualizar") {
+		$apiEntrada = array(
+			'idEmpresa' => $_SESSION['idEmpresa'],
+			'idProduto' => $_POST['idProduto']
+		);
+		$produtos = chamaAPI(null, '/impostos/imendes/saneamento', json_encode($apiEntrada), 'POST');
+
+		echo json_encode($produtos);
+		return $produtos;
+	}
+
 	if ($operacao == "verificaEanProduto") {
 		$apiEntrada = array(
 			'idEmpresa' => $_SESSION['idEmpresa'],

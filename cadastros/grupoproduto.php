@@ -160,108 +160,11 @@ include_once(__DIR__ . '/../header.php');
             </div>
         </div>
 
-        <!--------- VISUALIZAR --------->
-        <div class="modal fade bd-example-modal-lg" id="visualizarGrupoProdutoModal" tabindex="-1" aria-labelledby="visualizarGrupoProdutoModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Visualizar Grupo Produto</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="post" id="form-inserirGrupoProduto">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <label class="form-label ts-label">codigoGrupo</label>
-                                    <input type="text" class="form-control ts-input" name="codigoGrupo" id="codigoGrupo" readonly>
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">nomeGrupo</label>
-                                    <input type="text" class="form-control ts-input" name="nomeGrupo" id="nomeGrupo" readonly>
-                                </div>
-                                <div class="col-md-3">
-                                    <label class="form-label ts-label">codigoNcm</label>
-                                    <input type="text" class="form-control ts-input" name="codigoNcm" id="codigoNcm" readonly>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-md">
-                                    <label class="form-label ts-label">codigoCest</label>
-                                    <input type="text" class="form-control ts-input" name="codigoCest" id="codigoCest" readonly>
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">impostoImportacao</label>
-                                    <input type="text" class="form-control ts-input" name="impostoImportacao" id="impostoImportacao" readonly>
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">piscofinscstEnt</label>
-                                    <input type="text" class="form-control ts-input" name="piscofinscstEnt" id="piscofinscstEnt" readonly>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-md">
-                                    <label class="form-label ts-label">piscofinscstSai</label>
-                                    <input type="text" class="form-control ts-input" name="piscofinscstSai" id="piscofinscstSai" readonly>
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">aliqPis</label>
-                                    <input type="text" class="form-control ts-input" name="aliqPis" id="aliqPis" readonly>
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">aliqCofins</label>
-                                    <input type="text" class="form-control ts-input" name="aliqCofins" id="aliqCofins" readonly>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-md">
-                                    <label class="form-label ts-label">nri</label>
-                                    <input type="text" class="form-control ts-input" name="nri" id="nri" readonly>
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">ampLegal</label>
-                                    <input type="text" class="form-control ts-input" name="ampLegal" id="ampLegal" readonly>
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">redPIS</label>
-                                    <input type="text" class="form-control ts-input" name="redPIS" id="redPIS" readonly>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-md">
-                                    <label class="form-label ts-label">redCofins</label>
-                                    <input type="text" class="form-control ts-input" name="redCofins" id="redCofins" readonly>
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">ipicstEnt</label>
-                                    <input type="text" class="form-control ts-input" name="ipicstEnt" id="ipicstEnt" readonly>
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">ipicstSai</label>
-                                    <input type="text" class="form-control ts-input" name="ipicstSai" id="ipicstSai" readonly>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-md">
-                                    <label class="form-label ts-label">aliqipi</label>
-                                    <input type="text" class="form-control ts-input" name="aliqipi" id="aliqipi" readonly>
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">codenq</label>
-                                    <input type="text" class="form-control ts-input" name="codenq" id="codenq" readonly>
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">ipiex</label>
-                                    <input type="text" class="form-control ts-input" name="ipiex" id="ipiex" readonly>
-                                </div>
-                            </div>
-                    </div><!--body-->
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-success" id="btn-formInserir">Cadastrar</button>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <!--------- GRUPO PRODUTO VISUALIZAR --------->
+        <?php include_once 'grupoproduto_visualizar.php' ?>
+        <?php //include_once 'grupoproduto_visualizar_V1.php' ?>
+        <?php //include_once 'grupoproduto_visualizar_V2.php' ?>
+
 
     </div><!--container-fluid-->
 
@@ -304,7 +207,7 @@ include_once(__DIR__ . '/../header.php');
                         linha = linha + "<td>" + object.codigoNcm + "</td>";
                         linha = linha + "<td>" + object.codigoCest + "</td>";
                         linha = linha + "<td>" + "<button type='button' class='btn btn-info btn-sm' data-bs-toggle='modal' data-bs-target='#visualizarGrupoProdutoModal' data-codigoGrupo='" + object.codigoGrupo + "'><i class='bi bi-eye'></i></button> ";
-                        
+
                         linha = linha + "</tr>";
                     }
                     $("#dados").html(linha);
@@ -323,39 +226,73 @@ include_once(__DIR__ . '/../header.php');
         });
 
         $(document).on('click', 'button[data-bs-target="#visualizarGrupoProdutoModal"]', function() {
-                var codigoGrupo = $(this).attr("data-codigoGrupo");
-                //alert(codigoGrupo)
-                $.ajax({
-                    type: 'POST',
-                    dataType: 'json',
-                    url: '../database/grupoproduto.php?operacao=buscar',
-                    data: {
-                        codigoGrupo: codigoGrupo
-                    },
-                    success: function(data) {
-                        //alert(data)
-                        $('#codigoGrupo').val(data.codigoGrupo);
-                        $('#nomeGrupo').val(data.nomeGrupo);
-                        $('#codigoNcm').val(data.codigoNcm);
-                        $('#codigoCest').val(data.codigoCest);
-                        $('#impostoImportacao').val(data.impostoImportacao);
-                        $('#piscofinscstEnt').val(data.piscofinscstEnt);
-                        $('#piscofinscstSai').val(data.piscofinscstSai);
-                        $('#aliqPis').val(data.aliqPis);
-                        $('#aliqCofins').val(data.aliqCofins);
-                        $('#nri').val(data.nri);
-                        $('#ampLegal').val(data.ampLegal);
-                        $('#redPIS').val(data.redPIS);
-                        $('#redCofins').val(data.redCofins);
-                        $('#ipicstEnt').val(data.ipicstEnt);
-                        $('#ipicstSai').val(data.ipicstSai);
-                        $('#aliqipi').val(data.aliqipi);
-                        $('#codenq').val(data.codenq);
-                        $('#ipiex').val(data.ipiex);
-                        $('#visualizarGrupoProdutoModal').modal('show');
-                    }
-                });
+            var codigoGrupo = $(this).attr("data-codigoGrupo");
+            //alert(codigoGrupo)
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '../database/grupoproduto.php?operacao=buscar',
+                data: {
+                    codigoGrupo: codigoGrupo
+                },
+                success: function(data) {
+                    //alert(data)
+                    $('#codigoGrupo').val(data.codigoGrupo);
+                    $vcodigoGrupo = data.codigoGrupo;
+                    $('#nomeGrupo').val(data.nomeGrupo);
+                    $('#codigoNcm').val(data.codigoNcm);
+                    $('#codigoCest').val(data.codigoCest);
+                    $('#impostoImportacao').val(data.impostoImportacao);
+                    $('#piscofinscstEnt').val(data.piscofinscstEnt);
+                    $('#piscofinscstSai').val(data.piscofinscstSai);
+                    $('#aliqPis').val(data.aliqPis);
+                    $('#aliqCofins').val(data.aliqCofins);
+                    $('#nri').val(data.nri);
+                    $('#ampLegal').val(data.ampLegal);
+                    $('#redPIS').val(data.redPIS);
+                    $('#redCofins').val(data.redCofins);
+                    $('#ipicstEnt').val(data.ipicstEnt);
+                    $('#ipicstSai').val(data.ipicstSai);
+                    $('#aliqipi').val(data.aliqipi);
+                    $('#codenq').val(data.codenq);
+                    $('#ipiex').val(data.ipiex);
+                    $('#visualizarGrupoProdutoModal').modal('show');
+
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'html',
+                        url: '<?php echo URLROOT ?>/impostos/database/regrafiscal.php?operacao=filtrar',
+                        beforeSend: function() {
+                            $("#tabela_regrafiscal").html("Carregando1...");
+                        },
+                        data: {
+                            codigoGrupo: $vcodigoGrupo
+                        },
+                        success: function(msg) {
+                            var json = JSON.parse(msg);
+
+                            var linha = "";
+                            for (var $i = 0; $i < json.length; $i++) {
+                                var object = json[$i];
+
+                                linha = linha + "<tr>";
+                                linha = linha + "<td>" + object.codigoGrupo + "</td>";
+                                linha = linha + "<td>" + object.codigoEstado + "</td>";
+                                linha = linha + "<td>" + object.cFOP + "</td>";
+                                linha = linha + "<td>" + object.codigoCaracTrib + "</td>";
+                                linha = linha + "<td>" + "<button type='button' class='btn btn-info btn-sm' data-bs-toggle='modal' data-bs-target='#modalRegraFiscal' data-idRegraFiscal='" + object.idRegraFiscal + "'><i class='bi bi-eye'></i></button> ";
+
+                                linha = linha + "</tr>";
+                            }
+                            $("#tabela_regrafiscal").html(linha);
+                        }
+                    });
+                }
             });
+        });
+
+        
+
 
         $(document).ready(function() {
             $("#form-inserirGrupoProduto").submit(function(event) {
