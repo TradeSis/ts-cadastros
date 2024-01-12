@@ -72,6 +72,12 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
                                 href="?tab=pessoas" role="tab">Pessoas</a>
                             </li>
                         <?php }
+                        if ($nivelMenu >= 2) { ?>
+                            <li class="nav-item mr-1">
+                                <a class="nav-link <?php if ($tab == "grupoproduto") {echo " active ";} ?>" 
+                                href="?tab=grupoproduto" role="tab">Grupo produto</a>
+                            </li>
+                        <?php }
                         if ($nivelMenu >= 4) { ?>
                             <li class="nav-item mr-1">
                                 <a class="nav-link <?php if ($tab == "configuracao") {echo " active ";} ?>" 
@@ -105,6 +111,9 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
                         <option value="<?php echo URLROOT ?>/cadastros/?tab=pessoas" 
                         <?php if ($getTab == "pessoas") {echo " selected ";} ?>>Pessoas</option>
 
+                        <option value="<?php echo URLROOT ?>/cadastros/?tab=grupoproduto" 
+                        <?php if ($getTab == "grupoproduto") {echo " selected ";} ?>>Grupo produto</option>
+
                         <option value="<?php echo URLROOT ?>/cadastros/?tab=configuracao" 
                         <?php if ($getTab == "configuracao") {echo " selected ";} ?>>Configurações</option>
                     </select>
@@ -133,6 +142,9 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
             }
             if ($tab == "pessoas") {
                 $src = "cadastros/pessoas.php";
+            }
+            if ($tab == "grupoproduto") {
+                $src = "cadastros/grupoproduto.php";
             }
             if ($tab == "configuracao") {
                 $src = "configuracao/";
