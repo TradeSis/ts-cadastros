@@ -32,18 +32,21 @@ $conexao = conectaMysql($idEmpresa);
 
 $produtos = array();
 
-$sql = "SELECT * FROM produtos ";
+$sql = "SELECT produtos.*, marcas.*, pessoas.nome FROM produtos 
+        LEFT JOIN pessoas on produtos.idPessoaEmitente = pessoas.idPessoa 
+        LEFT JOIN marcas on marcas.idMarca = produtos.idMarca ";
 
 if (isset($jsonEntrada["idProduto"])) {
   $sql = $sql . " where produtos.idProduto = " . $jsonEntrada["idProduto"];
   $where = " and ";
-} 
-$where = " where ";
-if (isset($jsonEntrada["buscaProduto"])) {
-  $sql = $sql . $where . " produtos.nomeProduto like " . "'%" . $jsonEntrada["buscaProduto"] . "%'
-    OR produtos.eanProduto like " . "'%" . $jsonEntrada["buscaProduto"] . "%' " ;
-  $where = " and ";
+} else {
+  $where = " where ";
+  if (isset($jsonEntrada["idMarca"])) {
+    $sql = $sql . $where . " produtos.idMarca = " . $jsonEntrada["idMarca"];
+    $where = " and ";
+  }
 }
+//$sql = $sql . $where . " produtos.ativoProduto = 1 ";
 
 //LOG
 if (isset($LOG_NIVEL)) {
