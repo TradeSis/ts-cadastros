@@ -5,7 +5,7 @@
 $LOG_CAMINHO = defineCaminhoLog();
 if (isset($LOG_CAMINHO)) {
   $LOG_NIVEL = defineNivelLog();
-  $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "servicos";
+  $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "cidades";
   if (isset($LOG_NIVEL)) {
     if ($LOG_NIVEL >= 1) {
       $arquivo = fopen(defineCaminhoLog() . "cadastros_" . date("dmY") . ".log", "a");
@@ -22,18 +22,13 @@ if (isset($LOG_NIVEL)) {
 }
 //LOG
 
-$idEmpresa = null;
-if (isset($jsonEntrada["idEmpresa"])) {
-    $idEmpresa = $jsonEntrada["idEmpresa"];
-}
 
-$conexao = conectaMysql($idEmpresa);
+$conexao = conectaMysql(null);
+$cidades = array();
 
-$servicos = array();
-
-$sql = "SELECT * FROM servicos ";
-if (isset($jsonEntrada["idServico"])) {
-  $sql = $sql . " where servicos.idServico = " . $jsonEntrada["idServico"];
+$sql = "SELECT * FROM cidades ";
+if (isset($jsonEntrada["idCidade"])) {
+  $sql = $sql . " where cidades.idCidade = " . $jsonEntrada["idCidade"];
 }
 
 //LOG
@@ -47,16 +42,14 @@ if (isset($LOG_NIVEL)) {
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
-  array_push($servicos, $row);
+  array_push($cidades, $row);
   $rows = $rows + 1;
 }
 
-if (isset($jsonEntrada["idServico"]) && $rows == 1) {
-  $servicos = $servicos[0];
+if (isset($jsonEntrada["idCidade"]) && $rows == 1) {
+  $cidades = $cidades[0];
 }
-$jsonSaida = $servicos;
-
-//echo "-SAIDA->".json_encode(jsonSaida)."\n";
+$jsonSaida = $cidades;
 
 
 //LOG

@@ -1,58 +1,68 @@
 <?php
-include_once('../head.php');
+// Lucas 06102023 padrao novo
+include_once('../header.php');
 ?>
+<!doctype html>
+<html lang="pt-BR">
 
+<head>
 
-<body class="bg-transparent">
+    <?php include_once ROOT . "/vendor/head_css.php"; ?>
 
-    <div class="container formContainer">
+</head>
 
+<body>
+
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-8">
-                <h2 class="tituloTabela">Adicionar Marca</h2>
+            <BR> <!-- MENSAGENS/ALERTAS -->
+        </div>
+        <div class="row">
+            <BR> <!-- BOTOES AUXILIARES -->
+        </div>
+        <div class="row"> <!-- LINHA SUPERIOR A TABLE -->
+            <div class="col-3">
+                <!-- TITULO -->
+                <h2 class="ts-tituloPrincipal">Adicionar Marca</h2>
             </div>
-            <div class="col-sm-4" style="text-align:right">
+            <div class="col-7">
+                <!-- FILTROS -->
+            </div>
+
+            <div class="col-2 text-end">
                 <a href="marcas.php" role="button" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i></i>&#32;Voltar</a>
             </div>
         </div>
 
         <form class="mb-4" action="../database/marcas.php?operacao=inserir" method="post" enctype="multipart/form-data">
 
-            <div class="row">
-                <div class="col-sm-3" style="margin-top: 10px">
-                    <div class="form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -20px;">Slug*</label>
-                        <input type="text" name="slug" class="form-control" required autocomplete="off">
-                    </div>
+            <div class="row mt-3">
+                <div class="col-sm-3">
+                    <label class='form-label ts-label'>Slug*</label>
+                    <input type="text" name="slug" class="form-control ts-input" required autocomplete="off">
                 </div>
 
-                <div class="col-sm-9" style="margin-top: 10px">
-                    <div class="form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -20px;">nome da marca*</label>
-                        <input type="text" name="nomeMarca" class="form-control" required autocomplete="off">
-                    </div>
+                <div class="col-sm-9">
+                    <label class='form-label ts-label'>nome da marca*</label>
+                    <input type="text" name="nomeMarca" class="form-control ts-input" required autocomplete="off">
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-sm-6" style="margin-top: 50px">
-                    <div class="col-sm-6" style="margin-top: -20px">
-                        <label class='control-label' for='inputNormal' style="margin-top: -50px;">imagem 150x150px</label>
-                        <label class="picture" for="foto" tabIndex="0">
-                            <span class="picture__image"></span>
-                        </label>
-                        <input type="file" name="imgMarca" id="foto">
-                    </div>
+            <div class="row mt-3">
+                <div class="col-sm-6">
+                    <label class="form-label ts-label">imagem 150x150px</label>
+                    <label class="picture" for="foto" tabIndex="0">
+                        <span class="picture__image"></span>
+                    </label>
+                    <input type="file" name="imgMarca" id="foto">
                 </div>
 
-                <div class="col-sm-6" style="margin-top: 50px">
-                    <div class="col-sm-6" style="margin-top: -20px">
-                        <label class='control-label' for='inputNormal' style="margin-top: -50px;">banner</label>
-                        <label class="picture" for="banner" tabIndex="0">
-                            <span class="picture__image2"></span>
-                        </label>
-                        <input type="file" name="bannerMarca" id="banner">
-                    </div>
+                <div class="col-sm-6">
+                    <label class="form-label ts-label">banner</label>
+                    <label class="picture" for="banner" tabIndex="0">
+                        <span class="picture__image2"></span>
+                    </label>
+                    <input type="file" name="bannerMarca" id="banner">
                 </div>
             </div>
 
@@ -65,83 +75,72 @@ include_once('../head.php');
             </div>
 
             <div class="row">
-                <div class="col-sm-8" style="margin-top: 10px">
-                    <div class="form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -20px;">cidade</label>
-                        <input type="text" name="cidadeMarca" class="form-control" autocomplete="off">
-                    </div>
+                <div class="col-sm-8">
+                    <label class='form-label ts-label'>cidade</label>
+                    <input type="text" name="cidadeMarca" class="form-control ts-input" autocomplete="off">
                 </div>
 
-                <div class="col-sm-4" style="margin-top: 10px">
-                    <div class="select-form-group">
-
-                        <label class="labelForm">estado</label>
-                        <select class="select form-control" name="estado">
-                            <option value="AC">Acre</option>
-                            <option value="AL">Alagoas</option>
-                            <option value="AP">Amapá</option>
-                            <option value="AM">Amazonas</option>
-                            <option value="BA">Bahia</option>
-                            <option value="CE">Ceará</option>
-                            <option value="DF">Distrito Federal</option>
-                            <option value="ES">Espírito Santo</option>
-                            <option value="GO">Goiás</option>
-                            <option value="MA">Maranhão</option>
-                            <option value="MT">Mato Grosso</option>
-                            <option value="MS">Mato Grosso do Sul</option>
-                            <option value="MG">Minas Gerais</option>
-                            <option value="PA">Pará</option>
-                            <option value="PB">Paraíba</option>
-                            <option value="PR">Paraná</option>
-                            <option value="PE">Pernambuco</option>
-                            <option value="PI">Piauí</option>
-                            <option value="RJ">Rio de Janeiro</option>
-                            <option value="RN">Rio Grande do Norte</option>
-                            <option value="RS">Rio Grande do Sul</option>
-                            <option value="RO">Rondônia</option>
-                            <option value="RR">Roraima</option>
-                            <option value="SC">Santa Catarina</option>
-                            <option value="SP">São Paulo</option>
-                            <option value="SE">Sergipe</option>
-                            <option value="TO">Tocantins</option>
-                            <option value="EX">Estrangeiro</option>
-                        </select>
-
-                    </div>
+                <div class="col-sm-4">
+                    <label class="form-label ts-label">estado</label>
+                    <select class="form-select ts-input" name="estado">
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                        <option value="EX">Estrangeiro</option>
+                    </select>
+                </div>
+                <div class="col-sm-12">
+                    <label class='form-label ts-label'>url marca</label>
+                    <input type="text" name="urlMarca" class="form-control ts-input" autocomplete="off">
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-sm-12" style="margin-top: 10px">
-                    <div class="form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -20px;">url marca</label>
-                        <input type="text" name="urlMarca" class="form-control" autocomplete="off">
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-4" style="margin-top: 10px">
+            <div class="row mt-3">
+                <div class="col-sm-4 mt-4">
                     <div class="select-form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -45px;">Ativo*</label>
+                        <label class="form-label ts-label">Ativo*</label>
                         <label for="ativoMarca">inativo</label>
                         <input type="range" id="ativoMarca" name="ativoMarca" min="0" max="1" style="width: 15%;">
                         <label for="ativoMarca">ativo</label>
                     </div>
                 </div>
 
-                <div class="col-sm-4" style="margin-top: 10px">
+                <div class="col-sm-4 mt-4">
                     <div class="select-form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -45px;">Catalogo</label>
+                        <label class="form-label ts-label">Catalogo</label>
                         <label for="catalogo">Não</label>
                         <input type="range" id="catalogo" name="catalogo" min="0" max="1" style="width: 15%;">
                         <label for="catalogo">Sim</label>
                     </div>
                 </div>
 
-                <div class="col-sm-4" style="margin-top: 10px">
+                <div class="col-sm-4 mt-4">
                     <div class="select-form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -45px;">Loja Especializada</label>
+                        <label class="form-label ts-label">Loja Especializada</label>
                         <label for="lojasEspecializadas">Não</label>
                         <input type="range" id="lojasEspecializadas" name="lojasEspecializadas" min="0" max="1" style="width: 15%;">
                         <label for="lojasEspecializadas">Sim</label>
@@ -149,7 +148,7 @@ include_once('../head.php');
                 </div>
             </div>
 
-            <div style="text-align:right;margin-top:20px">
+            <div class="text-end mt-4">
                 <button type="submit" class="btn  btn-success"><i class="bi bi-sd-card-fill"></i>&#32;Cadastrar</button>
             </div>
         </form>
@@ -157,6 +156,9 @@ include_once('../head.php');
 
     </div><!--container-->
 
+    <!-- LOCAL PARA COLOCAR OS JS -->
+
+    <?php include_once ROOT . "/vendor/footer_js.php"; ?>
 
     <script src="<?php echo URLROOT ?>/sistema/js/quilljs.js"></script>
     <script>
@@ -220,6 +222,8 @@ include_once('../head.php');
             }
         });
     </script>
+
+    <!-- LOCAL PARA COLOCAR OS JS -FIM -->
 
 </body>
 

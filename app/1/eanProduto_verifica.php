@@ -5,7 +5,7 @@
 $LOG_CAMINHO = defineCaminhoLog();
 if (isset($LOG_CAMINHO)) {
   $LOG_NIVEL = defineNivelLog();
-  $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "servicos";
+  $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "eanProduto_verifica";
   if (isset($LOG_NIVEL)) {
     if ($LOG_NIVEL >= 1) {
       $arquivo = fopen(defineCaminhoLog() . "cadastros_" . date("dmY") . ".log", "a");
@@ -24,39 +24,24 @@ if (isset($LOG_NIVEL)) {
 
 $idEmpresa = null;
 if (isset($jsonEntrada["idEmpresa"])) {
-    $idEmpresa = $jsonEntrada["idEmpresa"];
+  $idEmpresa = $jsonEntrada["idEmpresa"];
 }
 
 $conexao = conectaMysql($idEmpresa);
 
-$servicos = array();
 
-$sql = "SELECT * FROM servicos ";
-if (isset($jsonEntrada["idServico"])) {
-  $sql = $sql . " where servicos.idServico = " . $jsonEntrada["idServico"];
-}
+    $eanProduto = $jsonEntrada["eanProduto"];
+ 
+    $sql_consulta = "SELECT * FROM produtos WHERE eanProduto = $eanProduto";
+    $buscar_consulta = mysqli_query($conexao, $sql_consulta);
+    $row_consulta = mysqli_fetch_array($buscar_consulta, MYSQLI_ASSOC);
+    $eanProduto = isset($row_consulta["eanProduto"]) && $row_consulta["eanProduto"] !== "" ? "'" . $row_consulta["eanProduto"] . "'" : "null";
 
-//LOG
-if (isset($LOG_NIVEL)) {
-  if ($LOG_NIVEL >= 3) {
-    fwrite($arquivo, $identificacao . "-SQL->" . $sql . "\n");
-  }
-}
-//LOG
-
-$rows = 0;
-$buscar = mysqli_query($conexao, $sql);
-while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
-  array_push($servicos, $row);
-  $rows = $rows + 1;
-}
-
-if (isset($jsonEntrada["idServico"]) && $rows == 1) {
-  $servicos = $servicos[0];
-}
-$jsonSaida = $servicos;
-
-//echo "-SAIDA->".json_encode(jsonSaida)."\n";
+    if($eanProduto == 'null'){
+      $jsonSaida = 'LIBERADO';
+    }else{
+      $jsonSaida = 'eanProduto já cadastrado!';
+    }
 
 
 //LOG

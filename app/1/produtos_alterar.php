@@ -30,25 +30,42 @@ $conexao = conectaMysql($idEmpresa);
 
 if (isset($jsonEntrada['idProduto'])) {
 
-    $idProduto = $jsonEntrada['idProduto'];
-    $nomeProduto = $jsonEntrada['nomeProduto'];
-    $imgProduto = $jsonEntrada['imgProduto'];
-    $idMarca = isset($jsonEntrada['idMarca']) && $jsonEntrada['idMarca'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['idMarca']) . "'" : "NULL";
-    $precoProduto = isset($jsonEntrada['precoProduto']) && $jsonEntrada['precoProduto'] !== "" ? "'" . mysqli_real_escape_string($conexao, $jsonEntrada['precoProduto']) . "'" : "NULL";
-    $ativoProduto = $jsonEntrada['ativoProduto'];
-    $propagandaProduto = $jsonEntrada['propagandaProduto'];
-    $descricaoProduto = $jsonEntrada['descricaoProduto'];
+    $idProduto = isset($jsonEntrada['idProduto']) && $jsonEntrada['idProduto'] !== "" ? "'" . $jsonEntrada['idProduto'] . "'" : "NULL";
+    $eanProduto = isset($jsonEntrada['eanProduto']) && $jsonEntrada['eanProduto'] !== "" ? "'" . $jsonEntrada['eanProduto'] . "'" : "NULL";
+    $nomeProduto = isset($jsonEntrada['nomeProduto']) && $jsonEntrada['nomeProduto'] !== "" ? "'" . $jsonEntrada['nomeProduto'] . "'" : "NULL";
+    $valorCompra = isset($jsonEntrada['valorCompra']) && $jsonEntrada['valorCompra'] !== "" ? "'" . $jsonEntrada['valorCompra'] . "'" : "NULL";
+    $precoProduto = isset($jsonEntrada['precoProduto']) && $jsonEntrada['precoProduto'] !== "" ? "'" . $jsonEntrada['precoProduto'] . "'" : "NULL";
+    $codigoNcm = isset($jsonEntrada['codigoNcm']) && $jsonEntrada['codigoNcm'] !== "" ? "'" . $jsonEntrada['codigoNcm'] . "'" : "NULL";
+    $codigoCest = isset($jsonEntrada['codigoCest']) && $jsonEntrada['codigoCest'] !== "" ? "'" . $jsonEntrada['codigoCest'] . "'" : "NULL";
+    $imgProduto = isset($jsonEntrada['imgProduto']) && $jsonEntrada['imgProduto'] !== "" ? "'" . $jsonEntrada['imgProduto'] . "'" : "NULL";
+    $idMarca = isset($jsonEntrada['idMarca']) && $jsonEntrada['idMarca'] !== "" ? "'" . $jsonEntrada['idMarca'] . "'" : "NULL";
+    $ativoProduto = isset($jsonEntrada['ativoProduto']) && $jsonEntrada['ativoProduto'] !== "" ? "'" . $jsonEntrada['ativoProduto'] . "'" : "NULL";
+    $propagandaProduto = isset($jsonEntrada['propagandaProduto']) && $jsonEntrada['propagandaProduto'] !== "" ? "'" . $jsonEntrada['propagandaProduto'] . "'" : "NULL";
+    $descricaoProduto = isset($jsonEntrada['descricaoProduto']) && $jsonEntrada['descricaoProduto'] !== "" ? "'" . $jsonEntrada['descricaoProduto'] . "'" : "NULL";
+    $idPessoaFornecedor = isset($jsonEntrada['idPessoaFornecedor']) && $jsonEntrada['idPessoaFornecedor'] !== "" ? "'" . $jsonEntrada['idPessoaFornecedor'] . "'" : "NULL";
+    $refProduto = isset($jsonEntrada['refProduto']) && $jsonEntrada['refProduto'] !== "" ? "'" . $jsonEntrada['refProduto'] . "'" : "NULL";
+    $dataAtualizacaoTributaria = isset($jsonEntrada['dataAtualizacaoTributaria']) && $jsonEntrada['dataAtualizacaoTributaria'] !== "" ? "'" . $jsonEntrada['dataAtualizacaoTributaria'] . "'" : "NULL";
+    $codImendes = isset($jsonEntrada['codImendes']) && $jsonEntrada['codImendes'] !== "" ? "'" . $jsonEntrada['codImendes'] . "'" : "NULL";
+    $codigoGrupo = isset($jsonEntrada['codigoGrupo']) && $jsonEntrada['codigoGrupo'] !== "" ? "'" . $jsonEntrada['codigoGrupo'] . "'" : "NULL";
+    $substICMSempresa = isset($jsonEntrada['substICMSempresa']) && $jsonEntrada['substICMSempresa'] !== "" ? "'" . $jsonEntrada['substICMSempresa'] . "'" : "NULL";
+    $substICMSFornecedor = isset($jsonEntrada['substICMSFornecedor']) && $jsonEntrada['substICMSFornecedor'] !== "" ? "'" . $jsonEntrada['substICMSFornecedor'] . "'" : "NULL";
+    $prodZFM = isset($jsonEntrada['prodZFM']) && $jsonEntrada['prodZFM'] !== "" ? "'" . $jsonEntrada['prodZFM'] . "'" : "NULL";
+   
 
-    if ($imgProduto == "null") {
-        $sql = "UPDATE  produtos  SET nomeProduto ='$nomeProduto', idMarca =$idMarca, precoProduto =$precoProduto, ativoProduto ='$ativoProduto',    propagandaProduto ='$propagandaProduto', descricaoProduto ='$descricaoProduto' WHERE idProduto = $idProduto ";
-    } else {
-        $sql = "UPDATE  produtos  SET nomeProduto ='$nomeProduto', imgProduto ='$imgProduto', idMarca =$idMarca, precoProduto =$precoProduto, ativoProduto ='$ativoProduto',    propagandaProduto ='$propagandaProduto', descricaoProduto ='$descricaoProduto' WHERE idProduto = $idProduto ";
-    }
+    $sql = "UPDATE produtos SET eanProduto=$eanProduto, nomeProduto=$nomeProduto, valorCompra=$valorCompra,
+    precoProduto=$precoProduto, codigoNcm=$codigoNcm, codigoCest=$codigoCest, imgProduto=$imgProduto,
+    idMarca=$idMarca, ativoProduto=$ativoProduto, propagandaProduto=$propagandaProduto,descricaoProduto=$descricaoProduto,
+    idPessoaFornecedor=$idPessoaFornecedor, refProduto=$refProduto, dataAtualizacaoTributaria=$dataAtualizacaoTributaria,
+    codImendes=$codImendes,codigoGrupo=$codigoGrupo, substICMSempresa=$substICMSempresa, substICMSFornecedor=$substICMSFornecedor,
+    prodZFM=$prodZFM WHERE idProduto = $idProduto";
+
+   
     //echo $sql;
 
     //LOG
     if (isset($LOG_NIVEL)) {
         if ($LOG_NIVEL >= 3) {
+            fwrite($arquivo, $identificacao . "-imgProduto->" . $imgProduto . "\n");
             fwrite($arquivo, $identificacao . "-SQL->" . $sql . "\n");
         }
     }

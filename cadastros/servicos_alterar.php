@@ -1,20 +1,38 @@
 <?php
-include_once('../head.php');
+// Lucas 06102023 padrao novo
+include_once('../header.php');
 include_once('../database/servicos.php');
 $idServico = $_GET['idServico'];
 $servico = buscaServicos($idServico);
 ?>
+<!doctype html>
+<html lang="pt-BR">
 
+<head>
 
-<body class="bg-transparent">
+    <?php include_once ROOT . "/vendor/head_css.php"; ?>
 
-    <div class="container formContainer">
+</head>
 
+<body>
+
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-8">
-                <h2 class="tituloTabela">Editar Serviço</h2>
+            <BR> <!-- MENSAGENS/ALERTAS -->
+        </div>
+        <div class="row">
+            <BR> <!-- BOTOES AUXILIARES -->
+        </div>
+        <div class="row"> <!-- LINHA SUPERIOR A TABLE -->
+            <div class="col-3">
+                <!-- TITULO -->
+                <h2 class="ts-tituloPrincipal">Editar Serviço</h2>
             </div>
-            <div class="col-sm-4" style="text-align:right">
+            <div class="col-7">
+                <!-- FILTROS -->
+            </div>
+
+            <div class="col-2 text-end">
                 <a href="servicos.php" role="button" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i></i>&#32;Voltar</a>
             </div>
         </div>
@@ -22,24 +40,20 @@ $servico = buscaServicos($idServico);
         <form class="mb-4" action="../database/servicos.php?operacao=alterar" method="post" enctype="multipart/form-data">
 
             <div class="row">
-                <div class="col-sm-12" style="margin-top: 10px">
-                    <div class="form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -20px;">Nome do Serviço</label>
-                        <input type="text" name="nomeServico" class="form-control" value="<?php echo $servico['nomeServico'] ?>">
-                        <input type="text" class="form-control" name="idServico" value="<?php echo $servico['idServico'] ?>" style="display: none">
-                    </div>
+                <div class="col-sm-12">
+                    <label class='form-label ts-label'>Nome do Serviço</label>
+                    <input type="text" name="nomeServico" class="form-control ts-input" value="<?php echo $servico['nomeServico'] ?>">
+                    <input type="hidden" class="form-control ts-input" name="idServico" value="<?php echo $servico['idServico'] ?>">
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-sm-6" style="margin-top: 50px">
-                    <div class="col-sm-6" style="margin-top: -20px">
-                        <label class='control-label' for='inputNormal' style="margin-top: -50px;">Imagem do Serviço</label>
-                        <label class="picture" for="foto" tabIndex="0">
-                            <img src="<?php echo $servico["imgServico"] ?>" width="100%" height="100%" alt="">
-                        </label>
-                        <input type="file" name="imgServico" id="foto">
-                    </div>
+            <div class="row mt-3">
+                <div class="col-sm-6">
+                    <label class='form-label ts-label'>Imagem do Serviço</label>
+                    <label class="picture" for="foto" tabIndex="0">
+                        <img src="<?php echo $servico["imgServico"] ?>" width="100%" height="100%" alt="">
+                    </label>
+                    <input type="file" name="imgServico" id="foto">
                 </div>
             </div>
 
@@ -53,15 +67,13 @@ $servico = buscaServicos($idServico);
 
             <div class="row">
                 <div class="col-sm-8">
-                    <div class="select-form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -20px;">Link Serviço</label>
-                        <input type="text" name="linkServico" class="form-control" value="<?php echo $servico['linkServico'] ?>">
-                    </div>
+                    <label class='form-label ts-label'>Link Serviço</label>
+                    <input type="text" name="linkServico" class="form-control ts-input" value="<?php echo $servico['linkServico'] ?>">
                 </div>
 
-                <div class="col-sm-4" style="margin-top: 30px">
+                <div class="col-sm-4 mt-4">
                     <div class="select-form-group">
-                        <label class='control-label' for='inputNormal' style="margin-top: -45px;">Destaque</label>
+                        <label class='form-label ts-label'>Destaque</label>
                         <label for="destaque">Não</label>
                         <input type="range" id="destaque" name="destaque" min="0" max="1" value="<?php echo $servico['destaque'] ?>" style="width: 15%;">
                         <label for="destaque">Sim</label>
@@ -69,13 +81,15 @@ $servico = buscaServicos($idServico);
                 </div>
             </div>
 
-            <div style="text-align:right; margin-top:20px">
+            <div class="text-end mt-4">
                 <button type="submit" class="btn  btn-success"><i class="bi bi-sd-card-fill"></i>&#32;Salvar</button>
             </div>
         </form>
     </div>
 
-    </div>
+    <!-- LOCAL PARA COLOCAR OS JS -->
+
+    <?php include_once ROOT . "/vendor/footer_js.php"; ?>
 
     <script src="<?php echo URLROOT ?>/sistema/js/quilljs.js"></script>
     <script>
@@ -109,6 +123,8 @@ $servico = buscaServicos($idServico);
             }
         });
     </script>
+
+    <!-- LOCAL PARA COLOCAR OS JS -FIM -->
 
 </body>
 

@@ -1,68 +1,68 @@
 <?php
-include_once(__DIR__ . '/../head.php');
+//Lucas 17102023 novo padrao
+include_once(__DIR__ . '/../header.php');
 ?>
+<!doctype html>
+<html lang="pt-BR">
 
-<style>
+<head>
 
-  .nav-link.active:any-link{
-    background-color: transparent;
-    border: 2px solid #DFDFDF;
-    border-radius: 5px 5px 0px 0px;
-    color: #1B4D60;
-  }
+  <?php include_once ROOT . "/vendor/head_css.php"; ?>
 
-  .nav-link:any-link{
-    background-color: #567381;
-    border: 1px solid #DFDFDF;
-    border-radius: 5px 5px 0px 0px;
-    color: #fff;
-  }
-  
-</style>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-2 mb-3">
-      <ul class="nav nav-pills flex-column" id="myTab" role="tablist">
+</head>
+
+<body>
+
+  <div class="container-fluid">
+    <div class="row pt-2">
+      <div class="col-md-2 mb-3">
+        <ul class="nav nav-pills flex-column" id="myTab" role="tablist">
+          <?php
+          $stab = 'usuario';
+          if (isset($_GET['stab'])) {
+            $stab = $_GET['stab'];
+          }
+          //echo "<HR>stab=" . $stab;
+          ?>
+          <li class="nav-item ">
+            <a class="nav-link ts-tabConfig <?php if ($stab == "usuario") {
+                                              echo " active ";
+                                            } ?>" href="?tab=configuracao&stab=usuario" role="tab">Usuários</a>
+          </li>
+
+
+
+        </ul>
+      </div>
+      <div class="col-md-10">
         <?php
-        $stab = 'usuario';
-        if (isset($_GET['stab'])) {
-          $stab = $_GET['stab'];
+        $ssrc = "";
+
+        if ($stab == "usuario") {
+          $ssrc = "usuario.php";
         }
-        //echo "<HR>stab=" . $stab;
+        if ($stab == "clientes") {
+          $ssrc = "clientes.php";
+        }
+
+
+        if ($ssrc !== "") {
+          //echo $ssrc;
+          include($ssrc);
+        }
+
         ?>
-        <li class="nav-item ">
-          <a class="nav-link <?php if ($stab == "usuario") {
-            echo " active ";
-          } ?>"
-            href="?tab=configuracao&stab=usuario" role="tab">Usuários</a>
-        </li>
 
-    
-
-      </ul>
+      </div>
     </div>
-    <div class="col-md-10">
-      <?php
-          $ssrc = "";
 
-          if ($stab == "usuario") {
-            $ssrc = "usuario.php";
-          }
-          if ($stab == "clientes") {
-            $ssrc = "clientes.php";
-          }
-    
-
-          if ($ssrc !== "") {
-            //echo $ssrc;
-            include($ssrc);
-          }
-
-      ?>
-
-    </div>
   </div>
 
+  <!-- LOCAL PARA COLOCAR OS JS -->
 
+  <?php include_once ROOT . "/vendor/footer_js.php"; ?>
 
-</div>
+  <!-- LOCAL PARA COLOCAR OS JS -FIM -->
+</body>
+
+</html>
