@@ -391,6 +391,13 @@ $marcas = buscaMarcas();
                 url: '../database/produtos.php?operacao=atualizar',
                 data: {
                     idProduto: idProdutoAtualiza  
+                },
+                success: function(data) {
+                   
+                },
+
+                error: function(xhr, status, error) {
+                    alert("ERRO="+JSON.stringify(error));
                 }
             });
             window.location.reload();

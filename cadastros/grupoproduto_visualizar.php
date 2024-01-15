@@ -304,7 +304,7 @@
     //alert(buscaGrupoProduto);
     $(document).on('click', 'button[data-bs-target="#modalRegraFiscal"]', function() {
         var idRegraFiscal = $(this).attr("data-idRegraFiscal");
-        //alert(idRegraFiscal)
+        alert(idRegraFiscal)
         $.ajax({
             type: 'POST',
             dataType: 'json',
@@ -313,6 +313,7 @@
                 idRegraFiscal: idRegraFiscal
             },
             success: function(data) {
+                alert(json.stringfy(data))
                 $('#idRegraFiscal').val(data.idRegraFiscal);
 
                 $('#codigoGrupo_regrafiscal').val(data.codigoGrupo);
@@ -351,7 +352,10 @@
 
 
                 $('#modalRegraFiscal').modal('show');
-            }
+            },
+            error: function(xhr, status, error) {
+                    alert("ERRO="+JSON.stringify(error));
+                }
 
         });
     });
