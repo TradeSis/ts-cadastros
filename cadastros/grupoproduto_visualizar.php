@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-xxl-down">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Visualizar Grupo Produto</h5>
+                <h5 class="modal-title">Grupo - </h5>&nbsp;<h5 class="modal-title" id="textoCodigoGrupo"></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -304,7 +304,7 @@
     //alert(buscaGrupoProduto);
     $(document).on('click', 'button[data-bs-target="#modalRegraFiscal"]', function() {
         var idRegraFiscal = $(this).attr("data-idRegraFiscal");
-        alert(idRegraFiscal)
+        //alert(idRegraFiscal)
         $.ajax({
             type: 'POST',
             dataType: 'json',
@@ -313,7 +313,7 @@
                 idRegraFiscal: idRegraFiscal
             },
             success: function(data) {
-                alert(json.stringfy(data))
+                //alert(json.stringfy(data))
                 $('#idRegraFiscal').val(data.idRegraFiscal);
 
                 $('#codigoGrupo_regrafiscal').val(data.codigoGrupo);

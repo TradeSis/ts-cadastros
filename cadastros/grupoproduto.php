@@ -236,9 +236,11 @@ include_once(__DIR__ . '/../header.php');
                     codigoGrupo: codigoGrupo
                 },
                 success: function(data) {
-                    //alert(data)
                     $('#codigoGrupo').val(data.codigoGrupo);
                     $vcodigoGrupo = data.codigoGrupo;
+                    var texto = $("#textoCodigoGrupo");
+                    texto.html($vcodigoGrupo);
+                
                     $('#nomeGrupo').val(data.nomeGrupo);
                     $('#codigoNcm').val(data.codigoNcm);
                     $('#codigoCest').val(data.codigoCest);
@@ -258,24 +260,26 @@ include_once(__DIR__ . '/../header.php');
                     $('#ipiex').val(data.ipiex);
                     $('#visualizarGrupoProdutoModal').modal('show');
 
+                    /* Cria a tabela de Regras */
                     $.ajax({
                         type: 'POST',
                         dataType: 'html',
                         url: '<?php echo URLROOT ?>/impostos/database/regrafiscal.php?operacao=filtrar',
                         beforeSend: function() {
-                            $("#tabela_regrafiscal").html("Carregando1...");
+                            $("#tabela_regrafiscal").html("Carregando...");
                         },
                         data: {
                             codigoGrupo: $vcodigoGrupo
                         },
                         success: function(msg) {
-                            var json = JSON.parse(msg);
 
+                            var json = JSON.parse(msg);
                             var linha = "";
+
                             for (var $i = 0; $i < json.length; $i++) {
                                 var object = json[$i];
-
                                 linha = linha + "<tr>";
+
                                 linha = linha + "<td>" + object.codigoGrupo + "</td>";
                                 linha = linha + "<td>" + object.codigoEstado + "</td>";
                                 linha = linha + "<td>" + object.cFOP + "</td>";
@@ -284,14 +288,19 @@ include_once(__DIR__ . '/../header.php');
 
                                 linha = linha + "</tr>";
                             }
+
                             $("#tabela_regrafiscal").html(linha);
+                        },
+                        error: function(xhr, status, error) {
+                            alert("ERRO=" + JSON.stringify(error));
                         }
                     });
+                },
+                error: function(xhr, status, error) {
+                    alert("ERRO=" + JSON.stringify(error));
                 }
             });
         });
-
-        
 
 
         $(document).ready(function() {
@@ -305,6 +314,9 @@ include_once(__DIR__ . '/../header.php');
                     processData: false,
                     contentType: false,
                     success: refreshPage,
+                    error: function(xhr, status, error) {
+                        alert("ERRO=" + JSON.stringify(error));
+                    }
                 });
             });
 

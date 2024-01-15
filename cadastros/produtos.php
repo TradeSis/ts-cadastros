@@ -47,7 +47,7 @@ $marcas = buscaMarcas();
             <table class="table table-sm table-hover">
                 <thead class="ts-headertabelafixo">
                     <tr class="ts-headerTabelaLinhaCima">
-                        <th>imgProduto</th>
+                        <th>data</th>
                         <th>eanProduto</th>
                         <th>nomeProduto</th>
                         <th>precoProduto</th>
@@ -357,7 +357,7 @@ $marcas = buscaMarcas();
                         var object = json[$i];
 
                         linha = linha + "<tr>";
-                        linha = linha + "<td>" + object.imgProduto + "</td>";
+                        linha = linha + "<td>" + object.dataAtualizacaoTributariaFormatada + "</td>";
                         linha = linha + "<td>" + object.eanProduto + "</td>";
                         linha = linha + "<td>" + object.nomeProduto + "</td>";
                         linha = linha + "<td>" + object.precoProduto + "</td>";
