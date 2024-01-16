@@ -17,6 +17,7 @@ $marcas = buscaMarcas();
 
 </head>
 
+
 <body>
     <div class="container-fluid">
 
@@ -393,6 +394,11 @@ $marcas = buscaMarcas();
                     idProduto: idProdutoAtualiza  
                 },
                 success: function(data) {
+                    console.log(data.retorno)
+                    if(data.mensagem == true){
+                        //window.location.href='produtos.php?mensagem=Nenhum produto encontrado.'
+                        alert ("Nenhum produto encontrado.")
+                    }
                    
                 },
 
@@ -401,7 +407,7 @@ $marcas = buscaMarcas();
                 }
             });
             window.location.reload();
-
+            
         });
 
         $(document).on('click', 'button[data-bs-target="#alterarProdutoModal"]', function() {
