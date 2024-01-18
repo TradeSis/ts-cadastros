@@ -52,7 +52,7 @@ $marcas = buscaMarcas();
                         <th>eanProduto</th>
                         <th>nomeProduto</th>
                         <th>precoProduto</th>
-                        <th>idMarca</th>
+                        <th>codigoGrupo</th>
                         <th>ativoProduto</th>
                         <th colspan="2">Ação</th>
                     </tr>
@@ -357,12 +357,17 @@ $marcas = buscaMarcas();
                     for (var $i = 0; $i < json.length; $i++) {
                         var object = json[$i];
 
+                        dataAtualizacao = object.dataAtualizacaoTributariaFormatada
+                        if(object.dataAtualizacaoTributariaFormatada == null){
+                            dataAtualizacao = "---";
+                        }
+
                         linha = linha + "<tr>";
-                        linha = linha + "<td>" + object.dataAtualizacaoTributariaFormatada + "</td>";
+                        linha = linha + "<td>" + dataAtualizacao + "</td>";
                         linha = linha + "<td>" + object.eanProduto + "</td>";
                         linha = linha + "<td>" + object.nomeProduto + "</td>";
                         linha = linha + "<td>" + object.precoProduto + "</td>";
-                        linha = linha + "<td>" + object.idMarca + "</td>";
+                        linha = linha + "<td>" + object.codigoGrupo + "</td>";
                         linha = linha + "<td>" + object.ativoProduto + "</td>";
 
                         linha = linha + "<td>" + "<button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#alterarProdutoModal' data-idProduto='" + object.idProduto + "'><i class='bi bi-pencil-square'></i></button> " +
@@ -396,8 +401,7 @@ $marcas = buscaMarcas();
                 success: function(data) {
                     console.log(data.retorno)
                     if(data.mensagem == true){
-                        //window.location.href='produtos.php?mensagem=Nenhum produto encontrado.'
-                        alert ("Nenhum produto encontrado.")
+                        alert ("Nenhum produto retornado.")
                     }
                    
                 },

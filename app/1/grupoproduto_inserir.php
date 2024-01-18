@@ -39,7 +39,8 @@ if (isset($jsonEntrada['codigoGrupo'])) {
 	$aliqPis = isset($jsonEntrada['aliqPis']) && $jsonEntrada['aliqPis'] !== "" ? "'" . $jsonEntrada['aliqPis'] . "'" : "NULL";
     $aliqCofins = isset($jsonEntrada['aliqCofins']) && $jsonEntrada['aliqCofins'] !== "" ? "'" . $jsonEntrada['aliqCofins'] . "'" : "NULL";
     $nri = isset($jsonEntrada['nri']) && $jsonEntrada['nri'] !== "" ? "'" . $jsonEntrada['nri'] . "'" : "NULL";
-	$ampLegal = isset($jsonEntrada['ampLegal']) && $jsonEntrada['ampLegal'] !== "" ? "'" . $jsonEntrada['ampLegal'] . "'" : "NULL";
+	$ampLegal = str_replace("'", "", $jsonEntrada['ampLegal']);
+    $ampLegal_formatada = isset($ampLegal) && $ampLegal !== "null"    ? "'" .  $ampLegal . "'" : "null";
     $redPIS = isset($jsonEntrada['redPIS']) && $jsonEntrada['redPIS'] !== "" ? "'" . $jsonEntrada['redPIS'] . "'" : "NULL";
     $redCofins = isset($jsonEntrada['redCofins']) && $jsonEntrada['redCofins'] !== "" ? "'" . $jsonEntrada['redCofins'] . "'" : "NULL";
 	$ipicstEnt = isset($jsonEntrada['ipicstEnt']) && $jsonEntrada['ipicstEnt'] !== "" ? "'" . $jsonEntrada['ipicstEnt'] . "'" : "NULL";
@@ -51,7 +52,7 @@ if (isset($jsonEntrada['codigoGrupo'])) {
     $sql = "INSERT INTO `grupoproduto`(codigoGrupo, nomeGrupo, codigoNcm, codigoCest, impostoImportacao, piscofinscstEnt,
         piscofinscstSai, aliqPis, aliqCofins, nri, ampLegal, redPIS, redCofins, ipicstEnt, ipicstSai, aliqipi, codenq, ipiex) 
         VALUES ($codigoGrupo, $nomeGrupo, $codigoNcm, $codigoCest, $impostoImportacao, $piscofinscstEnt,
-        $piscofinscstSai, $aliqPis, $aliqCofins, $nri, $ampLegal, $redPIS, $redCofins, $ipicstEnt, $ipicstSai, $aliqipi, $codenq, $ipiex)";
+        $piscofinscstSai, $aliqPis, $aliqCofins, $nri, $ampLegal_formatada, $redPIS, $redCofins, $ipicstEnt, $ipicstSai, $aliqipi, $codenq, $ipiex)";
     
 
     //echo $sql;
