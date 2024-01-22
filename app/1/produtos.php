@@ -32,7 +32,7 @@ $conexao = conectaMysql($idEmpresa);
 
 $produtos = array();
 
-$sql = "SELECT * FROM produtos ";
+$sql = "SELECT * , '' AS dataAtualizacaoTributariaFormatada FROM produtos ";
 
 if (isset($jsonEntrada["idProduto"])) {
   $sql = $sql . " where produtos.idProduto = " . $jsonEntrada["idProduto"];
@@ -57,6 +57,14 @@ $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
   array_push($produtos, $row);
+
+  $dataAtualizacaoTributariaFormatada = null;
+    if(isset($produtos[$rows]["dataAtualizacaoTributaria"])){
+      $dataAtualizacaoTributariaFormatada = date('d/m/Y H:i', strtotime($produtos[$rows]["dataAtualizacaoTributaria"]));
+    }
+
+  $produtos[$rows]["dataAtualizacaoTributariaFormatada"] = $dataAtualizacaoTributariaFormatada;
+
   $rows = $rows + 1;
 }
 

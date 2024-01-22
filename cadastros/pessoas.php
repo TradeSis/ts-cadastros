@@ -157,28 +157,28 @@ include_once(__DIR__ . '/../header.php');
                                     </div><!--fim row 5-->
                                     <div class="row mt-3">
                                         <div class="col-md">
-                                            <label class="form-label ts-label">crt</label>
-                                            <input type="text" class="form-control ts-input" name="crt">
+                                            <label class="form-label ts-label">crt*</label>
+                                            <input type="text" class="form-control ts-input" name="crt" required>
                                         </div>
                                         <div class="col-md">
-                                            <label class="form-label ts-label">regimeTrib</label>
-                                            <input type="text" class="form-control ts-input" name="regimeTrib">
+                                            <label class="form-label ts-label">regimeTrib*</label>
+                                            <input type="text" class="form-control ts-input" name="regimeTrib" required>
                                         </div>
                                         <div class="col-md">
-                                            <label class="form-label ts-label">cnae</label>
-                                            <input type="text" class="form-control ts-input" name="cnae">
+                                            <label class="form-label ts-label">cnae*</label>
+                                            <input type="text" class="form-control ts-input" name="cnae" required>
                                         </div>
                                         <div class="col-md">
-                                            <label class="form-label ts-label">regimeEspecial</label>
-                                            <input type="text" class="form-control ts-input" name="regimeEspecial">
+                                            <label class="form-label ts-label">regimeEspecial*</label>
+                                            <input type="text" class="form-control ts-input" name="regimeEspecial" required>
                                         </div>
                                         <div class="col-md">
-                                            <label class="form-label ts-label">caracTrib</label>
-                                            <input type="text" class="form-control ts-input" name="caracTrib">
+                                            <label class="form-label ts-label">caracTrib*</label>
+                                            <input type="text" class="form-control ts-input" name="caracTrib" required>
                                         </div>
                                         <div class="col-md">
-                                            <label class="form-label ts-label">origem</label>
-                                            <input type="text" class="form-control ts-input" name="origem">
+                                            <label class="form-label ts-label">origem*</label>
+                                            <input type="text" class="form-control ts-input" name="origem" required>
                                         </div>
                                     </div><!--fim row 5-->
                                     <div class="row mt-3">
@@ -299,28 +299,28 @@ include_once(__DIR__ . '/../header.php');
                                     </div><!--fim row 5-->
                                     <div class="row mt-3">
                                         <div class="col-md">
-                                            <label class="form-label ts-label">crt</label>
-                                            <input type="text" class="form-control ts-input" id="crt" name="crt">
+                                            <label class="form-label ts-label">crt*</label>
+                                            <input type="text" class="form-control ts-input" id="crt" name="crt" required>
                                         </div>
                                         <div class="col-md">
-                                            <label class="form-label ts-label">regimeTrib</label>
-                                            <input type="text" class="form-control ts-input" id="regimeTrib" name="regimeTrib">
+                                            <label class="form-label ts-label">regimeTrib*</label>
+                                            <input type="text" class="form-control ts-input" id="regimeTrib" name="regimeTrib" required>
                                         </div>
                                         <div class="col-md">
-                                            <label class="form-label ts-label">cnae</label>
-                                            <input type="text" class="form-control ts-input" id="cnae" name="cnae">
+                                            <label class="form-label ts-label">cnae*</label>
+                                            <input type="text" class="form-control ts-input" id="cnae" name="cnae" required>
                                         </div>
                                         <div class="col-md">
-                                            <label class="form-label ts-label">regimeEspecial</label>
-                                            <input type="text" class="form-control ts-input" id="regimeEspecial" name="regimeEspecial">
+                                            <label class="form-label ts-label">regimeEspecial*</label>
+                                            <input type="text" class="form-control ts-input" id="regimeEspecial" name="regimeEspecial" required>
                                         </div>
                                         <div class="col-md">
-                                            <label class="form-label ts-label">caracTrib</label>
-                                            <input type="text" class="form-control ts-input" name="caracTrib" id="caracTrib">
+                                            <label class="form-label ts-label">caracTrib*</label>
+                                            <input type="text" class="form-control ts-input" name="caracTrib" id="caracTrib" required>
                                         </div>
                                         <div class="col-md">
-                                            <label class="form-label ts-label">origem</label>
-                                            <input type="text" class="form-control ts-input" name="origem" id="origem">
+                                            <label class="form-label ts-label">origem*</label>
+                                            <input type="text" class="form-control ts-input" name="origem" id="origem" required>
                                         </div>
                                     </div><!--fim row 5-->
                                     <div class="row mt-3">
@@ -452,11 +452,11 @@ include_once(__DIR__ . '/../header.php');
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">caracTrib</label>
-                                            <input type="text" class="form-control ts-input" name="caracTrib" id="EXCcaracTrib">
+                                            <input type="text" class="form-control ts-input" name="caracTrib" id="EXCcaracTrib" readonly>
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">origem</label>
-                                            <input type="text" class="form-control ts-input" name="origem" id="EXCorigem">
+                                            <input type="text" class="form-control ts-input" name="origem" id="EXCorigem" readonly>
                                         </div>
                                     </div><!--fim row 5-->
                                 </div>
@@ -606,6 +606,7 @@ include_once(__DIR__ . '/../header.php');
                         $('#EXCregimeEspecial').val(data.regimeEspecial);
                         $('#EXCcodigoCidade').val(data.codigoCidade);
                         $('#EXCcodigoEstado').val(data.codigoEstado);
+                        $('#EXCcaracTrib').val(data.caracTrib);
                         $('#EXCorigem').val(data.origem);
                         $('#excluirPessoaModal').modal('show');
                     }
