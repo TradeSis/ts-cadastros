@@ -52,7 +52,7 @@ $marcas = buscaMarcas();
                         <th>eanProduto</th>
                         <th>nomeProduto</th>
                         <th>precoProduto</th>
-                        <th>codigoGrupo</th>
+                        <th>idGrupo</th>
                         <th>ativoProduto</th>
                         <th colspan="2">Ação</th>
                     </tr>
@@ -367,7 +367,7 @@ $marcas = buscaMarcas();
                         linha = linha + "<td>" + object.eanProduto + "</td>";
                         linha = linha + "<td>" + object.nomeProduto + "</td>";
                         linha = linha + "<td>" + object.precoProduto + "</td>";
-                        linha = linha + "<td>" + object.codigoGrupo + "</td>";
+                        linha = linha + "<td>" + object.idGrupo + "</td>";
                         linha = linha + "<td>" + object.ativoProduto + "</td>";
 
                         linha = linha + "<td>" + "<button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#alterarProdutoModal' data-idProduto='" + object.idProduto + "'><i class='bi bi-pencil-square'></i></button> " +
