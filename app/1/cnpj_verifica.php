@@ -22,17 +22,12 @@ if (isset($LOG_NIVEL)) {
 }
 //LOG
 
-$idEmpresa = null;
-if (isset($jsonEntrada["idEmpresa"])) {
-  $idEmpresa = $jsonEntrada["idEmpresa"];
-}
-
-$conexao = conectaMysql($idEmpresa);
+$conexao = conectaMysql(null);
 
 
     $cpfCnpj = $jsonEntrada["cpfCnpj"];
  
-    $sql_consulta = "SELECT * FROM pessoas WHERE cpfCnpj = $cpfCnpj";
+    $sql_consulta = "SELECT * FROM geralpessoas WHERE cpfCnpj = $cpfCnpj";
     $buscar_consulta = mysqli_query($conexao, $sql_consulta);
     $row_consulta = mysqli_fetch_array($buscar_consulta, MYSQLI_ASSOC);
     $cpfCnpj = isset($row_consulta["cpfCnpj"]) && $row_consulta["cpfCnpj"] !== "" ? "'" . $row_consulta["cpfCnpj"] . "'" : "null";

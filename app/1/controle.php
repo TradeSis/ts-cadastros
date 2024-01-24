@@ -80,6 +80,18 @@ if ($metodo == "GET") {
       include 'eanProduto_verifica.php';
       break;  
 
+    case "geralprodutos":
+      include 'geralprodutos.php';
+      break;  
+
+    case "geralpessoas":
+      include 'geralpessoas.php';
+      break;  
+
+    case "geralfornecimento":
+      include 'geralfornecimento.php';
+      break;  
+
 
     default:
       $jsonSaida = json_decode(json_encode(
@@ -117,6 +129,10 @@ if ($metodo == "PUT") {
 
     case "pessoas":
       include 'pessoas_inserir.php';
+      break;
+
+    case "geralpessoas":
+      include 'geralpessoas_inserir.php';
       break;
 
     case "grupoproduto":
@@ -160,6 +176,10 @@ if ($metodo == "POST") {
 
     case "pessoas":
       include 'pessoas_alterar.php';
+      break;
+
+    case "geralpessoas":
+      include 'geralpessoas_alterar.php';
       break;
 
     default:

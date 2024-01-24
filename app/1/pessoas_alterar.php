@@ -23,39 +23,18 @@ if (isset($LOG_NIVEL)) {
 }
 //LOG
 
-$idEmpresa = $jsonEntrada["idEmpresa"];
+$idEmpresa = null;
+if (isset($jsonEntrada["idEmpresa"])) {
+  $idEmpresa = $jsonEntrada["idEmpresa"];
+}
+
 $conexao = conectaMysql($idEmpresa);
+
 if (isset($jsonEntrada['idPessoa'])) {
     $idPessoa = $jsonEntrada['idPessoa'];
-    $tipoPessoa = isset($jsonEntrada['tipoPessoa']) && $jsonEntrada['tipoPessoa'] !== "" ? "'" . $jsonEntrada['tipoPessoa'] . "'" : "NULL";
     $cpfCnpj = isset($jsonEntrada['cpfCnpj']) && $jsonEntrada['cpfCnpj'] !== "" ? "'" . $jsonEntrada['cpfCnpj'] . "'" : "NULL";
-    $nomePessoa = isset($jsonEntrada['nomePessoa']) && $jsonEntrada['nomePessoa'] !== "" ? "'" . $jsonEntrada['nomePessoa'] . "'" : "NULL";
-    $IE = isset($jsonEntrada['IE']) && $jsonEntrada['IE'] !== "" ? "'" . $jsonEntrada['IE'] . "'" : "NULL";
-    $municipio = isset($jsonEntrada['municipio']) && $jsonEntrada['municipio'] !== "" ? "'" . $jsonEntrada['municipio'] . "'" : "NULL";
-    $codigoCidade = isset($jsonEntrada['codigoCidade']) && $jsonEntrada['codigoCidade'] !== "" ? "'" . $jsonEntrada['codigoCidade'] . "'" : "NULL";
-    $codigoEstado = isset($jsonEntrada['codigoEstado']) && $jsonEntrada['codigoEstado'] !== "" ? "'" . $jsonEntrada['codigoEstado'] . "'" : "NULL";
-    $pais = isset($jsonEntrada['pais']) && $jsonEntrada['pais'] !== "" ? "'" . $jsonEntrada['pais'] . "'" : "NULL";
-    $bairro = isset($jsonEntrada['bairro']) && $jsonEntrada['bairro'] !== "" ? "'" . $jsonEntrada['bairro'] . "'" : "NULL";
-    $endereco = isset($jsonEntrada['endereco']) && $jsonEntrada['endereco'] !== "" ? "'" . $jsonEntrada['endereco'] . "'" : "NULL";
-    $endNumero = isset($jsonEntrada['endNumero']) && $jsonEntrada['endNumero'] !== "" ? "'" . $jsonEntrada['endNumero'] . "'" : "NULL";
-    $cep = isset($jsonEntrada['cep']) && $jsonEntrada['cep'] !== "" ? "'" . $jsonEntrada['cep'] . "'" : "NULL";
-    $email = isset($jsonEntrada['email']) && $jsonEntrada['email'] !== "" ? "'" . $jsonEntrada['email'] . "'" : "NULL";
-    $telefone = isset($jsonEntrada['telefone']) && $jsonEntrada['telefone'] !== "" ? "'" . $jsonEntrada['telefone'] . "'" : "NULL";
-    $facebook = isset($jsonEntrada['facebook']) && $jsonEntrada['facebook'] !== "" ? "'" . $jsonEntrada['facebook'] . "'" : "NULL";
-    $instagram = isset($jsonEntrada['instagram']) && $jsonEntrada['instagram'] !== "" ? "'" . $jsonEntrada['instagram'] . "'" : "NULL";
-    $twitter = isset($jsonEntrada['twitter']) && $jsonEntrada['twitter'] !== "" ? "'" . $jsonEntrada['twitter'] . "'" : "NULL";
-    $imgPerfil = isset($jsonEntrada['imgPerfil']) && $jsonEntrada['imgPerfil'] !== "" ? "'" . $jsonEntrada['imgPerfil'] . "'" : "NULL";
-    $crt = isset($jsonEntrada['crt']) && $jsonEntrada['crt'] !== "" ? "'" . $jsonEntrada['crt'] . "'" : "NULL";
-    $regimeTrib = isset($jsonEntrada['regimeTrib']) && $jsonEntrada['regimeTrib'] !== "" ? "'" . $jsonEntrada['regimeTrib'] . "'" : "NULL";
-    $cnae = isset($jsonEntrada['cnae']) && $jsonEntrada['cnae'] !== "" ? "'" . $jsonEntrada['cnae'] . "'" : "NULL";
-    $regimeEspecial = isset($jsonEntrada['regimeEspecial']) && $jsonEntrada['regimeEspecial'] !== "" ? "'" . $jsonEntrada['regimeEspecial'] . "'" : "NULL";
-    $caracTrib = isset($jsonEntrada['caracTrib']) && $jsonEntrada['caracTrib'] !== "" ? "'" . $jsonEntrada['caracTrib'] . "'" : "NULL";
-    $origem = isset($jsonEntrada['origem']) && $jsonEntrada['origem'] !== "" ? "'" . $jsonEntrada['origem'] . "'" : "NULL";
 
-    $sql = "UPDATE pessoas SET tipoPessoa=$tipoPessoa, cpfCnpj=$cpfCnpj, nomePessoa=$nomePessoa, IE=$IE, 
-        municipio=$municipio, codigoCidade=$codigoCidade, codigoEstado=$codigoEstado, pais=$pais, bairro=$bairro, endereco=$endereco,
-        endNumero=$endNumero, cep=$cep, email=$email, telefone=$telefone, facebook=$facebook, instagram=$instagram,
-        twitter=$twitter, imgPerfil=$imgPerfil,crt=$crt,regimeTrib=$regimeTrib, cnae=$cnae, regimeEspecial=$regimeEspecial, caracTrib=$caracTrib, origem=$origem WHERE idPessoa = $idPessoa";
+    $sql = "UPDATE pessoas SET cpfCnpj=$cpfCnpj WHERE idPessoa = $idPessoa";
 
     //LOG
     if (isset($LOG_NIVEL)) {

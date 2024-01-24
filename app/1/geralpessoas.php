@@ -5,7 +5,7 @@
 $LOG_CAMINHO = defineCaminhoLog();
 if (isset($LOG_CAMINHO)) {
   $LOG_NIVEL = defineNivelLog();
-  $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "pessoas";
+  $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "geralpessoas";
   if (isset($LOG_NIVEL)) {
     if ($LOG_NIVEL >= 1) {
       $arquivo = fopen(defineCaminhoLog() . "cadastros_" . date("dmY") . ".log", "a");
@@ -22,18 +22,12 @@ if (isset($LOG_NIVEL)) {
 }
 //LOG
 
-$idEmpresa = null;
-if (isset($jsonEntrada["idEmpresa"])) {
-  $idEmpresa = $jsonEntrada["idEmpresa"];
-}
-
-$conexao = conectaMysql($idEmpresa);
+$conexao = conectaMysql(null);
 $pessoas = array();
 
-$sql = "SELECT geralpessoas.*, pessoas.* FROM pessoas
-        LEFT JOIN local_impostos.geralpessoas on geralpessoas.cpfCnpj = pessoas.cpfCnpj ";
-if (isset($jsonEntrada["idPessoa"])) {
-  $sql = $sql . " where pessoas.idPessoa = " . $jsonEntrada["idPessoa"];
+$sql = "SELECT * FROM geralpessoas ";
+if (isset($jsonEntrada["cpfCnpj"])) {
+  $sql = $sql . " where geralpessoas.cpfCnpj = " . $jsonEntrada["cpfCnpj"];
 }
 
 //LOG
@@ -51,7 +45,7 @@ while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
   $rows = $rows + 1;
 }
 
-if (isset($jsonEntrada["idPessoa"]) && $rows == 1) {
+if (isset($jsonEntrada["cpfCnpj"]) && $rows == 1) {
   $pessoas = $pessoas[0];
 }
 $jsonSaida = $pessoas;

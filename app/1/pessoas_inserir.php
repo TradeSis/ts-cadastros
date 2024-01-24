@@ -24,40 +24,33 @@ if (isset($LOG_NIVEL)) {
 
 $idEmpresa = null;
 if (isset($jsonEntrada["idEmpresa"])) {
-    $idEmpresa = $jsonEntrada["idEmpresa"];
+  $idEmpresa = $jsonEntrada["idEmpresa"];
 }
+
 $conexao = conectaMysql($idEmpresa);
+
+$conexao2 = conectaMysql($null);
+
 if (isset($jsonEntrada['cpfCnpj'])) {
 
     $cpfCnpj = isset($jsonEntrada['cpfCnpj']) && $jsonEntrada['cpfCnpj'] !== "" ? "'" . $jsonEntrada['cpfCnpj'] . "'" : "NULL";
-    $tipoPessoa = isset($jsonEntrada['tipoPessoa']) && $jsonEntrada['tipoPessoa'] !== "" ? "'" . $jsonEntrada['tipoPessoa'] . "'" : "NULL";
-    $nomePessoa = isset($jsonEntrada['nomePessoa']) && $jsonEntrada['nomePessoa'] !== "" ? "'" . $jsonEntrada['nomePessoa'] . "'" : "NULL";
-	$IE = isset($jsonEntrada['IE']) && $jsonEntrada['IE'] !== "" ? "'" . $jsonEntrada['IE'] . "'" : "NULL";
-	$municipio = isset($jsonEntrada['municipio']) && $jsonEntrada['municipio'] !== "" ? "'" . $jsonEntrada['municipio'] . "'" : "NULL";
-    $codigoCidade = isset($jsonEntrada['codigoCidade']) && $jsonEntrada['codigoCidade'] !== "" ? "'" . $jsonEntrada['codigoCidade'] . "'" : "NULL";
-    $codigoEstado = isset($jsonEntrada['codigoEstado']) && $jsonEntrada['codigoEstado'] !== "" ? "'" . $jsonEntrada['codigoEstado'] . "'" : "NULL";
-	$pais = isset($jsonEntrada['pais']) && $jsonEntrada['pais'] !== "" ? "'" . $jsonEntrada['pais'] . "'" : "NULL";
-    $bairro = isset($jsonEntrada['bairro']) && $jsonEntrada['bairro'] !== "" ? "'" . $jsonEntrada['bairro'] . "'" : "NULL";
-    $endereco = isset($jsonEntrada['endereco']) && $jsonEntrada['endereco'] !== "" ? "'" . $jsonEntrada['endereco'] . "'" : "NULL";
-	$endNumero = isset($jsonEntrada['endNumero']) && $jsonEntrada['endNumero'] !== "" ? "'" . $jsonEntrada['endNumero'] . "'" : "NULL";
-    $cep = isset($jsonEntrada['cep']) && $jsonEntrada['cep'] !== "" ? "'" . $jsonEntrada['cep'] . "'" : "NULL";
-    $email = isset($jsonEntrada['email']) && $jsonEntrada['email'] !== "" ? "'" . $jsonEntrada['email'] . "'" : "NULL";
-	$imgPerfil = isset($jsonEntrada['imgPerfil']) && $jsonEntrada['imgPerfil'] !== "" ? "'" . $jsonEntrada['imgPerfil'] . "'" : "NULL";
-	$telefone = isset($jsonEntrada['telefone']) && $jsonEntrada['telefone'] !== "" ? "'" . $jsonEntrada['telefone'] . "'" : "NULL";
-    $facebook = isset($jsonEntrada['facebook']) && $jsonEntrada['facebook'] !== "" ? "'" . $jsonEntrada['facebook'] . "'" : "NULL";
-    $instagram = isset($jsonEntrada['instagram']) && $jsonEntrada['instagram'] !== "" ? "'" . $jsonEntrada['instagram'] . "'" : "NULL";
-    $twitter = isset($jsonEntrada['twitter']) && $jsonEntrada['twitter'] !== "" ? "'" . $jsonEntrada['twitter'] . "'" : "NULL";
-    $crt = isset($jsonEntrada['crt']) && $jsonEntrada['crt'] !== "" ? "'" . $jsonEntrada['crt'] . "'" : "NULL";
-    $regimeTrib = isset($jsonEntrada['regimeTrib']) && $jsonEntrada['regimeTrib'] !== "" ? "'" . $jsonEntrada['regimeTrib'] . "'" : "NULL";
-    $cnae = isset($jsonEntrada['cnae']) && $jsonEntrada['cnae'] !== "" ? "'" . $jsonEntrada['cnae'] . "'" : "NULL";
-    $regimeEspecial = isset($jsonEntrada['regimeEspecial']) && $jsonEntrada['regimeEspecial'] !== "" ? "'" . $jsonEntrada['regimeEspecial'] . "'" : "NULL";
-    $caracTrib = isset($jsonEntrada['caracTrib']) && $jsonEntrada['caracTrib'] !== "" ? "'" . $jsonEntrada['caracTrib'] . "'" : "NULL";
-    $origem = isset($jsonEntrada['origem']) && $jsonEntrada['origem'] !== "" ? "'" . $jsonEntrada['origem'] . "'" : "NULL";
+    
+    
+    $buscaPessoa = "SELECT * FROM geralpessoas WHERE cpfCnpj = $cpfCnpj";
+    $buscar = mysqli_query($conexao2, $buscaPessoa);
+    $dadosPessoa = mysqli_fetch_array($buscar, MYSQLI_ASSOC);
+    if (mysqli_num_rows($buscar) == 0) {
+        
+        $pessoasEntrada = array(
+            'cpfCnpj' => $jsonEntrada['cpfCnpj']
+        );
 
-    $sql = "INSERT INTO pessoas(cpfCnpj, tipoPessoa, nomePessoa, IE, municipio, codigoCidade, codigoEstado, pais, bairro, endereco, endNumero,
-        cep, email, imgPerfil, telefone, facebook, instagram, twitter, crt, regimeTrib, cnae, regimeEspecial, caracTrib, origem) 
-    VALUES ($cpfCnpj, $tipoPessoa, $nomePessoa, $IE, $municipio, $codigoCidade, $codigoEstado, $pais, $bairro, $endereco, $endNumero, 
-        $cep, $email, $imgPerfil, $telefone, $facebook, $instagram, $twitter, $crt, $regimeTrib, $cnae, $regimeEspecial, $caracTrib, $origem)";
+        $pessoasRetorno = chamaAPI(null, '/cadastros/geralpessoas', json_encode($pessoasEntrada), 'PUT');
+
+    } 
+
+
+    $sql = "INSERT INTO pessoas(cpfCnpj) VALUES ($cpfCnpj)";
     
 
     //echo $sql;
