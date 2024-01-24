@@ -262,8 +262,8 @@ $marcas = buscaMarcas();
                                     <input type="text" class="form-control ts-input" name="codImendes" id="codImendes">
                                 </div>
                                 <div class="col-md">
-                                    <label class="form-label ts-label">codigoGrupo</label>
-                                    <input type="text" class="form-control ts-input" name="codigoGrupo" id="codigoGrupo">
+                                    <label class="form-label ts-label">idGrupo</label>
+                                    <input type="text" class="form-control ts-input" name="idGrupo" id="idGrupo">
                                 </div>
                             </div>
                             <div class="row mt-2">
@@ -442,7 +442,7 @@ $marcas = buscaMarcas();
                     $('#refProduto').val(data.refProduto);
                     $('#dataAtualizacaoTributaria').val(data.dataAtualizacaoTributaria);
                     $('#codImendes').val(data.codImendes);
-                    $('#codigoGrupo').val(data.codigoGrupo);
+                    $('#idGrupo').val(data.idGrupo);
                     $('#substICMSempresa').val(data.substICMSempresa);
                     $('#substICMSFornecedor').val(data.substICMSFornecedor);
                     $('#prodZFM').val(data.prodZFM);
