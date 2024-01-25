@@ -29,7 +29,7 @@ if (isset($jsonEntrada["idEmpresa"])) {
 
 $conexao = conectaMysql($idEmpresa);
 
-$conexao2 = conectaMysql($null);
+$conexao2 = conectaMysql(null);
 
 if (isset($jsonEntrada['cpfCnpj'])) {
 

@@ -69,11 +69,9 @@ if (isset($jsonEntrada['cpfCnpj'])) {
         if (!$atualizar)
             throw new Exception(mysqli_error($conexao));
         
-        $idPessoaInserido = mysqli_insert_id($conexao);
         $jsonSaida = array(
             "status" => 200,
-            "retorno" => "ok",
-            "idPessoa" => $idPessoaInserido
+            "retorno" => "ok"
         );
     } catch (Exception $e) {
         $jsonSaida = array(

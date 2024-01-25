@@ -28,10 +28,10 @@ if (isset($jsonEntrada["idEmpresa"])) {
 }
 
 $conexao = conectaMysql($idEmpresa);
+$conexao2 = conectaMysql(null);
 $pessoas = array();
 
-$sql = "SELECT geralpessoas.*, pessoas.* FROM pessoas
-        LEFT JOIN local_impostos.geralpessoas on geralpessoas.cpfCnpj = pessoas.cpfCnpj ";
+$sql = "SELECT pessoas.* FROM pessoas";
 if (isset($jsonEntrada["idPessoa"])) {
   $sql = $sql . " where pessoas.idPessoa = " . $jsonEntrada["idPessoa"];
 }
@@ -47,8 +47,16 @@ if (isset($LOG_NIVEL)) {
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
-  array_push($pessoas, $row);
-  $rows = $rows + 1;
+    $cpfCnpj = $row['cpfCnpj'];
+
+    $sql2 = "SELECT geralpessoas.* FROM geralpessoas WHERE geralpessoas.cpfCnpj = $cpfCnpj";
+    $buscar2 = mysqli_query($conexao2, $sql2);
+
+    while ($row2 = mysqli_fetch_array($buscar2, MYSQLI_ASSOC)) {
+        $mergedRow = array_merge($row, $row2);
+        array_push($pessoas, $mergedRow);
+        $rows = $rows + 1;
+    }
 }
 
 if (isset($jsonEntrada["idPessoa"]) && $rows == 1) {
