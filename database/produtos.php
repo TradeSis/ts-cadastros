@@ -159,7 +159,7 @@ if (isset($_GET['operacao'])) {
 			'refProduto' => $_POST['refProduto'],
 			'dataAtualizacaoTributaria' => $_POST['dataAtualizacaoTributaria'],
 			'codImendes' => $_POST['codImendes'],
-			'codigoGrupo' => $_POST['codigoGrupo'],
+			'idGrupo' => $_POST['idGrupo'],
 			'substICMSempresa' => $_POST['substICMSempresa'],
 			'substICMSFornecedor' => $_POST['substICMSFornecedor'],
 			'prodZFM' => $_POST['prodZFM'],

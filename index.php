@@ -75,13 +75,13 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
                         if ($nivelMenu >= 2) { ?>
                             <li class="nav-item mr-1">
                                 <a class="nav-link <?php if ($tab == "grupoproduto") {echo " active ";} ?>" 
-                                href="?tab=grupoproduto" role="tab">Grupo produto</a>
+                                href="?tab=grupoproduto" role="tab">XGrupo produto</a>
                             </li>
                         <?php }
                          if ($nivelMenu >= 2) { ?>
                             <li class="nav-item mr-1">
                                 <a class="nav-link <?php if ($tab == "regrafiscal") {echo " active ";} ?>" 
-                                href="?tab=regrafiscal" role="tab">Regra Fiscal</a>
+                                href="?tab=regrafiscal" role="tab">XRegra Fiscal</a>
                             </li>
                         <?php }
                         if ($nivelMenu >= 4) { ?>

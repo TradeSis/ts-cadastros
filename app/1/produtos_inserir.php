@@ -44,17 +44,17 @@ if (isset($jsonEntrada['eanProduto'])) {
     $refProduto = isset($jsonEntrada['refProduto']) && $jsonEntrada['refProduto'] !== "" && $jsonEntrada['refProduto'] !== "NULL" ? "'" . $jsonEntrada['refProduto'] . "'" : "NULL";
     $dataAtualizacaoTributaria = isset($jsonEntrada['dataAtualizacaoTributaria']) && $jsonEntrada['dataAtualizacaoTributaria'] !== "" ? "'" . $jsonEntrada['dataAtualizacaoTributaria'] . "'" : "NULL";
     $codImendes = isset($jsonEntrada['codImendes']) && $jsonEntrada['codImendes'] !== "" ? "'" . $jsonEntrada['codImendes'] . "'" : "NULL";
-    $codigoGrupo = isset($jsonEntrada['codigoGrupo']) && $jsonEntrada['codigoGrupo'] !== "" ? "'" . $jsonEntrada['codigoGrupo'] . "'" : "NULL";
+    $idGrupo = isset($jsonEntrada['idGrupo']) && $jsonEntrada['idGrupo'] !== "" ? "'" . $jsonEntrada['idGrupo'] . "'" : "NULL";
     $substICMSempresa = isset($jsonEntrada['substICMSempresa']) && $jsonEntrada['substICMSempresa'] !== "" ? "'" . $jsonEntrada['substICMSempresa'] . "'" : "'N'";
     $substICMSFornecedor = isset($jsonEntrada['substICMSFornecedor']) && $jsonEntrada['substICMSFornecedor'] !== "" ? "'" . $jsonEntrada['substICMSFornecedor'] . "'" : "'N'";
     $prodZFM = isset($jsonEntrada['prodZFM']) && $jsonEntrada['prodZFM'] !== "" ? "'" . $jsonEntrada['prodZFM'] . "'" : "'N'";
    
     $sql = "INSERT INTO produtos (eanProduto, nomeProduto, valorCompra, precoProduto, codigoNcm, 
     codigoCest, imgProduto, idMarca, ativoProduto, propagandaProduto, descricaoProduto, idPessoaFornecedor, 
-    refProduto, dataAtualizacaoTributaria, codImendes, codigoGrupo, substICMSempresa, substICMSFornecedor, prodZFM) 
+    refProduto, dataAtualizacaoTributaria, codImendes, idGrupo, substICMSempresa, substICMSFornecedor, prodZFM) 
     VALUES ($eanProduto, $nomeProduto, $valorCompra, $precoProduto, $codigoNcm,
     $codigoCest, $imgProduto, $idMarca, $ativoProduto, $propagandaProduto, $descricaoProduto, $idPessoaFornecedor,
-    $refProduto, $dataAtualizacaoTributaria, $codImendes, $codigoGrupo, $substICMSempresa, $substICMSFornecedor, $prodZFM)";
+    $refProduto, $dataAtualizacaoTributaria, $codImendes, $idGrupo, $substICMSempresa, $substICMSFornecedor, $prodZFM)";
 
 
     //LOG
