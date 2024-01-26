@@ -52,7 +52,7 @@ $marcas = buscaMarcas();
                         <th>eanProduto</th>
                         <th>nomeProduto</th>
                         <th>precoProduto</th>
-                        <th>codigoGrupo</th>
+                        <th>idGrupo</th>
                         <th>ativoProduto</th>
                         <th colspan="2">Ação</th>
                     </tr>
@@ -262,8 +262,8 @@ $marcas = buscaMarcas();
                                     <input type="text" class="form-control ts-input" name="codImendes" id="codImendes">
                                 </div>
                                 <div class="col-md">
-                                    <label class="form-label ts-label">codigoGrupo</label>
-                                    <input type="text" class="form-control ts-input" name="codigoGrupo" id="codigoGrupo">
+                                    <label class="form-label ts-label">idGrupo</label>
+                                    <input type="text" class="form-control ts-input" name="idGrupo" id="idGrupo">
                                 </div>
                             </div>
                             <div class="row mt-2">
@@ -367,7 +367,7 @@ $marcas = buscaMarcas();
                         linha = linha + "<td>" + object.eanProduto + "</td>";
                         linha = linha + "<td>" + object.nomeProduto + "</td>";
                         linha = linha + "<td>" + object.precoProduto + "</td>";
-                        linha = linha + "<td>" + object.codigoGrupo + "</td>";
+                        linha = linha + "<td>" + object.idGrupo + "</td>";
                         linha = linha + "<td>" + object.ativoProduto + "</td>";
 
                         linha = linha + "<td>" + "<button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#alterarProdutoModal' data-idProduto='" + object.idProduto + "'><i class='bi bi-pencil-square'></i></button> " +
@@ -442,7 +442,7 @@ $marcas = buscaMarcas();
                     $('#refProduto').val(data.refProduto);
                     $('#dataAtualizacaoTributaria').val(data.dataAtualizacaoTributaria);
                     $('#codImendes').val(data.codImendes);
-                    $('#codigoGrupo').val(data.codigoGrupo);
+                    $('#idGrupo').val(data.idGrupo);
                     $('#substICMSempresa').val(data.substICMSempresa);
                     $('#substICMSFornecedor').val(data.substICMSFornecedor);
                     $('#prodZFM').val(data.prodZFM);
