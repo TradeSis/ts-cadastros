@@ -26,7 +26,7 @@ include_once(__DIR__ . '/../header.php');
         <div class="row d-flex align-items-center justify-content-center mt-1 pt-1 ">
 
             <div class="col-6 col-lg-6">
-                <h2 class="ts-tituloPrincipal">Pessoas</h2>
+                <h2 class="ts-tituloPrincipal">Fornecimento</h2>
             </div>
      
             <div class="col-6 col-lg-6">
@@ -60,8 +60,8 @@ include_once(__DIR__ . '/../header.php');
         </div>
 
 
-       <!--------- INSERIR --------->
-       <div class="modal fade bd-example-modal-lg" id="inserirPessoaModal" tabindex="-1" aria-labelledby="inserirPessoaModalLabel" aria-hidden="true">
+        <!--------- INSERIR --------->
+        <div class="modal fade bd-example-modal-lg" id="inserirPessoaModal" tabindex="-1" aria-labelledby="inserirPessoaModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -75,7 +75,10 @@ include_once(__DIR__ . '/../header.php');
                                     <div class="row mt-3">
                                         <div class="col-md-2">
                                             <label class="form-label ts-label">Tipo de Pessoa</label>
-                                            <input type="text" class="form-control ts-input" disabled name="tipoPessoa">
+                                            <select class="form-select ts-input" name="tipoPessoa">
+                                                <option value="J">Jurídica</option>
+                                                <option value="F">Física</option>
+                                            </select>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-label ts-label">Cpf/Cnpj</label>
@@ -83,87 +86,110 @@ include_once(__DIR__ . '/../header.php');
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">Nome</label>
-                                            <input type="text" class="form-control ts-input" disabled name="nomePessoa">
+                                            <input type="text" class="form-control ts-input" name="nomePessoa">
                                         </div>
                                     </div><!--fim row 1-->
                                     <div class="row mt-3">
                                         <div class="col-md">
                                             <label class="form-label ts-label">codigoCidade</label>
-                                            <input type="text" class="form-control ts-input" disabled name="codigoCidade">
+                                            <input type="text" class="form-control ts-input" name="codigoCidade">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">codigoEstado</label>
-                                            <input type="text" class="form-control ts-input" disabled name="codigoEstado">
-                                        </div>
-                                        <div class="col-md">
-                                            <label class="form-label ts-label">CEP</label>
-                                            <input type="text" class="form-control ts-input" disabled name="cep">
+                                            <input type="text" class="form-control ts-input" name="codigoEstado">
                                         </div>
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col-md">
+                                            <label class="form-label ts-label">CEP</label>
+                                            <input type="text" class="form-control ts-input" name="cep">
+                                        </div>
+                                        <div class="col-md">
                                             <label class="form-label ts-label">Bairro</label>
-                                            <input type="text" class="form-control ts-input" disabled name="bairro">
+                                            <input type="text" class="form-control ts-input" name="bairro">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">Endereço</label>
-                                            <input type="text" class="form-control ts-input" disabled name="endereco">
+                                            <input type="text" class="form-control ts-input" name="endereco">
                                         </div>
                                         <div class="col-md-2">
                                             <label class="form-label ts-label">Numero</label>
-                                            <input type="text" class="form-control ts-input" disabled name="endNumero">
+                                            <input type="text" class="form-control ts-input" name="endNumero">
                                         </div>
                                     </div><!--fim row 2-->
                                     <div class="row mt-3">
                                         <div class="col-md">
                                             <label class="form-label ts-label">Município</label>
-                                            <input type="text" class="form-control ts-input" disabled name="municipio">
+                                            <input type="text" class="form-control ts-input" name="municipio">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">IE</label>
-                                            <input type="text" class="form-control ts-input" disabled name="IE">
+                                            <input type="text" class="form-control ts-input" name="IE">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">País</label>
-                                            <input type="text" class="form-control ts-input" disabled name="pais">
+                                            <input type="text" class="form-control ts-input" name="pais">
                                         </div>
                                     </div><!--fim row 3-->
                                     <div class="row mt-3">
                                         <div class="col-md">
                                             <label class="form-label ts-label">Email</label>
-                                            <input type="text" class="form-control ts-input" disabled name="email">
+                                            <input type="text" class="form-control ts-input" name="email">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">Telefone</label>
-                                            <input type="text" class="form-control ts-input" disabled name="telefone">
+                                            <input type="text" class="form-control ts-input" name="telefone">
                                         </div>
                                     </div><!--fim row 4-->
                                     <div class="row mt-3">
                                         <div class="col-md">
+                                            <label class="form-label ts-label">Facebook</label>
+                                            <input type="text" class="form-control ts-input" name="facebook">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">Instagram</label>
+                                            <input type="text" class="form-control ts-input" name="instagram">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">Twitter</label>
+                                            <input type="text" class="form-control ts-input" name="twitter">
+                                        </div>
+                                    </div><!--fim row 5-->
+                                    <div class="row mt-3">
+                                        <div class="col-md">
                                             <label class="form-label ts-label">crt</label>
-                                            <input type="text" class="form-control ts-input" disabled name="crt">
+                                            <input type="text" class="form-control ts-input" name="crt">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">regimeTrib</label>
-                                            <input type="text" class="form-control ts-input" disabled name="regimeTrib">
+                                            <input type="text" class="form-control ts-input" name="regimeTrib">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">cnae</label>
-                                            <input type="text" class="form-control ts-input" disabled name="cnae">
+                                            <input type="text" class="form-control ts-input" name="cnae">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">regimeEspecial</label>
-                                            <input type="text" class="form-control ts-input" disabled name="regimeEspecial">
+                                            <input type="text" class="form-control ts-input" name="regimeEspecial">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">caracTrib</label>
-                                            <input type="text" class="form-control ts-input" disabled name="caracTrib">
+                                            <input type="text" class="form-control ts-input" name="caracTrib">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">origem</label>
-                                            <input type="text" class="form-control ts-input" disabled name="origem">
+                                            <input type="text" class="form-control ts-input" name="origem">
                                         </div>
                                     </div><!--fim row 5-->
+                                    <div class="row mt-3">
+                                        <div class="col-md">
+                                            <label class='form-label ts-label'>Imagem do Perfil</label>
+                                            <label class="picture" for="fotoInserir" tabIndex="0">
+                                                <span class="picture__image" id="inserir"></span>
+                                            </label>
+                                            <input type="file" name="imgPerfilInserir" class="fotoInput" id="fotoInserir" hidden>
+                                        </div>
+                                    </div><!--fim row 6-->
                                 </div>
                             </div>
                     </div><!--body-->
@@ -190,95 +216,122 @@ include_once(__DIR__ . '/../header.php');
                                     <div class="row mt-3">
                                         <div class="col-md-2">
                                             <label class="form-label ts-label">Tipo de Pessoa</label>
-                                            <input type="text" class="form-control ts-input" disabled name="tipoPessoa" id="tipoPessoa">
+                                            <select class="form-select ts-input" name="tipoPessoa" id="tipoPessoa">
+                                                <option value="J">Jurídica</option>
+                                                <option value="F">Física</option>
+                                            </select>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-label ts-label">Cpf/Cnpj</label>
-                                            <input type="text" class="form-control ts-input" id="cpfCnpj" disabled name="cpfCnpj">
+                                            <input type="text" class="form-control ts-input" id="cpfCnpj" name="cpfCnpj">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">Nome</label>
-                                            <input type="text" class="form-control ts-input" disabled name="nomePessoa" id="nomePessoa">
+                                            <input type="text" class="form-control ts-input" name="nomePessoa" id="nomePessoa">
+                                            <input type="hidden" class="form-control ts-input" name="idPessoa" id="idPessoa">
                                         </div>
                                     </div><!--fim row 1-->
                                     <div class="row mt-3">
                                         <div class="col-md">
                                             <label class="form-label ts-label">codigoCidade</label>
-                                            <input type="text" class="form-control ts-input" id="codigoCidade" disabled name="codigoCidade">
+                                            <input type="text" class="form-control ts-input" id="codigoCidade" name="codigoCidade">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">codigoEstado</label>
-                                            <input type="text" class="form-control ts-input" id="codigoEstado" disabled name="codigoEstado">
-                                        </div>
-                                        <div class="col-md">
-                                            <label class="form-label ts-label">CEP</label>
-                                            <input type="text" class="form-control ts-input" id="cep" disabled name="cep">
+                                            <input type="text" class="form-control ts-input" id="codigoEstado" name="codigoEstado">
                                         </div>
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col-md">
+                                            <label class="form-label ts-label">CEP</label>
+                                            <input type="text" class="form-control ts-input" id="cep" name="cep">
+                                        </div>
+                                        <div class="col-md">
                                             <label class="form-label ts-label">Bairro</label>
-                                            <input type="text" class="form-control ts-input" id="bairro" disabled name="bairro">
+                                            <input type="text" class="form-control ts-input" id="bairro" name="bairro">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">Endereço</label>
-                                            <input type="text" class="form-control ts-input" id="endereco" disabled name="endereco">
+                                            <input type="text" class="form-control ts-input" id="endereco" name="endereco">
                                         </div>
                                         <div class="col-md-2">
                                             <label class="form-label ts-label">Numero</label>
-                                            <input type="text" class="form-control ts-input" id="endNumero" disabled name="endNumero">
+                                            <input type="text" class="form-control ts-input" id="endNumero" name="endNumero">
                                         </div>
                                     </div><!--fim row 2-->
                                     <div class="row mt-3">
                                         <div class="col-md">
                                             <label class="form-label ts-label">Município</label>
-                                            <input type="text" class="form-control ts-input" id="municipio" disabled name="municipio">
+                                            <input type="text" class="form-control ts-input" id="municipio" name="municipio">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">IE</label>
-                                            <input type="text" class="form-control ts-input" id="IE" disabled name="IE">
+                                            <input type="text" class="form-control ts-input" id="IE" name="IE">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">País</label>
-                                            <input type="text" class="form-control ts-input" id="pais" disabled name="pais">
+                                            <input type="text" class="form-control ts-input" id="pais" name="pais">
                                         </div>
                                     </div><!--fim row 3-->
                                     <div class="row mt-3">
                                         <div class="col-md">
                                             <label class="form-label ts-label">Email</label>
-                                            <input type="text" class="form-control ts-input" id="email" disabled name="email">
+                                            <input type="text" class="form-control ts-input" id="email" name="email">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">Telefone</label>
-                                            <input type="text" class="form-control ts-input" id="telefone" disabled name="telefone">
+                                            <input type="text" class="form-control ts-input" id="telefone" name="telefone">
                                         </div>
                                     </div><!--fim row 4-->
                                     <div class="row mt-3">
                                         <div class="col-md">
+                                            <label class="form-label ts-label">Facebook</label>
+                                            <input type="text" class="form-control ts-input" id="facebook" name="facebook">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">Instagram</label>
+                                            <input type="text" class="form-control ts-input" id="instagram" name="instagram">
+                                        </div>
+                                        <div class="col-md">
+                                            <label class="form-label ts-label">Twitter</label>
+                                            <input type="text" class="form-control ts-input" id="twitter" name="twitter">
+                                        </div>
+                                    </div><!--fim row 5-->
+                                    <div class="row mt-3">
+                                        <div class="col-md">
                                             <label class="form-label ts-label">crt</label>
-                                            <input type="text" class="form-control ts-input" id="crt" disabled name="crt">
+                                            <input type="text" class="form-control ts-input" id="crt" name="crt">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">regimeTrib</label>
-                                            <input type="text" class="form-control ts-input" id="regimeTrib" disabled name="regimeTrib">
+                                            <input type="text" class="form-control ts-input" id="regimeTrib" name="regimeTrib">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">cnae</label>
-                                            <input type="text" class="form-control ts-input" id="cnae" disabled name="cnae">
+                                            <input type="text" class="form-control ts-input" id="cnae" name="cnae">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">regimeEspecial</label>
-                                            <input type="text" class="form-control ts-input" id="regimeEspecial" disabled name="regimeEspecial">
+                                            <input type="text" class="form-control ts-input" id="regimeEspecial" name="regimeEspecial">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">caracTrib</label>
-                                            <input type="text" class="form-control ts-input" disabled name="caracTrib" id="caracTrib">
+                                            <input type="text" class="form-control ts-input" name="caracTrib" id="caracTrib">
                                         </div>
                                         <div class="col-md">
                                             <label class="form-label ts-label">origem</label>
-                                            <input type="text" class="form-control ts-input" disabled name="origem" id="origem">
+                                            <input type="text" class="form-control ts-input" name="origem" id="origem">
                                         </div>
                                     </div><!--fim row 5-->
+                                    <div class="row mt-3">
+                                        <div class="col-md">
+                                            <label class='form-label ts-label'>Imagem do Perfil</label>
+                                            <label class="picture" for="fotoAlterar" tabIndex="0">
+                                                <span class="picture__image" id="alterar"></span>
+                                            </label>
+                                            <input type="file" name="imgPerfilAlterar" class="fotoInput" id="fotoAlterar" hidden>
+                                        </div>
+                                    </div><!--fim row 6-->
                                 </div>
                             </div>
                     </div><!--body-->
@@ -309,7 +362,7 @@ include_once(__DIR__ . '/../header.php');
             $.ajax({
                 type: 'POST',
                 dataType: 'html',
-                url: '<?php echo URLROOT ?>/cadastros/database/pessoas.php?operacao=filtrar',
+                url: '<?php echo URLROOT ?>/cadastros/database/geral.php?operacao=buscarGeralPessoas',
                 beforeSend: function() {
                     $("#dados").html("Carregando...");
                 },
@@ -332,7 +385,8 @@ include_once(__DIR__ . '/../header.php');
                         linha = linha + "<td>" + object.pais + "</td>";
                         linha = linha + "<td>" + object.endereco + "</td>";
 
-                        linha = linha + "<td>" + "<button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#alterarPessoaModal' data-idPessoa='" + object.idPessoa + "'><i class='bi bi-pencil-square'></i></button> "
+                        linha = linha + "<td>" + "<button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#alterarPessoaModal' data-idPessoa='" + object.idPessoa + "'><i class='bi bi-pencil-square'></i></button> " +
+                        "<button type='button' class='btn btn-danger btn-sm' data-bs-toggle='modal' data-bs-target='#excluirPessoaModal' data-idPessoa='" + object.idPessoa + "'><i class='bi bi-trash3'></i></button>"
                         linha = linha + "</tr>";
                     }
                     $("#dados").html(linha);
@@ -356,12 +410,13 @@ include_once(__DIR__ . '/../header.php');
                 $.ajax({
                     type: 'POST',
                     dataType: 'json',
-                    url: '../database/pessoas.php?operacao=buscar',
+                    url: '../database/geral.php?operacao=buscarGeralPessoas',
                     data: {
                         idPessoa: idPessoa
                     },
                     success: function(data) {
                         $('#idPessoa').val(data.idPessoa);
+                        $('#tipoPessoa').val(data.tipoPessoa);
                         $('#cpfCnpj').val(data.cpfCnpj);
                         $('#nomePessoa').val(data.nomePessoa);
                         $('#IE').val(data.IE);
@@ -385,23 +440,17 @@ include_once(__DIR__ . '/../header.php');
                         $('#codigoEstado').val(data.codigoEstado);
                         $('#caracTrib').val(data.caracTrib);
                         $('#origem').val(data.origem);
-                        if (data.tipoPessoa === 'J') {
-                            $('#tipoPessoa').val('Juridica');
-                        } else if (data.tipoPessoa === 'F') {
-                            $('#tipoPessoa').val('Fisica');
-                        }
                         $('#alterarPessoaModal').modal('show');
                     }
                 });
             });
-
 
         $(document).ready(function() {
             $("#form-inserirPessoas").submit(function(event) {
                 event.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
-                    url: "../database/pessoas.php?operacao=inserir",
+                    url: "../database/geral.php?operacao=inserir",
                     type: 'POST',
                     data: formData,
                     processData: false,
@@ -414,7 +463,7 @@ include_once(__DIR__ . '/../header.php');
                 event.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
-                    url: "../database/pessoas.php?operacao=alterar",
+                    url: "../database/geral.php?operacao=alterar",
                     type: 'POST',
                     data: formData,
                     processData: false,
@@ -423,38 +472,6 @@ include_once(__DIR__ . '/../header.php');
                 });
             });
 
-            function refreshPage() {
-                window.location.reload();
-            }
-
-            $("input[name='cpfCnpj']").on("input", function () {
-                var cpfCnpj = $(this).val();
-                if (cpfCnpj.length >= 11) {
-                    verificaCampoCNPJ(cpfCnpj);
-                }
-            });
-
-
-            function verificaCampoCNPJ(cpfCnpj) {
-                $.ajax({
-                    type: 'POST',
-                    dataType: 'json',
-                    url: '../database/pessoas.php?operacao=verificaCNPJ',
-                    data: {
-                        cpfCnpj: cpfCnpj
-                    },
-                    success: function (data) {
-                        //alert(data)
-                        if(data == 'LIBERADO'){
-                            //alert('DEU CERTO');
-                            //$('#btn-formInserir').show();
-                        }else{
-                            alert('CPF ou CNPJ já cadastrado!');
-                            //$('#btn-formInserir').hide();
-                        }
-                    }
-                });
-            }
         });
 
         //Carregar a imagem na tela
