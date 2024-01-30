@@ -5,7 +5,7 @@
 $LOG_CAMINHO = defineCaminhoLog();
 if (isset($LOG_CAMINHO)) {
     $LOG_NIVEL = defineNivelLog();
-    $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "pessoa_inserir";
+    $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "geralprodutos_inserir";
     if (isset($LOG_NIVEL)) {
         if ($LOG_NIVEL >= 1) {
             $arquivo = fopen(defineCaminhoLog() . "cadastros_" . date("dmY") . ".log", "a");
@@ -22,38 +22,20 @@ if (isset($LOG_NIVEL)) {
 }
 //LOG
 
-$idEmpresa = null;
-if (isset($jsonEntrada["idEmpresa"])) {
-  $idEmpresa = $jsonEntrada["idEmpresa"];
-}
+$conexao = conectaMysql(null);
+if (isset($jsonEntrada['nomeProduto'])) {
 
-$conexao = conectaMysql($idEmpresa);
+    $eanProduto = isset($jsonEntrada['eanProduto']) && $jsonEntrada['eanProduto'] !== "" && $jsonEntrada['eanProduto'] !== "NULL" ? "'" . $jsonEntrada['eanProduto'] . "'" : "NULL";
+    $nomeProduto = isset($jsonEntrada['nomeProduto']) && $jsonEntrada['nomeProduto'] !== "" ? "'" . $jsonEntrada['nomeProduto'] . "'" : "NULL";
+    $idMarca = isset($jsonEntrada['idMarca']) && $jsonEntrada['idMarca'] !== "" ? "'" . $jsonEntrada['idMarca'] . "'" : "NULL";
+    $dataAtualizacaoTributaria = isset($jsonEntrada['dataAtualizacaoTributaria']) && $jsonEntrada['dataAtualizacaoTributaria'] !== "" ? "'" . $jsonEntrada['dataAtualizacaoTributaria'] . "'" : "NULL";
+    $codImendes = isset($jsonEntrada['codImendes']) && $jsonEntrada['codImendes'] !== "" ? "'" . $jsonEntrada['codImendes'] . "'" : "NULL";
+    $idGrupo = isset($jsonEntrada['idGrupo']) && $jsonEntrada['idGrupo'] !== "" ? "'" . $jsonEntrada['idGrupo'] . "'" : "NULL";
+    $prodZFM = isset($jsonEntrada['prodZFM']) && $jsonEntrada['prodZFM'] !== "" ? "'" . $jsonEntrada['prodZFM'] . "'" : "'N'";
+   
+    $sql = "INSERT INTO geralprodutos (eanProduto, nomeProduto, idMarca, dataAtualizacaoTributaria, codImendes, idGrupo, prodZFM)
+    VALUES ($eanProduto, $nomeProduto, $idMarca, $dataAtualizacaoTributaria, $codImendes, $idGrupo, $prodZFM)";
 
-$conexaogeral = conectaMysql(null);
-
-if (isset($jsonEntrada['cpfCnpj'])) {
-
-    $cpfCnpj = isset($jsonEntrada['cpfCnpj']) && $jsonEntrada['cpfCnpj'] !== "" ? "'" . $jsonEntrada['cpfCnpj'] . "'" : "NULL";
-    
-    
-    $buscaPessoa = "SELECT * FROM geralpessoas WHERE cpfCnpj = $cpfCnpj";
-    $buscar = mysqli_query($conexaogeral, $buscaPessoa);
-    $dadosPessoa = mysqli_fetch_array($buscar, MYSQLI_ASSOC);
-    if (mysqli_num_rows($buscar) == 0) {
-        
-        $pessoasEntrada = array(
-            'cpfCnpj' => $jsonEntrada['cpfCnpj']
-        );
-
-        $pessoasRetorno = chamaAPI(null, '/cadastros/geralpessoas', json_encode($pessoasEntrada), 'PUT');
-
-    } 
-
-
-    $sql = "INSERT INTO pessoas(cpfCnpj) VALUES ($cpfCnpj)";
-    
-
-    //echo $sql;
 
     //LOG
     if (isset($LOG_NIVEL)) {
@@ -69,12 +51,12 @@ if (isset($jsonEntrada['cpfCnpj'])) {
         $atualizar = mysqli_query($conexao, $sql);
         if (!$atualizar)
             throw new Exception(mysqli_error($conexao));
-        
-        $idPessoaInserido = mysqli_insert_id($conexao);
+
+        $idGeralProdutoInserido = mysqli_insert_id($conexao);
         $jsonSaida = array(
             "status" => 200,
             "retorno" => "ok",
-            "idPessoa" => $idPessoaInserido
+            "idGeralProduto" => $idGeralProdutoInserido
         );
     } catch (Exception $e) {
         $jsonSaida = array(

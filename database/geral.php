@@ -118,14 +118,19 @@ if (isset($_GET['operacao'])) {
 
 	if ($operacao == "buscarGeralProduto") {
 
-		$eanProduto = $_POST["eanProduto"];
+		$eanProduto = isset($_POST["eanProduto"]) ? $_POST["eanProduto"] : null;
+    	$idGeralProduto = isset($_POST["idGeralProduto"]) ? $_POST["idGeralProduto"] : null;
 
 		if ($eanProduto == "") {
 			$eanProduto = null;
 		}
+		if ($idGeralProduto == "") {
+			$idGeralProduto = null;
+		}
 
 		$apiEntrada = array(
-			'eanProduto' => $eanProduto
+			'eanProduto' => $eanProduto,
+			'idGeralProduto' => $idGeralProduto
 		);
 
 		$produto = chamaAPI(null, '/cadastros/geralprodutos', json_encode($apiEntrada), 'GET');
@@ -133,19 +138,56 @@ if (isset($_GET['operacao'])) {
 		echo json_encode($produto);
 		return $produto;
 	}
+	
+	if ($operacao=="geralProdutosInserir") {
+
+		$apiEntrada = array(
+			'eanProduto' => $_POST['eanProduto'],
+			'nomeProduto' => $_POST['nomeProduto'],
+			'idMarca' => $_POST['idMarca'],
+			'dataAtualizacaoTributaria' => $_POST['dataAtualizacaoTributaria'],
+			'codImendes' => $_POST['codImendes'],
+			'prodZFM' => $_POST['prodZFM']
+		);
+		$produtos = chamaAPI(null, '/cadastros/geralprodutos', json_encode($apiEntrada), 'PUT');
+		return $produtos;
+
+	}
+
+	if ($operacao=="geralProdutosAlterar") {
+
+		$apiEntrada = array(
+			'idGeralProduto' => $_POST['idGeralProduto'],
+			'eanProduto' => $_POST['eanProduto'],
+			'nomeProduto' => $_POST['nomeProduto'],
+			'idMarca' => $_POST['idMarca'],
+			'dataAtualizacaoTributaria' => $_POST['dataAtualizacaoTributaria'],
+			'codImendes' => $_POST['codImendes'],
+			'prodZFM' => $_POST['prodZFM']
+		);
+		$produtos = chamaAPI(null, '/cadastros/geralprodutos', json_encode($apiEntrada), 'POST');
+		return $produtos;
+
+	}
+
 	if ($operacao == "buscarGeralFornecimento") {
 
-		$eanProduto = $_POST["eanProduto"];
-		$cpfCnpj = $_POST["cpfCnpj"];
+		$idFornecimento = isset($_POST["idFornecimento"]) ? $_POST["idFornecimento"] : null;
+		$eanProduto = isset($_POST["eanProduto"]) ? $_POST["eanProduto"] : null;
+    	$cpfCnpj = isset($_POST["cpfCnpj"]) ? $_POST["cpfCnpj"] : null;
 
-		if ($eanProduto == "") {
-			$eanProduto = null;
-		}
 		if ($cpfCnpj == "") {
 			$cpfCnpj = null;
 		}
+		if ($eanProduto == "") {
+			$eanProduto = null;
+		}
+		if ($idFornecimento == "") {
+			$idFornecimento = null;
+		}
 
 		$apiEntrada = array(
+			'idFornecimento' => $idFornecimento,
 			'eanProduto' => $eanProduto,
 			'cpfCnpj' => $cpfCnpj
 		);
@@ -154,6 +196,33 @@ if (isset($_GET['operacao'])) {
 
 		echo json_encode($fornecedor);
 		return $fornecedor;
+	}
+
+	if ($operacao=="geralFornecedorInserir") {
+
+		$apiEntrada = array(
+			'Cnpj' => $_POST['Cnpj'],
+			'refProduto' => $_POST['refProduto'],
+			'idGeralProduto' => $_POST['idGeralProduto'],
+			'valorCompra' => $_POST['valorCompra']
+		);
+		$fornecedor = chamaAPI(null, '/cadastros/geralfornecimento', json_encode($apiEntrada), 'PUT');
+		return $fornecedor;
+
+	}
+
+	if ($operacao=="geralFornecedorAlterar") {
+
+		$apiEntrada = array(
+			'idFornecimento' => $_POST['idFornecimento'],
+			'Cnpj' => $_POST['Cnpj'],
+			'refProduto' => $_POST['refProduto'],
+			'idGeralProduto' => $_POST['idGeralProduto'],
+			'valorCompra' => $_POST['valorCompra']
+		);
+		$fornecedor = chamaAPI(null, '/cadastros/geralfornecimento', json_encode($apiEntrada), 'POST');
+		return $fornecedor;
+
 	}
 	
 }

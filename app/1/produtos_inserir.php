@@ -8,7 +8,7 @@ if (isset($LOG_CAMINHO)) {
     $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "produtos_inserir";
     if (isset($LOG_NIVEL)) {
         if ($LOG_NIVEL >= 1) {
-            $arquivo = fopen(defineCaminhoLog() . "cadastros_produtos_inserir_" . date("dmY") . ".log", "a");
+            $arquivo = fopen(defineCaminhoLog() . "cadastros_" . date("dmY") . ".log", "a");
         }
     }
 }
@@ -27,34 +27,40 @@ if (isset($jsonEntrada["idEmpresa"])) {
     $idEmpresa = $jsonEntrada["idEmpresa"];
 }
 $conexao = conectaMysql($idEmpresa);
-if (isset($jsonEntrada['eanProduto'])) {
+$conexaogeral = conectaMysql(null);
 
-    $eanProduto = isset($jsonEntrada['eanProduto']) && $jsonEntrada['eanProduto'] !== "" && $jsonEntrada['eanProduto'] !== "NULL" ? "'" . $jsonEntrada['eanProduto'] . "'" : "NULL";
+if (isset($jsonEntrada['nomeProduto'])) {
+
+    
+    $eanProduto = isset($jsonEntrada['eanProduto']) && $jsonEntrada['eanProduto'] !== "" ? "'" . $jsonEntrada['eanProduto'] . "'" : "NULL";
     $nomeProduto = isset($jsonEntrada['nomeProduto']) && $jsonEntrada['nomeProduto'] !== "" ? "'" . $jsonEntrada['nomeProduto'] . "'" : "NULL";
-    $valorCompra = isset($jsonEntrada['valorCompra']) && $jsonEntrada['valorCompra'] !== "" ? "'" . $jsonEntrada['valorCompra'] . "'" : "NULL";
-    $precoProduto = isset($jsonEntrada['precoProduto']) && $jsonEntrada['precoProduto'] !== "" ? "'" . $jsonEntrada['precoProduto'] . "'" : "NULL";
-    $codigoNcm = isset($jsonEntrada['codigoNcm']) && $jsonEntrada['codigoNcm'] !== "" ? "'" . $jsonEntrada['codigoNcm'] . "'" : "NULL";
-    $codigoCest = isset($jsonEntrada['codigoCest']) && $jsonEntrada['codigoCest'] !== "" ? "'" . $jsonEntrada['codigoCest'] . "'" : "NULL";
-    $imgProduto = isset($jsonEntrada['imgProduto']) && $jsonEntrada['imgProduto'] !== "" ? "'" . $jsonEntrada['imgProduto'] . "'" : "NULL";
-    $idMarca = isset($jsonEntrada['idMarca']) && $jsonEntrada['idMarca'] !== "" ? "'" . $jsonEntrada['idMarca'] . "'" : "NULL";
-    $ativoProduto = isset($jsonEntrada['ativoProduto']) && $jsonEntrada['ativoProduto'] !== "" ? "'" . $jsonEntrada['ativoProduto'] . "'" : "NULL";
-    $propagandaProduto = isset($jsonEntrada['propagandaProduto']) && $jsonEntrada['propagandaProduto'] !== "" ? "'" . $jsonEntrada['propagandaProduto'] . "'" : "NULL";
-    $descricaoProduto = isset($jsonEntrada['descricaoProduto']) && $jsonEntrada['descricaoProduto'] !== "" ? "'" . $jsonEntrada['descricaoProduto'] . "'" : "NULL";
+    
+    $buscaProduto = "SELECT * FROM geralprodutos WHERE nomeProduto = $nomeProduto";
+    $buscar = mysqli_query($conexaogeral, $buscaProduto);
+    $dadosProduto = mysqli_fetch_array($buscar, MYSQLI_ASSOC);
+    if (mysqli_num_rows($buscar) == 0) {
+        
+        $geralProdutosEntrada = array(
+			'eanProduto' => $jsonEntrada['eanProduto'],
+			'nomeProduto' => $jsonEntrada['nomeProduto']
+		);
+
+        $geralProdutosRetorno = chamaAPI(null, '/cadastros/geralprodutos', json_encode($geralProdutosEntrada), 'PUT');
+        $idGeralProduto = $geralProdutosRetorno['idGeralProduto'];
+    } else {
+        $idGeralProduto = $dadosProduto['idGeralProduto'];
+    }
+
     $idPessoaFornecedor = isset($jsonEntrada['idPessoaFornecedor']) && $jsonEntrada['idPessoaFornecedor'] !== "" ? "'" . $jsonEntrada['idPessoaFornecedor'] . "'" : "NULL";
     $refProduto = isset($jsonEntrada['refProduto']) && $jsonEntrada['refProduto'] !== "" && $jsonEntrada['refProduto'] !== "NULL" ? "'" . $jsonEntrada['refProduto'] . "'" : "NULL";
-    $dataAtualizacaoTributaria = isset($jsonEntrada['dataAtualizacaoTributaria']) && $jsonEntrada['dataAtualizacaoTributaria'] !== "" ? "'" . $jsonEntrada['dataAtualizacaoTributaria'] . "'" : "NULL";
-    $codImendes = isset($jsonEntrada['codImendes']) && $jsonEntrada['codImendes'] !== "" ? "'" . $jsonEntrada['codImendes'] . "'" : "NULL";
-    $idGrupo = isset($jsonEntrada['idGrupo']) && $jsonEntrada['idGrupo'] !== "" ? "'" . $jsonEntrada['idGrupo'] . "'" : "NULL";
+    $valorCompra = isset($jsonEntrada['valorCompra']) && $jsonEntrada['valorCompra'] !== "" ? "'" . $jsonEntrada['valorCompra'] . "'" : "NULL";
     $substICMSempresa = isset($jsonEntrada['substICMSempresa']) && $jsonEntrada['substICMSempresa'] !== "" ? "'" . $jsonEntrada['substICMSempresa'] . "'" : "'N'";
     $substICMSFornecedor = isset($jsonEntrada['substICMSFornecedor']) && $jsonEntrada['substICMSFornecedor'] !== "" ? "'" . $jsonEntrada['substICMSFornecedor'] . "'" : "'N'";
-    $prodZFM = isset($jsonEntrada['prodZFM']) && $jsonEntrada['prodZFM'] !== "" ? "'" . $jsonEntrada['prodZFM'] . "'" : "'N'";
+    $codigoNcm = isset($jsonEntrada['codigoNcm']) && $jsonEntrada['codigoNcm'] !== "" ? "'" . $jsonEntrada['codigoNcm'] . "'" : "NULL";
+    $codigoCest = isset($jsonEntrada['codigoCest']) && $jsonEntrada['codigoCest'] !== "" ? "'" . $jsonEntrada['codigoCest'] . "'" : "NULL";
    
-    $sql = "INSERT INTO produtos (eanProduto, nomeProduto, valorCompra, precoProduto, codigoNcm, 
-    codigoCest, imgProduto, idMarca, ativoProduto, propagandaProduto, descricaoProduto, idPessoaFornecedor, 
-    refProduto, dataAtualizacaoTributaria, codImendes, idGrupo, substICMSempresa, substICMSFornecedor, prodZFM) 
-    VALUES ($eanProduto, $nomeProduto, $valorCompra, $precoProduto, $codigoNcm,
-    $codigoCest, $imgProduto, $idMarca, $ativoProduto, $propagandaProduto, $descricaoProduto, $idPessoaFornecedor,
-    $refProduto, $dataAtualizacaoTributaria, $codImendes, $idGrupo, $substICMSempresa, $substICMSFornecedor, $prodZFM)";
+    $sql = "INSERT INTO produtos (idGeralProduto, idPessoaFornecedor, refProduto, nomeProduto, valorCompra, substICMSempresa, substICMSFornecedor, codigoNcm, codigoCest) 
+            VALUES ($idGeralProduto, $idPessoaFornecedor, $refProduto, $nomeProduto, $valorCompra, $substICMSempresa, $substICMSFornecedor, $codigoNcm, $codigoCest)";
 
 
     //LOG
