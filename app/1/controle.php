@@ -139,6 +139,14 @@ if ($metodo == "PUT") {
       include 'grupoproduto_inserir.php';
       break;
       
+    case "geralprodutos":
+      include 'geralprodutos_inserir.php';
+      break;
+
+    case "geralfornecimento":
+      include 'geralfornecimento_inserir.php';
+      break;
+      
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -180,6 +188,14 @@ if ($metodo == "POST") {
 
     case "geralpessoas":
       include 'geralpessoas_alterar.php';
+      break;
+
+    case "geralprodutos":
+      include 'geralprodutos_alterar.php';
+      break;
+
+    case "geralfornecimento":
+      include 'geralfornecimento_alterar.php';
       break;
 
     default:

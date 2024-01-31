@@ -5,7 +5,7 @@
 $LOG_CAMINHO = defineCaminhoLog();
 if (isset($LOG_CAMINHO)) {
     $LOG_NIVEL = defineNivelLog();
-    $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "pessoa_inserir";
+    $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "geralfornecimento_inserir";
     if (isset($LOG_NIVEL)) {
         if ($LOG_NIVEL >= 1) {
             $arquivo = fopen(defineCaminhoLog() . "cadastros_" . date("dmY") . ".log", "a");
@@ -22,38 +22,17 @@ if (isset($LOG_NIVEL)) {
 }
 //LOG
 
-$idEmpresa = null;
-if (isset($jsonEntrada["idEmpresa"])) {
-  $idEmpresa = $jsonEntrada["idEmpresa"];
-}
+$conexao = conectaMysql(null);
+if (isset($jsonEntrada['Cnpj'])) {
 
-$conexao = conectaMysql($idEmpresa);
+    $Cnpj = isset($jsonEntrada['Cnpj']) && $jsonEntrada['Cnpj'] !== "" && $jsonEntrada['Cnpj'] !== "NULL" ? "'" . $jsonEntrada['Cnpj'] . "'" : "NULL";
+    $refProduto = isset($jsonEntrada['refProduto']) && $jsonEntrada['refProduto'] !== "" ? "'" . $jsonEntrada['refProduto'] . "'" : "NULL";
+    $idGeralProduto = isset($jsonEntrada['idGeralProduto']) && $jsonEntrada['idGeralProduto'] !== "" ? "'" . $jsonEntrada['idGeralProduto'] . "'" : "NULL";
+    $valorCompra = isset($jsonEntrada['valorCompra']) && $jsonEntrada['valorCompra'] !== "" ? "'" . $jsonEntrada['valorCompra'] . "'" : "NULL";
+   
+    $sql = "INSERT INTO geralfornecimento (Cnpj, refProduto, idGeralProduto, valorCompra)
+    VALUES ($Cnpj, $refProduto, $idGeralProduto, $valorCompra)";
 
-$conexaogeral = conectaMysql(null);
-
-if (isset($jsonEntrada['cpfCnpj'])) {
-
-    $cpfCnpj = isset($jsonEntrada['cpfCnpj']) && $jsonEntrada['cpfCnpj'] !== "" ? "'" . $jsonEntrada['cpfCnpj'] . "'" : "NULL";
-    
-    
-    $buscaPessoa = "SELECT * FROM geralpessoas WHERE cpfCnpj = $cpfCnpj";
-    $buscar = mysqli_query($conexaogeral, $buscaPessoa);
-    $dadosPessoa = mysqli_fetch_array($buscar, MYSQLI_ASSOC);
-    if (mysqli_num_rows($buscar) == 0) {
-        
-        $pessoasEntrada = array(
-            'cpfCnpj' => $jsonEntrada['cpfCnpj']
-        );
-
-        $pessoasRetorno = chamaAPI(null, '/cadastros/geralpessoas', json_encode($pessoasEntrada), 'PUT');
-
-    } 
-
-
-    $sql = "INSERT INTO pessoas(cpfCnpj) VALUES ($cpfCnpj)";
-    
-
-    //echo $sql;
 
     //LOG
     if (isset($LOG_NIVEL)) {
@@ -69,12 +48,12 @@ if (isset($jsonEntrada['cpfCnpj'])) {
         $atualizar = mysqli_query($conexao, $sql);
         if (!$atualizar)
             throw new Exception(mysqli_error($conexao));
-        
-        $idPessoaInserido = mysqli_insert_id($conexao);
+
+        $idGeralProdutoInserido = mysqli_insert_id($conexao);
         $jsonSaida = array(
             "status" => 200,
             "retorno" => "ok",
-            "idPessoa" => $idPessoaInserido
+            "idGeralProduto" => $idGeralProdutoInserido
         );
     } catch (Exception $e) {
         $jsonSaida = array(

@@ -332,8 +332,7 @@ include_once(__DIR__ . '/../header.php');
                         linha = linha + "<td>" + object.pais + "</td>";
                         linha = linha + "<td>" + object.endereco + "</td>";
 
-                        linha = linha + "<td>" + "<button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#alterarPessoaModal' data-cpfCnpj='" + object.cpfCnpj + "'><i class='bi bi-pencil-square'></i></button> " +
-                        "<button type='button' class='btn btn-danger btn-sm' data-bs-toggle='modal' data-bs-target='#excluirPessoaModal' data-cpfCnpj='" + object.cpfCnpj + "'><i class='bi bi-trash3'></i></button>"
+                        linha = linha + "<td>" + "<button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#alterarPessoaModal' data-cpfCnpj='" + object.cpfCnpj + "'><i class='bi bi-pencil-square'></i></button> "
                         linha = linha + "</tr>";
                     }
                     $("#dados").html(linha);

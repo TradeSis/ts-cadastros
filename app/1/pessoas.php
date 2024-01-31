@@ -28,7 +28,7 @@ if (isset($jsonEntrada["idEmpresa"])) {
 }
 
 $conexao = conectaMysql($idEmpresa);
-$conexao2 = conectaMysql(null);
+$conexaogeral = conectaMysql(null);
 $pessoas = array();
 
 $sql = "SELECT pessoas.* FROM pessoas";
@@ -50,7 +50,7 @@ while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
     $cpfCnpj = $row['cpfCnpj'];
 
     $sql2 = "SELECT geralpessoas.* FROM geralpessoas WHERE geralpessoas.cpfCnpj = $cpfCnpj";
-    $buscar2 = mysqli_query($conexao2, $sql2);
+    $buscar2 = mysqli_query($conexaogeral, $sql2);
 
     while ($row2 = mysqli_fetch_array($buscar2, MYSQLI_ASSOC)) {
         $mergedRow = array_merge($row, $row2);

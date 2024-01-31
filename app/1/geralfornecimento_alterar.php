@@ -5,7 +5,7 @@
 $LOG_CAMINHO = defineCaminhoLog();
 if (isset($LOG_CAMINHO)) {
     $LOG_NIVEL = defineNivelLog();
-    $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "produtos_alterar";
+    $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "geralfornecimento_alterar";
     if (isset($LOG_NIVEL)) {
         if ($LOG_NIVEL >= 1) {
             $arquivo = fopen(defineCaminhoLog() . "cadastros_" . date("dmY") . ".log", "a");
@@ -22,28 +22,19 @@ if (isset($LOG_NIVEL)) {
 }
 //LOG
 
-$idEmpresa = null;
-if (isset($jsonEntrada["idEmpresa"])) {
-    $idEmpresa = $jsonEntrada["idEmpresa"];
-}
-$conexao = conectaMysql($idEmpresa);
 
-if (isset($jsonEntrada['idProduto'])) {
+$conexao = conectaMysql(null);
 
-    $idProduto = isset($jsonEntrada['idProduto']) && $jsonEntrada['idProduto'] !== "" ? "'" . $jsonEntrada['idProduto'] . "'" : "NULL";
-    $idGeralProduto = isset($jsonEntrada['idGeralProduto']) && $jsonEntrada['idGeralProduto'] !== "" ? "'" . $jsonEntrada['idGeralProduto'] . "'" : "NULL";
-    $idPessoaFornecedor = isset($jsonEntrada['idPessoaFornecedor']) && $jsonEntrada['idPessoaFornecedor'] !== "" ? "'" . $jsonEntrada['idPessoaFornecedor'] . "'" : "NULL";
+if (isset($jsonEntrada['idFornecimento'])) {
+
+    $idFornecimento = isset($jsonEntrada['idFornecimento']) && $jsonEntrada['idFornecimento'] !== "" ? "'" . $jsonEntrada['idFornecimento'] . "'" : "NULL";
+    $Cnpj = isset($jsonEntrada['Cnpj']) && $jsonEntrada['Cnpj'] !== "" && $jsonEntrada['Cnpj'] !== "NULL" ? "'" . $jsonEntrada['Cnpj'] . "'" : "NULL";
     $refProduto = isset($jsonEntrada['refProduto']) && $jsonEntrada['refProduto'] !== "" ? "'" . $jsonEntrada['refProduto'] . "'" : "NULL";
-    $nomeProduto = isset($jsonEntrada['nomeProduto']) && $jsonEntrada['nomeProduto'] !== "" ? "'" . $jsonEntrada['nomeProduto'] . "'" : "NULL";
+    $idGeralProduto = isset($jsonEntrada['idGeralProduto']) && $jsonEntrada['idGeralProduto'] !== "" ? "'" . $jsonEntrada['idGeralProduto'] . "'" : "NULL";
     $valorCompra = isset($jsonEntrada['valorCompra']) && $jsonEntrada['valorCompra'] !== "" ? "'" . $jsonEntrada['valorCompra'] . "'" : "NULL";
-    $substICMSempresa = isset($jsonEntrada['substICMSempresa']) && $jsonEntrada['substICMSempresa'] !== "" ? "'" . $jsonEntrada['substICMSempresa'] . "'" : "NULL";
-    $substICMSFornecedor = isset($jsonEntrada['substICMSFornecedor']) && $jsonEntrada['substICMSFornecedor'] !== "" ? "'" . $jsonEntrada['substICMSFornecedor'] . "'" : "NULL";
-    $codigoNcm = isset($jsonEntrada['codigoNcm']) && $jsonEntrada['codigoNcm'] !== "" ? "'" . $jsonEntrada['codigoNcm'] . "'" : "NULL";
-    $codigoCest = isset($jsonEntrada['codigoCest']) && $jsonEntrada['codigoCest'] !== "" ? "'" . $jsonEntrada['codigoCest'] . "'" : "NULL";
    
 
-    $sql = "UPDATE produtos SET idGeralProduto=$idGeralProduto,idPessoaFornecedor=$idPessoaFornecedor,refProduto=$refProduto,nomeProduto=$nomeProduto, valorCompra=$valorCompra,
-                                substICMSempresa=$substICMSempresa,substICMSFornecedor=$substICMSFornecedor,codigoNcm=$codigoNcm,codigoCest=$codigoCest WHERE idProduto = $idProduto";
+    $sql = "UPDATE geralfornecimento SET Cnpj = $Cnpj, refProduto = $refProduto, idGeralProduto = $idGeralProduto, valorCompra = $valorCompra WHERE idFornecimento = $idFornecimento";
 
    
     //echo $sql;
@@ -51,6 +42,7 @@ if (isset($jsonEntrada['idProduto'])) {
     //LOG
     if (isset($LOG_NIVEL)) {
         if ($LOG_NIVEL >= 3) {
+            fwrite($arquivo, $identificacao . "-imgProduto->" . $imgProduto . "\n");
             fwrite($arquivo, $identificacao . "-SQL->" . $sql . "\n");
         }
     }
