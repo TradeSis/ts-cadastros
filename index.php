@@ -72,18 +72,6 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
                                 href="?tab=pessoas" role="tab">Pessoas</a>
                             </li>
                         <?php }
-                        if ($nivelMenu >= 2) { ?>
-                            <li class="nav-item mr-1">
-                                <a class="nav-link <?php if ($tab == "grupoproduto") {echo " active ";} ?>" 
-                                href="?tab=grupoproduto" role="tab">XGrupo produto</a>
-                            </li>
-                        <?php }
-                         if ($nivelMenu >= 2) { ?>
-                            <li class="nav-item mr-1">
-                                <a class="nav-link <?php if ($tab == "regrafiscal") {echo " active ";} ?>" 
-                                href="?tab=regrafiscal" role="tab">XRegra Fiscal</a>
-                            </li>
-                        <?php }
                         if ($nivelMenu >= 4) { ?>
                             <li class="nav-item mr-1">
                                 <a class="nav-link <?php if ($tab == "geral") {echo " active ";} ?>" 
@@ -123,12 +111,6 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
                         <option value="<?php echo URLROOT ?>/cadastros/?tab=pessoas" 
                         <?php if ($getTab == "pessoas") {echo " selected ";} ?>>Pessoas</option>
 
-                        <option value="<?php echo URLROOT ?>/cadastros/?tab=grupoproduto" 
-                        <?php if ($getTab == "grupoproduto") {echo " selected ";} ?>>Grupo produto</option>
-
-                        <option value="<?php echo URLROOT ?>/cadastros/?tab=regrafiscal" 
-                        <?php if ($getTab == "regrafiscal") {echo " selected ";} ?>>Regra Fiscal</option>
-                        
                         <option value="<?php echo URLROOT ?>/cadastros/?tab=geral" 
                         <?php if ($getTab == "geral") {echo " selected ";} ?>>Geral</option>
 
@@ -160,12 +142,6 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
             }
             if ($tab == "pessoas") {
                 $src = "cadastros/pessoas.php";
-            }
-            if ($tab == "grupoproduto") {
-                $src = "cadastros/grupoproduto.php";
-            }
-            if ($tab == "regrafiscal") {
-                $src = "cadastros/regrafiscal.php";
             }
             if ($tab == "geral") {
                 $src = "geral/";

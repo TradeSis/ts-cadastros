@@ -28,6 +28,7 @@ if (isset($jsonEntrada['cpfCnpj'])) {
     $cpfCnpj = isset($jsonEntrada['cpfCnpj']) && $jsonEntrada['cpfCnpj'] !== "" ? "'" . $jsonEntrada['cpfCnpj'] . "'" : "NULL";
     $tipoPessoa = isset($jsonEntrada['tipoPessoa']) && $jsonEntrada['tipoPessoa'] !== "" ? "'" . $jsonEntrada['tipoPessoa'] . "'" : "NULL";
     $nomePessoa = isset($jsonEntrada['nomePessoa']) && $jsonEntrada['nomePessoa'] !== "" ? "'" . $jsonEntrada['nomePessoa'] . "'" : "NULL";
+    $nomeFantasia = isset($jsonEntrada['nomeFantasia']) && $jsonEntrada['nomeFantasia'] !== "" ? "'" . $jsonEntrada['nomeFantasia'] . "'" : "NULL";
 	$IE = isset($jsonEntrada['IE']) && $jsonEntrada['IE'] !== "" ? "'" . $jsonEntrada['IE'] . "'" : "NULL";
 	$municipio = isset($jsonEntrada['municipio']) && $jsonEntrada['municipio'] !== "" ? "'" . $jsonEntrada['municipio'] . "'" : "NULL";
     $codigoCidade = isset($jsonEntrada['codigoCidade']) && $jsonEntrada['codigoCidade'] !== "" ? "'" . $jsonEntrada['codigoCidade'] . "'" : "NULL";
@@ -46,9 +47,9 @@ if (isset($jsonEntrada['cpfCnpj'])) {
     $caracTrib = isset($jsonEntrada['caracTrib']) && $jsonEntrada['caracTrib'] !== "" ? "'" . $jsonEntrada['caracTrib'] . "'" : "NULL";
     $origem = isset($jsonEntrada['origem']) && $jsonEntrada['origem'] !== "" ? "'" . $jsonEntrada['origem'] . "'" : "NULL";
 
-    $sql = "INSERT INTO geralpessoas(cpfCnpj, tipoPessoa, nomePessoa, IE, municipio, codigoCidade, codigoEstado, pais, bairro, endereco, endNumero,
+    $sql = "INSERT INTO geralpessoas(cpfCnpj, tipoPessoa, nomePessoa, nomeFantasia, IE, municipio, codigoCidade, codigoEstado, pais, bairro, endereco, endNumero,
         cep, email, telefone, crt, regimeTrib, cnae, regimeEspecial, caracTrib, origem) 
-    VALUES ($cpfCnpj, $tipoPessoa, $nomePessoa, $IE, $municipio, $codigoCidade, $codigoEstado, $pais, $bairro, $endereco, $endNumero, 
+    VALUES ($cpfCnpj, $tipoPessoa, $nomePessoa, $nomeFantasia, $IE, $municipio, $codigoCidade, $codigoEstado, $pais, $bairro, $endereco, $endNumero, 
         $cep, $email, $telefone, $crt, $regimeTrib, $cnae, $regimeEspecial, $caracTrib, $origem)";
     
 
