@@ -74,12 +74,6 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
                         <?php }
                         if ($nivelMenu >= 4) { ?>
                             <li class="nav-item mr-1">
-                                <a class="nav-link <?php if ($tab == "geral") {echo " active ";} ?>" 
-                                href="?tab=geral" role="tab" data-toggle="tooltip" data-placement="top" title="Configurações">Geral</a>
-                            </li>
-                        <?php } 
-                        if ($nivelMenu >= 4) { ?>
-                            <li class="nav-item mr-1">
                                 <a class="nav-link <?php if ($tab == "configuracao") {echo " active ";} ?>" 
                                 href="?tab=configuracao" role="tab" data-toggle="tooltip" data-placement="top" title="Configurações"><i class="bi bi-gear"></i> Configurações</a>
                             </li>
@@ -111,9 +105,6 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
                         <option value="<?php echo URLROOT ?>/cadastros/?tab=pessoas" 
                         <?php if ($getTab == "pessoas") {echo " selected ";} ?>>Pessoas</option>
 
-                        <option value="<?php echo URLROOT ?>/cadastros/?tab=geral" 
-                        <?php if ($getTab == "geral") {echo " selected ";} ?>>Geral</option>
-
                         <option value="<?php echo URLROOT ?>/cadastros/?tab=configuracao" 
                         <?php if ($getTab == "configuracao") {echo " selected ";} ?>>Configurações</option>
                     </select>
@@ -142,12 +133,6 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
             }
             if ($tab == "pessoas") {
                 $src = "cadastros/pessoas.php";
-            }
-            if ($tab == "geral") {
-                $src = "geral/";
-                if (isset($_GET['stab'])) {
-                    $src = $src . "?stab=" . $_GET['stab'];
-                }
             }
             if ($tab == "configuracao") {
                 $src = "configuracao/";
