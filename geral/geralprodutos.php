@@ -47,12 +47,14 @@ $marcas = buscaMarcas();
             <table class="table table-sm table-hover">
                 <thead class="ts-headertabelafixo">
                     <tr class="ts-headerTabelaLinhaCima">
-                        <th>imgProduto</th>
+                        <th>ID</th>
                         <th>eanProduto</th>
                         <th>nomeProduto</th>
-                        <th>precoProduto</th>
-                        <th>idMarca</th>
-                        <th>ativoProduto</th>
+                        <th>Marca</th>
+                        <th>Att Trib.</th>
+                        <th>Imendes</th>
+                        <th>Grupo</th>
+                        <th>prodZFM</th>
                         <th colspan="2">Ação</th>
                     </tr>
                 </thead>
@@ -83,28 +85,6 @@ $marcas = buscaMarcas();
                                     <label class="form-label ts-label">nomeProduto</label>
                                     <input type="text" class="form-control ts-input" name="nomeProduto">
                                 </div>
-                                <div class="col-md-2">
-                                    <label class="form-label ts-label">valorCompra</label>
-                                    <input type="text" class="form-control ts-input" name="valorCompra">
-                                </div>
-                                <div class="col-md-2">
-                                    <label class="form-label ts-label">precoProduto</label>
-                                    <input type="text" class="form-control ts-input" name="precoProduto">
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-md">
-                                    <label class="form-label ts-label">codigoNcm</label>
-                                    <input type="text" class="form-control ts-input" name="codigoNcm">
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">codigoCest</label>
-                                    <input type="text" class="form-control ts-input" name="codigoCest">
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">imgProduto</label>
-                                    <input type="text" class="form-control ts-input" name="imgProduto">
-                                </div>
                                 <div class="col-md">
                                     <label class="form-label ts-label">Marca</label>
                                     <select class="form-select ts-input" name="idMarca">
@@ -118,28 +98,6 @@ $marcas = buscaMarcas();
                             </div>
                             <div class="row mt-2">
                                 <div class="col-md">
-                                    <label class="form-label ts-label">ativoProduto</label>
-                                    <input type="text" class="form-control ts-input" name="ativoProduto">
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">propagandaProduto</label>
-                                    <input type="text" class="form-control ts-input" name="propagandaProduto">
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">descricaoProduto</label>
-                                    <input type="text" class="form-control ts-input" name="descricaoProduto">
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">idPessoaFornecedor</label>
-                                    <input type="text" class="form-control ts-input" name="idPessoaFornecedor">
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-md">
-                                    <label class="form-label ts-label">refProduto</label>
-                                    <input type="text" class="form-control ts-input" name="refProduto">
-                                </div>
-                                <div class="col-md">
                                     <label class="form-label ts-label">dataAtualizacaoTributaria</label>
                                     <input type="datetime-local" class="form-control ts-input" name="dataAtualizacaoTributaria">
                                 </div>
@@ -148,18 +106,8 @@ $marcas = buscaMarcas();
                                     <input type="text" class="form-control ts-input" name="codImendes">
                                 </div>
                                 <div class="col-md">
-                                    <label class="form-label ts-label">codigoGrupo</label>
-                                    <input type="text" class="form-control ts-input" name="codigoGrupo">
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-md">
-                                    <label class="form-label ts-label">substICMSempresa</label>
-                                    <input type="text" class="form-control ts-input" name="substICMSempresa">
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">substICMSFornecedor</label>
-                                    <input type="text" class="form-control ts-input" name="substICMSFornecedor">
+                                    <label class="form-label ts-label">idGrupo</label>
+                                    <input type="text" class="form-control ts-input" name="idGrupo">
                                 </div>
                                 <div class="col-md">
                                     <label class="form-label ts-label">prodZFM</label>
@@ -194,29 +142,7 @@ $marcas = buscaMarcas();
                                 <div class="col-md-5">
                                     <label class="form-label ts-label">nomeProduto</label>
                                     <input type="text" class="form-control ts-input" name="nomeProduto" id="nomeProduto">
-                                    <input type="hidden" class="form-control ts-input" name="idProduto" id="idProduto">
-                                </div>
-                                <div class="col-md-2">
-                                    <label class="form-label ts-label">valorCompra</label>
-                                    <input type="text" class="form-control ts-input" name="valorCompra" id="valorCompra">
-                                </div>
-                                <div class="col-md-2">
-                                    <label class="form-label ts-label">precoProduto</label>
-                                    <input type="text" class="form-control ts-input" name="precoProduto" id="precoProduto">
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-md">
-                                    <label class="form-label ts-label">codigoNcm</label>
-                                    <input type="text" class="form-control ts-input" name="codigoNcm" id="codigoNcm">
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">codigoCest</label>
-                                    <input type="text" class="form-control ts-input" name="codigoCest" id="codigoCest">
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">imgProduto</label>
-                                    <input type="text" class="form-control ts-input" name="imgProduto" id="imgProduto">
+                                    <input type="hidden" class="form-control ts-input" name="idGeralProduto" id="idGeralProduto">
                                 </div>
                                 <div class="col-md">
                                     <label class="form-label ts-label">Marca</label>
@@ -231,28 +157,6 @@ $marcas = buscaMarcas();
                             </div>
                             <div class="row mt-2">
                                 <div class="col-md">
-                                    <label class="form-label ts-label">ativoProduto</label>
-                                    <input type="text" class="form-control ts-input" name="ativoProduto" id="ativoProduto">
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">propagandaProduto</label>
-                                    <input type="text" class="form-control ts-input" name="propagandaProduto" id="propagandaProduto">
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">descricaoProduto</label>
-                                    <input type="text" class="form-control ts-input" name="descricaoProduto" id="descricaoProduto">
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">idPessoaFornecedor</label>
-                                    <input type="text" class="form-control ts-input" name="idPessoaFornecedor" id="idPessoaFornecedor">
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-md">
-                                    <label class="form-label ts-label">refProduto</label>
-                                    <input type="text" class="form-control ts-input" name="refProduto" id="refProduto">
-                                </div>
-                                <div class="col-md">
                                     <label class="form-label ts-label">dataAtualizacaoTributaria</label>
                                     <input type="datetime-local" class="form-control ts-input" name="dataAtualizacaoTributaria" id="dataAtualizacaoTributaria">
                                 </div>
@@ -263,16 +167,6 @@ $marcas = buscaMarcas();
                                 <div class="col-md">
                                     <label class="form-label ts-label">codigoGrupo</label>
                                     <input type="text" class="form-control ts-input" name="codigoGrupo" id="codigoGrupo">
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-md">
-                                    <label class="form-label ts-label">substICMSempresa</label>
-                                    <input type="text" class="form-control ts-input" name="substICMSempresa" id="substICMSempresa">
-                                </div>
-                                <div class="col-md">
-                                    <label class="form-label ts-label">substICMSFornecedor</label>
-                                    <input type="text" class="form-control ts-input" name="substICMSFornecedor" id="substICMSFornecedor">
                                 </div>
                                 <div class="col-md">
                                     <label class="form-label ts-label">prodZFM</label>
@@ -300,13 +194,7 @@ $marcas = buscaMarcas();
     <script>
         buscar($("#buscaProduto").val());
 
-        function limpar() {
-            buscar(null, null, null, null);
-            window.location.reload();
-        }
-
         function buscar(buscaProduto) {
-            //alert(buscaProduto);
             $.ajax({
                 type: 'POST',
                 dataType: 'html',
@@ -315,7 +203,7 @@ $marcas = buscaMarcas();
                     $("#dados").html("Carregando...");
                 },
                 data: {
-                    buscaProduto: buscaProduto
+                    eanProduto: buscaProduto
                 },
                 success: function(msg) {
                     //alert("segundo alert: " + msg);
@@ -326,15 +214,16 @@ $marcas = buscaMarcas();
                         var object = json[$i];
 
                         linha = linha + "<tr>";
-                        linha = linha + "<td>" + object.imgProduto + "</td>";
+                        linha = linha + "<td>" + object.idGeralProduto + "</td>";
                         linha = linha + "<td>" + object.eanProduto + "</td>";
                         linha = linha + "<td>" + object.nomeProduto + "</td>";
-                        linha = linha + "<td>" + object.precoProduto + "</td>";
                         linha = linha + "<td>" + object.idMarca + "</td>";
-                        linha = linha + "<td>" + object.ativoProduto + "</td>";
+                        linha = linha + "<td>" + object.dataAtualizacaoTributaria + "</td>";
+                        linha = linha + "<td>" + object.codImendes + "</td>";
+                        linha = linha + "<td>" + object.idGrupo + "</td>";
+                        linha = linha + "<td>" + object.prodZFM + "</td>";
 
-                        linha = linha + "<td>" + "<button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#alterarProdutoModal' data-idProduto='" + object.idProduto + "'><i class='bi bi-pencil-square'></i></button> " +
-                            "<button type='button' class='btn btn-danger btn-sm' data-bs-toggle='modal' data-bs-target='#excluirProdutoModal' data-idProduto='" + object.idProduto + "'><i class='bi bi-trash3'></i></button>"
+                        linha = linha + "<td>" + "<button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#alterarProdutoModal' data-idGeralProduto='" + object.idGeralProduto + "'><i class='bi bi-pencil-square'></i></button> " 
                         linha = linha + "</tr>";
                     }
                     $("#dados").html(linha);
@@ -359,7 +248,7 @@ $marcas = buscaMarcas();
                 dataType: 'json',
                 url: '../database/geral.php?operacao=atualizar',
                 data: {
-                    idProduto: idProdutoAtualiza  
+                    idGeralProduto: idProdutoAtualiza  
                 }
             });
             window.location.reload();
@@ -367,36 +256,24 @@ $marcas = buscaMarcas();
         });
 
         $(document).on('click', 'button[data-bs-target="#alterarProdutoModal"]', function() {
-            var idProduto = $(this).attr("data-idProduto");
-            //alert(idProduto)
+            var idGeralProduto = $(this).attr("data-idGeralProduto");
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
-                url: '../database/geral.php?operacao=buscar',
+                url: '../database/geral.php?operacao=buscarGeralProduto',
                 data: {
-                    idProduto: idProduto
+                    idGeralProduto: idGeralProduto
                 },
                 success: function(data) {
-                    $('#idProduto').val(data.idProduto);
-                    idProdutoAtualiza = data.idProduto;
+                    console.log(JSON.stringify(data, null, 2));
+                    $('#idGeralProduto').val(data.idGeralProduto);
+                    idProdutoAtualiza = data.idGeralProduto;
                     $('#eanProduto').val(data.eanProduto);
                     $('#nomeProduto').val(data.nomeProduto);
-                    $('#valorCompra').val(data.valorCompra);
-                    $('#precoProduto').val(data.precoProduto);
-                    $('#codigoNcm').val(data.codigoNcm);
-                    $('#codigoCest').val(data.codigoCest);
-                    $('#imgProduto').val(data.imgProduto);
                     $('#idMarca').val(data.idMarca);
-                    $('#ativoProduto').val(data.ativoProduto);
-                    $('#propagandaProduto').val(data.propagandaProduto);
-                    $('#descricaoProduto').val(data.descricaoProduto);
-                    $('#idPessoaFornecedor').val(data.idPessoaFornecedor);
-                    $('#refProduto').val(data.refProduto);
                     $('#dataAtualizacaoTributaria').val(data.dataAtualizacaoTributaria);
                     $('#codImendes').val(data.codImendes);
                     $('#codigoGrupo').val(data.codigoGrupo);
-                    $('#substICMSempresa').val(data.substICMSempresa);
-                    $('#substICMSFornecedor').val(data.substICMSFornecedor);
                     $('#prodZFM').val(data.prodZFM);
                     
                     $('#alterarProdutoModal').modal('show');
@@ -410,7 +287,7 @@ $marcas = buscaMarcas();
                 event.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
-                    url: "../database/geral.php?operacao=inserir",
+                    url: "../database/geral.php?operacao=geralProdutosInserir",
                     type: 'POST',
                     data: formData,
                     processData: false,
@@ -423,7 +300,7 @@ $marcas = buscaMarcas();
                 event.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
-                    url: "../database/geral.php?operacao=alterar",
+                    url: "../database/geral.php?operacao=geralProdutosAlterar",
                     type: 'POST',
                     data: formData,
                     processData: false,
@@ -433,6 +310,10 @@ $marcas = buscaMarcas();
             });
 
         });
+
+        function refreshPage() {
+            window.location.reload();
+        }
 
     </script>
 

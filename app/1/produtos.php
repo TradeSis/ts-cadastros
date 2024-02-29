@@ -29,6 +29,7 @@ if (isset($jsonEntrada["idEmpresa"])) {
 }
 
 $conexao = conectaMysql($idEmpresa);
+$conexaogeral = conectaMysql(null);
 
 $produtos = array();
 
@@ -56,16 +57,24 @@ if (isset($LOG_NIVEL)) {
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
-  array_push($produtos, $row);
+    $idGeralProduto = $row['idGeralProduto'];
 
-  $dataAtualizacaoTributariaFormatada = null;
-    if(isset($produtos[$rows]["dataAtualizacaoTributaria"])){
-      $dataAtualizacaoTributariaFormatada = date('d/m/Y H:i', strtotime($produtos[$rows]["dataAtualizacaoTributaria"]));
+    $sql2 = "SELECT geralprodutos.* FROM geralprodutos WHERE geralprodutos.idGeralProduto = $idGeralProduto";
+    $buscar2 = mysqli_query($conexaogeral, $sql2);
+
+    while ($row2 = mysqli_fetch_array($buscar2, MYSQLI_ASSOC)) {
+        $mergedRow = array_merge($row, $row2);
+        array_push($produtos, $mergedRow);
+      
+        $dataAtualizacaoTributariaFormatada = null;
+          if(isset($produtos[$rows]["dataAtualizacaoTributaria"])){
+            $dataAtualizacaoTributariaFormatada = date('d/m/Y H:i', strtotime($produtos[$rows]["dataAtualizacaoTributaria"]));
+          }
+      
+        $produtos[$rows]["dataAtualizacaoTributariaFormatada"] = $dataAtualizacaoTributariaFormatada;
+      
+        $rows = $rows + 1;
     }
-
-  $produtos[$rows]["dataAtualizacaoTributariaFormatada"] = $dataAtualizacaoTributariaFormatada;
-
-  $rows = $rows + 1;
 }
 
 if (isset($jsonEntrada["idProduto"]) && $rows == 1) {
