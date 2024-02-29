@@ -72,10 +72,6 @@ if ($metodo == "GET") {
       include 'cnpj_verifica.php';
       break;
 
-    case "grupoproduto":
-      include 'grupoproduto.php';
-      break;
-
     case "eanProduto_verifica":
       include 'eanProduto_verifica.php';
       break;  
