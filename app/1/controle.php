@@ -76,18 +76,6 @@ if ($metodo == "GET") {
       include 'eanProduto_verifica.php';
       break;  
 
-    case "geralprodutos":
-      include 'geralprodutos.php';
-      break;  
-
-    case "geralpessoas":
-      include 'geralpessoas.php';
-      break;  
-
-    case "geralfornecimento":
-      include 'geralfornecimento.php';
-      break;  
-
 
     default:
       $jsonSaida = json_decode(json_encode(
@@ -127,20 +115,8 @@ if ($metodo == "PUT") {
       include 'pessoas_inserir.php';
       break;
 
-    case "geralpessoas":
-      include 'geralpessoas_inserir.php';
-      break;
-
     case "grupoproduto":
       include 'grupoproduto_inserir.php';
-      break;
-      
-    case "geralprodutos":
-      include 'geralprodutos_inserir.php';
-      break;
-
-    case "geralfornecimento":
-      include 'geralfornecimento_inserir.php';
       break;
       
     default:
@@ -180,18 +156,6 @@ if ($metodo == "POST") {
 
     case "pessoas":
       include 'pessoas_alterar.php';
-      break;
-
-    case "geralpessoas":
-      include 'geralpessoas_alterar.php';
-      break;
-
-    case "geralprodutos":
-      include 'geralprodutos_alterar.php';
-      break;
-
-    case "geralfornecimento":
-      include 'geralfornecimento_alterar.php';
       break;
 
     default:

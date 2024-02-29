@@ -45,7 +45,7 @@ if (isset($jsonEntrada['cpfCnpj'])) {
             'cpfCnpj' => $jsonEntrada['cpfCnpj']
         );
 
-        $pessoasRetorno = chamaAPI(null, '/cadastros/geralpessoas', json_encode($pessoasEntrada), 'PUT');
+        $pessoasRetorno = chamaAPI(null, '/sistema/geralpessoas', json_encode($pessoasEntrada), 'PUT');
 
     } 
 
