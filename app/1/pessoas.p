@@ -8,8 +8,8 @@ def var hentrada as handle.             /* HANDLE ENTRADA */
 def var hsaida   as handle.             /* HANDLE SAIDA */
 
 def temp-table ttentrada no-undo serialize-name "dadosEntrada"   /* JSON ENTRADA */
-    field cpfCnpj  like pessoas.cpfCnpj initial ?
-    field idPessoa  like pessoas.idPessoa initial ?.
+    field cpfCnpj  like pessoas.cpfCnpj
+    field idPessoa  like pessoas.idPessoa.
 
 def temp-table ttpessoas  no-undo serialize-name "pessoas"  /* JSON SAIDA */
     like pessoas.
@@ -31,6 +31,14 @@ then do:
     vidPessoa = ttentrada.idPessoa.
     if vidPessoa = ? then vidPessoa = 0.
 end.
+if ttentrada.cpfCnpj = ""
+then do:
+    ttentrada.cpfCnpj = ?.
+end.
+if ttentrada.idPessoa = 0
+then do:
+    ttentrada.idPessoa = ?.
+end.
 
 IF ttentrada.idPessoa <> ? OR (ttentrada.idPessoa = ? AND ttentrada.cpfCnpj = ?)
 THEN DO:
@@ -50,10 +58,13 @@ IF ttentrada.cpfCnpj <> ?
 THEN DO:
     find pessoas where 
         pessoas.cpfCnpj =  ttentrada.cpfCnpj 
-        NO-LOCK.
-           
-        create ttpessoas.
-        BUFFER-COPY pessoas TO ttpessoas.
+        NO-LOCK no-error.
+        
+        if avail pessoas
+        then do:
+            create ttpessoas.
+            BUFFER-COPY pessoas TO ttpessoas.
+        end.
 END.
     
 
