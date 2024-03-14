@@ -1,16 +1,15 @@
 <?php
-// PROGRESS
-// ALTERAR E INSERIR
-
+// helio 31012023 criacao
+//echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 
 //LOG
 $LOG_CAMINHO = defineCaminhoLog();
 if (isset($LOG_CAMINHO)) {
     $LOG_NIVEL = defineNivelLog();
-    $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "pessoas_alterar";
+    $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "pessoa_alterar";
     if (isset($LOG_NIVEL)) {
         if ($LOG_NIVEL >= 1) {
-            $arquivo = fopen(defineCaminhoLog() . "cadastros_alterar" . date("dmY") . ".log", "a");
+            $arquivo = fopen(defineCaminhoLog() . "cadastros_" . date("dmY") . ".log", "a");
         }
     }
 }
@@ -24,19 +23,39 @@ if (isset($LOG_NIVEL)) {
 }
 //LOG
 
-if (isset($jsonEntrada['idPessoa'])) {
+$idEmpresa = null;
+if (isset($jsonEntrada["idEmpresa"])) {
+  $idEmpresa = $jsonEntrada["idEmpresa"];
+}
 
+$conexao = conectaMysql($idEmpresa);
+
+if (isset($jsonEntrada['idPessoa'])) {
+    $idPessoa = $jsonEntrada['idPessoa'];
+    $cpfCnpj = isset($jsonEntrada['cpfCnpj']) && $jsonEntrada['cpfCnpj'] !== "" ? "'" . $jsonEntrada['cpfCnpj'] . "'" : "NULL";
+
+    $sql = "UPDATE pessoas SET cpfCnpj=$cpfCnpj WHERE idPessoa = $idPessoa";
+
+    //LOG
+    if (isset($LOG_NIVEL)) {
+        if ($LOG_NIVEL >= 3) {
+            fwrite($arquivo, $identificacao . "-SQL->" . $sql . "\n");
+        }
+    }
+    //LOG
+
+    //TRY-CATCH
     try {
 
-        $progr = new chamaprogress();
-        $retorno = $progr->executarprogress("cadastros/app/1/pessoas_alterar",json_encode($jsonEntrada));
-        fwrite($arquivo,$identificacao."-RETORNO->".$retorno."\n");
-        $conteudoSaida = json_decode($retorno,true);
-        if (isset($conteudoSaida["conteudoSaida"][0])) { // Conteudo Saida - Caso de erro
-            $jsonSaida = $conteudoSaida["conteudoSaida"][0];
-        } 
-    } 
-    catch (Exception $e) {
+        $atualizar = mysqli_query($conexao, $sql);
+        if (!$atualizar)
+            throw new Exception(mysqli_error($conexao));
+
+        $jsonSaida = array(
+            "status" => 200,
+            "retorno" => "ok"
+        );
+    } catch (Exception $e) {
         $jsonSaida = array(
             "status" => 500,
             "retorno" => $e->getMessage()
@@ -48,15 +67,12 @@ if (isset($jsonEntrada['idPessoa'])) {
         // ACAO EM CASO DE ERRO (CATCH), que mesmo assim precise
     }
     //TRY-CATCH
-
-
 } else {
     $jsonSaida = array(
         "status" => 400,
         "retorno" => "Faltaram parametros"
     );
 }
-
 
 //LOG
 if (isset($LOG_NIVEL)) {
@@ -65,9 +81,3 @@ if (isset($LOG_NIVEL)) {
     }
 }
 //LOG
-
-
-
-fclose($arquivo);
-
-?>
