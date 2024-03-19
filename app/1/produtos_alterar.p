@@ -7,12 +7,11 @@ def var lokjson as log.                 /* LOGICAL DE APOIO */
 def var hentrada as handle.             /* HANDLE ENTRADA */
 def var hsaida   as handle.             /* HANDLE SAIDA */
 
-def temp-table ttentrada no-undo serialize-name "pessoas"   /* JSON ENTRADA */
-    field cpfCnpj        like pessoas.cpfCnpj.
+def temp-table ttentrada no-undo serialize-name "produtos"   /* JSON ENTRADA */
+    like produtos.
 
 def temp-table ttsaida  no-undo serialize-name "conteudoSaida"  /* JSON SAIDA CASO ERRO */
     field tstatus        as int serialize-name "status"
-    field idPessoa        as int serialize-name "idPessoa"
     field descricaoStatus      as char.
 
 
@@ -35,7 +34,7 @@ then do:
     return.
 end.
 
-if ttentrada.cpfCnpj = ?
+if ttentrada.idProduto = ?
 then do:
     create ttsaida.
     ttsaida.tstatus = 400.
@@ -48,20 +47,12 @@ then do:
     return.
 end.
 
-find geralpessoas where geralpessoas.cpfCnpj = ttentrada.cpfCnpj no-lock no-error.
-if not avail geralpessoas
-THEN DO:
-    CREATE geralpessoas.
-    geralpessoas.cpfCnpj  = ttentrada.cpfCnpj.
-END.
-
-find pessoas where pessoas.cpfCnpj = ttentrada.cpfCnpj no-lock no-error.
-if avail pessoas
+find produtos where produtos.idProduto = ttentrada.idProduto no-lock no-error.
+if not avail produtos
 then do:
     create ttsaida.
     ttsaida.tstatus = 400.
-    ttsaida.idPessoa = pessoas.idPessoa.
-    ttsaida.descricaoStatus = "Pessoa ja cadastrada".
+    ttsaida.descricaoStatus = "Pessoa nao cadastrada".
 
     hsaida  = temp-table ttsaida:handle.
 
@@ -70,17 +61,14 @@ then do:
     return.
 end.
 
-
-do on error undo:
-    create pessoas.
-    BUFFER-COPY ttentrada TO pessoas.
+do on error undo:   
+    find produtos where produtos.idProduto = ttentrada.idProduto exclusive no-error.
+    BUFFER-COPY ttentrada TO produtos .
 end.
 
 create ttsaida.
-find last pessoas no-lock.
 ttsaida.tstatus = 200.
-ttsaida.idPessoa = pessoas.idPessoa.
-ttsaida.descricaoStatus = "Pessoa cadastrada com sucesso".
+ttsaida.descricaoStatus = "Pessoa alterada com sucesso".
 
 hsaida  = temp-table ttsaida:handle.
 

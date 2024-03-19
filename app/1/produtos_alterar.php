@@ -1,5 +1,7 @@
 <?php
-//echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
+// PROGRESS
+// ALTERAR E INSERIR
+
 
 //LOG
 $LOG_CAMINHO = defineCaminhoLog();
@@ -8,7 +10,7 @@ if (isset($LOG_CAMINHO)) {
     $identificacao = date("dmYHis") . "-PID" . getmypid() . "-" . "produtos_alterar";
     if (isset($LOG_NIVEL)) {
         if ($LOG_NIVEL >= 1) {
-            $arquivo = fopen(defineCaminhoLog() . "cadastros_" . date("dmY") . ".log", "a");
+            $arquivo = fopen(defineCaminhoLog() . "cadastros_alterar" . date("dmY") . ".log", "a");
         }
     }
 }
@@ -22,52 +24,19 @@ if (isset($LOG_NIVEL)) {
 }
 //LOG
 
-$idEmpresa = null;
-if (isset($jsonEntrada["idEmpresa"])) {
-    $idEmpresa = $jsonEntrada["idEmpresa"];
-}
-$conexao = conectaMysql($idEmpresa);
-
 if (isset($jsonEntrada['idProduto'])) {
 
-    $idProduto = isset($jsonEntrada['idProduto']) && $jsonEntrada['idProduto'] !== "" ? "'" . $jsonEntrada['idProduto'] . "'" : "NULL";
-    $idGeralProduto = isset($jsonEntrada['idGeralProduto']) && $jsonEntrada['idGeralProduto'] !== "" ? "'" . $jsonEntrada['idGeralProduto'] . "'" : "NULL";
-    $idPessoaFornecedor = isset($jsonEntrada['idPessoaFornecedor']) && $jsonEntrada['idPessoaFornecedor'] !== "" ? "'" . $jsonEntrada['idPessoaFornecedor'] . "'" : "NULL";
-    $refProduto = isset($jsonEntrada['refProduto']) && $jsonEntrada['refProduto'] !== "" ? "'" . $jsonEntrada['refProduto'] . "'" : "NULL";
-    $nomeProduto = isset($jsonEntrada['nomeProduto']) && $jsonEntrada['nomeProduto'] !== "" ? "'" . $jsonEntrada['nomeProduto'] . "'" : "NULL";
-    $valorCompra = isset($jsonEntrada['valorCompra']) && $jsonEntrada['valorCompra'] !== "" ? "'" . $jsonEntrada['valorCompra'] . "'" : "NULL";
-    $substICMSempresa = isset($jsonEntrada['substICMSempresa']) && $jsonEntrada['substICMSempresa'] !== "" ? "'" . $jsonEntrada['substICMSempresa'] . "'" : "NULL";
-    $substICMSFornecedor = isset($jsonEntrada['substICMSFornecedor']) && $jsonEntrada['substICMSFornecedor'] !== "" ? "'" . $jsonEntrada['substICMSFornecedor'] . "'" : "NULL";
-    $codigoNcm = isset($jsonEntrada['codigoNcm']) && $jsonEntrada['codigoNcm'] !== "" ? "'" . $jsonEntrada['codigoNcm'] . "'" : "NULL";
-    $codigoCest = isset($jsonEntrada['codigoCest']) && $jsonEntrada['codigoCest'] !== "" ? "'" . $jsonEntrada['codigoCest'] . "'" : "NULL";
-   
-
-    $sql = "UPDATE produtos SET idGeralProduto=$idGeralProduto,idPessoaFornecedor=$idPessoaFornecedor,refProduto=$refProduto,nomeProduto=$nomeProduto, valorCompra=$valorCompra,
-                                substICMSempresa=$substICMSempresa,substICMSFornecedor=$substICMSFornecedor,codigoNcm=$codigoNcm,codigoCest=$codigoCest WHERE idProduto = $idProduto";
-
-   
-    //echo $sql;
-
-    //LOG
-    if (isset($LOG_NIVEL)) {
-        if ($LOG_NIVEL >= 3) {
-            fwrite($arquivo, $identificacao . "-SQL->" . $sql . "\n");
-        }
-    }
-    //LOG
-
-    //TRY-CATCH
     try {
 
-        $atualizar = mysqli_query($conexao, $sql);
-        if (!$atualizar)
-            throw new Exception(mysqli_error($conexao));
-
-        $jsonSaida = array(
-            "status" => 200,
-            "retorno" => "ok"
-        );
-    } catch (Exception $e) {
+        $progr = new chamaprogress();
+        $retorno = $progr->executarprogress("cadastros/app/1/produtos_alterar",json_encode($jsonEntrada));
+        fwrite($arquivo,$identificacao."-RETORNO->".$retorno."\n");
+        $conteudoSaida = json_decode($retorno,true);
+        if (isset($conteudoSaida["conteudoSaida"][0])) { // Conteudo Saida - Caso de erro
+            $jsonSaida = $conteudoSaida["conteudoSaida"][0];
+        } 
+    } 
+    catch (Exception $e) {
         $jsonSaida = array(
             "status" => 500,
             "retorno" => $e->getMessage()
@@ -88,6 +57,7 @@ if (isset($jsonEntrada['idProduto'])) {
     );
 }
 
+
 //LOG
 if (isset($LOG_NIVEL)) {
     if ($LOG_NIVEL >= 2) {
@@ -95,3 +65,9 @@ if (isset($LOG_NIVEL)) {
     }
 }
 //LOG
+
+
+
+fclose($arquivo);
+
+?>
