@@ -56,11 +56,16 @@ then do:
     return.
 end.
 
+if ttentrada.eanProduto = ""
+then do:
+    ttentrada.eanProduto = ?.
+end.
+
 find geralprodutos where geralprodutos.nomeProduto = ttentrada.nomeProduto no-lock no-error.
-if avail geralprodutos
-THEN DO:
-    idGeralProduto = geralprodutos.idGeralProduto.
-END.
+    if avail geralprodutos
+    THEN DO:
+        idGeralProduto = geralprodutos.idGeralProduto.
+    END.
 ELSE DO:
     CREATE geralprodutos.
     geralprodutos.eanProduto   = ttentrada.eanProduto.
@@ -71,22 +76,22 @@ ELSE DO:
 END.
 
 find produtos where 
-produtos.idGeralProduto = idGeralProduto AND 
-produtos.idPessoaFornecedor = ttentrada.idPessoaFornecedor 
-no-lock no-error.
-if avail produtos
-then do:
-    create ttsaida.
-    ttsaida.tstatus = 400.
-    ttsaida.idProduto = produtos.idProduto.
-    ttsaida.descricaoStatus = "Produto ja cadastrado".
+        produtos.idGeralProduto = idGeralProduto AND 
+        produtos.idPessoaFornecedor = ttentrada.idPessoaFornecedor 
+        no-lock no-error.
+    if avail produtos
+    then do:
+        create ttsaida.
+        ttsaida.tstatus = 400.
+        ttsaida.idProduto = produtos.idProduto.
+        ttsaida.descricaoStatus = "Produto ja cadastrado".
 
-    hsaida  = temp-table ttsaida:handle.
+        hsaida  = temp-table ttsaida:handle.
 
-    lokJson = hsaida:WRITE-JSON("LONGCHAR", vlcSaida, TRUE).
-    message string(vlcSaida).
-    return.
-end.
+        lokJson = hsaida:WRITE-JSON("LONGCHAR", vlcSaida, TRUE).
+        message string(vlcSaida).
+        return.
+    end.
 
 
 do on error undo:

@@ -8,8 +8,10 @@ def var hentrada as handle.             /* HANDLE ENTRADA */
 def var hsaida   as handle.             /* HANDLE SAIDA */
 
 def temp-table ttentrada no-undo serialize-name "dadosEntrada"   /* JSON ENTRADA */
-    field buscaProduto  AS CHAR
-    field idProduto  like produtos.idProduto.
+    field buscaProduto          AS CHAR
+    field idProduto             like produtos.idProduto
+    field idPessoaFornecedor    like produtos.idPessoaFornecedor
+    field refProduto            like produtos.refProduto.
 
 def temp-table ttprodutos  no-undo serialize-name "produtos"  /* JSON SAIDA */
     like produtos.
@@ -39,8 +41,16 @@ if ttentrada.idProduto = 0
 then do:
     ttentrada.idProduto = ?.
 end.
+if ttentrada.idPessoaFornecedor = 0
+then do:
+    ttentrada.idPessoaFornecedor = ?.
+end.
+if ttentrada.refProduto = ""
+then do:
+    ttentrada.refProduto = ?.
+end.
 
-IF ttentrada.idProduto <> ? OR (ttentrada.idProduto = ? AND ttentrada.buscaProduto = ?)
+IF ttentrada.idProduto <> ? OR (ttentrada.idProduto = ? AND ttentrada.buscaProduto = ? AND ttentrada.idPessoaFornecedor = ? AND ttentrada.refProduto = ?)
 THEN DO:
     for each produtos where
         (if vidProduto = 0
@@ -58,6 +68,20 @@ IF ttentrada.buscaProduto <> ?
 THEN DO:
     find produtos where 
         produtos.nomeProduto MATCHES "*" + ttentrada.buscaProduto + "*"
+        NO-LOCK no-error.
+        
+        if avail produtos
+        then do:
+            create ttprodutos.
+            BUFFER-COPY produtos TO ttprodutos.
+        end.
+END.
+
+IF ttentrada.idPessoaFornecedor <> ? AND ttentrada.refProduto <> ?
+THEN DO:
+    find produtos where 
+        produtos.idPessoaFornecedor = ttentrada.idPessoaFornecedor AND
+        produtos.refProduto = ttentrada.refProduto
         NO-LOCK no-error.
         
         if avail produtos

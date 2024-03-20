@@ -90,7 +90,7 @@ if ($BANCO == "PROGRESS") {
         $produtos = $produtos["conteudoSaida"][0];
     } else {
 
-        if (!isset ($produtos["produtos"][1]) && ($jsonEntrada['idProduto'] != null)) {  // Verifica se tem mais de 1 registro
+        if (!isset ($produtos["produtos"][1]) && ((isset ($jsonEntrada["idProduto"])) && $jsonEntrada['idProduto'] != null)) {  // Verifica se tem mais de 1 registro
             $produtos = $produtos["produtos"][0]; // Retorno sem array
         } else {
             $produtos = $produtos["produtos"];
