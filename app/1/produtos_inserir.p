@@ -23,94 +23,36 @@ def temp-table ttsaida  no-undo serialize-name "conteudoSaida"  /* JSON SAIDA CA
     field idProduto        as int serialize-name "idProduto"
     field descricaoStatus      as char.
 
-DEF VAR idGeralProduto like produtos.idGeralProduto.
+DEF VAR vidProduto as INT.
+def var vmensagem as char.
 
 hEntrada = temp-table ttentrada:HANDLE.
 lokJSON = hentrada:READ-JSON("longchar",vlcentrada, "EMPTY") no-error.
 find first ttentrada no-error.
 
+vidProduto = 0.
+RUN cadastros/database/produtos.p (INPUT "PUT", 
+                                     input table ttentrada, 
+                                     output vidProduto,
+                                     output vmensagem).
 
-if not avail ttentrada
-then do:
+IF vmensagem <> ? 
+THEN DO:
     create ttsaida.
     ttsaida.tstatus = 400.
-    ttsaida.descricaoStatus = "Dados de Entrada nao encontrados".
-
+    ttsaida.descricaoStatus = vmensagem.
+                                          
     hsaida  = temp-table ttsaida:handle.
-
+                                          
     lokJson = hsaida:WRITE-JSON("LONGCHAR", vlcSaida, TRUE).
     message string(vlcSaida).
     return.
-end.
-
-if ttentrada.nomeProduto = ?
-then do:
-    create ttsaida.
-    ttsaida.tstatus = 400.
-    ttsaida.descricaoStatus = "Dados de Entrada Invalidos".
-
-    hsaida  = temp-table ttsaida:handle.
-
-    lokJson = hsaida:WRITE-JSON("LONGCHAR", vlcSaida, TRUE).
-    message string(vlcSaida).
-    return.
-end.
-
-if ttentrada.eanProduto = ""
-then do:
-    ttentrada.eanProduto = ?.
-end.
-
-find geralprodutos where geralprodutos.nomeProduto = ttentrada.nomeProduto no-lock no-error.
-    if avail geralprodutos
-    THEN DO:
-        idGeralProduto = geralprodutos.idGeralProduto.
-    END.
-ELSE DO:
-    CREATE geralprodutos.
-    geralprodutos.eanProduto   = ttentrada.eanProduto.
-    geralprodutos.nomeProduto  = ttentrada.nomeProduto.
-    
-    find last geralprodutos no-lock.
-    idGeralProduto = geralprodutos.idGeralProduto.
 END.
-
-find produtos where 
-        produtos.idGeralProduto = idGeralProduto AND 
-        produtos.idPessoaFornecedor = ttentrada.idPessoaFornecedor 
-        no-lock no-error.
-    if avail produtos
-    then do:
-        create ttsaida.
-        ttsaida.tstatus = 400.
-        ttsaida.idProduto = produtos.idProduto.
-        ttsaida.descricaoStatus = "Produto ja cadastrado".
-
-        hsaida  = temp-table ttsaida:handle.
-
-        lokJson = hsaida:WRITE-JSON("LONGCHAR", vlcSaida, TRUE).
-        message string(vlcSaida).
-        return.
-    end.
-
-
-do on error undo:
-    create produtos.
-    produtos.idGeralProduto   = idGeralProduto.
-    produtos.idPessoaFornecedor   = ttentrada.idPessoaFornecedor.
-    produtos.refProduto   = ttentrada.refProduto.
-    produtos.nomeProduto   = ttentrada.nomeProduto.
-    produtos.valorCompra   = ttentrada.valorCompra.
-    produtos.substICMSempresa   = ttentrada.substICMSempresa.
-    produtos.substICMSFornecedor   = ttentrada.substICMSFornecedor.
-    produtos.codigoNcm   = ttentrada.codigoNcm.
-    produtos.codigoCest   = ttentrada.codigoCest.
-end.
 
 create ttsaida.
 find last produtos no-lock.
 ttsaida.tstatus = 200.
-ttsaida.idProduto = produtos.idProduto.
+ttsaida.idProduto = vidProduto.
 ttsaida.descricaoStatus = "Produto cadastrado com sucesso".
 
 hsaida  = temp-table ttsaida:handle.

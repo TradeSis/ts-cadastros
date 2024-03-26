@@ -15,71 +15,36 @@ def temp-table ttsaida  no-undo serialize-name "conteudoSaida"  /* JSON SAIDA CA
     field idPessoa        as int serialize-name "idPessoa"
     field descricaoStatus      as char.
 
-
+DEF VAR vidPessoa as INT.
+def var vmensagem as char.
 
 hEntrada = temp-table ttentrada:HANDLE.
 lokJSON = hentrada:READ-JSON("longchar",vlcentrada, "EMPTY") no-error.
 find first ttentrada no-error.
 
+vidPessoa = 0.
+RUN cadastros/database/pessoas.p (INPUT "PUT", 
+                                     input table ttentrada, 
+                                     output vidPessoa,
+                                     output vmensagem).
 
-if not avail ttentrada
-then do:
-    create ttsaida.
-    ttsaida.tstatus = 400.
-    ttsaida.descricaoStatus = "Dados de Entrada nao encontrados".
-
-    hsaida  = temp-table ttsaida:handle.
-
-    lokJson = hsaida:WRITE-JSON("LONGCHAR", vlcSaida, TRUE).
-    message string(vlcSaida).
-    return.
-end.
-
-if ttentrada.cpfCnpj = ?
-then do:
-    create ttsaida.
-    ttsaida.tstatus = 400.
-    ttsaida.descricaoStatus = "Dados de Entrada Invalidos".
-
-    hsaida  = temp-table ttsaida:handle.
-
-    lokJson = hsaida:WRITE-JSON("LONGCHAR", vlcSaida, TRUE).
-    message string(vlcSaida).
-    return.
-end.
-
-find geralpessoas where geralpessoas.cpfCnpj = ttentrada.cpfCnpj no-lock no-error.
-if not avail geralpessoas
+IF vmensagem <> ? 
 THEN DO:
-    CREATE geralpessoas.
-    geralpessoas.cpfCnpj  = ttentrada.cpfCnpj.
-END.
-
-find pessoas where pessoas.cpfCnpj = ttentrada.cpfCnpj no-lock no-error.
-if avail pessoas
-then do:
     create ttsaida.
     ttsaida.tstatus = 400.
-    ttsaida.idPessoa = pessoas.idPessoa.
-    ttsaida.descricaoStatus = "Pessoa ja cadastrada".
-
+    ttsaida.descricaoStatus = vmensagem.
+                                          
     hsaida  = temp-table ttsaida:handle.
-
+                                          
     lokJson = hsaida:WRITE-JSON("LONGCHAR", vlcSaida, TRUE).
     message string(vlcSaida).
     return.
-end.
-
-
-do on error undo:
-    create pessoas.
-    BUFFER-COPY ttentrada TO pessoas.
-end.
+END.
 
 create ttsaida.
 find last pessoas no-lock.
 ttsaida.tstatus = 200.
-ttsaida.idPessoa = pessoas.idPessoa.
+ttsaida.idPessoa = vidPessoa.
 ttsaida.descricaoStatus = "Pessoa cadastrada com sucesso".
 
 hsaida  = temp-table ttsaida:handle.
