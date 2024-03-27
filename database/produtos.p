@@ -1,7 +1,8 @@
 
 // Programa especializado em CRAR a tabela produtos
 def temp-table ttentrada no-undo serialize-name "produtos"   /* JSON ENTRADA */
-    LIKE produtos.
+    LIKE produtos
+    field eanProduto like geralprodutos.eanProduto.
 
   
 def input param vAcao as char.
@@ -35,7 +36,7 @@ THEN DO:
     find geralprodutos where geralprodutos.nomeProduto = ttentrada.nomeProduto no-lock no-error.
         if avail geralprodutos
         THEN DO:
-            idGeralProduto = geralprodutos.idGeralProduto.
+            ttentrada.idGeralProduto = geralprodutos.idGeralProduto.
         END.
     ELSE DO:
         CREATE geralprodutos.
@@ -43,11 +44,11 @@ THEN DO:
         geralprodutos.nomeProduto  = ttentrada.nomeProduto.
         
         find last geralprodutos no-lock.
-        idGeralProduto = geralprodutos.idGeralProduto.
+        ttentrada.idGeralProduto = geralprodutos.idGeralProduto.
     END.
     
     find produtos where 
-        produtos.idGeralProduto = idGeralProduto AND 
+        produtos.idGeralProduto = ttentrada.idGeralProduto AND 
         produtos.idPessoaFornecedor = ttentrada.idPessoaFornecedor 
         no-lock no-error.
     if avail produtos
@@ -58,7 +59,7 @@ THEN DO:
     do on error undo:
         create produtos.
         vidProduto = produtos.idProduto.
-        produtos.idGeralProduto   = idGeralProduto.
+        produtos.idGeralProduto   = ttentrada.idGeralProduto.
         produtos.idPessoaFornecedor   = ttentrada.idPessoaFornecedor.
         produtos.refProduto   = ttentrada.refProduto.
         produtos.nomeProduto   = ttentrada.nomeProduto.

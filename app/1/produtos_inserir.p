@@ -8,15 +8,8 @@ def var hentrada as handle.             /* HANDLE ENTRADA */
 def var hsaida   as handle.             /* HANDLE SAIDA */
 
 def temp-table ttentrada no-undo serialize-name "produtos"   /* JSON ENTRADA */
-    field eanProduto                     like geralprodutos.eanProduto
-    field idPessoaFornecedor             like produtos.idPessoaFornecedor 
-    field refProduto                     like produtos.refProduto
-    field nomeProduto                    like produtos.nomeProduto
-    field valorCompra                    like produtos.valorCompra
-    field substICMSempresa               like produtos.substICMSempresa
-    field substICMSFornecedor            like produtos.substICMSFornecedor
-    field codigoNcm                      like produtos.codigoNcm
-    field codigoCest                     like produtos.codigoCest.
+    LIKE produtos
+    field eanProduto like geralprodutos.eanProduto.
 
 def temp-table ttsaida  no-undo serialize-name "conteudoSaida"  /* JSON SAIDA CASO ERRO */
     field tstatus        as int serialize-name "status"
